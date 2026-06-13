@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>☠️ CardVault • Premium UPI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Creepster&display=swap" rel="stylesheet">
+  <title>CARDVAULT • UPI AUTO INTENT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     * {
@@ -16,21 +16,18 @@
     :root {
       --bg: #000000;
       --s1: #0a0a0a;
-      --s2: #0f0f0f;
-      --border: rgba(255, 0, 0, 0.2);
-      --border-glow: rgba(0, 255, 0, 0.3);
-      --text: #e0e0e0;
-      --muted: #888;
-      --dim: #555;
-      --blood: #ff0033;
-      --toxic: #0eff00;
-      --dark-red: #8b0000;
-      --gold: #ffd700;
-      --r: 14px;
+      --border: rgba(255, 30, 30, 0.3);
+      --text: #e8e8e8;
+      --muted: #8a8a8a;
+      --dim: #5a5a5a;
+      --blood: #ff1a3c;
+      --toxic: #1eff3c;
+      --gold: #ffd966;
+      --r: 16px;
     }
 
     body {
-      background: #000;
+      background: var(--bg);
       font-family: 'Inter', sans-serif;
       color: var(--text);
       min-height: 100vh;
@@ -42,7 +39,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.12;
+      opacity: 0.1;
       pointer-events: none;
     }
 
@@ -62,17 +59,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-100px) scale(1);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-100px) scale(1); opacity: 0; }
     }
 
     .wrap {
@@ -88,94 +77,49 @@
       margin-bottom: 2rem;
     }
 
-    .eyebrow {
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       font-size: 0.7rem;
       font-weight: 800;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--toxic);
       border: 2px solid var(--blood);
-      padding: 0.4rem 1.2rem;
+      padding: 0.45rem 1.4rem;
       border-radius: 99px;
       margin-bottom: 1.5rem;
       text-shadow: 0 0 20px var(--toxic);
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3), inset 0 0 15px rgba(255, 0, 0, 0.1);
-      animation: glitchText 3s infinite;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
     }
 
-    @keyframes glitchText {
-
-      0%,
-      100% {
-        transform: translate(0);
-      }
-
-      20% {
-        transform: translate(-2px, 2px);
-      }
-
-      40% {
-        transform: translate(2px, -1px);
-      }
-
-      60% {
-        transform: translate(-1px, 1px);
-      }
-
-      80% {
-        transform: translate(1px, -2px);
-      }
-    }
-
-    .live-dot {
+    .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--toxic);
-      box-shadow: 0 0 15px var(--toxic);
-      animation: blink 1s infinite;
+      box-shadow: 0 0 12px var(--toxic);
+      animation: blinkPulse 1.2s infinite;
     }
 
-    @keyframes blink {
+    @keyframes blinkPulse { 0%,100%{ opacity: 1; } 50%{ opacity: 0.2; } }
 
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: 0.2
-      }
-    }
-
-    .header h1 {
-      font-family: 'Creepster', cursive;
+    .glitch-title {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-weight: 800;
+      letter-spacing: -0.02em;
       line-height: 1;
       margin-bottom: 0.5rem;
-      color: var(--blood);
-      text-shadow: 0 0 40px var(--blood), 0 0 80px var(--dark-red);
-      animation: glitchText 2s infinite;
     }
 
-    .header h1 em {
-      font-style: normal;
-      color: var(--toxic);
-      text-shadow: 0 0 40px var(--toxic);
-    }
+    .glitch-title span { color: var(--blood); text-shadow: 0 0 40px var(--blood); }
+    .glitch-title i { font-style: normal; color: var(--toxic); text-shadow: 0 0 30px var(--toxic); }
+    .sub { color: var(--muted); font-size: 0.85rem; }
 
-    .header p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .live-users-counter {
-      background: rgba(255, 0, 0, 0.1);
+    .live-counter {
+      background: rgba(255, 30, 30, 0.12);
       border: 2px solid var(--blood);
       border-radius: 99px;
       padding: 0.5rem 1.3rem;
@@ -186,482 +130,145 @@
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--toxic);
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+      margin-bottom: 1.8rem;
     }
 
-    .sort-wrap,
-    .filter-wrap {
+    .sort-wrap, .filter-wrap {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
     }
 
-    .sort-btn,
-    .filter-btn {
+    .sort-btn, .filter-btn {
       font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.4rem 1rem;
+      padding: 0.45rem 1.2rem;
       background: rgba(0, 0, 0, 0.7);
-      border: 2px solid var(--border);
+      border: 1.5px solid var(--border);
       color: var(--muted);
       border-radius: 99px;
       cursor: pointer;
       transition: all 0.2s ease;
-      text-transform: uppercase;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(5px);
     }
 
-    .sort-btn:hover,
-    .filter-btn:hover {
+    .sort-btn:hover, .filter-btn:hover {
       border-color: var(--toxic);
       color: var(--toxic);
-      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+      box-shadow: 0 0 12px rgba(30, 255, 60, 0.3);
     }
 
-    .sort-btn.active,
-    .filter-btn.active {
-      background: rgba(0, 255, 0, 0.15);
+    .sort-btn.active, .filter-btn.active {
+      background: rgba(30, 255, 60, 0.12);
       border-color: var(--toxic);
       color: var(--toxic);
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     }
 
-    /* CARDS GRID */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
     }
 
     .card {
-      background: linear-gradient(135deg, rgba(15, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+      background: linear-gradient(145deg, rgba(12, 12, 18, 0.95), rgba(0, 0, 0, 0.98));
       border: 1px solid var(--border);
       border-radius: var(--r);
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      position: relative;
-      backdrop-filter: blur(2px);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(255, 0, 0, 0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       border-color: var(--toxic);
-      box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
+      box-shadow: 0 20px 35px rgba(255, 26, 60, 0.3);
     }
 
-    .card:hover::before {
-      opacity: 1;
-    }
+    .card-accent { height: 3px; background: linear-gradient(90deg, var(--blood), var(--toxic), var(--blood)); }
+    .card-body { padding: 1.2rem 1.2rem 0.8rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; }
+    .network { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; color: var(--toxic); }
+    .price-chip { font-family: monospace; font-weight: 800; background: rgba(255, 26, 60, 0.2); padding: 0.2rem 0.7rem; border-radius: 20px; color: #ff8095; font-size: 0.75rem; border: 1px solid var(--blood); }
+    .card-sim { display: flex; align-items: center; gap: 0.5rem; }
+    .chip-icon { width: 36px; height: 26px; background: linear-gradient(135deg, #e6b800, #b38000); border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
+    .chip-line-small { width: 70%; height: 1.5px; background: rgba(0, 0, 0, 0.5); }
+    .nfc-signal { font-size: 0.7rem; color: var(--dim); letter-spacing: 1px; }
+    .card-number { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 0.08em; background: rgba(0, 0, 0, 0.5); padding: 0.5rem; border-radius: 10px; text-align: center; border: 1px solid var(--border); }
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .meta-item { background: rgba(0, 0, 0, 0.4); padding: 0.3rem; border-radius: 8px; text-align: center; }
+    .meta-label { font-size: 0.5rem; color: var(--dim); text-transform: uppercase; }
+    .meta-value { font-family: monospace; font-size: 0.7rem; font-weight: 700; }
+    .balance-highlight { color: var(--toxic); }
+    .holder-name { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .card-bar {
-      height: 3px;
-      background: linear-gradient(90deg, var(--blood), var(--toxic), var(--blood));
-    }
-
-    .card-body {
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .card-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .net-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: var(--toxic);
-      text-shadow: 0 0 8px var(--toxic);
-    }
-
-    .price-badge {
-      font-family: monospace;
-      font-weight: 800;
-      background: rgba(255, 0, 0, 0.2);
-      padding: 0.2rem 0.7rem;
-      border-radius: 20px;
-      color: #ff8888;
-      border: 1px solid var(--blood);
-    }
-
-    .chip-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chip {
-      width: 35px;
-      height: 24px;
-      background: linear-gradient(135deg, #ffd700, #b8860b);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .chip-line {
-      width: 70%;
-      height: 1.5px;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .card-number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 0.5rem;
-      border-radius: 8px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .card-meta {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
-
-    .meta-box {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 0.3rem;
-      border-radius: 6px;
-      text-align: center;
-    }
-
-    .meta-lbl {
-      font-size: 0.5rem;
-      color: var(--dim);
-      text-transform: uppercase;
-    }
-
-    .meta-val {
-      font-family: monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-
-    .balance-text {
-      color: var(--toxic);
-    }
-
-    .holder {
-      font-size: 0.7rem;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* PREMIUM BUY BUTTON */
-    .buy-btn {
+    .buy-action {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(135deg, #1f0000, #0a0000);
+      background: linear-gradient(135deg, #1c0505, #080000);
       border-top: 2px solid var(--blood);
       padding: 0.9rem 1.2rem;
       cursor: pointer;
       transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
     }
 
-    .buy-btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
-      transition: left 0.5s;
-    }
+    .buy-action:hover { background: #2a0808; border-top-color: var(--toxic); }
+    .buy-left { display: flex; align-items: center; gap: 0.8rem; }
+    .lock-icon { width: 38px; height: 38px; background: rgba(255, 26, 60, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--blood); font-weight: 800; }
+    .buy-label { font-weight: 800; font-size: 0.8rem; color: #ff7a8f; }
+    .buy-sub { font-size: 0.6rem; color: var(--muted); }
+    .arrow-right { font-size: 1.3rem; color: var(--blood); transition: transform 0.2s; }
+    .buy-action:hover .arrow-right { transform: translateX(5px); color: var(--toxic); }
 
-    .buy-btn:hover::after {
-      left: 100%;
-    }
-
-    .buy-btn:hover {
-      background: #2a0000;
-      border-top-color: var(--toxic);
-    }
-
-    .buy-left {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .qr-icon-wrap {
-      width: 38px;
-      height: 38px;
-      background: rgba(255, 0, 0, 0.2);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      border: 1px solid var(--blood);
-    }
-
-    .buy-label {
-      font-weight: 800;
-      font-size: 0.8rem;
-      color: #ff6666;
-    }
-
-    .buy-sub {
-      font-size: 0.6rem;
-      color: var(--muted);
-    }
-
-    .buy-arrow {
-      font-size: 1.5rem;
-      color: var(--blood);
-      transition: transform 0.2s;
-    }
-
-    .buy-btn:hover .buy-arrow {
-      transform: translateX(6px);
-      color: var(--toxic);
-    }
-
-    /* MODAL PREMIUM */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 0, 0, 0.96);
       backdrop-filter: blur(20px);
       align-items: center;
       justify-content: center;
       padding: 1rem;
     }
 
-    .modal.open {
-      display: flex;
-    }
-
-    .mbox {
-      background: #0c0c0c;
+    .modal.open { display: flex; }
+    .modal-container {
+      background: #0c0c10;
       border: 2px solid var(--blood);
       border-radius: 28px;
       width: 100%;
       max-width: 480px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 0 80px rgba(255, 0, 0, 0.5);
-      animation: slideUp 0.3s ease;
+      box-shadow: 0 0 70px rgba(255, 26, 60, 0.5);
+      animation: modalGlow 0.3s ease;
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .mbox-topbar {
-      height: 4px;
-      background: linear-gradient(90deg, var(--blood), var(--toxic), var(--blood));
-    }
-
-    .mbox-head {
-      display: flex;
-      justify-content: space-between;
-      padding: 1.2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .mbox-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      color: var(--toxic);
-    }
-
-    .mclose-btn {
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 0, 0, 0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 1px solid var(--blood);
-    }
-
-    .mbox-body {
-      padding: 1.5rem;
-    }
-
-    .m-info {
-      background: #000;
-      padding: 0.8rem;
-      border-radius: 16px;
-      display: flex;
-      justify-content: space-between;
-      border: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-
-    .m-price-box {
-      background: linear-gradient(135deg, #1a0000, #000);
-      border-radius: 20px;
-      padding: 1rem;
-      text-align: center;
-      border: 1px solid var(--blood);
-      margin-bottom: 1.2rem;
-    }
-
-    .m-price-amount {
-      font-size: 2.2rem;
-      font-weight: 800;
-      font-family: monospace;
-      color: var(--blood);
-    }
-
-    .qr-section {
-      background: #050505;
-      border-radius: 24px;
-      padding: 1rem;
-      text-align: center;
-      border: 1px solid var(--border);
-      margin-bottom: 1rem;
-    }
-
-    .qr-label {
-      font-size: 0.7rem;
-      color: var(--toxic);
-      margin-bottom: 0.5rem;
-    }
-
-    #dynamicQR {
-      display: flex;
-      justify-content: center;
-      margin: 0.5rem 0;
-      background: white;
-      padding: 12px;
-      border-radius: 20px;
-      display: inline-block;
-      width: auto;
-    }
-
-    .qr-amount-tag {
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: var(--gold);
-      margin-top: 8px;
-    }
-
-    .payment-apps {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-    }
-
-    .payment-app-btn {
-      flex: 1;
-      background: #111;
-      border: 1px solid var(--border);
-      border-radius: 60px;
-      padding: 10px 8px;
-      font-weight: bold;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: 0.2s;
-      color: #ddd;
-    }
-
-    .payment-app-btn:hover {
-      background: var(--blood);
-      color: white;
-      border-color: var(--toxic);
-      transform: scale(0.97);
-    }
-
-    .input-group {
-      margin-bottom: 12px;
-    }
-
-    .input-label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 4px;
-    }
-
-    .cust-input {
-      width: 100%;
-      background: #0a0a0a;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px 12px;
-      color: white;
-      font-family: monospace;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 60px;
-      font-weight: 800;
-      border: none;
-      cursor: pointer;
-      margin-top: 12px;
-      transition: 0.2s;
-    }
-
-    .btn-success {
-      background: linear-gradient(135deg, #00aa00, #006600);
-      color: white;
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .flex-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      margin-top: 2rem;
-    }
+    @keyframes modalGlow { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    .modal-header { display: flex; justify-content: space-between; padding: 1.2rem 1.3rem; border-bottom: 1px solid var(--border); }
+    .modal-title { font-weight: 800; color: var(--toxic); font-family: 'Space Grotesk', sans-serif; }
+    .close-modal { width: 32px; height: 32px; background: rgba(255, 26, 60, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--blood); }
+    .modal-body { padding: 1.5rem; }
+    .info-row { background: #00000055; padding: 0.8rem; border-radius: 18px; display: flex; justify-content: space-between; border: 1px solid var(--border); margin-bottom: 1rem; }
+    .price-card { background: linear-gradient(135deg, #1a0505, #000); border-radius: 22px; padding: 1rem; text-align: center; border: 1px solid var(--blood); margin-bottom: 1.2rem; }
+    .amount-large { font-size: 2.2rem; font-weight: 800; font-family: monospace; color: var(--blood); }
+    .qr-panel { background: #030303; border-radius: 24px; padding: 1rem; text-align: center; border: 1px solid var(--border); margin-bottom: 1rem; }
+    .qr-label-text { font-size: 0.7rem; color: var(--toxic); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+    #dynamicQR { display: flex; justify-content: center; margin: 0.5rem auto; background: white; padding: 10px; border-radius: 20px; width: fit-content; }
+    .qr-amount-badge { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-top: 8px; }
+    .upi-id-small { font-size: 0.6rem; color: var(--dim); margin-top: 6px; }
+    .apps-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 1rem 0; }
+    .app-btn { flex: 1; background: #111116; border: 1px solid var(--border); border-radius: 60px; padding: 10px 8px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.2s; color: #ccc; text-align: center; }
+    .app-btn:hover { background: var(--blood); color: white; border-color: var(--toxic); transform: scale(0.98); }
+    .input-field { margin-bottom: 12px; }
+    .input-label { font-size: 0.6rem; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+    .input-custom { width: 100%; background: #0a0a0e; border: 1px solid var(--border); border-radius: 14px; padding: 10px 14px; color: white; font-family: monospace; }
+    .btn-primary { width: 100%; padding: 12px; border-radius: 60px; font-weight: 800; border: none; cursor: pointer; margin-top: 12px; background: linear-gradient(135deg, #008800, #004400); color: white; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); width: 100%; padding: 10px; border-radius: 60px; font-weight: 600; cursor: pointer; }
+    .footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: var(--dim); }
   </style>
 </head>
 <body>
@@ -671,25 +278,25 @@
 
 <div class="wrap">
   <div class="header">
-    <div class="eyebrow"><div class="live-dot"></div> ☠️ VAULT v3.0</div>
-    <h1>💀 Card <em>Vault</em></h1>
-    <p>Premium Cards • Dynamic UPI • Auto Amount</p>
-    <div class="live-users-counter"><span>👁️</span> <span id="liveUsersCount">69</span> <span>WATCHING</span></div>
+    <div class="badge"><div class="pulse-dot"></div> SECURE VAULT</div>
+    <div class="glitch-title"><span>CARD</span> <i>VAULT</i></div>
+    <div class="sub">Premium Financial Assets • Auto UPI Intent</div>
+    <div class="live-counter"><span>●</span> <span id="liveUsersCount">84</span> <span>ACTIVE</span></div>
   </div>
 
   <div class="sort-wrap">
-    <button class="sort-btn active" id="sortPriceLow">💰 Low → High</button>
-    <button class="sort-btn" id="sortPriceHigh">💎 High → Low</button>
-    <button class="sort-btn" id="sortBalanceHigh">🏦 Max Balance</button>
+    <button class="sort-btn active" id="sortPriceLow">LOW TO HIGH</button>
+    <button class="sort-btn" id="sortPriceHigh">HIGH TO LOW</button>
+    <button class="sort-btn" id="sortBalanceHigh">BALANCE</button>
   </div>
 
   <div class="filter-wrap" id="filterWrap">
-    <button class="filter-btn active" data-type="all">All</button>
-    <button class="filter-btn" data-type="visa">Visa</button>
-    <button class="filter-btn" data-type="mastercard">MC</button>
-    <button class="filter-btn" data-type="amex">Amex</button>
-    <button class="filter-btn" data-type="rupay">RuPay</button>
-    <button class="filter-btn" data-type="discover">Discover</button>
+    <button class="filter-btn active" data-type="all">ALL</button>
+    <button class="filter-btn" data-type="visa">VISA</button>
+    <button class="filter-btn" data-type="mastercard">MASTERCARD</button>
+    <button class="filter-btn" data-type="amex">AMEX</button>
+    <button class="filter-btn" data-type="rupay">RUPAY</button>
+    <button class="filter-btn" data-type="discover">DISCOVER</button>
   </div>
 
   <div class="cards-grid" id="cardsGrid"></div>
@@ -697,188 +304,204 @@
 
 <!-- MODAL -->
 <div class="modal" id="modal">
-  <div class="mbox">
-    <div class="mbox-topbar"></div>
-    <div class="mbox-head">
-      <div class="mbox-title">💀 UPI SECURE PAYMENT</div>
-      <div class="mclose-btn" id="mcloseBtn">✕</div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title">◆ UPI PAYMENT</div>
+      <div class="close-modal" id="mcloseBtn">✕</div>
     </div>
-    <div class="mbox-body">
-      <div class="m-info">
-        <span id="mNum">XXXX XXXX XXXX XXXX</span>
-        <span id="mNet" style="color:var(--toxic);">VISA</span>
+    <div class="modal-body">
+      <div class="info-row">
+        <span id="mNum" style="font-family: monospace;">XXXX XXXX</span>
+        <span id="mNet" style="color: var(--toxic); font-weight: bold;">—</span>
       </div>
-      <div class="m-price-box">
-        <div class="m-price-amount" id="mPrice">₹0</div>
+      <div class="price-card">
+        <div class="amount-large" id="mPrice">₹0</div>
       </div>
 
-      <!-- DYNAMIC QR (always visible) -->
-      <div class="qr-section">
-        <div class="qr-label">📲 SCAN & PAY - AMOUNT AUTO SET</div>
+      <div class="qr-panel">
+        <div class="qr-label-text">SCAN QR • AMOUNT PREFILLED</div>
         <div id="dynamicQR" style="display: flex; justify-content: center;"></div>
-        <div class="qr-amount-tag" id="qrAmountTag">₹0</div>
-        <div style="font-size: 0.6rem; margin-top: 8px;">UPI: kartikrawat6266@okhdfcbank</div>
+        <div class="qr-amount-badge" id="qrAmountTag">₹0</div>
+        <div class="upi-id-small">UPI: kartikrawat6266@okhdfcbank</div>
       </div>
 
-      <!-- Payment Apps -->
-      <div class="payment-apps">
-        <button class="payment-app-btn" id="btnPhonePe">📱 PhonePe</button>
-        <button class="payment-app-btn" id="btnGPay">💳 Google Pay</button>
-        <button class="payment-app-btn" id="btnPaytm">💰 Paytm</button>
-        <button class="payment-app-btn" id="btnFamPay">👨‍👩‍👧 FamPay</button>
+      <div class="apps-grid">
+        <div class="app-btn" id="btnPhonePe">PHONEPE</div>
+        <div class="app-btn" id="btnGPay">GPAY</div>
+        <div class="app-btn" id="btnPaytm">PAYTM</div>
+        <div class="app-btn" id="btnFamPay">FAMPAY</div>
       </div>
 
-      <div class="input-group"><div class="input-label">📞 WhatsApp / Mobile</div><input class="cust-input" id="phoneInput" placeholder="+91 9876543210"></div>
-      <div class="input-group"><div class="input-label">📧 Email</div><input class="cust-input" id="emailInput" placeholder="you@example.com"></div>
-      <div class="input-group"><div class="input-label">🔗 UTR / Transaction ID</div><input class="cust-input" id="utrInput" placeholder="Enter UTR after payment"></div>
-      <button class="btn btn-success" id="btnPaid">✅ I HAVE PAID - SUBMIT</button>
-      <div class="flex-row"><button class="btn btn-ghost" id="btnCloseModal">Close</button></div>
+      <div class="input-field"><div class="input-label">WHATSAPP / MOBILE</div><input class="input-custom" id="phoneInput" placeholder="+91 9876543210"></div>
+      <div class="input-field"><div class="input-label">EMAIL ADDRESS</div><input class="input-custom" id="emailInput" placeholder="user@example.com"></div>
+      <div class="input-field"><div class="input-label">UTR / TRANSACTION ID</div><input class="input-custom" id="utrInput" placeholder="Enter UTR after payment"></div>
+      <button class="btn-primary" id="btnPaid">CONFIRM PAYMENT</button>
+      <div style="margin-top: 12px;"><button class="btn-outline" id="btnCloseModal">CANCEL</button></div>
     </div>
   </div>
 </div>
 
-<footer><p>☠️ <span style="color:var(--toxic);">CardVault</span> • Instant UPI • Auto QR Amount</p></footer>
+<div class="footer"><span>◆</span> CARDVAULT • AUTO UPI INTENT <span>◆</span></div>
 
 <script>
   (function() {
-    // ---------- CONFIG ----------
-    const MY_UPI_ID = "kartikrawat6266@okhdfcbank";
-    const MERCHANT_NAME = "CardVault";
+    // ========== UPI CONFIGURATION ==========
+    const UPI_ID = "kartikrawat6266@okhdfcbank";
+    const MERCHANT_NAME = "CARDVAULT";
 
-    // ---------- CARD DATA (110 cards) ----------
-    const cardTypes = {
+    // ========== CARD GENERATOR ==========
+    const cardBrands = {
       visa: { prefix: ['4'], lengths: [16], display: 'VISA', color: '#93c5fd' },
-      mastercard: { prefix: ['51', '52', '53', '54', '55'], lengths: [16], display: 'MASTERCARD', color: '#fb923c' },
-      amex: { prefix: ['34', '37'], lengths: [15], display: 'AMEX', color: '#6ee7b7' },
-      discover: { prefix: ['6011', '65'], lengths: [16], display: 'DISCOVER', color: '#fde68a' },
-      rupay: { prefix: ['60', '65', '81', '82'], lengths: [16], display: 'RUPAY', color: '#d8b4fe' }
+      mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD', color: '#fb923c' },
+      amex: { prefix: ['34','37'], lengths: [15], display: 'AMEX', color: '#6ee7b7' },
+      discover: { prefix: ['6011','65'], lengths: [16], display: 'DISCOVER', color: '#fde68a' },
+      rupay: { prefix: ['60','65','81','82'], lengths: [16], display: 'RUPAY', color: '#d8b4fe' }
     };
-    const types = Object.keys(cardTypes);
-    function rInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    function genFullNum(type) {
-      const ci = cardTypes[type];
-      const p = ci.prefix[Math.floor(Math.random() * ci.prefix.length)];
-      const l = ci.lengths[0];
-      let n = p;
-      while (n.length < l) n += Math.floor(Math.random() * 10);
-      return n;
+    const brands = Object.keys(cardBrands);
+    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function genCardNumber(type) {
+      const info = cardBrands[type];
+      const prefix = info.prefix[Math.floor(Math.random() * info.prefix.length)];
+      const length = info.lengths[0];
+      let num = prefix;
+      while(num.length < length) num += Math.floor(Math.random() * 10);
+      return num;
     }
-    function maskNum(full) { const c = full.replace(/\s/g, ''); return c.substring(0, 12).replace(/(.{4})/g, '$1 ') + ' XXXX'; }
-    function genExp() { return `${String(rInt(1, 12)).padStart(2, '0')}/${rInt(25, 30)}`; }
-    function genCVV(t) { return t === 'amex' ? String(rInt(1000, 9999)) : String(rInt(100, 999)); }
-    const holders = ['A. SHARMA', 'PRIYA K.', 'ROHAN D.', 'ANANYA V.', 'VIKRAM S.', 'NEHA G.', 'ARJUN M.', 'DIVYA R.', 'KABIR S.', 'RITIKA P.'];
+    function maskNumber(full) { return full.slice(0,12).replace(/(.{4})/g,'$1 ').trim() + ' XXXX'; }
+    function genExpiry() { return `${String(rand(1,12)).padStart(2,'0')}/${rand(25,30)}`; }
+    function genCVV(type) { return type === 'amex' ? String(rand(1000,9999)) : String(rand(100,999)); }
+    const holdersList = ['A. SHARMA', 'PRIYA K.', 'ROHAN D.', 'ANANYA V.', 'VIKRAM S.', 'NEHA G.', 'ARJUN M.', 'DIVYA R.'];
 
     const cards = [];
     for (let i = 1; i <= 110; i++) {
-      const type = types[Math.floor(Math.random() * types.length)];
-      const price = rInt(100, 1000);
+      const type = brands[Math.floor(Math.random() * brands.length)];
+      const price = rand(100, 1000);
+      const fullNum = genCardNumber(type);
       cards.push({
-        id: i, type, fullNumber: genFullNum(type), displayNumber: maskNum(genFullNum(type)),
-        realExpiry: genExp(), realCVV: genCVV(type), holder: holders[Math.floor(Math.random() * holders.length)],
+        id: i, type, fullNumber: fullNum, displayNumber: maskNumber(fullNum),
+        expiry: genExpiry(), cvv: genCVV(type), holder: holdersList[Math.floor(Math.random() * holdersList.length)],
         price: price, balance: price * 10
       });
     }
-    cards.sort((a, b) => a.price - b.price);
+    cards.sort((a,b) => a.price - b.price);
 
-    // ---------- BACKGROUND EFFECTS ----------
+    // ========== MATRIX BACKGROUND ==========
     const canvas = document.getElementById('matrixCanvas'), ctx = canvas.getContext('2d');
     function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     resizeCanvas();
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*☠️';
-    const fontSize = 14, columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(0).map(() => Math.random() * canvas.height / fontSize);
-    function drawMatrix() {
+    const matrixChars = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&";
+    const fontSize = 13, columns = canvas.width / fontSize;
+    let drops = Array(Math.floor(columns)).fill(0).map(() => Math.random() * canvas.height / fontSize);
+    function drawMatrixBg() {
       ctx.fillStyle = 'rgba(0,0,0,0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f0';
+      ctx.fillStyle = '#1eff3c';
       ctx.font = `${fontSize}px monospace`;
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      for(let i = 0; i < drops.length; i++) {
+        const ch = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
       }
     }
-    setInterval(drawMatrix, 45);
+    setInterval(drawMatrixBg, 45);
     window.addEventListener('resize', () => { resizeCanvas(); });
 
-    // particles
-    const pContainer = document.getElementById('particlesContainer');
-    for (let i = 0; i < 50; i++) {
+    // ========== PARTICLES ==========
+    const particleContainer = document.getElementById('particlesContainer');
+    for(let i = 0; i < 45; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       p.style.left = Math.random() * 100 + '%';
-      p.style.width = p.style.height = Math.random() * 5 + 2 + 'px';
+      p.style.width = p.style.height = Math.random() * 4 + 2 + 'px';
       p.style.animationDuration = Math.random() * 4 + 2 + 's';
       p.style.animationDelay = Math.random() * 5 + 's';
-      pContainer.appendChild(p);
+      particleContainer.appendChild(p);
     }
 
-    // live counter
-    const liveEl = document.getElementById('liveUsersCount');
-    function updateLive() { liveEl.textContent = Math.floor(Math.random() * 70) + 40; setTimeout(updateLive, 4000); }
+    // ========== LIVE COUNTER ==========
+    const liveSpan = document.getElementById('liveUsersCount');
+    function updateLive() { liveSpan.textContent = Math.floor(Math.random() * 60) + 45; setTimeout(updateLive, 4200); }
     updateLive();
 
-    // ---------- APP STATE ----------
+    // ========== STATE ==========
     let currentCard = null;
     let currentFilter = 'all';
     let currentSort = 'price-low';
-    let qrInstance = null;
-    const orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
+    let qrObj = null;
+    let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
     function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    // UPI Link generator
+    // ========== UPI LINK GENERATOR (Standard) ==========
     function generateUPILink(amount, note = '') {
-      return `upi://pay?pa=${MY_UPI_ID}&pn=${MERCHANT_NAME}&am=${amount.toFixed(2)}&cu=INR&tn=${note || `Card_${Date.now()}`}`;
+      const pa = UPI_ID;
+      const pn = MERCHANT_NAME;
+      const am = amount.toFixed(2);
+      const cu = "INR";
+      const tn = note || `CARD_${Date.now()}`;
+      return `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=${cu}&tn=${tn}`;
     }
 
-    // Refresh QR with exact amount
-    function refreshQRCode(amount) {
-      const container = document.getElementById('dynamicQR');
-      if (!container) return;
-      container.innerHTML = '';
-      const upiString = generateUPILink(amount, `Vault_${currentCard?.id || 0}`);
-      try {
-        qrInstance = new QRCode(container, {
-          text: upiString,
-          width: 170,
-          height: 170,
-          colorDark: "#000000",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.H
-        });
-      } catch (e) { container.innerHTML = '<div style="color:red;">⚠️ QR Error</div>'; }
-      document.getElementById('qrAmountTag').innerText = `₹${amount}`;
-    }
-
-    // Open any UPI app with AUTO amount
-    function openUpiApp(appName) {
-      if (!currentCard) {
-        alert('No card selected!');
-        return;
-      }
-      const amount = currentCard.price;
-      const upiLink = generateUPILink(amount, `Card_${currentCard.id}`);
-      let intent = upiLink;
-      if (appName === 'phonepe') intent = upiLink.replace('upi://', 'phonepe://');
-      else if (appName === 'gpay') intent = upiLink.replace('upi://', 'tez://');
-      else if (appName === 'paytm') intent = upiLink.replace('upi://', 'paytmmp://');
-      else if (appName === 'fampay') intent = upiLink.replace('upi://', 'fampay://');
+    // ========== OPEN SPECIFIC UPI APP WITH AUTO AMOUNT ==========
+    function openUpiAppIntent(appName, amount, cardId) {
+      const upiStandardLink = generateUPILink(amount, `CARD_${cardId}`);
+      let intentUrl = upiStandardLink;
       
-      // Fallback: try to open, if fails show toast
-      window.location.href = intent;
+      // Convert to respective app deep links
+      switch(appName) {
+        case 'phonepe':
+          intentUrl = upiStandardLink.replace('upi://', 'phonepe://');
+          break;
+        case 'gpay':
+          intentUrl = upiStandardLink.replace('upi://', 'tez://');
+          break;
+        case 'paytm':
+          intentUrl = upiStandardLink.replace('upi://', 'paytmmp://');
+          break;
+        case 'fampay':
+          intentUrl = upiStandardLink.replace('upi://', 'fampay://');
+          break;
+        default:
+          intentUrl = upiStandardLink;
+      }
+      
+      // Try to open the app
+      window.location.href = intentUrl;
+      
+      // Fallback message (app may not be installed, but user can use QR)
       setTimeout(() => {
-        alert(`💰 ${appName.toUpperCase()}\nAmount ₹${amount} auto-filled.\nComplete payment & submit UTR.`);
+        alert(`${appName.toUpperCase()} : ₹${amount} will be auto-filled.\nIf app not installed, use QR code above.`);
       }, 800);
     }
 
-    // Modal & Render
+    // ========== REFRESH QR CODE ==========
+    function refreshDynamicQR(amount, cardId) {
+      const container = document.getElementById('dynamicQR');
+      if(!container) return;
+      container.innerHTML = '';
+      const upiString = generateUPILink(amount, `CARD_${cardId}`);
+      try {
+        qrObj = new QRCode(container, { 
+          text: upiString, 
+          width: 160, 
+          height: 160, 
+          colorDark: "#000000", 
+          colorLight: "#ffffff", 
+          correctLevel: QRCode.CorrectLevel.H 
+        });
+      } catch(e) { 
+        container.innerHTML = '<div style="color:red;">QR ERROR</div>'; 
+      }
+      document.getElementById('qrAmountTag').innerText = `₹${amount}`;
+    }
+
+    // ========== MODAL CONTROLS ==========
     function openModal(card) {
       currentCard = card;
       document.getElementById('mNum').innerText = card.displayNumber;
-      document.getElementById('mNet').innerHTML = cardTypes[card.type].display;
+      document.getElementById('mNet').innerHTML = cardBrands[card.type].display;
       document.getElementById('mPrice').innerHTML = `₹${card.price}`;
-      refreshQRCode(card.price);
+      refreshDynamicQR(card.price, card.id);
       document.getElementById('phoneInput').value = '';
       document.getElementById('emailInput').value = '';
       document.getElementById('utrInput').value = '';
@@ -892,111 +515,130 @@
       currentCard = null;
     }
 
-    // Submit order
+    // ========== SUBMIT ORDER ==========
     document.getElementById('btnPaid').addEventListener('click', () => {
-      if (!currentCard) return alert('Error: No card');
+      if(!currentCard) return alert('No card selected');
       const phone = document.getElementById('phoneInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
       const utr = document.getElementById('utrInput').value.trim();
-      if (!phone || !email || !utr) return alert('☠️ Fill WhatsApp, Email & UTR');
+      if(!phone || !email || !utr) return alert('Fill all fields: WhatsApp, Email, UTR');
+      
       orders.unshift({
         phone, email, utr,
-        cardNet: cardTypes[currentCard.type].display,
+        cardNet: cardBrands[currentCard.type].display,
         cardNumber: currentCard.fullNumber,
-        expiry: currentCard.realExpiry,
-        cvv: currentCard.realCVV,
+        expiry: currentCard.expiry,
+        cvv: currentCard.cvv,
         price: currentCard.price,
         balance: currentCard.balance,
         time: Date.now()
       });
       saveOrders();
-      alert(`✅ ORDER SUBMITTED!\n\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.realExpiry}\nCVV: ${currentCard.realCVV}\nUTR: ${utr}\n\nWe'll verify & deliver within 5 mins.`);
+      alert(`✓ ORDER CONFIRMED\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.expiry}\nCVV: ${currentCard.cvv}\nUTR: ${utr}\n\nDelivery in 5 minutes.`);
       closeModal();
     });
 
-    // RENDER GRID
+    // ========== APP BUTTON HANDLERS (AUTO AMOUNT + OPEN APP) ==========
+    document.getElementById('btnPhonePe').addEventListener('click', () => {
+      if(currentCard) openUpiAppIntent('phonepe', currentCard.price, currentCard.id);
+      else alert('Select a card first');
+    });
+    document.getElementById('btnGPay').addEventListener('click', () => {
+      if(currentCard) openUpiAppIntent('gpay', currentCard.price, currentCard.id);
+      else alert('Select a card first');
+    });
+    document.getElementById('btnPaytm').addEventListener('click', () => {
+      if(currentCard) openUpiAppIntent('paytm', currentCard.price, currentCard.id);
+      else alert('Select a card first');
+    });
+    document.getElementById('btnFamPay').addEventListener('click', () => {
+      if(currentCard) openUpiAppIntent('fampay', currentCard.price, currentCard.id);
+      else alert('Select a card first');
+    });
+
+    // ========== FILTER & SORT LOGIC ==========
     function getFilteredSorted() {
       let list = currentFilter === 'all' ? [...cards] : cards.filter(c => c.type === currentFilter);
-      if (currentSort === 'price-low') list.sort((a, b) => a.price - b.price);
-      else if (currentSort === 'price-high') list.sort((a, b) => b.price - a.price);
-      else if (currentSort === 'balance-high') list.sort((a, b) => b.balance - a.balance);
+      if(currentSort === 'price-low') list.sort((a,b) => a.price - b.price);
+      else if(currentSort === 'price-high') list.sort((a,b) => b.price - a.price);
+      else if(currentSort === 'balance-high') list.sort((a,b) => b.balance - a.balance);
       return list;
     }
 
-    function renderCards() {
+    function renderGrid() {
       const list = getFilteredSorted();
       const grid = document.getElementById('cardsGrid');
       grid.innerHTML = list.map(c => `
         <div class="card">
-          <div class="card-bar"></div>
+          <div class="card-accent"></div>
           <div class="card-body">
-            <div class="card-head">
-              <div class="net-label">${cardTypes[c.type].display}</div>
-              <div class="price-badge">₹${c.price}</div>
+            <div class="card-header">
+              <div class="network">${cardBrands[c.type].display}</div>
+              <div class="price-chip">₹${c.price}</div>
             </div>
-            <div class="chip-row"><div class="chip"><div class="chip-line"></div><div class="chip-line"></div><div class="chip-line"></div></div><div class="nfc">📳</div></div>
+            <div class="card-sim">
+              <div class="chip-icon"><div class="chip-line-small"></div><div class="chip-line-small"></div></div>
+              <div class="nfc-signal">[[ ]]</div>
+            </div>
             <div class="card-number">${c.displayNumber}</div>
-            <div class="card-meta">
-              <div class="meta-box"><div class="meta-lbl">Expires</div><div class="meta-val">${c.realExpiry}</div></div>
-              <div class="meta-box"><div class="meta-lbl">CVV / Bal</div><div class="meta-val">*** <span class="balance-text">₹${c.balance}</span></div></div>
+            <div class="meta-grid">
+              <div class="meta-item"><div class="meta-label">EXPIRES</div><div class="meta-value">${c.expiry}</div></div>
+              <div class="meta-item"><div class="meta-label">CVV/BAL</div><div class="meta-value"><span class="balance-highlight">₹${c.balance}</span></div></div>
             </div>
-            <div class="holder">${c.holder}</div>
+            <div class="holder-name">${c.holder}</div>
           </div>
-          <div class="buy-btn" data-id="${c.id}">
-            <div class="buy-left"><div class="qr-icon-wrap">💀</div><div class="buy-texts"><div class="buy-label">UNLOCK CARD</div><div class="buy-sub">Pay ₹${c.price}</div></div></div>
-            <div class="buy-arrow">➡️</div>
+          <div class="buy-action" data-id="${c.id}">
+            <div class="buy-left"><div class="lock-icon">◆</div><div><div class="buy-label">UNLOCK CARD</div><div class="buy-sub">Pay ₹${c.price}</div></div></div>
+            <div class="arrow-right">→</div>
           </div>
         </div>
       `).join('');
-      document.querySelectorAll('.buy-btn').forEach(btn => {
+      
+      document.querySelectorAll('.buy-action').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = parseInt(btn.dataset.id);
           const card = cards.find(c => c.id === id);
-          if (card) openModal(card);
+          if(card) openModal(card);
         });
       });
     }
 
-    // Sorting & Filtering event handlers
-    document.getElementById('sortPriceLow').addEventListener('click', () => {
-      currentSort = 'price-low';
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('sortPriceLow').classList.add('active');
-      renderCards();
-    });
-    document.getElementById('sortPriceHigh').addEventListener('click', () => {
-      currentSort = 'price-high';
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('sortPriceHigh').classList.add('active');
-      renderCards();
-    });
-    document.getElementById('sortBalanceHigh').addEventListener('click', () => {
-      currentSort = 'balance-high';
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('sortBalanceHigh').classList.add('active');
-      renderCards();
-    });
+    // Sort event handlers
+    document.getElementById('sortPriceLow').onclick = () => { 
+      currentSort = 'price-low'; 
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active')); 
+      document.getElementById('sortPriceLow').classList.add('active'); 
+      renderGrid(); 
+    };
+    document.getElementById('sortPriceHigh').onclick = () => { 
+      currentSort = 'price-high'; 
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active')); 
+      document.getElementById('sortPriceHigh').classList.add('active'); 
+      renderGrid(); 
+    };
+    document.getElementById('sortBalanceHigh').onclick = () => { 
+      currentSort = 'balance-high'; 
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active')); 
+      document.getElementById('sortBalanceHigh').classList.add('active'); 
+      renderGrid(); 
+    };
+    
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         currentFilter = btn.dataset.type;
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        renderCards();
+        renderGrid();
       });
     });
 
-    // Modal controls
+    // Modal close handlers
     document.getElementById('mcloseBtn').addEventListener('click', closeModal);
     document.getElementById('btnCloseModal').addEventListener('click', closeModal);
-    document.getElementById('modal').addEventListener('click', (e) => { if (e.target === document.getElementById('modal')) closeModal(); });
+    document.getElementById('modal').addEventListener('click', (e) => { if(e.target === document.getElementById('modal')) closeModal(); });
 
-    // Attach payment app handlers (auto amount)
-    document.getElementById('btnPhonePe').addEventListener('click', () => openUpiApp('phonepe'));
-    document.getElementById('btnGPay').addEventListener('click', () => openUpiApp('gpay'));
-    document.getElementById('btnPaytm').addEventListener('click', () => openUpiApp('paytm'));
-    document.getElementById('btnFamPay').addEventListener('click', () => openUpiApp('fampay'));
-
-    renderCards();
+    // Initial render
+    renderGrid();
   })();
 </script>
 </body>
