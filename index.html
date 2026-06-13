@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • UPI AUTO INTENT</title>
+  <title>CARDVAULT • PREMIUM UPI SUITE</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
@@ -260,15 +260,15 @@
     #dynamicQR { display: flex; justify-content: center; margin: 0.5rem auto; background: white; padding: 10px; border-radius: 20px; width: fit-content; }
     .qr-amount-badge { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-top: 8px; }
     .upi-id-small { font-size: 0.6rem; color: var(--dim); margin-top: 6px; }
-    .apps-grid { display: flex; gap: 10px; flex-wrap: wrap; margin: 1rem 0; }
-    .app-btn { flex: 1; background: #111116; border: 1px solid var(--border); border-radius: 60px; padding: 10px 8px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.2s; color: #ccc; text-align: center; }
+    .apps-grid { display: flex; gap: 12px; flex-wrap: wrap; margin: 1rem 0; }
+    .app-btn { flex: 1; background: #111116; border: 1px solid var(--border); border-radius: 60px; padding: 12px 8px; font-weight: 800; font-size: 0.75rem; cursor: pointer; transition: 0.2s; color: #ccc; text-align: center; letter-spacing: 0.05em; }
     .app-btn:hover { background: var(--blood); color: white; border-color: var(--toxic); transform: scale(0.98); }
     .input-field { margin-bottom: 12px; }
-    .input-label { font-size: 0.6rem; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+    .input-label { font-size: 0.6rem; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; letter-spacing: 0.05em; }
     .input-custom { width: 100%; background: #0a0a0e; border: 1px solid var(--border); border-radius: 14px; padding: 10px 14px; color: white; font-family: monospace; }
     .btn-primary { width: 100%; padding: 12px; border-radius: 60px; font-weight: 800; border: none; cursor: pointer; margin-top: 12px; background: linear-gradient(135deg, #008800, #004400); color: white; }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); width: 100%; padding: 10px; border-radius: 60px; font-weight: 600; cursor: pointer; }
-    .footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: var(--dim); }
+    .footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: var(--dim); letter-spacing: 0.05em; }
   </style>
 </head>
 <body>
@@ -280,7 +280,7 @@
   <div class="header">
     <div class="badge"><div class="pulse-dot"></div> SECURE VAULT</div>
     <div class="glitch-title"><span>CARD</span> <i>VAULT</i></div>
-    <div class="sub">Premium Financial Assets • Auto UPI Intent</div>
+    <div class="sub">Premium Financial Assets • Instant UPI Intent</div>
     <div class="live-counter"><span>●</span> <span id="liveUsersCount">84</span> <span>ACTIVE</span></div>
   </div>
 
@@ -306,7 +306,7 @@
 <div class="modal" id="modal">
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-title">◆ UPI PAYMENT</div>
+      <div class="modal-title">◆ UPI PAYMENT SUITE</div>
       <div class="close-modal" id="mcloseBtn">✕</div>
     </div>
     <div class="modal-body">
@@ -319,7 +319,7 @@
       </div>
 
       <div class="qr-panel">
-        <div class="qr-label-text">SCAN QR • AMOUNT PREFILLED</div>
+        <div class="qr-label-text">SECURE QR • AMOUNT PREFILLED</div>
         <div id="dynamicQR" style="display: flex; justify-content: center;"></div>
         <div class="qr-amount-badge" id="qrAmountTag">₹0</div>
         <div class="upi-id-small">UPI: kartikrawat6266@okhdfcbank</div>
@@ -341,7 +341,7 @@
   </div>
 </div>
 
-<div class="footer"><span>◆</span> CARDVAULT • AUTO UPI INTENT <span>◆</span></div>
+<div class="footer"><span>◆</span> CARDVAULT • DIRECT UPI INTENT <span>◆</span></div>
 
 <script>
   (function() {
@@ -432,7 +432,7 @@
     let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
     function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    // ========== UPI LINK GENERATOR (Standard) ==========
+    // ========== UPI LINK GENERATOR ==========
     function generateUPILink(amount, note = '') {
       const pa = UPI_ID;
       const pn = MERCHANT_NAME;
@@ -442,36 +442,34 @@
       return `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=${cu}&tn=${tn}`;
     }
 
-    // ========== OPEN SPECIFIC UPI APP WITH AUTO AMOUNT ==========
-    function openUpiAppIntent(appName, amount, cardId) {
-      const upiStandardLink = generateUPILink(amount, `CARD_${cardId}`);
-      let intentUrl = upiStandardLink;
+    // ========== DIRECT APP INTENT - NO ALERT, DIRECT OPEN ==========
+    function launchUpiApp(appName, amount, cardId) {
+      const upiLink = generateUPILink(amount, `CARD_${cardId}`);
+      let intentUrl = upiLink;
       
-      // Convert to respective app deep links
+      // Convert to app-specific deep links
       switch(appName) {
         case 'phonepe':
-          intentUrl = upiStandardLink.replace('upi://', 'phonepe://');
+          intentUrl = upiLink.replace('upi://', 'phonepe://');
           break;
         case 'gpay':
-          intentUrl = upiStandardLink.replace('upi://', 'tez://');
+          intentUrl = upiLink.replace('upi://', 'tez://');
           break;
         case 'paytm':
-          intentUrl = upiStandardLink.replace('upi://', 'paytmmp://');
+          intentUrl = upiLink.replace('upi://', 'paytmmp://');
           break;
         case 'fampay':
-          intentUrl = upiStandardLink.replace('upi://', 'fampay://');
+          intentUrl = upiLink.replace('upi://', 'fampay://');
           break;
         default:
-          intentUrl = upiStandardLink;
+          intentUrl = upiLink;
       }
       
-      // Try to open the app
+      // Direct redirection - no popup, no alert
       window.location.href = intentUrl;
       
-      // Fallback message (app may not be installed, but user can use QR)
-      setTimeout(() => {
-        alert(`${appName.toUpperCase()} : ₹${amount} will be auto-filled.\nIf app not installed, use QR code above.`);
-      }, 800);
+      // Silent fallback: if app not installed, user can use QR (no annoying alerts)
+      // We do NOT show any text alert on click to maintain premium UX
     }
 
     // ========== REFRESH QR CODE ==========
@@ -534,26 +532,22 @@
         time: Date.now()
       });
       saveOrders();
-      alert(`✓ ORDER CONFIRMED\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.expiry}\nCVV: ${currentCard.cvv}\nUTR: ${utr}\n\nDelivery in 5 minutes.`);
+      alert(`CONFIRMED\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.expiry}\nCVV: ${currentCard.cvv}\nUTR: ${utr}\n\nDelivery in 5 minutes.`);
       closeModal();
     });
 
-    // ========== APP BUTTON HANDLERS (AUTO AMOUNT + OPEN APP) ==========
+    // ========== APP BUTTON HANDLERS - DIRECT OPEN, NO TEXT ALERTS ==========
     document.getElementById('btnPhonePe').addEventListener('click', () => {
-      if(currentCard) openUpiAppIntent('phonepe', currentCard.price, currentCard.id);
-      else alert('Select a card first');
+      if(currentCard) launchUpiApp('phonepe', currentCard.price, currentCard.id);
     });
     document.getElementById('btnGPay').addEventListener('click', () => {
-      if(currentCard) openUpiAppIntent('gpay', currentCard.price, currentCard.id);
-      else alert('Select a card first');
+      if(currentCard) launchUpiApp('gpay', currentCard.price, currentCard.id);
     });
     document.getElementById('btnPaytm').addEventListener('click', () => {
-      if(currentCard) openUpiAppIntent('paytm', currentCard.price, currentCard.id);
-      else alert('Select a card first');
+      if(currentCard) launchUpiApp('paytm', currentCard.price, currentCard.id);
     });
     document.getElementById('btnFamPay').addEventListener('click', () => {
-      if(currentCard) openUpiAppIntent('fampay', currentCard.price, currentCard.id);
-      else alert('Select a card first');
+      if(currentCard) launchUpiApp('fampay', currentCard.price, currentCard.id);
     });
 
     // ========== FILTER & SORT LOGIC ==========
