@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • WORKING UPI INTENT</title>
+  <title>CARDVAULT • WORKING UPI</title>
   <style>
     * {
       margin: 0;
@@ -330,7 +330,6 @@
       gap: 12px;
       z-index: 2000;
       transition: transform 0.3s ease;
-      box-shadow: 0 0 30px rgba(30, 255, 60, 0.3);
       backdrop-filter: blur(10px);
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
@@ -552,29 +551,28 @@
       return `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${amount.toFixed(2)}&cu=INR&tn=${note || `CARD_${Date.now()}`}`;
     }
 
-    // FIXED APP OPEN FUNCTIONS - DIRECT OPEN
-    function openPhonePe(amount, cardId) {
+    // ========== WORKING APP OPEN - USING ALERT FOR USER TO SELECT APP ==========
+    function openUPIApp(appType, amount, cardId) {
       const upiLink = generateUPILink(amount, `CARD_${cardId}`);
-      window.location.href = upiLink.replace('upi://', 'phonepe://');
-      showToast('PhonePe', `Opening with ₹${amount}`, true);
-    }
-
-    function openGooglePay(amount, cardId) {
-      const upiLink = generateUPILink(amount, `CARD_${cardId}`);
-      window.location.href = upiLink.replace('upi://', 'tez://');
-      showToast('Google Pay', `Opening with ₹${amount}`, true);
-    }
-
-    function openPaytm(amount, cardId) {
-      const upiLink = generateUPILink(amount, `CARD_${cardId}`);
-      window.location.href = upiLink.replace('upi://', 'paytmmp://');
-      showToast('Paytm', `Opening with ₹${amount}`, true);
-    }
-
-    function openFamPay(amount, cardId) {
-      const upiLink = generateUPILink(amount, `CARD_${cardId}`);
-      window.location.href = upiLink.replace('upi://', 'fampay://');
-      showToast('FamPay', `Opening with ₹${amount}`, true);
+      let intentUrl = upiLink;
+      
+      if(appType === 'phonepe') intentUrl = upiLink.replace('upi://', 'phonepe://');
+      else if(appType === 'gpay') intentUrl = upiLink.replace('upi://', 'tez://');
+      else if(appType === 'paytm') intentUrl = upiLink.replace('upi://', 'paytmmp://');
+      else if(appType === 'fampay') intentUrl = upiLink.replace('upi://', 'fampay://');
+      
+      // Show alert with link so user can tap and select app
+      const userConfirmed = confirm(`💰 Pay ₹${amount}\n\nClick OK to open ${appType.toUpperCase()}\n\nAmount will be auto-filled in the app`);
+      
+      if(userConfirmed) {
+        window.location.href = intentUrl;
+        showToast(appType.toUpperCase(), `Opening with ₹${amount}`, true);
+        
+        // Fallback: if doesn't open, show QR message
+        setTimeout(() => {
+          showToast('If app doesn\'t open', 'Use QR code above to pay', false);
+        }, 2000);
+      }
     }
 
     function refreshDynamicQR(amount, cardId) {
@@ -625,10 +623,10 @@
     });
 
     // APP BUTTON HANDLERS
-    document.getElementById('btnPhonePe').onclick = () => { if(currentCard) openPhonePe(currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnGPay').onclick = () => { if(currentCard) openGooglePay(currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnPaytm').onclick = () => { if(currentCard) openPaytm(currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnFamPay').onclick = () => { if(currentCard) openFamPay(currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
+    document.getElementById('btnPhonePe').onclick = () => { if(currentCard) openUPIApp('phonepe', currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
+    document.getElementById('btnGPay').onclick = () => { if(currentCard) openUPIApp('gpay', currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
+    document.getElementById('btnPaytm').onclick = () => { if(currentCard) openUPIApp('paytm', currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
+    document.getElementById('btnFamPay').onclick = () => { if(currentCard) openUPIApp('fampay', currentCard.price, currentCard.id); else showToast('Select card first', 'Click on any card', false); };
 
     // FILTER & SORT
     function getFilteredSorted() {
