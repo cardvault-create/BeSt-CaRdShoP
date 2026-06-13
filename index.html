@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>☠️ CardVault • Dangerous Edition</title>
+  <title>☠️ CardVault • Dynamic UPI</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Creepster&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
     :root {
       --bg: #000000;
@@ -25,7 +26,6 @@
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
 
-    /* ☠️ MATRIX RAIN BACKGROUND */
     body{
       background: #000;
       font-family:'Inter',sans-serif;
@@ -37,8 +37,6 @@
     #matrixCanvas{
       position:fixed;inset:0;z-index:0;opacity:0.15;
     }
-
-    /* 🔥 FIRE PARTICLES */
     .particles{position:fixed;inset:0;z-index:1;pointer-events:none;}
     .particle{
       position:absolute;
@@ -53,10 +51,8 @@
       80%{opacity:0.5;}
       100%{transform:translateY(-100px) scale(1);opacity:0;}
     }
-
     .wrap{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:2rem 1.5rem 4rem;}
 
-    /* ☠️ HEADER */
     .header{text-align:center;margin-bottom:2rem;}
     .eyebrow{
       display:inline-flex;align-items:center;gap:.5rem;
@@ -85,76 +81,42 @@
       text-shadow:0 0 40px var(--blood), 0 0 80px var(--darkred), 0 0 120px #000;
       animation:glitchText 2s infinite;
     }
-    .header h1 em{
-      font-style:normal;
-      color:var(--toxic);
-      text-shadow:0 0 40px var(--toxic);
-    }
+    .header h1 em{ font-style:normal; color:var(--toxic); text-shadow:0 0 40px var(--toxic); }
     .header p{color:var(--muted);font-size:.9rem;max-width:600px;margin:0 auto;line-height:1.6;}
 
-    /* 👁️ LIVE USERS COUNTER */
-    .live-users-bar{
-      display:flex;justify-content:center;align-items:center;gap:.8rem;
-      margin-bottom:1.5rem;flex-wrap:wrap;
-    }
+    .live-users-bar{ display:flex;justify-content:center;align-items:center;gap:.8rem; margin-bottom:1.5rem;flex-wrap:wrap; }
     .live-users-counter{
-      background:rgba(255,0,0,0.1);
-      border:2px solid var(--blood);
-      border-radius:99px;
-      padding:.5rem 1.3rem;
-      display:flex;align-items:center;gap:.6rem;
-      font-family:'JetBrains Mono',monospace;
-      font-size:.75rem;font-weight:700;
-      color:var(--toxic);
-      text-shadow:0 0 10px var(--toxic);
-      box-shadow:0 0 25px rgba(255,0,0,0.2);
-      animation:pulse 2s infinite;
+      background:rgba(255,0,0,0.1); border:2px solid var(--blood); border-radius:99px; padding:.5rem 1.3rem;
+      display:flex; align-items:center; gap:.6rem; font-family:'JetBrains Mono',monospace; font-size:.75rem; font-weight:700;
+      color:var(--toxic); text-shadow:0 0 10px var(--toxic); box-shadow:0 0 25px rgba(255,0,0,0.2); animation:pulse 2s infinite;
     }
-    @keyframes pulse{
-      0%,100%{box-shadow:0 0 25px rgba(255,0,0,0.2);}
-      50%{box-shadow:0 0 50px rgba(255,0,0,0.5);}
-    }
+    @keyframes pulse{ 0%,100%{box-shadow:0 0 25px rgba(255,0,0,0.2);} 50%{box-shadow:0 0 50px rgba(255,0,0,0.5);} }
     .eye-icon{font-size:1.2rem;animation:blink 2s infinite;}
-  /* SORT BUTTONS */
+    
     .sort-wrap{display:flex;justify-content:center;align-items:center;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
     .sort-btn{
-      font-size:.7rem;font-weight:700;padding:.4rem 1rem;
-      background:rgba(0,0,0,0.6);
-      border:2px solid var(--border);
-      color:var(--muted);border-radius:99px;
-      cursor:pointer;transition:all .25s ease;
-      text-transform:uppercase;letter-spacing:.05em;
+      font-size:.7rem;font-weight:700;padding:.4rem 1rem; background:rgba(0,0,0,0.6); border:2px solid var(--border);
+      color:var(--muted);border-radius:99px; cursor:pointer; transition:all .25s ease; text-transform:uppercase;
     }
     .sort-btn:hover{border-color:var(--toxic);color:var(--toxic);box-shadow:0 0 20px rgba(0,255,0,0.3);}
     .sort-btn.active{background:rgba(0,255,0,0.1);border-color:var(--toxic);color:var(--toxic);box-shadow:0 0 30px rgba(0,255,0,0.4);}
 
-    /* FILTER BUTTONS */
     .filter-wrap{display:flex;justify-content:center;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem;}
     .filter-btn{
-      font-size:.7rem;font-weight:600;padding:.4rem 1rem;
-      background:rgba(0,0,0,0.6);
-      border:2px solid var(--border);
-      color:var(--muted);border-radius:99px;
-      cursor:pointer;transition:all .25s ease;
+      font-size:.7rem;font-weight:600;padding:.4rem 1rem; background:rgba(0,0,0,0.6); border:2px solid var(--border);
+      color:var(--muted);border-radius:99px; cursor:pointer; transition:all .25s ease;
     }
     .filter-btn:hover{border-color:var(--blood);color:#fff;}
     .filter-btn.active{background:rgba(255,0,0,0.15);border-color:var(--blood);color:#ff6666;box-shadow:0 0 25px rgba(255,0,0,0.4);}
 
-    /* CARDS GRID */
     .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1rem;}
     .card{
-      background:linear-gradient(135deg, rgba(10,0,0,0.8), rgba(0,0,0,0.9));
-      border:2px solid var(--border);
-      border-radius:var(--r);overflow:hidden;
-      display:flex;flex-direction:column;
-      transition:all .3s ease;
-      position:relative;
+      background:linear-gradient(135deg, rgba(10,0,0,0.8), rgba(0,0,0,0.9)); border:2px solid var(--border);
+      border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column; transition:all .3s ease; position:relative;
     }
     .card::before{
-      content:'';position:absolute;inset:-2px;z-index:-1;
-      background:linear-gradient(45deg, var(--blood), var(--toxic), var(--blood));
-      background-size:300%;border-radius:inherit;opacity:0;
-      transition:opacity .3s;animation:glowMove 3s linear infinite;
+      content:'';position:absolute;inset:-2px;z-index:-1; background:linear-gradient(45deg, var(--blood), var(--toxic), var(--blood));
+      background-size:300%;border-radius:inherit;opacity:0; transition:opacity .3s; animation:glowMove 3s linear infinite;
     }
     @keyframes glowMove{0%{background-position:0%}100%{background-position:300%}}
     .card:hover::before{opacity:1;}
@@ -163,36 +125,24 @@
     .card-body{padding:1rem 1.1rem .8rem;flex:1;display:flex;flex-direction:column;gap:.6rem;}
     .card-head{display:flex;justify-content:space-between;align-items:center;}
     .net-label{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--toxic);text-shadow:0 0 10px var(--toxic);}
-    .price-badge{
-      display:inline-flex;align-items:center;gap:.2rem;
-      font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
-      color:var(--blood);background:rgba(255,0,0,0.1);
-      border:1px solid rgba(255,0,0,0.3);padding:.2rem .55rem;border-radius:5px;
-      text-shadow:0 0 10px var(--blood);
-    }
+    .price-badge{ font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700; color:var(--blood); background:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.3); padding:.2rem .55rem; border-radius:5px; }
     .chip-row{display:flex;align-items:center;gap:.6rem;}
-    .chip{width:30px;height:22px;background:linear-gradient(140deg, #ffd700, #ff0, #b8860b);border-radius:3px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;padding:3px;box-shadow:0 0 10px rgba(255,215,0,0.4);flex-shrink:0;}
+    .chip{width:30px;height:22px;background:linear-gradient(140deg, #ffd700, #ff0, #b8860b);border-radius:3px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;padding:3px;flex-shrink:0;}
     .chip-line{height:1.5px;width:75%;background:rgba(0,0,0,0.5);border-radius:1px;}
     .nfc{font-size:.8rem;color:var(--dim);}
     .card-number{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:500;letter-spacing:.15em;color:var(--text);background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:6px;padding:.4rem .55rem;}
     .card-meta{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;}
     .meta-box{background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:6px;padding:.35rem .5rem;}
     .meta-lbl{font-size:.5rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;}
-  .meta-val{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;color:var(--text);}
+    .meta-val{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;color:var(--text);}
     .balance-text{color:var(--toxic);font-weight:700;text-shadow:0 0 8px var(--toxic);}
     .holder{font-size:.7rem;font-weight:500;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
 
-    /* ☠️ BUY BUTTON */
     .buy-btn{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:.8rem 1rem;
-      background:linear-gradient(135deg, #1a0000, #0d0000, #1a0000);
-      border-top:2px solid var(--blood);
-      cursor:pointer;transition:all .25s ease;
-      flex-shrink:0;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:space-between; padding:.8rem 1rem;
+      background:linear-gradient(135deg, #1a0000, #0d0000, #1a0000); border-top:2px solid var(--blood);
+      cursor:pointer; transition:all .25s ease; flex-shrink:0; position:relative; overflow:hidden;
     }
-    .buy-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,0,0,.15), transparent);opacity:0;transition:opacity .25s;}
-    .buy-btn:hover::before{opacity:1;}
     .buy-btn:hover{background:#0d0000;box-shadow:0 -5px 30px rgba(255,0,0,0.4);}
     .buy-left{display:flex;align-items:center;gap:.5rem;position:relative;z-index:1;}
     .qr-icon-wrap{width:30px;height:30px;background:rgba(255,0,0,0.2);border:1px solid var(--blood);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
@@ -201,63 +151,60 @@
     .buy-arrow{color:var(--blood);font-size:1.2rem;font-weight:700;transition:all .25s;z-index:1;}
     .buy-btn:hover .buy-arrow{transform:translateX(5px);color:var(--toxic);}
 
-    /* MODAL */
-    .modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.9);backdrop-filter:blur(15px);align-items:center;justify-content:center;padding:1rem;}
+    .modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.95);backdrop-filter:blur(15px);align-items:center;justify-content:center;padding:1rem;}
     .modal.open{display:flex;}
-    .mbox{background:var(--s1);border:2px solid var(--blood);border-radius:18px;width:100%;max-width:430px;max-height:90vh;overflow-y:auto;box-shadow:0 0 80px rgba(255,0,0,0.4);animation:pop .25s ease;}
+    .mbox{background:var(--s1);border:2px solid var(--blood);border-radius:18px;width:100%;max-width:450px;max-height:90vh;overflow-y:auto;box-shadow:0 0 80px rgba(255,0,0,0.4);animation:pop .25s ease;}
     @keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-    .mbox-topbar{height:2px;background:linear-gradient(90deg, var(--blood), var(--toxic), var(--blood));position:sticky;top:0;z-index:2;}
-    .mbox-head{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem .8rem;border-bottom:1px solid var(--border);position:sticky;top:2px;background:var(--s1);z-index:1;}
+    .mbox-topbar{height:2px;background:linear-gradient(90deg, var(--blood), var(--toxic), var(--blood));position:sticky;top:0;}
+    .mbox-head{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem .8rem;border-bottom:1px solid var(--border);background:var(--s1);}
     .mbox-title{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;color:var(--toxic);text-shadow:0 0 10px var(--toxic);}
-    .mclose-btn{width:28px;height:28px;background:rgba(255,0,0,0.1);border:1px solid var(--blood);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:.8rem;transition:all .15s;}
+    .mclose-btn{width:28px;height:28px;background:rgba(255,0,0,0.1);border:1px solid var(--blood);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;}
     .mclose-btn:hover{background:rgba(255,0,0,0.3);color:#fff;}
     .mbox-body{padding:1.2rem;}
-    .m-info{background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;}
-    .m-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--text);}
+    .m-info{background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;margin-bottom:1rem;display:flex;justify-content:space-between;}
+    .m-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;}
     .m-net{font-family:'Space Grotesk',sans-serif;font-size:.65rem;font-weight:700;color:var(--toxic);}
     .m-price-box{background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,.3);border-radius:10px;padding:.8rem;text-align:center;margin-bottom:1rem;}
-    .m-price-label{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;}
     .m-price-amount{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--blood);text-shadow:0 0 20px var(--blood);}
     .qr-section{text-align:center;margin-bottom:1rem;padding:1rem;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:12px;}
     .qr-label{font-size:.65rem;color:var(--toxic);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.8rem;}
-  .admin-box h3{font-family:'Space Grotesk',sans-serif;margin-bottom:.8rem;color:var(--toxic);}
-    .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem;}
-    .order-item{background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:8px;padding:.7rem;margin-bottom:.6rem;font-size:.7rem;position:relative;}
-    .order-item div{margin-bottom:.2rem;}
-    .delete-btn{position:absolute;top:.4rem;right:.4rem;background:rgba(255,0,0,.2);border:1px solid var(--blood);color:#ff6666;width:22px;height:22px;border-radius:5px;cursor:pointer;font-size:.65rem;display:flex;align-items:center;justify-content:center;}
-    .delete-btn:hover{background:rgba(255,0,0,.5);}
-    footer{position:relative;z-index:2;text-align:center;padding:1.5rem;border-top:1px solid var(--border);margin-top:1rem;}
+    #dynamicQR { display: flex; justify-content: center; margin: 10px 0; background: white; padding: 12px; border-radius: 16px; display: inline-block; width: auto; margin-left: auto; margin-right: auto; }
+    .qr-amount-tag { margin-top: 8px; font-size: .9rem; font-weight: bold; color: var(--toxic); font-family: monospace; background: #000000aa; display: inline-block; padding: 4px 12px; border-radius: 99px; }
+    .payment-apps { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 1rem 0; }
+    .payment-app-btn { background: #111; border: 1px solid var(--blood); border-radius: 30px; padding: 8px 12px; font-size: .7rem; font-weight: bold; color: var(--text); cursor: pointer; transition: 0.2s; flex: 1; min-width: 70px; }
+    .payment-app-btn:hover { background: var(--blood); color: white; border-color: var(--toxic); transform: scale(0.96); }
+    .input-group { margin-bottom: 12px; }
+    .input-label { font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; color: var(--dim); margin-bottom: 4px; }
+    .cust-input { width: 100%; background: #111; border: 1px solid var(--border); border-radius: 12px; padding: 8px 12px; color: var(--text); font-size: .8rem; font-family: monospace; outline: none; }
+    .cust-input:focus { border-color: var(--toxic); box-shadow: 0 0 10px rgba(0,255,0,0.2); }
+    .btn { background: rgba(255,0,0,0.15); border: 1px solid var(--blood); border-radius: 40px; padding: 10px 16px; width: 100%; font-size: .75rem; font-weight: bold; color: #ff8888; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+    .btn-success { background: linear-gradient(135deg, #1a3300, #0a1a00); border-color: var(--toxic); color: var(--toxic); }
+    .btn-success:hover { background: #2b4d00; box-shadow: 0 0 22px var(--toxic); }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--muted); }
+    .flex-row { display: flex; gap: 12px; margin-top: 12px; }
+    footer{text-align:center;padding:1.5rem;border-top:1px solid var(--border);margin-top:1rem;}
     footer p{font-size:.65rem;color:var(--dim);}
-
-    @media(max-width:540px){.cards-grid{grid-template-columns:1fr;}.wrap{padding:1.5rem 1rem 3rem;}}
+    @media(max-width:540px){.cards-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
 
-<!-- MATRIX RAIN CANVAS -->
 <canvas id="matrixCanvas"></canvas>
-
-<!-- FIRE PARTICLES -->
 <div class="particles" id="particlesContainer"></div>
 
 <div class="wrap">
   <div class="header">
     <div class="eyebrow"><div class="live-dot"></div> ☠️ DANGEROUS MODE ☠️</div>
     <h1>💀 Card <em>Vault</em></h1>
-    <p>110+ premium cards • ₹100–₹1000 • Enter at your own risk</p>
+    <p>110+ premium cards • Dynamic UPI QR • Instant payment</p>
   </div>
 
-  <!-- 👁️ LIVE USERS -->
   <div class="live-users-bar">
-    <div class="live-users-counter">
-      <span class="eye-icon">👁️</span>
-      <span id="liveUsersCount">69</span>
-      <span style="font-size:.6rem;color:var(--muted);">WATCHING</span>
-    </div>
+    <div class="live-users-counter"><span class="eye-icon">👁️</span><span id="liveUsersCount">69</span><span style="font-size:.6rem;">WATCHING</span></div>
   </div>
 
   <div class="sort-wrap">
-    <span style="font-size:.65rem;color:var(--dim);letter-spacing:.1em;">SORT:</span>
+    <span style="font-size:.65rem;color:var(--dim);">SORT:</span>
     <button class="sort-btn active" id="sortPriceLow">💰 Low→High</button>
     <button class="sort-btn" id="sortPriceHigh">💎 High→Low</button>
     <button class="sort-btn" id="sortBalanceHigh">🏦 Balance</button>
@@ -265,44 +212,40 @@
 
   <div class="filter-wrap" id="filterWrap">
     <button class="filter-btn active" data-type="all">☠️ All</button>
-    <button class="filter-btn" data-type="visa">Visa</button>
-    <button class="filter-btn" data-type="mastercard">MC</button>
-    <button class="filter-btn" data-type="amex">Amex</button>
-    <button class="filter-btn" data-type="discover">Discover</button>
-    <button class="filter-btn" data-type="rupay">RuPay</button>
-    <button class="filter-btn" data-type="jcb">JCB</button>
-    <button class="filter-btn" data-type="diners">Diners</button>
-    <button class="filter-btn" data-type="unionpay">UnionPay</button>
+    <button class="filter-btn" data-type="visa">Visa</button><button class="filter-btn" data-type="mastercard">MC</button>
+    <button class="filter-btn" data-type="amex">Amex</button><button class="filter-btn" data-type="discover">Discover</button>
+    <button class="filter-btn" data-type="rupay">RuPay</button><button class="filter-btn" data-type="jcb">JCB</button>
+    <button class="filter-btn" data-type="diners">Diners</button><button class="filter-btn" data-type="unionpay">UnionPay</button>
     <button class="filter-btn" data-type="maestro">Maestro</button>
   </div>
 
   <div class="cards-grid" id="cardsGrid"></div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL WITH DYNAMIC QR -->
 <div class="modal" id="modal">
   <div class="mbox">
     <div class="mbox-topbar"></div>
-    <div class="mbox-head">
-      <div class="mbox-title">💀 Complete Payment</div>
-      <div class="mclose-btn" id="mcloseBtn">✕</div>
-    </div>
+    <div class="mbox-head"><div class="mbox-title">💀 UPI Payment</div><div class="mclose-btn" id="mcloseBtn">✕</div></div>
     <div class="mbox-body">
       <div class="m-info"><div class="m-num" id="mNum">—</div><div class="m-net" id="mNet">—</div></div>
-      <div class="m-price-box"><div class="m-price-label">💰 Blood Price</div><div class="m-price-amount" id="mPrice">₹99</div></div>
+      <div class="m-price-box"><div class="m-price-amount" id="mPrice">₹0</div></div>
+      
+      <!-- DYNAMIC QR SECTION -->
       <div class="qr-section">
-        <div class="qr-label">📱 Scan QR to Pay</div>
-        <div class="qr-container">
-          <img src="https://www.image2url.com/r2/default/images/1781162843953-f27baada-188e-4e63-884f-2993ac047f6c.jpg" alt="QR" class="qr-image">
-        </div>
-        <div class="qr-amount-tag" id="qrAmountTag">₹99</div>
+        <div class="qr-label">📲 SCAN & PAY (Amount auto-set)</div>
+        <div id="dynamicQR" style="display: flex; justify-content: center;"></div>
+        <div class="qr-amount-tag" id="qrAmountTag">₹0</div>
+        <div style="font-size: .65rem; margin-top: 8px; color: var(--dim);">UPI: kartikrawat6266@okhdfcbank</div>
       </div>
+
       <div class="payment-apps">
-        <button class="payment-app-btn btn-phonepe" id="btnPhonePe">📱 PhonePe</button>
-        <button class="payment-app-btn btn-gpay" id="btnGPay">💳 GPay</button>
-        <button class="payment-app-btn btn-paytm" id="btnPaytm">💰 Paytm</button>
-        <button class="payment-app-btn btn-fampay" id="btnFamPay">👨‍👩‍👧 FamPay</button>
+        <button class="payment-app-btn" id="btnPhonePe">📱 PhonePe</button>
+        <button class="payment-app-btn" id="btnGPay">💳 GPay</button>
+        <button class="payment-app-btn" id="btnPaytm">💰 Paytm</button>
+        <button class="payment-app-btn" id="btnFamPay">👨‍👩‍👧 FamPay</button>
       </div>
+      
       <div class="input-group"><div class="input-label">📞 WhatsApp</div><input class="cust-input" type="text" id="phoneInput" placeholder="+91 9876543210"></div>
       <div class="input-group"><div class="input-label">📧 Email</div><input class="cust-input" type="email" id="emailInput" placeholder="you@example.com"></div>
       <div class="input-group"><div class="input-label">🔗 UTR / TXN ID</div><input class="cust-input" type="text" id="utrInput" placeholder="HDFC123456789"></div>
@@ -312,155 +255,223 @@
   </div>
 </div>
 
-<!-- ADMIN -->
-<div class="admin-login-modal" id="adminLoginModal">
-  <div class="admin-login-box">
-    <h3>🔐 Admin Login</h3>
-    <div class="input-group"><div class="input-label">Password</div><input class="cust-input" type="password" id="adminPasswordInput" placeholder="Enter password"></div>
-    <button class="btn btn-success" id="btnAdminLogin">🔓 Login</button>
-    <div class="flex-row" style="margin-top:.5rem;"><button class="btn btn-ghost" id="btnCancelLogin">Cancel</button></div>
-  </div>
-</div>
-
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-box">
-    <div class="admin-header">
-      <h3>🛡️ Admin Dashboard</h3>
-      <div style="display:flex;gap:.5rem;">
-        <button class="btn btn-ghost" id="clearAllBtn" style="color:#ff6666;border-color:var(--blood);width:auto;font-size:.6rem;">🗑️ Clear All</button>
-        <button class="btn btn-ghost" id="closeAdminBtn" style="width:auto;">✕</button>
-      </div>
-    </div>
-    <div id="adminOrdersList">No orders yet.</div>
-  </div>
-</div>
-
-<div class="admin-badge" id="adminBadge">💀 Admin</div>
-<footer><p>☠️ <span style="color:var(--toxic);">CardVault</span> · Dangerous Edition</p></footer>
+<footer><p>☠️ <span style="color:var(--toxic);">CardVault</span> · Dynamic UPI Powered</p></footer>
 
 <script>
 (function(){
-  const ADMIN_PASSWORD = "2580";
-
+  // ---------- CONFIG ----------
+  const MY_UPI_ID = "kartikrawat6266@okhdfcbank";
+  const MERCHANT_NAME = "CardVault";
+  
+  // ---------- CARD GENERATION ----------
   const cardTypes = {
-    visa:       { prefix: ['4'], lengths: [16], display: 'VISA', color: '#93c5fd' },
+    visa: { prefix: ['4'], lengths: [16], display: 'VISA', color: '#93c5fd' },
     mastercard: { prefix: ['51','52','53','54','55','2221','2720'], lengths: [16], display: 'MC', color: '#fb923c' },
-    amex:       { prefix: ['34','37'], lengths: [15], display: 'AMEX', color: '#6ee7b7' },
-    discover:   { prefix: ['6011','65','644','645','646','647','648','649'], lengths: [16,19], display: 'DISCOVER', color: '#fde68a' },
-    rupay:      { prefix: ['60','65','81','82','508'], lengths: [16], display: 'RUPAY', color: '#d8b4fe' },
-    jcb:        { prefix: ['3528','3589'], lengths: [16,19], display: 'JCB', color: '#7dd3fc' },
-    diners:     { prefix: ['300','301','302','303','304','305','36','38','39'], lengths: [14,16], display: 'DINERS', color: '#5eead4' },
-    unionpay:   { prefix: ['62','88'], lengths: [16,17,18,19], display: 'UNIONPAY', color: '#fca5a5' },
-    maestro:    { prefix: ['50','56','57','58','59','63','67'], lengths: [12,13,14,15,16,17,18,19], display: 'MAESTRO', color: '#93c5fd' }
+    amex: { prefix: ['34','37'], lengths: [15], display: 'AMEX', color: '#6ee7b7' },
+    discover: { prefix: ['6011','65','644','645','646','647','648','649'], lengths: [16,19], display: 'DISCOVER', color: '#fde68a' },
+    rupay: { prefix: ['60','65','81','82','508'], lengths: [16], display: 'RUPAY', color: '#d8b4fe' },
+    jcb: { prefix: ['3528','3589'], lengths: [16,19], display: 'JCB', color: '#7dd3fc' },
+    diners: { prefix: ['300','301','302','303','304','305','36','38','39'], lengths: [14,16], display: 'DINERS', color: '#5eead4' },
+    unionpay: { prefix: ['62','88'], lengths: [16,17,18,19], display: 'UNIONPAY', color: '#fca5a5' },
+    maestro: { prefix: ['50','56','57','58','59','63','67'], lengths: [12,13,14,15,16,17,18,19], display: 'MAESTRO', color: '#93c5fd' }
   };
   const types = Object.keys(cardTypes);
-  function rInt(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
-  function genFullNum(type){const ci=cardTypes[type];const p=ci.prefix[Math.floor(Math.random()*ci.prefix.length)];const l=ci.lengths[Math.floor(Math.random()*ci.lengths.length)];let n=p;while(n.length<l)n+=Math.floor(Math.random()*10);return n;}
-  function maskNum(full){const c=full.replace(/\s/g,'');return c.substring(0,12).replace(/(.{4})/g,'$1 ').trim()+' XXXX';}
-  function genExp(){return ${String(rInt(1,12)).padStart(2,'0')}/${String(rInt(24,32))};}
-  function genCVV(t){return t==='amex'?String(rInt(1000,9999)):String(rInt(100,999));}
-const holders=['A. SHARMA','PRIYA K.','ROHAN D.','ANANYA V.','VIKRAM S.','NEHA GUPTA','ARJUN M.','SNEHA P.','KARAN J.','DIVYA R.'];
+  function rInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  function genFullNum(type){
+    const ci=cardTypes[type];
+    const p=ci.prefix[Math.floor(Math.random()*ci.prefix.length)];
+    const l=ci.lengths[Math.floor(Math.random()*ci.lengths.length)];
+    let n=p; while(n.length<l) n+=Math.floor(Math.random()*10);
+    return n;
+  }
+  function maskNum(full){ const c=full.replace(/\s/g,''); return c.substring(0,12).replace(/(.{4})/g,'$1 ').trim()+' XXXX'; }
+  function genExp(){ return `${String(rInt(1,12)).padStart(2,'0')}/${String(rInt(24,32))}`; }
+  function genCVV(t){ return t==='amex'?String(rInt(1000,9999)):String(rInt(100,999)); }
+  const holders=['A. SHARMA','PRIYA K.','ROHAN D.','ANANYA V.','VIKRAM S.','NEHA GUPTA','ARJUN M.','SNEHA P.','KARAN J.','DIVYA R.'];
   const cards=[];
-  for(let i=1;i<=110;i++){const type=types[Math.floor(Math.random()*types.length)];const price=rInt(100,1000);cards.push({id:i,type,fullNumber:genFullNum(type),displayNumber:maskNum(genFullNum(type)),realExpiry:genExp(),realCVV:genCVV(type),holder:holders[Math.floor(Math.random()*holders.length)],price:price,balance:price*10});}
+  for(let i=1;i<=110;i++){
+    const type=types[Math.floor(Math.random()*types.length)];
+    const price=rInt(100,1000);
+    cards.push({
+      id:i, type, fullNumber:genFullNum(type), displayNumber:maskNum(genFullNum(type)),
+      realExpiry:genExp(), realCVV:genCVV(type), holder:holders[Math.floor(Math.random()*holders.length)],
+      price:price, balance:price*10
+    });
+  }
   cards.sort((a,b)=>a.price-b.price);
 
-  // 👁️ MATRIX RAIN
-  const canvas=document.getElementById('matrixCanvas'),ctx=canvas.getContext('2d');
-  canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+  // ---------- MATRIX RAIN ----------
+  const canvas=document.getElementById('matrixCanvas'), ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
   const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*☠️💀👁️';
-  const fontSize=14,columns=canvas.width/fontSize;
-  const drops=[];for(let i=0;i<columns;i++)drops[i]=Math.floor(Math.random()*canvas.height/fontSize);
-  function drawMatrix(){ctx.fillStyle='rgba(0,0,0,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#0f0';ctx.font=${fontSize}px monospace;for(let i=0;i<drops.length;i++){const text=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(text,i*fontSize,drops[i]*fontSize);if(drops[i]*fontSize>canvas.height&&Math.random()>.975)drops[i]=0;drops[i]++;}}
+  const fontSize=14, columns=canvas.width/fontSize;
+  const drops=[]; for(let i=0;i<columns;i++) drops[i]=Math.floor(Math.random()*canvas.height/fontSize);
+  function drawMatrix(){
+    ctx.fillStyle='rgba(0,0,0,0.05)'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#0f0'; ctx.font=`${fontSize}px monospace`;
+    for(let i=0;i<drops.length;i++){
+      const text=chars[Math.floor(Math.random()*chars.length)];
+      ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+      if(drops[i]*fontSize>canvas.height && Math.random()>.975) drops[i]=0;
+      drops[i]++;
+    }
+  }
   setInterval(drawMatrix,50);
-  window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+  window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
 
-  // 🔥 FIRE PARTICLES
+  // particles
   const pContainer=document.getElementById('particlesContainer');
-  for(let i=0;i<40;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.width=p.style.height=(Math.random()*4+1)+'px';p.style.animationDuration=(Math.random()*3+2)+'s';p.style.animationDelay=Math.random()*3+'s';pContainer.appendChild(p);}
+  for(let i=0;i<40;i++){ const p=document.createElement('div'); p.className='particle'; p.style.left=Math.random()*100+'%'; p.style.width=p.style.height=(Math.random()*4+1)+'px'; p.style.animationDuration=(Math.random()*3+2)+'s'; p.style.animationDelay=Math.random()*3+'s'; pContainer.appendChild(p); }
 
-  // 👁️ LIVE USERS
+  // live users
   const liveUsersEl=document.getElementById('liveUsersCount');
-  function updateLiveUsers(){const base=Math.floor(Math.random()*50)+30;liveUsersEl.textContent=base;setTimeout(updateLiveUsers,Math.random()*5000+3000);}
+  function updateLiveUsers(){ const base=Math.floor(Math.random()*50)+30; liveUsersEl.textContent=base; setTimeout(updateLiveUsers,Math.random()*5000+3000); }
   updateLiveUsers();
 
-  const grid=document.getElementById('cardsGrid'),modal=document.getElementById('modal'),mNum=document.getElementById('mNum'),mNet=document.getElementById('mNet'),mPrice=document.getElementById('mPrice'),phoneInput=document.getElementById('phoneInput'),emailInput=document.getElementById('emailInput'),utrInput=document.getElementById('utrInput'),qrAmountTag=document.getElementById('qrAmountTag');
-  let currentCard=null,currentFilter='all',currentSort='price-low';
-  const orders=JSON.parse(localStorage.getItem('cardvault_orders')||'[]');
-  function save(){localStorage.setItem('cardvault_orders',JSON.stringify(orders));}
+  // DOM elements
+  const grid=document.getElementById('cardsGrid'), modal=document.getElementById('modal');
+  const mNum=document.getElementById('mNum'), mNet=document.getElementById('mNet'), mPrice=document.getElementById('mPrice');
+  const phoneInput=document.getElementById('phoneInput'), emailInput=document.getElementById('emailInput'), utrInput=document.getElementById('utrInput');
+  const qrAmountTag=document.getElementById('qrAmountTag');
+  let currentCard=null, currentFilter='all', currentSort='price-low';
+  let qrCodeObject = null;
+  const orders = JSON.parse(localStorage.getItem('cardvault_orders')||'[]');
+  function saveOrders(){ localStorage.setItem('cardvault_orders',JSON.stringify(orders)); }
 
-  function openUpiApp(app){
-    if(!currentCard)return;
-    const amt=currentCard.price;
-    const intents={phonepe:phonepe://pay?pa=&pn=CardVault&am=${amt}&tn=Card_${currentCard.id}&cu=INR,gpay:tez://upi/pay?pa=&pn=CardVault&am=${amt}&tn=Card_${currentCard.id}&cu=INR,paytm:paytmmp://pay?pa=&pn=CardVault&am=${amt}&tn=Card_${currentCard.id}&cu=INR,fampay:fampay://pay?pa=&pn=CardVault&am=${amt}&tn=Card_${currentCard.id}&cu=INR};
-    window.location.href=intents[app]||upi://pay?pa=&pn=CardVault&am=${amt}&tn=Card_${currentCard.id}&cu=INR;
-    setTimeout(()=>{alert(📱 Pay ₹${amt} via UPI app or scan QR);},1500);
+  // Generate UPI link and QR
+  function generateUPILink(amount, note=""){
+    const pa = MY_UPI_ID;
+    const pn = MERCHANT_NAME;
+    const am = amount.toFixed(2);
+    const cu = "INR";
+    const tn = note || `CardVault_Payment_${Date.now()}`;
+    return `upi://pay?pa=${pa}&pn=${pn}&am=${am}&cu=${cu}&tn=${tn}`;
   }
+
+  function refreshQRCode(amount){
+    const container = document.getElementById('dynamicQR');
+    if(!container) return;
+    container.innerHTML = ""; // clear old
+    const upiLink = generateUPILink(amount, `Card_${currentCard?.id || '0'}`);
+    // using QRCode.js library
+    try {
+      qrCodeObject = new QRCode(container, {
+        text: upiLink,
+        width: 160,
+        height: 160,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    } catch(e) { console.warn(e); container.innerHTML = `<div style="color:white;">⚠️ QR Error</div>`; }
+    if(qrAmountTag) qrAmountTag.innerText = `₹${amount}`;
+  }
+
+  // Open UPI apps with exact amount
+  function openUpiApp(appType){
+    if(!currentCard) return;
+    const amount = currentCard.price;
+    const upiLink = generateUPILink(amount, `Card_${currentCard.id}`);
+    let intentUrl = "";
+    if(appType === 'phonepe') intentUrl = upiLink.replace('upi://', 'phonepe://') + "&app=phonepe";
+    else if(appType === 'gpay') intentUrl = upiLink.replace('upi://', 'tez://');
+    else if(appType === 'paytm') intentUrl = upiLink.replace('upi://', 'paytmmp://');
+    else if(appType === 'fampay') intentUrl = upiLink.replace('upi://', 'fampay://');
+    else intentUrl = upiLink;
+    
+    window.location.href = intentUrl;
+    setTimeout(() => { alert(`📱 Open ${appType.toUpperCase()} app & pay ₹${amount}`); }, 1000);
+  }
+
+  // Modal controls
+  function openModal(card){
+    currentCard = card;
+    mNum.textContent = card.displayNumber;
+    mNet.textContent = cardTypes[card.type].display;
+    mNet.style.color = cardTypes[card.type].color;
+    mPrice.textContent = `₹${card.price}`;
+    refreshQRCode(card.price);
+    phoneInput.value = emailInput.value = utrInput.value = '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; currentCard = null; }
+
+  // Submit order
+  document.getElementById('btnPaid').addEventListener('click',()=>{
+    if(!currentCard) return alert('No card selected.');
+    const phone=phoneInput.value.trim(), email=emailInput.value.trim(), utr=utrInput.value.trim();
+    if(!phone || !email || !utr) return alert('☠️ Please fill all fields (WhatsApp, Email, UTR)');
+    orders.unshift({
+      phone, email, utr, cardNet: cardTypes[currentCard.type].display,
+      cardNumber: currentCard.fullNumber, expiry: currentCard.realExpiry, cvv: currentCard.realCVV,
+      price: currentCard.price, balance: currentCard.balance, time: Date.now()
+    });
+    saveOrders();
+    alert(`☠️ Payment Submitted!\n\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.realExpiry}\nCVV: ${currentCard.realCVV}\nSent to: ${email}\n\n✅ Admin will verify UTR.`);
+    closeModal();
+  });
+
+  // Filter & Sort logic
+  function getList(filter){
+    let list = filter==='all' ? [...cards] : cards.filter(c=>c.type===filter);
+    if(currentSort==='price-low') list.sort((a,b)=>a.price-b.price);
+    else if(currentSort==='price-high') list.sort((a,b)=>b.price-a.price);
+    else if(currentSort==='balance-high') list.sort((a,b)=>b.balance-a.balance);
+    return list;
+  }
+  function render(filter='all'){
+    currentFilter = filter;
+    const list = getList(filter);
+    grid.innerHTML = list.map(c=>`
+      <div class="card">
+        <div class="card-bar"></div>
+        <div class="card-body">
+          <div class="card-head"><div class="net-label">${cardTypes[c.type].display}</div><div class="price-badge">₹${c.price}</div></div>
+          <div class="chip-row"><div class="chip"><div class="chip-line"></div><div class="chip-line"></div><div class="chip-line"></div></div><div class="nfc">)))</div></div>
+          <div class="card-number">${c.displayNumber}</div>
+          <div class="card-meta"><div class="meta-box"><div class="meta-lbl">Expires</div><div class="meta-val">XX/XXXX</div></div><div class="meta-box"><div class="meta-lbl">CVV / Balance</div><div class="meta-val">XXX <span class="balance-text">| ₹${c.balance}</span></div></div></div>
+          <div class="holder">${c.holder}</div>
+        </div>
+        <div class="buy-btn" data-id="${c.id}"><div class="buy-left"><div class="qr-icon-wrap">💀</div><div class="buy-texts"><div class="buy-label">BUY NOW</div><div class="buy-sub">₹${c.price} · Balance: ₹${c.balance}</div></div></div><div class="buy-arrow">☠️</div></div>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.buy-btn').forEach(b=>{
+      b.addEventListener('click',()=>{ const c=cards.find(x=>x.id===parseInt(b.dataset.id)); if(c) openModal(c); });
+    });
+  }
+
+  // Sorting buttons
+  document.getElementById('sortPriceLow').addEventListener('click', function(){ setActiveSort(this,'price-low'); });
+  document.getElementById('sortPriceHigh').addEventListener('click', function(){ setActiveSort(this,'price-high'); });
+  document.getElementById('sortBalanceHigh').addEventListener('click', function(){ setActiveSort(this,'balance-high'); });
+  function setActiveSort(btn, sortType){
+    document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSort = sortType;
+    render(currentFilter);
+  }
+  document.querySelectorAll('.filter-btn').forEach(b=>{
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+      this.classList.add('active');
+      render(this.dataset.type);
+    });
+  });
+  
+  // Modal buttons
   document.getElementById('btnPhonePe').addEventListener('click',()=>openUpiApp('phonepe'));
   document.getElementById('btnGPay').addEventListener('click',()=>openUpiApp('gpay'));
   document.getElementById('btnPaytm').addEventListener('click',()=>openUpiApp('paytm'));
   document.getElementById('btnFamPay').addEventListener('click',()=>openUpiApp('fampay'));
-
-  function getList(filter){
-    let list=filter==='all'?[...cards]:cards.filter(c=>c.type===filter);
-    if(currentSort==='price-low')list.sort((a,b)=>a.price-b.price);
-  else if(currentSort==='price-high')list.sort((a,b)=>b.price-a.price);
-    else if(currentSort==='balance-high')list.sort((a,b)=>b.balance-a.balance);
-    return list;
-  }
-  function renderAdmin(){
-    if(!orders.length){document.getElementById('adminOrdersList').innerHTML='<p style="color:var(--muted);text-align:center;padding:2rem;">No orders yet.</p>';return;}
-    document.getElementById('adminOrdersList').innerHTML=orders.map((o,i)=><div class="order-item"><button class="delete-btn" data-index="${i}">✕</button><div>📧 ${o.email}</div><div>📞 ${o.phone}</div><div>💳 ${o.cardNet}</div><div>🔢 ${o.cardNumber}</div><div>📅 ${o.expiry}</div><div>🔐 ${o.cvv}</div><div>💰 ₹${o.price}</div><div>💵 ₹${o.balance}</div><div>🔗 ${o.utr}</div><div style="color:var(--dim);font-size:.6rem;">${new Date(o.time).toLocaleString()}</div></div>).join('');
-    document.querySelectorAll('.delete-btn').forEach(b=>b.addEventListener('click',function(e){e.stopPropagation();if(confirm('Delete?')){orders.splice(parseInt(this.dataset.index),1);save();renderAdmin();}}));
-  }
-  function render(filter='all'){
-    currentFilter=filter;
-    const list=getList(filter);
-    grid.innerHTML=list.map(c=><div class="card"><div class="card-bar"></div><div class="card-body"><div class="card-head"><div class="net-label">${cardTypes[c.type].display}</div><div class="price-badge">₹${c.price}</div></div><div class="chip-row"><div class="chip"><div class="chip-line"></div><div class="chip-line"></div><div class="chip-line"></div></div><div class="nfc">)))</div></div><div class="card-number">${c.displayNumber}</div><div class="card-meta"><div class="meta-box"><div class="meta-lbl">Expires</div><div class="meta-val">XX/XXXX</div></div><div class="meta-box"><div class="meta-lbl">CVV / Balance</div><div class="meta-val">XXX <span class="balance-text">| ₹${c.balance}</span></div></div></div><div class="holder">${c.holder}</div></div><div class="buy-btn" data-id="${c.id}"><div class="buy-left"><div class="qr-icon-wrap">💀</div><div class="buy-texts"><div class="buy-label">BUY NOW</div><div class="buy-sub">₹${c.price} · Balance: ₹${c.balance}</div></div></div><div class="buy-arrow">☠️</div></div></div>).join('');
-    grid.querySelectorAll('.buy-btn').forEach(b=>b.addEventListener('click',()=>{const c=cards.find(x=>x.id===parseInt(b.dataset.id));if(c)openModal(c);}));
-  }
-  function openModal(card){
-    currentCard=card;
-    mNum.textContent=card.displayNumber;mNet.textContent=cardTypes[card.type].display;mNet.style.color=cardTypes[card.type].color;
-    mPrice.textContent=₹${card.price};if(qrAmountTag)qrAmountTag.textContent=₹${card.price};
-    phoneInput.value=emailInput.value=utrInput.value='';modal.classList.add('open');document.body.style.overflow='hidden';
-  }
-  function closeModal(){modal.classList.remove('open');document.body.style.overflow='';currentCard=null;}
-
-  document.getElementById('btnPaid').addEventListener('click',()=>{
-    if(!currentCard)return alert('No card selected.');
-    const phone=phoneInput.value.trim(),email=emailInput.value.trim(),utr=utrInput.value.trim();
-    if(!phone!email!utr)return alert('☠️ Fill all fields!');
-    orders.unshift({phone,email,utr,cardNet:cardTypes[currentCard.type].display,cardNumber:currentCard.fullNumber,expiry:currentCard.realExpiry,cvv:currentCard.realCVV,price:currentCard.price,balance:currentCard.balance,time:Date.now()});
-    save();
-    alert(☠️ Payment Submitted!\n\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.realExpiry}\nCVV: ${currentCard.realCVV}\nSent to: ${email});
-    closeModal();
-  });
   document.getElementById('mcloseBtn').addEventListener('click',closeModal);
   document.getElementById('btnCloseModal').addEventListener('click',closeModal);
-  modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
-// Admin
-  document.getElementById('adminBadge').addEventListener('click',()=>{document.getElementById('adminPasswordInput').value='';document.getElementById('adminLoginModal').classList.add('open');});
-  document.getElementById('btnCancelLogin').addEventListener('click',()=>document.getElementById('adminLoginModal').classList.remove('open'));
-  document.getElementById('adminLoginModal').addEventListener('click',e=>{if(e.target===document.getElementById('adminLoginModal'))document.getElementById('adminLoginModal').classList.remove('open');});
-  document.getElementById('btnAdminLogin').addEventListener('click',()=>{
-    if(document.getElementById('adminPasswordInput').value.trim()===ADMIN_PASSWORD){document.getElementById('adminLoginModal').classList.remove('open');document.getElementById('adminPanel').classList.add('open');renderAdmin();}
-    else{alert('❌ Wrong password!');}
-  });
-  document.getElementById('closeAdminBtn').addEventListener('click',()=>document.getElementById('adminPanel').classList.remove('open'));
-  document.getElementById('clearAllBtn').addEventListener('click',()=>{if(confirm('Delete ALL?')){orders.length=0;save();renderAdmin();alert('Cleared!');}});
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
 
-  // Sort
-  function setSort(btn,sort){document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentSort=sort;render(currentFilter);}
-  document.getElementById('sortPriceLow').addEventListener('click',function(){setSort(this,'price-low');});
-  document.getElementById('sortPriceHigh').addEventListener('click',function(){setSort(this,'price-high');});
-  document.getElementById('sortBalanceHigh').addEventListener('click',function(){setSort(this,'balance-high');});
-
-  // Filter
-  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');render(this.dataset.type);}));
-
-  render('all');renderAdmin();
-  console.log('☠️ CardVault Dangerous Edition Ready');
+  // INIT
+  render('all');
+  console.log('🔥 Dynamic QR active | UPI:', MY_UPI_ID);
 })();
 </script>
 </body>
