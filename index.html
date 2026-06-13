@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • DIRECT UPI PAY (FIXED)</title>
+  <title>CARDVAULT • FAMPAY FIXED</title>
   <style>
     * {
       margin: 0;
@@ -548,7 +548,7 @@
     let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
     function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    // DIRECT APP OPEN FUNCTIONS - FIXED
+    // DIRECT APP OPEN FUNCTIONS - PROPERLY FIXED
     function generateUPIString(amount, cardId) {
       const note = `CARD_${cardId}`;
       return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
@@ -557,64 +557,42 @@
     function openUPIApp(appType, amount, cardId) {
       const upiString = generateUPIString(amount, cardId);
       
-      // Different approach for each app
-      let intentUrl = upiString;
+      // FamPay ke liye special handling - DIRECT UPI INTENT
+      if (appType === 'fampay') {
+        // FamPay standard UPI intent handle karta hai
+        // Package name specify nahi karenge, direct upi:// use karenge
+        window.location.href = upiString;
+        showToast('Opening FamPay...', `Amount: ₹${amount}`, true);
+        return;
+      }
       
+      // Other apps ke liye
+      let intentUrl;
       switch(appType) {
         case 'phonepe':
-          // PhonePe intent - try phonepe:// first, fallback to upi://
           intentUrl = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
           break;
-          
         case 'gpay':
-          // Google Pay intent - tez:// for older versions, upi:// for newer
           intentUrl = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
           break;
-          
         case 'paytm':
-          // Paytm intent
           intentUrl = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
           break;
-          
-        case 'fampay':
-          // FamPay uses standard UPI intent - isko direct upi:// se kholo
-          // FamPay ka koi specific custom scheme nahi hai, wo UPI intent handle karta hai
+        default:
           intentUrl = upiString;
-          break;
       }
       
-      // TRY TO OPEN APP WITH MULTIPLE METHODS
-      try {
-        // Method 1: Direct location change (most reliable)
-        const link = document.createElement('a');
-        link.href = intentUrl;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        
-        // For FamPay, try multiple approaches
-        if (appType === 'fampay') {
-          // Try opening with intent:// scheme first
-          const fampayIntent = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}#Intent;scheme=upi;package=com.fampay.in;end`;
-          window.location.href = fampayIntent;
-        } else {
-          window.location.href = intentUrl;
+      // Open app with fallback
+      window.location.href = intentUrl;
+      
+      // Fallback to UPI if app doesn't open
+      setTimeout(() => {
+        if (document.hidden === false) {
+          window.location.href = upiString;
         }
-        
-        // Method 2: Fallback after delay agar app open nahi hui
-        setTimeout(() => {
-          // Agar specific app scheme kaam nahi kiya, to generic UPI se try karo
-          if (document.hidden === false && appType !== 'fampay') {
-            window.location.href = upiString;
-          }
-        }, 2000);
-        
-        showToast(`Opening ${appType}...`, `Amount: ₹${amount}`, true);
-        
-      } catch(e) {
-        // Final fallback: direct UPI link
-        window.location.href = upiString;
-        showToast('Opening UPI...', `Amount: ₹${amount}`, true);
-      }
+      }, 2000);
+      
+      showToast(`Opening ${appType}...`, `Amount: ₹${amount}`, true);
     }
 
     function generateUPILink(amount, note = '') {
@@ -676,9 +654,13 @@
       }
     };
     
+    // FAMPAY BUTTON - SIMPLE DIRECT UPI INTENT
     document.getElementById('btnFamPay').onclick = () => { 
       if(currentCard) {
-        openUPIApp('fampay', currentCard.price, currentCard.id);
+        // Direct UPI intent - FamPay isko handle karega agar installed hai
+        const upiLink = generateUPIString(currentCard.price, currentCard.id);
+        window.location.href = upiLink;
+        showToast('Opening FamPay...', `Amount: ₹${currentCard.price}`, true);
       } else {
         showToast('Select card first', 'Click on any card', false);
       }
