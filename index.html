@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • DIRECT UPI PAY</title>
+  <title>CARDVAULT • DIRECT UPI PAY (FIXED)</title>
   <style>
     * {
       margin: 0;
@@ -447,6 +447,7 @@
 
     const toast = document.getElementById('toast');
     let toastTimeout = null;
+    
     function showToast(message, subMessage, isSuccess = true) {
       const toastIcon = document.getElementById('toastIcon');
       const toastText = document.getElementById('toastText');
@@ -547,65 +548,73 @@
     let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
     function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    // DIRECT APP OPEN FUNCTIONS
-    function getUPIIntent(amount, cardId) {
-      const note = `CARD_${cardId}_${Date.now()}`;
+    // DIRECT APP OPEN FUNCTIONS - FIXED
+    function generateUPIString(amount, cardId) {
+      const note = `CARD_${cardId}`;
       return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
     }
 
     function openUPIApp(appType, amount, cardId) {
-      const upiIntent = getUPIIntent(amount, cardId);
+      const upiString = generateUPIString(amount, cardId);
       
-      // Try direct intent first, fallback to UPI
-      let intentUrl = upiIntent;
+      // Different approach for each app
+      let intentUrl = upiString;
       
-      if (appType === 'phonepe') {
-        // PhonePe specific intent (if UPI fails)
-        intentUrl = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-      } else if (appType === 'gpay') {
-        // GPay specific (tez:// is legacy, upi:// works better)
-        intentUrl = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-      } else if (appType === 'paytm') {
-        intentUrl = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-      } else if (appType === 'fampay') {
-        intentUrl = `fampay://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+      switch(appType) {
+        case 'phonepe':
+          // PhonePe intent - try phonepe:// first, fallback to upi://
+          intentUrl = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+          break;
+          
+        case 'gpay':
+          // Google Pay intent - tez:// for older versions, upi:// for newer
+          intentUrl = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+          break;
+          
+        case 'paytm':
+          // Paytm intent
+          intentUrl = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+          break;
+          
+        case 'fampay':
+          // FamPay uses standard UPI intent - isko direct upi:// se kholo
+          // FamPay ka koi specific custom scheme nahi hai, wo UPI intent handle karta hai
+          intentUrl = upiString;
+          break;
       }
       
-      // Fallback URLs if app not installed
-      const fallbackUrls = {
-        phonepe: 'https://play.google.com/store/apps/details?id=com.phonepe.app',
-        gpay: 'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user',
-        paytm: 'https://play.google.com/store/apps/details?id=net.one97.paytm',
-        fampay: 'https://play.google.com/store/apps/details?id=com.fampay.in'
-      };
-      
-      // Try to open the app
-      const startTime = Date.now();
-      
-      // Create hidden iframe for app intent
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = intentUrl;
-      document.body.appendChild(iframe);
-      
-      // Set timeout to check if app opened
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-        const elapsed = Date.now() - startTime;
+      // TRY TO OPEN APP WITH MULTIPLE METHODS
+      try {
+        // Method 1: Direct location change (most reliable)
+        const link = document.createElement('a');
+        link.href = intentUrl;
+        link.style.display = 'none';
+        document.body.appendChild(link);
         
-        // If page didn't hide (app didn't open), try UPI fallback
-        if (elapsed < 2000) {
-          // Try generic UPI intent as fallback
-          window.location.href = upiIntent;
+        // For FamPay, try multiple approaches
+        if (appType === 'fampay') {
+          // Try opening with intent:// scheme first
+          const fampayIntent = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}#Intent;scheme=upi;package=com.fampay.in;end`;
+          window.location.href = fampayIntent;
+        } else {
+          window.location.href = intentUrl;
         }
-      }, 500);
-      
-      // Also try direct location change (works better on some devices)
-      setTimeout(() => {
-        window.location.href = intentUrl;
-      }, 100);
-      
-      showToast('Opening App...', `Amount: ₹${amount}`, true);
+        
+        // Method 2: Fallback after delay agar app open nahi hui
+        setTimeout(() => {
+          // Agar specific app scheme kaam nahi kiya, to generic UPI se try karo
+          if (document.hidden === false && appType !== 'fampay') {
+            window.location.href = upiString;
+          }
+        }, 2000);
+        
+        showToast(`Opening ${appType}...`, `Amount: ₹${amount}`, true);
+        
+      } catch(e) {
+        // Final fallback: direct UPI link
+        window.location.href = upiString;
+        showToast('Opening UPI...', `Amount: ₹${amount}`, true);
+      }
     }
 
     function generateUPILink(amount, note = '') {
