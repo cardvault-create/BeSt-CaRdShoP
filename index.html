@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • FINAL WORKING UPI</title>
+  <title>CARDVAULT • DIRECT UPI PAY</title>
   <style>
     * {
       margin: 0;
@@ -337,20 +337,6 @@
     .toast-text { font-weight: 600; font-size: 0.85rem; color: var(--toxic); }
     .toast-sub { font-size: 0.7rem; color: var(--muted); }
 
-    /* Copy UPI Link Button */
-    .copy-upi-link {
-      background: linear-gradient(135deg, #ffaa33, #ff7733);
-      border: none;
-      border-radius: 60px;
-      padding: 10px 16px;
-      font-size: 0.7rem;
-      font-weight: bold;
-      color: #000;
-      cursor: pointer;
-      margin-top: 10px;
-      width: 100%;
-    }
-
     @media (max-width: 480px) {
       .apps-grid { gap: 12px; }
       .app-icon { width: 48px; height: 48px; font-size: 28px; }
@@ -368,7 +354,7 @@
   <div class="header">
     <div class="badge"><div class="pulse-dot"></div> SECURE VAULT</div>
     <div class="glitch-title"><span>CARD</span> <i>VAULT</i></div>
-    <div class="sub">Premium Cards • Copy UPI Link & Pay</div>
+    <div class="sub">Premium Cards • Direct UPI App Open</div>
     <div class="live-counter"><span>●</span> <span id="liveUsersCount">87</span> <span>ACTIVE</span></div>
   </div>
 
@@ -393,15 +379,15 @@
 <div class="toast" id="toast">
   <div class="toast-icon" id="toastIcon">✓</div>
   <div>
-    <div class="toast-text" id="toastText">UPI Link Copied!</div>
-    <div class="toast-sub" id="toastSub">Open any UPI app & paste</div>
+    <div class="toast-text" id="toastText">Opening App...</div>
+    <div class="toast-sub" id="toastSub">Redirecting to payment</div>
   </div>
 </div>
 
 <div class="modal" id="modal">
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-title">◆ UPI PAYMENT</div>
+      <div class="modal-title">◆ DIRECT UPI PAYMENT</div>
       <div class="close-modal" id="mcloseBtn">✕</div>
     </div>
     <div class="modal-body">
@@ -414,33 +400,32 @@
       </div>
 
       <div class="qr-panel">
-        <div class="qr-label-text">SCAN QR CODE</div>
+        <div class="qr-label-text">SCAN QR OR TAP BELOW</div>
         <div id="dynamicQR" style="display: flex; justify-content: center;"></div>
         <div class="qr-amount-badge" id="qrAmountTag">₹0</div>
         <div class="upi-id-small">UPI: kartikrawat6266@okhdfcbank</div>
-        <button class="copy-upi-link" id="copyUpiLinkBtn">📋 COPY UPI LINK & PAY</button>
       </div>
 
       <div class="apps-grid">
         <div class="app-btn" id="btnPhonePe">
           <div class="app-icon icon-phonepe">📱</div>
           <div class="app-name">PhonePe</div>
-          <div class="app-sub">Copy & Pay</div>
+          <div class="app-sub">Open App</div>
         </div>
         <div class="app-btn" id="btnGPay">
           <div class="app-icon icon-gpay">G</div>
           <div class="app-name">Google Pay</div>
-          <div class="app-sub">Copy & Pay</div>
+          <div class="app-sub">Open App</div>
         </div>
         <div class="app-btn" id="btnPaytm">
           <div class="app-icon icon-paytm">P</div>
           <div class="app-name">Paytm</div>
-          <div class="app-sub">Copy & Pay</div>
+          <div class="app-sub">Open App</div>
         </div>
         <div class="app-btn" id="btnFamPay">
           <div class="app-icon icon-fampay">F</div>
           <div class="app-name">FamPay</div>
-          <div class="app-sub">Copy & Pay</div>
+          <div class="app-sub">Open App</div>
         </div>
       </div>
 
@@ -453,7 +438,7 @@
   </div>
 </div>
 
-<div class="footer"><span>◆</span> CARDVAULT • COPY LINK & PAY <span>◆</span></div>
+<div class="footer"><span>◆</span> CARDVAULT • DIRECT APP OPEN <span>◆</span></div>
 
 <script>
   (function() {
@@ -562,24 +547,69 @@
     let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
     function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    function generateUPILink(amount, note = '') {
-      return `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${amount.toFixed(2)}&cu=INR&tn=${note || `CARD_${Date.now()}`}`;
+    // DIRECT APP OPEN FUNCTIONS
+    function getUPIIntent(amount, cardId) {
+      const note = `CARD_${cardId}_${Date.now()}`;
+      return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
     }
 
-    function getUPIString(amount, cardId) {
-      return `pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-    }
-
-    // COPY UPI LINK FUNCTION
-    function copyUPILink(amount, cardId) {
-      const upiString = getUPIString(amount, cardId);
-      const fullUpiLink = `upi://${upiString}`;
+    function openUPIApp(appType, amount, cardId) {
+      const upiIntent = getUPIIntent(amount, cardId);
       
-      navigator.clipboard.writeText(fullUpiLink).then(() => {
-        showToast('UPI Link Copied!', `Open any UPI app & paste to pay ₹${amount}`, true);
-      }).catch(() => {
-        showToast('Copy Manually', `upi://${upiString.substring(0, 50)}...`, false);
-      });
+      // Try direct intent first, fallback to UPI
+      let intentUrl = upiIntent;
+      
+      if (appType === 'phonepe') {
+        // PhonePe specific intent (if UPI fails)
+        intentUrl = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+      } else if (appType === 'gpay') {
+        // GPay specific (tez:// is legacy, upi:// works better)
+        intentUrl = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+      } else if (appType === 'paytm') {
+        intentUrl = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+      } else if (appType === 'fampay') {
+        intentUrl = `fampay://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
+      }
+      
+      // Fallback URLs if app not installed
+      const fallbackUrls = {
+        phonepe: 'https://play.google.com/store/apps/details?id=com.phonepe.app',
+        gpay: 'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user',
+        paytm: 'https://play.google.com/store/apps/details?id=net.one97.paytm',
+        fampay: 'https://play.google.com/store/apps/details?id=com.fampay.in'
+      };
+      
+      // Try to open the app
+      const startTime = Date.now();
+      
+      // Create hidden iframe for app intent
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = intentUrl;
+      document.body.appendChild(iframe);
+      
+      // Set timeout to check if app opened
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+        const elapsed = Date.now() - startTime;
+        
+        // If page didn't hide (app didn't open), try UPI fallback
+        if (elapsed < 2000) {
+          // Try generic UPI intent as fallback
+          window.location.href = upiIntent;
+        }
+      }, 500);
+      
+      // Also try direct location change (works better on some devices)
+      setTimeout(() => {
+        window.location.href = intentUrl;
+      }, 100);
+      
+      showToast('Opening App...', `Amount: ₹${amount}`, true);
+    }
+
+    function generateUPILink(amount, note = '') {
+      return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note || `CARD_${Date.now()}`)}`;
     }
 
     function refreshDynamicQR(amount, cardId) {
@@ -612,20 +642,38 @@
       currentCard = null;
     }
 
-    // Copy UPI Link Button
-    document.getElementById('copyUpiLinkBtn').onclick = () => {
+    // DIRECT APP OPEN BUTTONS
+    document.getElementById('btnPhonePe').onclick = () => { 
       if(currentCard) {
-        copyUPILink(currentCard.price, currentCard.id);
+        openUPIApp('phonepe', currentCard.price, currentCard.id);
       } else {
-        showToast('Error', 'Select a card first', false);
+        showToast('Select card first', 'Click on any card', false);
       }
     };
-
-    // App Buttons - Copy Link & Guide
-    document.getElementById('btnPhonePe').onclick = () => { if(currentCard) { copyUPILink(currentCard.price, currentCard.id); showToast('PhonePe', 'Link copied! Open PhonePe & paste', true); } else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnGPay').onclick = () => { if(currentCard) { copyUPILink(currentCard.price, currentCard.id); showToast('Google Pay', 'Link copied! Open GPay & paste', true); } else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnPaytm').onclick = () => { if(currentCard) { copyUPILink(currentCard.price, currentCard.id); showToast('Paytm', 'Link copied! Open Paytm & paste', true); } else showToast('Select card first', 'Click on any card', false); };
-    document.getElementById('btnFamPay').onclick = () => { if(currentCard) { copyUPILink(currentCard.price, currentCard.id); showToast('FamPay', 'Link copied! Open FamPay & paste', true); } else showToast('Select card first', 'Click on any card', false); };
+    
+    document.getElementById('btnGPay').onclick = () => { 
+      if(currentCard) {
+        openUPIApp('gpay', currentCard.price, currentCard.id);
+      } else {
+        showToast('Select card first', 'Click on any card', false);
+      }
+    };
+    
+    document.getElementById('btnPaytm').onclick = () => { 
+      if(currentCard) {
+        openUPIApp('paytm', currentCard.price, currentCard.id);
+      } else {
+        showToast('Select card first', 'Click on any card', false);
+      }
+    };
+    
+    document.getElementById('btnFamPay').onclick = () => { 
+      if(currentCard) {
+        openUPIApp('fampay', currentCard.price, currentCard.id);
+      } else {
+        showToast('Select card first', 'Click on any card', false);
+      }
+    };
 
     document.getElementById('btnPaid').addEventListener('click', () => {
       if(!currentCard) return showToast('Error', 'Select a card first', false);
