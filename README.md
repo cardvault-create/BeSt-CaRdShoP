@@ -1,1 +1,0 @@
-# BeSt-CaRdShoP
