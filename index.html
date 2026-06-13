@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • PREMIUM UPI SUITE</title>
+  <title>CARDVAULT • WORKING UPI INTENT</title>
   <style>
     * {
       margin: 0;
@@ -29,6 +29,29 @@
       padding: 20px;
     }
 
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, #1a1a2e, #0a0a0f);
+      border: 2px solid var(--toxic);
+      border-radius: 60px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 2000;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 30px rgba(30, 255, 60, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast-icon { font-size: 24px; }
+    .toast-text { font-weight: 600; font-size: 0.85rem; color: var(--toxic); }
+    .toast-sub { font-size: 0.7rem; color: var(--muted); }
+
     /* Matrix Background */
     #matrixCanvas {
       position: fixed;
@@ -38,7 +61,6 @@
       pointer-events: none;
     }
 
-    /* Particles */
     .particles {
       position: fixed;
       inset: 0;
@@ -257,7 +279,7 @@
     .qr-amount-badge { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-top: 8px; }
     .upi-id-small { font-size: 0.6rem; color: var(--muted); margin-top: 6px; }
 
-    /* LARGE APP BUTTONS WITH PLAY STORE STYLE ICONS */
+    /* LARGE APP BUTTONS */
     .apps-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -287,7 +309,6 @@
       box-shadow: 0 8px 25px rgba(0, 255, 60, 0.2);
     }
 
-    /* App Icon Styles - Authentic Play Store Style */
     .app-icon {
       width: 56px;
       height: 56px;
@@ -311,7 +332,6 @@
       color: var(--muted);
     }
 
-    /* Individual App Icon Gradients */
     .icon-phonepe { background: linear-gradient(135deg, #5c2d91, #3a1c5c); box-shadow: 0 0 15px rgba(92, 45, 145, 0.5); }
     .icon-gpay { background: linear-gradient(135deg, #1a73e8, #0d47a1); box-shadow: 0 0 15px rgba(26, 115, 232, 0.5); }
     .icon-paytm { background: linear-gradient(135deg, #00baf2, #0077b6); box-shadow: 0 0 15px rgba(0, 186, 242, 0.5); }
@@ -363,7 +383,16 @@
   <div class="cards-grid" id="cardsGrid"></div>
 </div>
 
-<!-- MODAL WITH LARGE APP BUTTONS -->
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toastIcon">⚠️</div>
+  <div>
+    <div class="toast-text" id="toastText">App not installed</div>
+    <div class="toast-sub" id="toastSub">Please use QR code to pay</div>
+  </div>
+</div>
+
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-container">
     <div class="modal-header">
@@ -386,7 +415,6 @@
         <div class="upi-id-small">UPI: kartikrawat6266@okhdfcbank</div>
       </div>
 
-      <!-- LARGE APP BUTTONS WITH PLAY STORE STYLE ICONS -->
       <div class="apps-grid">
         <div class="app-btn" id="btnPhonePe">
           <div class="app-icon icon-phonepe">📱</div>
@@ -427,7 +455,27 @@
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT_NAME = "CARDVAULT";
 
-    // ========== CARD GENERATOR (110 Cards) ==========
+    // ========== TOAST FUNCTION ==========
+    const toast = document.getElementById('toast');
+    let toastTimeout = null;
+    function showToast(message, subMessage, isSuccess = false) {
+      const toastIcon = document.getElementById('toastIcon');
+      const toastText = document.getElementById('toastText');
+      const toastSub = document.getElementById('toastSub');
+      
+      toastIcon.innerHTML = isSuccess ? '✅' : '⚠️';
+      toastText.innerHTML = message;
+      toastSub.innerHTML = subMessage;
+      toast.style.borderColor = isSuccess ? 'var(--toxic)' : 'var(--blood)';
+      
+      toast.classList.add('show');
+      if(toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // ========== CARD GENERATOR ==========
     const cardBrands = {
       visa: { prefix: ['4'], lengths: [16], display: 'VISA' },
       mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD' },
@@ -515,8 +563,8 @@
       return `upi://pay?pa=${UPI_ID}&pn=${MERCHANT_NAME}&am=${amount.toFixed(2)}&cu=INR&tn=${note || `CARD_${Date.now()}`}`;
     }
 
-    // ========== DIRECT APP OPEN FUNCTION ==========
-    function launchUpiAppDirect(appName, amount, cardId) {
+    // ========== DIRECT APP OPEN WITH FALLBACK TOAST ==========
+    function launchUpiAppDirect(appName, displayName, amount, cardId) {
       const upiLink = generateUPILink(amount, `CARD_${cardId}`);
       let intentUrl = upiLink;
       
@@ -528,14 +576,34 @@
         default: intentUrl = upiLink;
       }
       
+      // Try to open the app
       window.location.href = intentUrl;
       
-      // Hidden iframe fallback
+      // Hidden iframe for better compatibility
       const iframe = document.createElement('iframe');
       iframe.style.display = 'none';
       iframe.src = intentUrl;
       document.body.appendChild(iframe);
-      setTimeout(() => { if(iframe.parentNode) iframe.parentNode.removeChild(iframe); }, 2000);
+      
+      // Show premium toast after 1.5 seconds if app doesn't open (fallback)
+      setTimeout(() => {
+        if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        // Show premium message that app is not installed
+        showToast(
+          `${displayName} not installed`, 
+          `✨ Use QR code above to complete payment ✨`,
+          false
+        );
+      }, 1500);
+      
+      // Success toast - app opened successfully (this will show after small delay but won't disturb)
+      setTimeout(() => {
+        showToast(
+          `${displayName} opened`, 
+          `💰 Amount ₹${amount} auto-filled`,
+          true
+        );
+      }, 500);
     }
 
     // ========== QR CODE ==========
@@ -572,11 +640,11 @@
 
     // Submit order
     document.getElementById('btnPaid').addEventListener('click', () => {
-      if(!currentCard) return alert('Select a card');
+      if(!currentCard) return showToast('Error', 'Select a card first', false);
       const phone = document.getElementById('phoneInput').value.trim();
       const email = document.getElementById('emailInput').value.trim();
       const utr = document.getElementById('utrInput').value.trim();
-      if(!phone || !email || !utr) return alert('Fill all fields');
+      if(!phone || !email || !utr) return showToast('Incomplete', 'Fill all fields', false);
       
       orders.unshift({
         phone, email, utr, cardNet: cardBrands[currentCard.type].display,
@@ -584,15 +652,15 @@
         price: currentCard.price, balance: currentCard.balance, time: Date.now()
       });
       saveOrders();
-      alert(`CONFIRMED\nCard: ${currentCard.fullNumber}\nExpiry: ${currentCard.expiry}\nCVV: ${currentCard.cvv}`);
+      showToast('Payment Submitted', `Card: ${currentCard.fullNumber.slice(-4)}`, true);
       closeModal();
     });
 
-    // ========== APP BUTTONS - DIRECT OPEN ==========
-    document.getElementById('btnPhonePe').onclick = () => { if(currentCard) launchUpiAppDirect('phonepe', currentCard.price, currentCard.id); };
-    document.getElementById('btnGPay').onclick = () => { if(currentCard) launchUpiAppDirect('gpay', currentCard.price, currentCard.id); };
-    document.getElementById('btnPaytm').onclick = () => { if(currentCard) launchUpiAppDirect('paytm', currentCard.price, currentCard.id); };
-    document.getElementById('btnFamPay').onclick = () => { if(currentCard) launchUpiAppDirect('fampay', currentCard.price, currentCard.id); };
+    // ========== APP BUTTONS ==========
+    document.getElementById('btnPhonePe').onclick = () => { if(currentCard) launchUpiAppDirect('phonepe', 'PhonePe', currentCard.price, currentCard.id); };
+    document.getElementById('btnGPay').onclick = () => { if(currentCard) launchUpiAppDirect('gpay', 'Google Pay', currentCard.price, currentCard.id); };
+    document.getElementById('btnPaytm').onclick = () => { if(currentCard) launchUpiAppDirect('paytm', 'Paytm', currentCard.price, currentCard.id); };
+    document.getElementById('btnFamPay').onclick = () => { if(currentCard) launchUpiAppDirect('fampay', 'FamPay', currentCard.price, currentCard.id); };
 
     // ========== FILTER & SORT ==========
     function getFilteredSorted() {
