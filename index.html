@@ -353,10 +353,8 @@
       font-weight: 800;
     }
 
-    /* CVV now fully visible, no hidden effect */
-    .cvv-visible {
-      color: #ffffff;
-      letter-spacing: 0.05em;
+    .cvv-partial-hidden {
+      letter-spacing: 0.15em;
     }
 
     .buy-section {
@@ -641,13 +639,15 @@
     const brands = Object.keys(cardBrands);
     function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-    // ---------- ORIGINAL PRICE POOL & CARDS ----------
+    function generatePrice() {
+      return rand(100, 1000);
+    }
+
     const cards = [];
-    const pricePool = [250, 350, 450, 550, 650, 750, 850, 950];
     for (let i = 1; i <= 100; i++) {
       const type = brands[Math.floor(Math.random() * brands.length)];
       const fullNum = (cardBrands[type].prefix[0] + Array(cardBrands[type].lengths[0] - cardBrands[type].prefix[0].length).fill(0).map(()=>Math.floor(Math.random()*10)).join('')).slice(0, cardBrands[type].lengths[0]);
-      const price = pricePool[Math.floor(Math.random() * pricePool.length)];
+      const price = generatePrice();
       cards.push({
         id: i, type, fullNumber: fullNum,
         displayNumber: fullNum.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX',
@@ -659,11 +659,19 @@
     }
     cards.sort((a,b) => a.price - b.price);
 
-    // ---------- ORIGINAL PLAY CODES WITH SAME PRICE POOL ----------
+    function maskCVV(cvv) {
+      if (cvv.length === 3) {
+        return cvv[0] + '**';
+      } else if (cvv.length === 4) {
+        return cvv[0] + '**' + cvv[3];
+      }
+      return cvv;
+    }
+
     const playCodes = [];
     for (let i = 1; i <= 60; i++) {
       const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
-      const price = pricePool[Math.floor(Math.random() * pricePool.length)];
+      const price = generatePrice();
       playCodes.push({
         id: 200 + i,
         code: code,
@@ -714,7 +722,6 @@
       const grid = document.getElementById('dynamicGrid');
       grid.innerHTML = filtered.map(item => {
         if (item.type && item.type !== 'playstore') {
-          // ---------- CVV FULLY VISIBLE, NO HIDING ----------
           return `
             <div class="card-premium">
               <div class="card-top-glow"></div>
@@ -723,7 +730,7 @@
                 <div class="card-number-display">${item.displayNumber}</div>
                 <div class="details-grid">
                   <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div>
-                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-visible">${item.cvv}</div></div>
+                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div>
                   <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div>
                 </div>
               </div>
