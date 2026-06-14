@@ -282,6 +282,8 @@
       min-width: 220px;
       position: relative;
       overflow: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .tab-box::before {
       content: '';
@@ -374,10 +376,19 @@
       cursor: pointer;
       transition: all 0.3s;
       text-transform: uppercase;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      z-index: 1;
     }
     .btn-sort:hover, .btn-filter:hover {
       border-color: rgba(255,255,255,0.3);
       color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-sort:active, .btn-filter:active {
+      transform: scale(0.96);
+      transition: all 0.1s ease;
     }
     .btn-sort-low { border-color: rgba(46, 204, 113, 0.4); color: #2ecc71; }
     .btn-sort-low.active { background: #2ecc71; border-color: #2ecc71; color: #000; box-shadow: 0 0 30px rgba(46,204,113,0.5); }
@@ -411,12 +422,19 @@
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
       box-shadow: 0 30px 45px -18px rgba(0,0,0,0.85);
       cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .card-premium:hover, .play-card:hover {
       transform: translateY(-14px) scale(1.02);
       border-color: var(--gold-light);
       box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 168, 67, 0.25);
+    }
+
+    .card-premium:active, .play-card:active {
+      transform: scale(0.98);
+      transition: all 0.1s ease;
     }
 
     .play-card {
@@ -536,11 +554,24 @@
       align-items: center;
       font-weight: 700;
       transition: all 0.3s;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .buy-section:active {
+      background: rgba(212, 168, 67, 0.2);
+      transform: scale(0.98);
+      transition: all 0.1s ease;
     }
 
     .play-card .buy-section {
       background: rgba(66, 133, 244, 0.06);
       border-top: 1px solid rgba(66, 133, 244, 0.5);
+    }
+
+    .play-card .buy-section:active {
+      background: rgba(66, 133, 244, 0.2);
     }
 
     .buy-text {
@@ -606,10 +637,17 @@
       font-size: 1.4rem;
       cursor: pointer;
       transition: 0.3s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .close-btn:hover {
       background: rgba(212,168,67,0.3);
+    }
+
+    .close-btn:active {
+      transform: scale(0.9);
+      transition: all 0.1s ease;
     }
 
     /* Boxed App Buttons */
@@ -640,6 +678,8 @@
       font-weight: 600;
       transition: all 0.3s;
       color: #ddd;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .app-btn:hover {
@@ -647,6 +687,11 @@
       background: #1e1f35;
       transform: translateY(-3px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .app-btn:active {
+      transform: scale(0.95);
+      transition: all 0.1s ease;
     }
 
     .app-icon-real {
@@ -678,10 +723,17 @@
       letter-spacing: 0.05em;
       cursor: pointer;
       transition: 0.3s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .btn-gold-premium:hover {
       box-shadow: 0 0 30px rgba(212,168,67,0.6);
+    }
+
+    .btn-gold-premium:active {
+      transform: scale(0.97);
+      transition: all 0.1s ease;
     }
 
     .input-premium {
@@ -868,10 +920,17 @@
       font-size: 0.85rem;
       letter-spacing: 0.05em;
       transition: 0.3s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .btn-close-verify:hover {
       box-shadow: 0 0 25px rgba(212,168,67,0.6);
+    }
+
+    .btn-close-verify:active {
+      transform: scale(0.95);
+      transition: all 0.1s ease;
     }
 
     .code-hidden-modal {
