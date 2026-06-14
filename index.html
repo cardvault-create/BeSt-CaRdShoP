@@ -85,7 +85,7 @@
       gap: 2.5rem;
     }
 
-    /* ========== NEW HEADER - AS PER SCREENSHOT ========== */
+    /* HEADER - AS PER SCREENSHOT */
     .screenshot-header {
       display: flex;
       flex-wrap: wrap;
@@ -93,11 +93,11 @@
       align-items: flex-end;
       border-bottom: 2px solid var(--border-gold);
       padding-bottom: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       gap: 1rem;
     }
 
-    .header-box {
+    .header-box-left {
       background: rgba(10, 12, 22, 0.7);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-gold);
@@ -105,23 +105,23 @@
       padding: 0.6rem 1.2rem;
       font-family: 'JetBrains Mono', monospace;
     }
-    .header-box .line-top {
+    .header-box-left .top-line {
       font-size: 0.55rem;
       letter-spacing: 0.2em;
       color: var(--text-muted);
       text-transform: uppercase;
     }
-    .header-box .line-bottom {
+    .header-box-left .bottom-line {
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.05em;
     }
 
-    .header-center-box {
+    .header-box-center {
       text-align: center;
     }
-    .header-center-box h1 {
+    .header-box-center h1 {
       font-size: clamp(2rem, 6vw, 3.2rem);
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -131,7 +131,7 @@
       color: transparent;
       font-family: 'JetBrains Mono', monospace;
     }
-    .header-center-box .sub-text {
+    .header-box-center .sub-line {
       font-size: 0.55rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -139,7 +139,7 @@
       margin-top: 4px;
     }
 
-    .header-right-box {
+    .header-box-right {
       text-align: right;
       font-family: 'JetBrains Mono', monospace;
       background: rgba(10, 12, 22, 0.7);
@@ -148,12 +148,12 @@
       border-radius: 16px;
       padding: 0.6rem 1.2rem;
     }
-    .header-right-box .node-name {
+    .header-box-right .node-name {
       font-size: 0.7rem;
       color: var(--gold);
       letter-spacing: 0.1em;
     }
-    .header-right-box .green-dot {
+    .header-box-right .green-dot {
       display: inline-block;
       width: 8px;
       height: 8px;
@@ -163,7 +163,7 @@
       animation: pulse 1.5s infinite;
       margin-right: 6px;
     }
-    .header-right-box .session-count {
+    .header-box-right .session-text {
       font-size: 0.7rem;
       color: var(--text-muted);
     }
@@ -890,26 +890,26 @@
 </div>
 
 <div class="container">
-  <!-- NEW HEADER - EXACTLY AS PER SCREENSHOT -->
+  <!-- HEADER - AS PER SCREENSHOT -->
   <div class="screenshot-header">
-    <div class="header-box">
-      <div class="line-top">SECURE TERMINAL</div>
-      <div class="line-bottom">UID-HLSVU08G</div>
+    <div class="header-box-left">
+      <div class="top-line">SECURE TERMINAL</div>
+      <div class="bottom-line">UID-HLSVU08G</div>
     </div>
-    <div class="header-center-box">
+    <div class="header-box-center">
       <h1>CARD VAULT</h1>
-      <div class="sub-text">ELITE ACCESS // UNVERIFIED REGISTRY</div>
+      <div class="sub-line">ELITE ACCESS // UNVERIFIED REGISTRY</div>
     </div>
-    <div class="header-right-box">
+    <div class="header-box-right">
       <div class="node-name"><span class="green-dot"></span> NODE: GLOBAL-01</div>
-      <div class="session-count"><span id="liveUsersCountHeader">198</span> ACTIVE SESSIONS</div>
+      <div class="session-text"><span id="liveUsersCountHeader">198</span> ACTIVE SESSIONS</div>
     </div>
   </div>
   <div style="display: flex; justify-content: center;">
     <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount">198</span> COLLECTORS ONLINE</div>
   </div>
 
-  <!-- BOXED SECTION TABS - SMALLER -->
+  <!-- TABS -->
   <div class="section-tabs-box">
     <div class="tab-box tab-box-cards active" id="tabCardsBox">
       <div class="tab-box-icon">💳</div>
