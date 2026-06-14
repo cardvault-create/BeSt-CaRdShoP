@@ -19,12 +19,8 @@
       --platinum: #e8ecf1;
       --play-blue: #4285f4;
       --play-blue-dark: #1a5bbf;
-      --phonepe-purple: #5c2d91;
-      --paytm-blue: #00baf2;
-      --fampay-orange: #ff6b35;
       --text-primary: #f2f2f7;
       --text-muted: #9a9ab0;
-      --surface: rgba(14, 16, 26, 0.9);
       --border-gold: rgba(212, 168, 67, 0.45);
       --shadow-gold: 0 25px 50px -15px rgba(212, 168, 67, 0.3);
     }
@@ -390,6 +386,7 @@
       color: #f5e3b3;
     }
 
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -549,10 +546,106 @@
       display: none;
     }
 
-    .error-message {
-      color: #e74c3c;
-      font-size: 0.7rem;
-      margin-top: 2px;
+    /* Premium Verification Popup */
+    .verification-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(40px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .verification-overlay.active {
+      display: flex;
+    }
+
+    .verification-card {
+      background: linear-gradient(160deg, #0e0f1c 0%, #06070f 100%);
+      border: 2px solid var(--border-gold);
+      border-radius: 48px;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 0 100px rgba(212, 168, 67, 0.6);
+      animation: modalGlow 0.4s ease;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    @keyframes modalGlow {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .spinner-gold {
+      width: 70px;
+      height: 70px;
+      border: 3px solid rgba(212, 168, 67, 0.2);
+      border-top: 3px solid var(--gold-light);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1.8rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .verifying-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      animation: fadeText 1.5s infinite;
+    }
+
+    @keyframes fadeText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .verifying-sub {
+      font-size: 0.8rem;
+      color: #a0a0b8;
+      letter-spacing: 0.08em;
+    }
+
+    .verification-dots {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .verification-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: dotBounce 1.4s infinite ease-in-out;
+    }
+
+    .verification-dot:nth-child(1) { animation-delay: 0s; }
+    .verification-dot:nth-child(2) { animation-delay: 0.2s; }
+    .verification-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .code-hidden-modal {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.15em;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -560,6 +653,20 @@
 <body>
 <div class="bg-luxury"></div>
 <div class="particles-layer" id="particlesContainer"></div>
+
+<!-- Premium Verification Popup -->
+<div class="verification-overlay" id="verificationPopup">
+  <div class="verification-card">
+    <div class="spinner-gold"></div>
+    <div class="verifying-text">Verifying Payment</div>
+    <div class="verifying-sub">Please wait a moment...</div>
+    <div class="verification-dots">
+      <div class="verification-dot"></div>
+      <div class="verification-dot"></div>
+      <div class="verification-dot"></div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="header">
@@ -666,6 +773,13 @@
         return cvv[0] + '**' + cvv[3];
       }
       return cvv;
+    }
+
+    function maskPlayCode(code) {
+      if (code.length >= 8) {
+        return code.slice(0, 4) + '•••••••' + code.slice(-4);
+      }
+      return code.slice(0, 4) + '•••••••';
     }
 
     const playCodes = [];
@@ -780,9 +894,21 @@
       document.getElementById('modalTitle').innerText = item.type === 'playstore' ? 'PLAY STORE CODE' : 'CARD DETAILS';
       const infoDiv = document.getElementById('modalItemInfo');
       if (item.type === 'playstore') {
-        infoDiv.innerHTML = `<div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid #4a90e2;"><p><strong>🎮 PLAY STORE GIFT CARD</strong></p><p>Code: ${item.code}</p><p style="color:#6a9ff5; font-size:1.8rem; font-weight:800;">₹${item.price}</p></div>`;
+        infoDiv.innerHTML = `
+          <div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid #4a90e2;">
+            <p><strong>🎮 PLAY STORE GIFT CARD</strong></p>
+            <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; letter-spacing: 0.1em; background: rgba(0,0,0,0.4); padding: 0.6rem; border-radius: 12px; text-align: center;">
+              ${maskPlayCode(item.code)}
+            </p>
+            <p style="color:#6a9ff5; font-size:1.8rem; font-weight:800;">₹${item.price}</p>
+          </div>`;
       } else {
-        infoDiv.innerHTML = `<div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid var(--border-gold);"><p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p><p>CVV: ${item.cvv} | EXP: ${item.expiry}</p><p style="color:#e0c78a; font-size:1.8rem; font-weight:800;">₹${item.price}</p></div>`;
+        infoDiv.innerHTML = `
+          <div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid var(--border-gold);">
+            <p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p>
+            <p>CVV: ${maskCVV(item.cvv)} | EXP: ${item.expiry}</p>
+            <p style="color:#e0c78a; font-size:1.8rem; font-weight:800;">₹${item.price}</p>
+          </div>`;
       }
       generateQRCode(item.price, item.id);
       document.getElementById('emailInput').value = '';
@@ -798,6 +924,13 @@
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function showVerificationPopup() {
+      document.getElementById('verificationPopup').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('verificationPopup').classList.remove('active');
+      }, 3500);
     }
 
     function openUPI(app) {
@@ -831,8 +964,8 @@
         alert('Please enter UTR/Transaction ID');
         return;
       }
-      alert('✅ Payment confirmed! Details will be sent to ' + email);
       closeModal();
+      showVerificationPopup();
     };
 
     document.getElementById('closeModalBtn').onclick = closeModal;
