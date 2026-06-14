@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ NEO VAULT | NEXT GEN ELITE ✦</title>
+  <title>✦ ROYAL PHANTOM | ELITE SANCTUARY ✦</title>
   <style>
     * {
       margin: 0;
@@ -11,526 +11,590 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Clash+Display:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     :root {
-      --bg-void: #04040A;
-      --card-neon: rgba(12, 12, 28, 0.7);
-      --neon-amber: #FFB347;
-      --neon-mint: #00FFC2;
-      --neon-lavender: #B891FF;
-      --neon-coral: #FF6B6B;
-      --glow-amber: 0 0 20px rgba(255, 180, 71, 0.4);
-      --glow-mint: 0 0 20px rgba(0, 255, 194, 0.3);
-      --text-white: #FFFFFF;
-      --text-dim: #8A8AA8;
+      --bg-royal: #0A0A12;
+      --bg-card: linear-gradient(145deg, #12122A, #0A0A18);
+      --gold-royal: #F5D061;
+      --gold-dark: #D4A843;
+      --silver: #E8E8E8;
+      --platinum: #B8C0C8;
+      --ruby: #E34D4D;
+      --sapphire: #4D7AE3;
+      --emerald: #4DE37A;
+      --amethyst: #B84DE3;
+      --text-light: #FFFFFF;
+      --text-dim: #A0A0B8;
+      --shadow-luxury: 0 25px 45px -12px rgba(0, 0, 0, 0.6);
+      --border-gold: rgba(245, 208, 97, 0.3);
     }
 
     body {
-      background: var(--bg-void);
-      font-family: 'Space Grotesk', sans-serif;
-      color: var(--text-white);
+      background: var(--bg-royal);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-light);
       min-height: 100vh;
       overflow: hidden;
-      position: relative;
     }
 
-    /* ANIMATED WAVES BACKGROUND */
-    .wave-bg {
+    /* PREMIUM PATTERN BACKGROUND */
+    .luxury-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: linear-gradient(125deg, #04040A 0%, #0A0A18 50%, #060612 100%);
-    }
-    .wave {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,180,71,0.05)" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
-      background-size: cover;
-      animation: waveMove 15s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes waveMove {
-      0% { background-position-x: 0; }
-      100% { background-position-x: 1440px; }
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(245, 208, 97, 0.08), transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(77, 122, 227, 0.06), transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.01) 0px, rgba(255, 255, 255, 0.01) 2px, transparent 2px, transparent 30px);
     }
 
-    /* FLOATING DOTS */
-    .floating-dots {
+    /* GOLD SPARKLES */
+    .sparkles {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
     }
-    .dot {
+    .sparkle {
       position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--neon-amber);
+      width: 3px;
+      height: 3px;
+      background: var(--gold-royal);
       border-radius: 50%;
       opacity: 0;
-      animation: floatDot 8s infinite;
+      animation: sparkleFloat 12s infinite;
+      filter: blur(1px);
     }
-    @keyframes floatDot {
+    @keyframes sparkleFloat {
       0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      20% { opacity: 0.8; }
-      80% { opacity: 0.4; }
-      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.3; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
     }
 
-    .main-container {
+    .royal-container {
       position: relative;
       z-index: 10;
-      max-width: 1450px;
+      max-width: 1500px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 22px;
       height: 100vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
     }
 
-    /* ========== COMPACT HEADER ========== */
-    .neo-header {
-      background: rgba(4, 4, 10, 0.7);
+    /* ========== ROYAL HEADER ========== */
+    .royal-header {
+      background: rgba(10, 10, 18, 0.6);
       backdrop-filter: blur(20px);
-      border-radius: 24px;
-      padding: 14px 28px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 180, 71, 0.25);
+      border-radius: 32px;
+      padding: 18px 32px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 18px;
     }
-    .logo-neo h1 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 1.6rem;
+
+    .crown-logo h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #FFB347, #00FFC2, #B891FF);
+      background: linear-gradient(135deg, var(--gold-royal), var(--silver), var(--gold-royal));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      letter-spacing: 1px;
     }
-    .logo-neo p {
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
+    .crown-logo p {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
       color: var(--text-dim);
+      margin-top: 4px;
     }
-    .trust-strip {
+
+    .royal-seals {
       display: flex;
-      gap: 12px;
+      gap: 14px;
     }
-    .trust-chip-neo {
-      background: rgba(0, 255, 194, 0.08);
-      padding: 5px 14px;
-      border-radius: 30px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      border: 1px solid rgba(0, 255, 194, 0.3);
-      color: #00FFC2;
-    }
-    .live-neo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.4);
+    .royal-seal {
+      background: rgba(0, 0, 0, 0.45);
       padding: 6px 18px;
       border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(245, 208, 97, 0.35);
+      color: var(--gold-royal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .pulse-neo {
-      width: 8px;
-      height: 8px;
-      background: #00FFC2;
+
+    .royal-live {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 22px;
+      border-radius: 50px;
+      border: 1px solid rgba(77, 227, 122, 0.4);
+    }
+    .royal-pulse {
+      width: 10px;
+      height: 10px;
+      background: var(--emerald);
       border-radius: 50%;
-      animation: pulseNeo 1s infinite;
+      animation: royalPulse 1.2s infinite;
+      box-shadow: 0 0 12px var(--emerald);
     }
-    @keyframes pulseNeo {
+    @keyframes royalPulse {
       0%,100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.3; transform: scale(0.7); }
     }
+    .royal-count {
+      font-family: monospace;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--emerald);
+    }
 
-    /* ========== TABS MINI ========== */
-    .neo-tabs {
+    /* ========== ROYAL TABS ========== */
+    .royal-tabs {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 22px;
+      margin-bottom: 22px;
     }
-    .neo-tab {
-      background: rgba(12, 12, 28, 0.6);
-      backdrop-filter: blur(12px);
+    .royal-tab {
+      background: rgba(12, 12, 24, 0.65);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 50px;
-      padding: 8px 32px;
+      border-radius: 60px;
+      padding: 12px 40px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.35s ease;
       text-align: center;
     }
-    .neo-tab:hover { border-color: #FFB347; transform: translateY(-2px); }
-    .neo-tab.active {
-      border-color: #FFB347;
-      background: rgba(255, 180, 71, 0.12);
-      box-shadow: 0 0 20px rgba(255, 180, 71, 0.2);
+    .royal-tab:hover {
+      border-color: var(--gold-royal);
+      transform: translateY(-3px);
     }
-    .neo-tab span { font-size: 0.8rem; font-weight: 600; }
-    .neo-tab small { font-size: 0.6rem; color: var(--text-dim); display: block; }
+    .royal-tab.active {
+      border-color: var(--gold-royal);
+      background: linear-gradient(135deg, rgba(245, 208, 97, 0.12), rgba(0, 0, 0, 0.2));
+      box-shadow: 0 0 28px rgba(245, 208, 97, 0.25);
+    }
+    .royal-tab-icon { font-size: 1.4rem; margin-bottom: 4px; }
+    .royal-tab-title { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.02em; }
+    .royal-tab-sub { font-size: 0.55rem; color: var(--text-dim); }
 
-    /* ========== FILTER ROW ========== */
-    .filter-row {
-      background: rgba(8, 8, 20, 0.5);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 12px 20px;
-      margin-bottom: 20px;
+    /* ========== FILTER SECTION ========== */
+    .royal-filter {
+      background: rgba(8, 8, 18, 0.55);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 14px 24px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(245, 208, 97, 0.12);
+    }
+    .filter-row-royal {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      border: 1px solid rgba(255, 180, 71, 0.1);
+      margin-bottom: 12px;
     }
-    .filter-chip {
+    .filter-row-royal:last-child { margin-bottom: 0; }
+    .filter-label-royal {
+      width: 100%;
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-royal);
+      margin-bottom: 8px;
+    }
+    .royal-btn {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 18px;
-      border-radius: 30px;
+      color: var(--text-dim);
+      padding: 8px 26px;
+      border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
-    .filter-chip:hover { border-color: #FFB347; color: #FFB347; }
-    .filter-chip.active {
-      background: linear-gradient(135deg, #FFB347, #E8952E);
+    .royal-btn:hover {
+      border-color: var(--gold-royal);
+      color: var(--gold-royal);
+      transform: translateY(-2px);
+    }
+    .royal-btn.active {
+      background: linear-gradient(135deg, var(--gold-royal), var(--gold-dark));
       border-color: transparent;
-      color: #04040A;
+      color: #0A0A12;
+      box-shadow: 0 0 18px rgba(245, 208, 97, 0.5);
     }
 
-    /* ========== CARDS GRID (SCROLLABLE AREA ONLY) ========== */
-    .cards-scroll-area {
+    /* ========== SCROLLABLE CARDS AREA ========== */
+    .cards-scroll-royal {
       flex: 1;
       overflow-y: auto;
-      padding-right: 5px;
-      margin-bottom: 5px;
+      padding-right: 6px;
+      margin-bottom: 8px;
     }
-    .cards-scroll-area::-webkit-scrollbar {
-      width: 4px;
+    .cards-scroll-royal::-webkit-scrollbar {
+      width: 5px;
     }
-    .cards-scroll-area::-webkit-scrollbar-track {
+    .cards-scroll-royal::-webkit-scrollbar-track {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
     }
-    .cards-scroll-area::-webkit-scrollbar-thumb {
-      background: #FFB347;
+    .cards-scroll-royal::-webkit-scrollbar-thumb {
+      background: var(--gold-royal);
       border-radius: 10px;
     }
 
-    .neo-grid {
+    .royal-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
     }
 
-    /* ========== COMPACT CARD ========== */
-    .neo-card {
-      background: linear-gradient(145deg, rgba(16, 16, 32, 0.85), rgba(8, 8, 20, 0.95));
+    /* ========== LUXURY CARD ========== */
+    .royal-card {
+      background: var(--bg-card);
       backdrop-filter: blur(12px);
-      border-radius: 28px;
+      border-radius: 34px;
       overflow: hidden;
-      border: 1px solid rgba(255, 180, 71, 0.2);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(245, 208, 97, 0.2);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       cursor: pointer;
     }
-    .neo-card:hover {
-      transform: translateY(-6px);
-      border-color: #FFB347;
-      box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.5);
+    .royal-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold-royal);
+      box-shadow: var(--shadow-luxury), 0 0 28px rgba(245, 208, 97, 0.2);
     }
-    .card-glow-neo {
-      height: 2px;
-      background: linear-gradient(90deg, #FFB347, #00FFC2, #B891FF);
+    .card-border-lux {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-royal), var(--amethyst), var(--sapphire));
     }
-    .card-body-neo {
-      padding: 18px;
+    .play-border {
+      background: linear-gradient(90deg, var(--sapphire), var(--amethyst), var(--ruby));
     }
-    .card-head-neo {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
+    .card-padding-royal {
+      padding: 22px;
     }
-    .network-neo {
-      background: rgba(255, 180, 71, 0.12);
-      padding: 3px 14px;
-      border-radius: 30px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #FFB347;
-    }
-    .price-neo {
-      font-family: monospace;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #FFB347;
-    }
-    .number-neo {
-      font-family: monospace;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px;
-      border-radius: 16px;
-      text-align: center;
-      font-size: 0.8rem;
-      margin: 12px 0;
-      letter-spacing: 0.05em;
-    }
-    .details-neo {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin: 12px 0;
-    }
-    .detail-neo {
-      background: rgba(0, 0, 0, 0.3);
-      padding: 6px;
-      border-radius: 12px;
-      text-align: center;
-      flex: 1;
-    }
-    .detail-label-neo { font-size: 0.45rem; color: var(--text-dim); }
-    .detail-value-neo { font-size: 0.7rem; font-weight: 600; margin-top: 3px; }
-    .buy-neo {
-      background: rgba(255, 180, 71, 0.08);
-      border-top: 1px solid rgba(255, 180, 71, 0.2);
-      padding: 12px 18px;
+    .card-header-royal {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 18px;
     }
-    .buy-neo span { font-size: 0.75rem; font-weight: 700; color: #FFB347; }
-    .buy-neo i { font-size: 1.1rem; transition: 0.2s; }
-    .neo-card:hover .buy-neo i { transform: translateX(5px); }
+    .network-royal {
+      background: rgba(245, 208, 97, 0.12);
+      border: 1px solid rgba(245, 208, 97, 0.35);
+      padding: 5px 18px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--gold-royal);
+    }
+    .price-royal {
+      font-family: monospace;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold-royal);
+    }
+    .number-royal {
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 12px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 16px 0;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+    .details-royal {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .detail-royal {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px;
+      border-radius: 16px;
+      text-align: center;
+      flex: 1;
+    }
+    .detail-label-royal { font-size: 0.5rem; color: var(--text-dim); text-transform: uppercase; }
+    .detail-value-royal { font-size: 0.75rem; font-weight: 700; margin-top: 4px; }
 
-    /* ========== COMPACT MODAL - NO SCROLL ========== */
-    .compact-modal {
+    /* PURCHASE BUTTON */
+    .purchase-royal {
+      background: linear-gradient(135deg, rgba(245, 208, 97, 0.08), rgba(212, 168, 67, 0.03));
+      border-top: 1px solid rgba(245, 208, 97, 0.25);
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    .purchase-royal:hover {
+      background: linear-gradient(135deg, rgba(245, 208, 97, 0.15), rgba(212, 168, 67, 0.08));
+    }
+    .purchase-text-royal {
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-royal);
+    }
+    .purchase-arrow-royal {
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+    }
+    .royal-card:hover .purchase-arrow-royal {
+      transform: translateX(8px);
+    }
+
+    /* ========== PREMIUM MODAL ========== */
+    .royal-modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.97);
-      backdrop-filter: blur(40px);
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(45px);
       align-items: center;
       justify-content: center;
     }
-    .compact-modal.open { display: flex; }
-    .compact-modal-content {
-      background: linear-gradient(145deg, #0A0A1A, #050510);
-      border: 1px solid #FFB347;
-      border-radius: 32px;
-      max-width: 480px;
+    .royal-modal.open { display: flex; }
+    .royal-modal-content {
+      background: linear-gradient(145deg, #0E0E20, #060612);
+      border: 1px solid var(--gold-royal);
+      border-radius: 38px;
+      max-width: 500px;
       width: 90%;
-      box-shadow: 0 0 60px rgba(255, 180, 71, 0.3);
+      box-shadow: 0 0 70px rgba(245, 208, 97, 0.35);
     }
-    .compact-header {
+    .royal-modal-header {
       display: flex;
       justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255, 180, 71, 0.2);
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(245, 208, 97, 0.25);
     }
-    .compact-header h3 { font-size: 1rem; color: #FFB347; }
-    .compact-close {
-      background: rgba(255, 180, 71, 0.1);
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 20px;
+    .royal-modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold-royal);
+    }
+    .royal-modal-close {
+      background: rgba(245, 208, 97, 0.1);
+      border: 1px solid var(--gold-royal);
+      width: 36px;
+      height: 36px;
+      border-radius: 30px;
       font-size: 1.2rem;
       cursor: pointer;
-      color: #FFB347;
+      color: var(--gold-royal);
     }
-    .compact-body { padding: 20px; }
+    .royal-modal-body { padding: 24px; }
 
-    .compact-info {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      padding: 12px;
+    .info-royal {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 24px;
+      padding: 16px;
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
-    .compact-info p { font-size: 0.75rem; margin: 5px 0; }
 
-    .qr-compact {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      padding: 12px;
+    .qr-royal {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 24px;
+      padding: 16px;
       text-align: center;
-      margin: 15px 0;
+      margin: 16px 0;
     }
-    .qr-box-compact {
+    .qr-box-royal {
       background: white;
-      padding: 10px;
-      border-radius: 18px;
+      padding: 12px;
+      border-radius: 20px;
       display: inline-block;
     }
 
-    /* COMPACT APPS */
-    .apps-compact {
+    /* PAYMENT APPS - FULL NAMES */
+    .apps-royal {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin: 15px 0;
+      gap: 14px;
+      margin: 18px 0;
+      flex-wrap: wrap;
     }
-    .app-compact {
-      background: #0C0C1C;
-      border: 1px solid rgba(255, 180, 71, 0.2);
-      border-radius: 16px;
-      padding: 8px 12px;
+    .app-royal {
+      background: #0C0C1E;
+      border: 1px solid rgba(245, 208, 97, 0.25);
+      border-radius: 20px;
+      padding: 10px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       cursor: pointer;
-      transition: all 0.2s;
-      min-width: 70px;
+      transition: all 0.3s;
+      min-width: 85px;
     }
-    .app-compact:hover {
-      border-color: #FFB347;
-      transform: translateY(-2px);
+    .app-royal:hover {
+      border-color: var(--gold-royal);
+      transform: translateY(-3px);
+      background: #141430;
     }
-    .app-icon-compact {
-      width: 35px;
-      height: 35px;
-      border-radius: 12px;
+    .app-icon-royal {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+    .app-name-royal {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--text-dim);
     }
 
-    .input-compact {
+    .input-royal {
       width: 100%;
-      background: #0A0A14;
-      border: 1px solid rgba(255, 180, 71, 0.3);
-      border-radius: 40px;
-      padding: 10px 16px;
+      background: #0A0A16;
+      border: 1px solid rgba(245, 208, 97, 0.35);
+      border-radius: 50px;
+      padding: 12px 18px;
       color: white;
       font-size: 0.8rem;
-      margin: 8px 0;
+      margin: 10px 0;
     }
-    .input-compact:focus {
+    .input-royal:focus {
       outline: none;
-      border-color: #FFB347;
+      border-color: var(--gold-royal);
+      box-shadow: 0 0 15px rgba(245, 208, 97, 0.3);
     }
-    .confirm-compact {
+    .confirm-royal {
       width: 100%;
-      background: linear-gradient(135deg, #FFB347, #E8952E);
+      background: linear-gradient(135deg, var(--gold-royal), var(--gold-dark));
       border: none;
-      border-radius: 40px;
-      padding: 12px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: #04040A;
+      border-radius: 50px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #0A0A12;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 16px;
     }
-    .warning-compact {
-      font-size: 0.55rem;
+    .warning-royal {
+      font-size: 0.6rem;
       color: #FF8888;
       text-align: center;
-      margin-top: 10px;
-      padding: 8px;
-      background: rgba(255, 68, 68, 0.1);
-      border-radius: 16px;
+      margin-top: 14px;
+      padding: 10px;
+      background: rgba(227, 77, 77, 0.1);
+      border-radius: 20px;
     }
 
-    /* VERIFICATION */
-    .verify-neo {
+    /* VERIFICATION - PREMIUM TEXT */
+    .verify-royal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 2000;
       background: rgba(0, 0, 0, 0.99);
-      backdrop-filter: blur(50px);
+      backdrop-filter: blur(55px);
       align-items: center;
       justify-content: center;
     }
-    .verify-neo.active { display: flex; }
-    .verify-neo-card {
-      background: linear-gradient(145deg, #0A0A1A, #050510);
-      border: 1px solid #FFB347;
-      border-radius: 40px;
-      padding: 30px 25px;
+    .verify-royal.active { display: flex; }
+    .verify-royal-card {
+      background: linear-gradient(145deg, #0E0E20, #060612);
+      border: 1px solid var(--gold-royal);
+      border-radius: 45px;
+      padding: 38px 32px;
       text-align: center;
-      max-width: 400px;
+      max-width: 480px;
       width: 90%;
     }
-    .neo-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(255, 180, 71, 0.2);
-      border-top: 3px solid #FFB347;
+    .royal-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(245, 208, 97, 0.2);
+      border-top: 3px solid var(--gold-royal);
       border-radius: 50%;
-      animation: spinNeo 1s linear infinite;
-      margin: 0 auto 15px;
+      animation: royalSpin 1s linear infinite;
+      margin: 0 auto 20px;
     }
-    @keyframes spinNeo { to { transform: rotate(360deg); } }
+    @keyframes royalSpin { to { transform: rotate(360deg); } }
 
-    .error-msg-neo { color: #FF6B6B; font-size: 0.6rem; margin-top: 4px; display: none; }
-    .error-msg-neo.show { display: block; }
-    .hidden { display: none; }
-
-    .footer-neo {
+    .footer-royal {
       text-align: center;
       padding: 12px;
       font-size: 0.55rem;
       color: var(--text-dim);
+      letter-spacing: 0.1em;
     }
+    .hidden { display: none; }
+    .error-royal { color: var(--ruby); font-size: 0.6rem; margin-top: 4px; display: none; }
+    .error-royal.show { display: block; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="wave-bg"></div>
-<div class="wave"></div>
-<div class="floating-dots" id="dotContainer"></div>
+<div class="luxury-bg"></div>
+<div class="sparkles" id="sparkleContainer"></div>
 
-<div class="main-container">
-  <!-- HEADER -->
-  <div class="neo-header">
-    <div class="logo-neo"><h1>✦ NEO VAULT ✦</h1><p>NEXT GEN ELITE ACCESS</p></div>
-    <div class="trust-strip"><div class="trust-chip-neo">🔒 SECURE</div><div class="trust-chip-neo">✅ VERIFIED</div><div class="trust-chip-neo">⭐ 5.0</div></div>
-    <div class="live-neo"><div class="pulse-neo"></div><span id="liveNeoCount" style="font-weight:700;">247</span><span style="font-size:0.7rem;">LIVE</span></div>
+<div class="royal-container">
+  <!-- ROYAL HEADER -->
+  <div class="royal-header">
+    <div class="crown-logo"><h1>✦ ROYAL PHANTOM ✦</h1><p>ELITE SANCTUARY • MEMBERS ONLY</p></div>
+    <div class="royal-seals"><div class="royal-seal">🔒 QUANTUM SECURE</div><div class="royal-seal">✅ VERIFIED ELITE</div><div class="royal-seal">⭐ 5.0 PLATINUM</div></div>
+    <div class="royal-live"><div class="royal-pulse"></div><span class="royal-count" id="royalLiveCount">247</span><span style="font-size:0.7rem;">CONNOISSEURS</span></div>
   </div>
 
   <!-- TABS -->
-  <div class="neo-tabs"><div class="neo-tab active" id="neoTabCards"><span>💳 CARDS</span><small>PREMIUM</small></div><div class="neo-tab" id="neoTabPlay"><span>🎮 PLAY STORE</span><small>CODES</small></div></div>
+  <div class="royal-tabs"><div class="royal-tab active" id="royalTabCards"><div class="royal-tab-icon">💎</div><div class="royal-tab-title">PREMIUM CARDS</div><div class="royal-tab-sub">BANK • CREDIT • DEBIT</div></div><div class="royal-tab" id="royalTabPlay"><div class="royal-tab-icon">🎮</div><div class="royal-tab-title">PLAY STORE</div><div class="royal-tab-sub">GIFT CARDS & CODES</div></div></div>
 
-  <!-- FILTER -->
-  <div id="neoCardsCtrl"><div class="filter-row"><div class="filter-chip active" id="neoSortLow">📉 LOW</div><div class="filter-chip" id="neoSortHigh">📈 HIGH</div><div class="filter-chip" id="neoSortBal">💰 BALANCE</div><div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px;"></div><div class="filter-chip active" data-filter="all">ALL</div><div class="filter-chip" data-filter="visa">VISA</div><div class="filter-chip" data-filter="mastercard">MC</div><div class="filter-chip" data-filter="amex">AMEX</div><div class="filter-chip" data-filter="rupay">RUPAY</div></div></div>
-  <div id="neoPlayCtrl" class="hidden"><div class="filter-row"><div class="filter-chip active" id="neoPlaySortLow">📉 LOW</div><div class="filter-chip" id="neoPlaySortHigh">📈 HIGH</div><div class="filter-chip" id="neoPlaySortVal">💰 VALUE</div></div></div>
+  <!-- FILTERS -->
+  <div id="royalCardsCtrl"><div class="royal-filter"><div class="filter-label-royal">⚡ SORT PARAMETERS</div><div class="filter-row-royal"><button class="royal-btn active" id="royalSortLow">LOW PRICE</button><button class="royal-btn" id="royalSortHigh">HIGH PRICE</button><button class="royal-btn" id="royalSortBalance">HIGH BALANCE</button></div><div class="filter-label-royal">🔮 NETWORK FILTER</div><div class="filter-row-royal"><button class="royal-btn active" data-filter="all">ALL NETWORKS</button><button class="royal-btn" data-filter="visa">VISA</button><button class="royal-btn" data-filter="mastercard">MASTERCARD</button><button class="royal-btn" data-filter="amex">AMERICAN EXPRESS</button><button class="royal-btn" data-filter="rupay">RUPAY</button></div></div></div>
+  <div id="royalPlayCtrl" class="hidden"><div class="royal-filter"><div class="filter-label-royal">⚡ SORT PARAMETERS</div><div class="filter-row-royal"><button class="royal-btn active" id="royalPlaySortLow">LOW PRICE</button><button class="royal-btn" id="royalPlaySortHigh">HIGH PRICE</button><button class="royal-btn" id="royalPlaySortValue">HIGH VALUE</button></div></div></div>
 
-  <!-- SCROLLABLE CARDS AREA -->
-  <div class="cards-scroll-area"><div class="neo-grid" id="neoCardsGrid"></div></div>
-  <div class="footer-neo">✦ QUANTUM ENCRYPTION • INSTANT DELIVERY ✦</div>
+  <!-- SCROLLABLE CARDS -->
+  <div class="cards-scroll-royal"><div class="royal-grid" id="royalCardsGrid"></div></div>
+  <div class="footer-royal">✦ 256-BIT QUANTUM ENCRYPTION • INSTANT DELIVERY • CONCIERGE SUPPORT ✦</div>
 </div>
 
-<!-- COMPACT MODAL - NO SCROLL -->
-<div class="compact-modal" id="neoModal"><div class="compact-modal-content"><div class="compact-header"><h3 id="neoModalTitle">PURCHASE</h3><button class="compact-close" id="neoCloseModal">✕</button></div><div class="compact-body"><div id="neoModalInfo"></div><div class="qr-compact"><div class="qr-box-compact" id="neoQR"></div><div style="font-size:0.6rem; margin-top:6px; color:#FFB347;">UPI: kartikrawat6266@okhdfcbank</div></div><div class="apps-compact"><div class="app-compact" id="neoPhonepe"><div class="app-icon-compact" style="background:#5C2D91;">₹</div><span style="font-size:0.6rem;">PhonePe</span></div><div class="app-compact" id="neoGpay"><div class="app-icon-compact" style="background:white; color:#1A73E8;">G</div><span style="font-size:0.6rem;">G Pay</span></div><div class="app-compact" id="neoPaytm"><div class="app-icon-compact" style="background:#00BAF2;">P</div><span style="font-size:0.6rem;">Paytm</span></div><div class="app-compact" id="neoFampay"><div class="app-icon-compact" style="background:#FF6B35;">F</div><span style="font-size:0.6rem;">FamPay</span></div></div><input class="input-compact" id="neoEmail" placeholder="📧 Email"><div class="error-msg-neo" id="neoEmailError">❌ Valid email required</div><input class="input-compact" id="neoUtr" placeholder="🔢 UTR (12 digits)" maxlength="12"><div class="error-msg-neo" id="neoUtrError">❌ UTR must be 12 digits</div><button class="confirm-compact" id="neoConfirm">✦ CONFIRM ✦</button><div class="warning-compact">⚠️ REAL PAYMENT = DELIVERY • FAKE UTR = NO CARD</div></div></div></div>
+<!-- MODAL -->
+<div class="royal-modal" id="royalModal"><div class="royal-modal-content"><div class="royal-modal-header"><span class="royal-modal-title" id="royalModalTitle">PURCHASE</span><button class="royal-modal-close" id="royalCloseModal">✕</button></div><div class="royal-modal-body"><div id="royalModalInfo"></div><div class="qr-royal"><div class="qr-box-royal" id="royalQR"></div><div style="font-size:0.65rem; margin-top:8px; color:var(--gold-royal);">UPI: kartikrawat6266@okhdfcbank</div></div><div class="apps-royal"><div class="app-royal" id="royalPhonepe"><div class="app-icon-royal" style="background:#5C2D91;">₹</div><span class="app-name-royal">PhonePe</span></div><div class="app-royal" id="royalGpay"><div class="app-icon-royal" style="background:white; color:#1A73E8;">G</div><span class="app-name-royal">Google Pay</span></div><div class="app-royal" id="royalPaytm"><div class="app-icon-royal" style="background:#00BAF2;">P</div><span class="app-name-royal">Paytm</span></div><div class="app-royal" id="royalFampay"><div class="app-icon-royal" style="background:#FF6B35;">F</div><span class="app-name-royal">FamPay</span></div></div><input class="input-royal" id="royalEmail" placeholder="📧 Enter your email address"><div class="error-royal" id="royalEmailError">❌ Please enter a valid email address</div><input class="input-royal" id="royalUtr" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-royal" id="royalUtrError">❌ Transaction ID must be exactly 12 digits</div><button class="confirm-royal" id="royalConfirm">✦ CONFIRM & PURCHASE ✦</button><div class="warning-royal">⚠️ ROYAL DECREE: Real payment required. Fake UTR = No card/code will be delivered. Your IP is monitored.</div></div></div></div>
 
 <!-- VERIFICATION -->
-<div class="verify-neo" id="neoVerify"><div class="verify-neo-card"><div id="neoVerifyLoad"><div class="neo-spinner"></div><div style="font-weight:700;">VERIFYING</div><div style="font-size:0.7rem; margin-top:5px;">Processing...</div></div><div id="neoVerifyResult" style="display:none;"></div></div></div>
+<div class="verify-royal" id="royalVerify"><div class="verify-royal-card"><div id="royalVerifyLoad"><div class="royal-spinner"></div><div style="font-size:1.1rem; font-weight:700;">AUTHENTICATING TRANSACTION</div><div style="font-size:0.75rem; margin-top:8px; color:#A0A0B8;">Verifying on Royal Secure Gateway...</div></div><div id="royalVerifyResult" style="display:none;"></div></div></div>
 
 <script>
 (function(){
   const UPI = "kartikrawat6266@okhdfcbank";
-  const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
+  const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMERICAN EXPRESS', rupay:'RUPAY' };
   const types = ['visa','mastercard','amex','rupay'];
   function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // PARTICLES
-  for(let i=0;i<80;i++){ let d=document.createElement('div'); d.className='dot'; d.style.left=Math.random()*100+'%'; d.style.width=d.style.height=(Math.random()*3+1)+'px'; d.style.animationDelay=Math.random()*10+'s'; d.style.animationDuration=(Math.random()*8+5)+'s'; document.getElementById('dotContainer').appendChild(d); }
+  // SPARKLES
+  for(let i=0;i<100;i++){ let s=document.createElement('div'); s.className='sparkle'; s.style.left=Math.random()*100+'%'; s.style.width=s.style.height=(Math.random()*4+1)+'px'; s.style.animationDelay=Math.random()*12+'s'; s.style.animationDuration=(Math.random()*10+6)+'s'; document.getElementById('sparkleContainer').appendChild(s); }
   
   // CARDS
   const cards = [];
@@ -544,12 +608,12 @@
   // PLAY CODES
   const plays = [];
   for(let i=1;i<=60;i++){
-    let code = 'NEO'+rand(10000,99999)+'-'+rand(10000,99999);
+    let code = 'ROYAL'+rand(10000,99999)+'-'+rand(10000,99999);
     let price = rand(100,1000);
-    plays.push({ id:500+i, code:code, display: code.slice(0,6)+'•••••••', value:price*10, price:price, type:'play' });
+    plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' });
   }
   
-  setInterval(()=>{ let c=rand(140,380); document.getElementById('liveNeoCount').innerText=c; },5000);
+  setInterval(()=>{ let c=rand(140,380); document.getElementById('royalLiveCount').innerText=c; },5000);
   
   let currentItem = null, activeTab='cards', currentFilter='all', currentSort='price-low', playSort='price-low';
   function maskCvv(c){ return c.toString()[0]+'**'; }
@@ -572,75 +636,75 @@
   
   function render(){
     let data = getData();
-    let grid = document.getElementById('neoCardsGrid');
+    let grid = document.getElementById('royalCardsGrid');
     grid.innerHTML = data.map(item => {
       if(item.type!=='play'){
-        return `<div class="neo-card"><div class="card-glow-neo"></div><div class="card-body-neo"><div class="card-head-neo"><span class="network-neo">${networks[item.type]}</span><span class="price-neo">₹${item.price}</span></div><div class="number-neo">${item.display}</div><div class="details-neo"><div class="detail-neo"><div class="detail-label-neo">EXP</div><div class="detail-value-neo">${item.expiry}</div></div><div class="detail-neo"><div class="detail-label-neo">CVV</div><div class="detail-value-neo">${maskCvv(item.cvv)}</div></div><div class="detail-neo"><div class="detail-label-neo">BAL</div><div class="detail-value-neo" style="color:#FFB347;">₹${item.balance}</div></div></div></div><div class="buy-neo" data-id="${item.id}"><span>💳 PURCHASE</span><i>→</i></div></div>`;
+        return `<div class="royal-card"><div class="card-border-lux"></div><div class="card-padding-royal"><div class="card-header-royal"><span class="network-royal">${networks[item.type]}</span><span class="price-royal">₹${item.price}</span></div><div class="number-royal">${item.display}</div><div class="details-royal"><div class="detail-royal"><div class="detail-label-royal">EXPIRY</div><div class="detail-value-royal">${item.expiry}</div></div><div class="detail-royal"><div class="detail-label-royal">CVV</div><div class="detail-value-royal">${maskCvv(item.cvv)}</div></div><div class="detail-royal"><div class="detail-label-royal">BALANCE</div><div class="detail-value-royal" style="color:#F5D061;">₹${item.balance}</div></div></div></div><div class="purchase-royal" data-id="${item.id}"><span class="purchase-text-royal">💎 PURCHASE CARD</span><span class="purchase-arrow-royal">→</span></div></div>`;
       } else {
-        return `<div class="neo-card"><div class="card-glow-neo" style="background:linear-gradient(90deg,#00FFC2,#B891FF);"></div><div class="card-body-neo"><div class="card-head-neo"><span class="network-neo" style="background:rgba(0,255,194,0.12); color:#00FFC2;">🎮 PLAY</span><span class="price-neo">₹${item.price}</span></div><div class="number-neo" style="font-size:0.75rem;">${item.display}</div><div class="details-neo"><div class="detail-neo"><div class="detail-label-neo">VALUE</div><div class="detail-value-neo">₹${item.value}</div></div><div class="detail-neo"><div class="detail-label-neo">TYPE</div><div class="detail-value-neo">CODE</div></div><div class="detail-neo"><div class="detail-label-neo">REDEEM</div><div class="detail-value-neo">PLAY</div></div></div></div><div class="buy-neo" data-id="${item.id}"><span>🎮 REDEEM</span><i>→</i></div></div>`;
+        return `<div class="royal-card"><div class="card-border-lux play-border"></div><div class="card-padding-royal"><div class="card-header-royal"><span class="network-royal" style="background:rgba(77,122,227,0.12); border-color:#4D7AE3; color:#4D7AE3;">🎮 PLAY STORE</span><span class="price-royal">₹${item.price}</span></div><div class="number-royal" style="font-size:0.8rem;">${item.display}</div><div class="details-royal"><div class="detail-royal"><div class="detail-label-royal">VALUE</div><div class="detail-value-royal">₹${item.value}</div></div><div class="detail-royal"><div class="detail-label-royal">TYPE</div><div class="detail-value-royal">GIFT CODE</div></div><div class="detail-royal"><div class="detail-label-royal">REDEEM</div><div class="detail-value-royal">GOOGLE PLAY</div></div></div></div><div class="purchase-royal" data-id="${item.id}"><span class="purchase-text-royal">🎮 REDEEM CODE</span><span class="purchase-arrow-royal">→</span></div></div>`;
       }
     }).join('');
-    document.querySelectorAll('.buy-neo').forEach(btn=>{ btn.addEventListener('click',()=>{ let id=parseInt(btn.dataset.id); let all=activeTab==='cards'?cards:plays; currentItem=all.find(i=>i.id===id); openModal(); }); });
+    document.querySelectorAll('.purchase-royal').forEach(btn=>{ btn.addEventListener('click',()=>{ let id=parseInt(btn.dataset.id); let all=activeTab==='cards'?cards:plays; currentItem=all.find(i=>i.id===id); openModal(); }); });
   }
   
   function openModal(){
-    document.getElementById('neoModalTitle').innerText = currentItem.type==='play'?'🎮 PLAY CODE':'💳 CARD';
-    let info = document.getElementById('neoModalInfo');
+    document.getElementById('royalModalTitle').innerText = currentItem.type==='play'?'🎮 PLAY STORE GIFT CODE':'💎 PREMIUM CARD';
+    let info = document.getElementById('royalModalInfo');
     if(currentItem.type==='play'){
-      info.innerHTML = `<div class="compact-info"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:8px; border-radius:12px; margin:8px;">${currentItem.display}</div><div style="font-size:1.3rem; font-weight:800; color:#FFB347;">₹${currentItem.price}</div></div>`;
+      info.innerHTML = `<div class="info-royal"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:10px; border-radius:14px; margin:10px;">${currentItem.display}</div><div style="font-size:1.5rem; font-weight:800; color:#F5D061;">₹${currentItem.price}</div></div>`;
     } else {
-      info.innerHTML = `<div class="compact-info"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:5px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.3rem; font-weight:800; color:#FFB347;">₹${currentItem.price}</div></div>`;
+      info.innerHTML = `<div class="info-royal"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:8px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.5rem; font-weight:800; color:#F5D061; margin-top:8px;">₹${currentItem.price}</div></div>`;
     }
-    document.getElementById('neoQR').innerHTML = '';
-    let upiStr = `upi://pay?pa=${UPI}&pn=NEO&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
-    new QRCode(document.getElementById('neoQR'), { text: upiStr, width: 120, height: 120 });
-    document.getElementById('neoEmail').value = ''; document.getElementById('neoUtr').value = '';
-    document.getElementById('neoModal').classList.add('open');
+    document.getElementById('royalQR').innerHTML = '';
+    let upiStr = `upi://pay?pa=${UPI}&pn=ROYAL&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
+    new QRCode(document.getElementById('royalQR'), { text: upiStr, width: 130, height: 130 });
+    document.getElementById('royalEmail').value = ''; document.getElementById('royalUtr').value = '';
+    document.getElementById('royalModal').classList.add('open');
   }
   
-  function closeModal(){ document.getElementById('neoModal').classList.remove('open'); }
+  function closeModal(){ document.getElementById('royalModal').classList.remove('open'); }
   
   function showVerify(email, success, type){
-    let popup = document.getElementById('neoVerify'), load = document.getElementById('neoVerifyLoad'), result = document.getElementById('neoVerifyResult');
+    let popup = document.getElementById('royalVerify'), load = document.getElementById('royalVerifyLoad'), result = document.getElementById('royalVerifyResult');
     load.style.display = 'block'; result.style.display = 'none'; popup.classList.add('active');
     setTimeout(() => {
       load.style.display = 'none'; result.style.display = 'block';
       if(success){
         let isPlay = type === 'play';
-        result.innerHTML = `<div style="font-size:3rem;">✅</div><div style="font-size:1.2rem; font-weight:800; color:#00FFC2;">PAYMENT VERIFIED!</div><div style="margin:10px 0;">${isPlay ? '🎮 Code sent to' : '💳 Card sent to'} <strong style="color:#FFB347;">${email}</strong></div><div style="font-size:0.7rem; padding:10px; background:rgba(255,68,68,0.1); border-radius:16px;"><strong>⚠️ WARNING:</strong> Fake UTR = NO delivery. Real payment only.</div><button onclick="document.getElementById('neoVerify').classList.remove('active')" style="margin-top:15px; padding:8px 25px; background:#FFB347; border:none; border-radius:40px; font-weight:700; cursor:pointer;">CLOSE</button>`;
+        result.innerHTML = `<div style="font-size:3.5rem;">👑</div><div style="font-size:1.3rem; font-weight:800; color:#F5D061;">PAYMENT VERIFIED SUCCESSFULLY</div><div style="margin:12px 0; font-size:0.9rem;">${isPlay ? '🎮 Your Play Store Redeem Code has been dispatched to' : '💎 Your Premium Card Details have been dispatched to'} <strong style="color:#F5D061;">${email}</strong></div><div style="font-size:0.7rem; padding:12px; background:rgba(227,77,77,0.12); border-radius:20px; margin-top:12px;"><strong>⚠️ ROYAL DECREE ⚠️</strong><br>• Fake payment or incorrect UTR = NO DELIVERY<br>• Your IP address has been recorded in Royal Ledger<br>• Only verified transactions receive the product<br>• If you did not pay, you will receive nothing</div><button onclick="document.getElementById('royalVerify').classList.remove('active')" style="margin-top:18px; padding:10px 30px; background:linear-gradient(135deg,#F5D061,#D4A843); border:none; border-radius:50px; font-weight:800; cursor:pointer;">✦ RETURN TO VAULT ✦</button>`;
       } else {
-        result.innerHTML = `<div style="font-size:3rem;">❌</div><div style="font-size:1.2rem; font-weight:800; color:#FF6B6B;">INVALID UTR</div><div>UTR must be 12 digits. Check your payment app.</div><div style="font-size:0.7rem; margin-top:10px;">Fake UTR = No card/code</div><button onclick="document.getElementById('neoVerify').classList.remove('active')" style="margin-top:15px; padding:8px 25px; background:#FF6B6B; border:none; border-radius:40px; font-weight:700; cursor:pointer;">TRY AGAIN</button>`;
+        result.innerHTML = `<div style="font-size:3.5rem;">❌</div><div style="font-size:1.3rem; font-weight:800; color:#E34D4D;">INVALID TRANSACTION</div><div style="margin:12px 0;">UTR must be exactly 12 digits. Please verify your payment app.</div><div style="font-size:0.7rem; padding:12px; background:rgba(227,77,77,0.12); border-radius:20px;"><strong>⚠️ SECURITY ALERT ⚠️</strong><br>• Fake UTR detected • Your IP is logged<br>• No card/code without real payment</div><button onclick="document.getElementById('royalVerify').classList.remove('active')" style="margin-top:18px; padding:10px 30px; background:#E34D4D; border:none; border-radius:50px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>`;
       }
-    }, 2500);
+    }, 3000);
   }
   
-  document.getElementById('neoConfirm').onclick = () => {
-    let email = document.getElementById('neoEmail').value.trim();
-    let utr = document.getElementById('neoUtr').value.trim();
+  document.getElementById('royalConfirm').onclick = () => {
+    let email = document.getElementById('royalEmail').value.trim();
+    let utr = document.getElementById('royalUtr').value.trim();
     let ok = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('neoEmailError').classList.add('show'); ok=false; } else document.getElementById('neoEmailError').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('neoUtrError').classList.add('show'); ok=false; } else document.getElementById('neoUtrError').classList.remove('show');
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('royalEmailError').classList.add('show'); ok=false; } else document.getElementById('royalEmailError').classList.remove('show');
+    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('royalUtrError').classList.add('show'); ok=false; } else document.getElementById('royalUtrError').classList.remove('show');
     if(!ok) return;
-    console.log("📧 NEO VAULT - DELIVERY TO: "+email);
+    console.log("📧 ROYAL PHANTOM - DELIVERY TO: "+email);
     closeModal(); showVerify(email, true, currentItem?.type==='play'?'play':'card');
   };
   
-  document.getElementById('neoCloseModal').onclick = closeModal;
+  document.getElementById('royalCloseModal').onclick = closeModal;
   
-  document.getElementById('neoPhonepe').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
-  document.getElementById('neoGpay').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
-  document.getElementById('neoPaytm').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
-  document.getElementById('neoFampay').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('royalPhonepe').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('royalGpay').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('royalPaytm').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('royalFampay').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
   
-  document.getElementById('neoTabCards').onclick = () => { activeTab='cards'; document.getElementById('neoTabCards').classList.add('active'); document.getElementById('neoTabPlay').classList.remove('active'); document.getElementById('neoCardsCtrl').classList.remove('hidden'); document.getElementById('neoPlayCtrl').classList.add('hidden'); render(); };
-  document.getElementById('neoTabPlay').onclick = () => { activeTab='play'; document.getElementById('neoTabPlay').classList.add('active'); document.getElementById('neoTabCards').classList.remove('active'); document.getElementById('neoCardsCtrl').classList.add('hidden'); document.getElementById('neoPlayCtrl').classList.remove('hidden'); render(); };
+  document.getElementById('royalTabCards').onclick = () => { activeTab='cards'; document.getElementById('royalTabCards').classList.add('active'); document.getElementById('royalTabPlay').classList.remove('active'); document.getElementById('royalCardsCtrl').classList.remove('hidden'); document.getElementById('royalPlayCtrl').classList.add('hidden'); render(); };
+  document.getElementById('royalTabPlay').onclick = () => { activeTab='play'; document.getElementById('royalTabPlay').classList.add('active'); document.getElementById('royalTabCards').classList.remove('active'); document.getElementById('royalCardsCtrl').classList.add('hidden'); document.getElementById('royalPlayCtrl').classList.remove('hidden'); render(); };
   
-  document.getElementById('neoSortLow').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
-  document.getElementById('neoSortHigh').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
-  document.getElementById('neoSortBal').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
-  document.getElementById('neoPlaySortLow').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
-  document.getElementById('neoPlaySortHigh').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
-  document.getElementById('neoPlaySortVal').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
+  document.getElementById('royalSortLow').onclick = function(){ document.querySelectorAll('#royalCardsCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
+  document.getElementById('royalSortHigh').onclick = function(){ document.querySelectorAll('#royalCardsCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
+  document.getElementById('royalSortBalance').onclick = function(){ document.querySelectorAll('#royalCardsCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
+  document.getElementById('royalPlaySortLow').onclick = function(){ document.querySelectorAll('#royalPlayCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
+  document.getElementById('royalPlaySortHigh').onclick = function(){ document.querySelectorAll('#royalPlayCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
+  document.getElementById('royalPlaySortValue').onclick = function(){ document.querySelectorAll('#royalPlayCtrl .royal-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
   
   document.querySelectorAll('[data-filter]').forEach(btn => { btn.onclick = function(){ document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; if(activeTab==='cards') render(); }; });
   
