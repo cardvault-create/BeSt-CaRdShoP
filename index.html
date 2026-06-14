@@ -85,59 +85,87 @@
       gap: 2.5rem;
     }
 
-    .header {
-      text-align: center;
+    /* HEADER - AS PER SCREENSHOT */
+    .screenshot-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--border-gold);
+      padding-bottom: 1rem;
       margin-bottom: 0.5rem;
+      gap: 1rem;
     }
 
-    .vip-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(139,105,20,0.1));
-      backdrop-filter: blur(20px);
-      border: 1.5px solid var(--border-gold);
-      padding: 0.6rem 2.5rem;
-      border-radius: 60px;
+    .header-box-left {
+      background: rgba(10, 12, 22, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 0.6rem 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header-box-left .top-line {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .header-box-left .bottom-line {
+      font-size: 0.85rem;
       font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
       color: var(--gold-light);
-      margin-bottom: 2rem;
-      box-shadow: 0 0 40px rgba(212, 168, 67, 0.25);
-      animation: badgeGlow 2s infinite alternate;
+      letter-spacing: 0.05em;
     }
 
-    @keyframes badgeGlow {
-      0% { box-shadow: 0 0 25px rgba(212, 168, 67, 0.2); }
-      100% { box-shadow: 0 0 50px rgba(212, 168, 67, 0.5); }
+    .header-box-center {
+      text-align: center;
     }
-
-    .title-luxury {
-      font-size: clamp(3.5rem, 10vw, 6rem);
+    .header-box-center h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
       font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      background: linear-gradient(180deg, #ffffff 15%, #e0c78a 50%, #b8943a 85%);
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff, var(--gold-light), var(--gold));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 45px rgba(212, 168, 67, 0.7));
-      animation: titleShine 3s infinite alternate;
-      margin-bottom: 0.5rem;
+      color: transparent;
+      font-family: 'JetBrains Mono', monospace;
     }
-
-    @keyframes titleShine {
-      0% { filter: drop-shadow(0 0 30px rgba(212, 168, 67, 0.5)); }
-      100% { filter: drop-shadow(0 0 60px rgba(240, 215, 140, 0.9)); }
-    }
-
-    .subtitle-premium {
-      font-size: 0.95rem;
-      color: #b0b0c5;
-      letter-spacing: 0.35em;
+    .header-box-center .sub-line {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .header-box-right {
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(10, 12, 22, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 0.6rem 1.2rem;
+    }
+    .header-box-right .node-name {
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+    .header-box-right .green-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--success-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success-green);
+      animation: pulse 1.5s infinite;
+      margin-right: 6px;
+    }
+    .header-box-right .session-text {
+      font-size: 0.7rem;
+      color: var(--text-muted);
     }
 
     .live-tag {
@@ -151,7 +179,7 @@
       gap: 0.8rem;
       font-weight: 600;
       color: #f0d78c;
-      margin-top: 1.2rem;
+      margin-top: 0;
     }
 
     .dot-live {
@@ -165,7 +193,7 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    /* ========== BOXED SECTION TABS - SMALLER ========== */
+    /* ========== BOXED SECTION TABS - ORIGINAL ========== */
     .section-tabs-box {
       display: flex;
       justify-content: center;
@@ -237,7 +265,7 @@
       letter-spacing: 0.06em;
     }
 
-    /* ========== BOXED SORT & FILTER ========== */
+    /* ========== BOXED SORT & FILTER - ORIGINAL ========== */
     .controls-box {
       background: rgba(18, 20, 32, 0.7);
       backdrop-filter: blur(25px);
@@ -298,7 +326,6 @@
     }
     .btn-sort:active, .btn-filter:active {
       transform: scale(0.96);
-      transition: all 0.1s ease;
     }
     .btn-sort-low { border-color: rgba(46, 204, 113, 0.4); color: #2ecc71; }
     .btn-sort-low.active { background: #2ecc71; border-color: #2ecc71; color: #000; box-shadow: 0 0 30px rgba(46,204,113,0.5); }
@@ -446,6 +473,10 @@
       font-weight: 800;
     }
 
+    .cvv-partial-hidden {
+      letter-spacing: 0.15em;
+    }
+
     .buy-section {
       background: rgba(212, 168, 67, 0.06);
       border-top: 1px solid rgba(212, 168, 67, 0.4);
@@ -536,6 +567,7 @@
       background: rgba(212,168,67,0.3);
     }
 
+    /* Boxed App Buttons */
     .app-grid-box {
       background: rgba(18, 20, 32, 0.6);
       backdrop-filter: blur(20px);
@@ -664,6 +696,7 @@
       display: none;
     }
 
+    /* Premium Verification Popup */
     .verification-overlay {
       display: none;
       position: fixed;
@@ -760,6 +793,30 @@
       line-height: 1.5;
     }
 
+    .verification-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .verification-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: dotBounce 1.4s infinite ease-in-out;
+    }
+
+    .verification-dot:nth-child(1) { animation-delay: 0s; }
+    .verification-dot:nth-child(2) { animation-delay: 0.2s; }
+    .verification-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
     .btn-close-verify {
       background: linear-gradient(135deg, #b8943a, #e0c78a);
       color: #0a0a10;
@@ -778,6 +835,15 @@
 
     .btn-close-verify:hover {
       box-shadow: 0 0 25px rgba(212,168,67,0.6);
+    }
+
+    .code-hidden-modal {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.15em;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
     }
 
     .error-message-premium {
@@ -806,25 +872,44 @@
 <div class="bg-luxury"></div>
 <div class="particles-layer" id="particlesContainer"></div>
 
+<!-- Premium Verification Popup -->
 <div class="verification-overlay" id="verificationPopup">
   <div class="verification-card" id="verificationCard">
     <div id="verifyLoadingContent">
       <div class="spinner-gold"></div>
       <div class="verifying-text">Verifying Payment</div>
       <div class="verifying-sub">Please wait a moment while we check your transaction...</div>
+      <div class="verification-dots">
+        <div class="verification-dot"></div>
+        <div class="verification-dot"></div>
+        <div class="verification-dot"></div>
+      </div>
     </div>
     <div id="verifyResultContent" style="display:none;"></div>
   </div>
 </div>
 
 <div class="container">
-  <div class="header">
-    <div class="vip-badge"><span>◆</span> ELITE VIP VAULT <span>◆</span></div>
-    <div class="title-luxury">CARD<span style="color:#e0c78a;">VAULT</span></div>
-    <div class="subtitle-premium">Premium Digital Assets</div>
-    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount">157</span> COLLECTORS ONLINE</div>
+  <!-- HEADER - AS PER SCREENSHOT -->
+  <div class="screenshot-header">
+    <div class="header-box-left">
+      <div class="top-line">SECURE TERMINAL</div>
+      <div class="bottom-line">UID-HLSVU08G</div>
+    </div>
+    <div class="header-box-center">
+      <h1>CARD VAULT</h1>
+      <div class="sub-line">ELITE ACCESS // UNVERIFIED REGISTRY</div>
+    </div>
+    <div class="header-box-right">
+      <div class="node-name"><span class="green-dot"></span> NODE: GLOBAL-01</div>
+      <div class="session-text"><span id="liveUsersCountHeader">198</span> ACTIVE SESSIONS</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center;">
+    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount">198</span> COLLECTORS ONLINE</div>
   </div>
 
+  <!-- TABS -->
   <div class="section-tabs-box">
     <div class="tab-box tab-box-cards active" id="tabCardsBox">
       <div class="tab-box-icon">💳</div>
@@ -863,7 +948,7 @@
       <div class="sort-row">
         <button class="btn-sort btn-sort-low active" id="playSortLow">📉 Low Price</button>
         <button class="btn-sort btn-sort-high" id="playSortHigh">📈 High Price</button>
-        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 High Value</button>
+        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 High Balance</button>
       </div>
     </div>
   </div>
@@ -901,117 +986,150 @@
 
 <script>
   (function() {
-    // Generate sample card & play code data with realistic prices and balances
-    const cardBrands = { visa: { display: 'VISA' }, mastercard: { display: 'MASTERCARD' }, amex: { display: 'AMEX' }, rupay: { display: 'RUPAY' } };
-    const brandKeys = ['visa', 'mastercard', 'amex', 'rupay'];
-    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-    const genCardNum = (type) => {
-      let prefix = { visa: '4', mastercard: '5', amex: '34', rupay: '60' }[type];
-      let len = type === 'amex' ? 15 : 16;
-      let num = prefix;
-      while (num.length < len) num += rand(0, 9);
-      return num;
+    const UPI_ID = "kartikrawat6266@okhdfcbank";
+    const MERCHANT = "CARDVAULT";
+
+    const cardBrands = {
+      visa: { prefix: ['4'], lengths: [16], display: 'VISA' },
+      mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD' },
+      amex: { prefix: ['34','37'], lengths: [15], display: 'AMEX' },
+      rupay: { prefix: ['60','65','81','82'], lengths: [16], display: 'RUPAY' },
+      discover: { prefix: ['6011','65'], lengths: [16], display: 'DISCOVER' }
     };
+    const brands = Object.keys(cardBrands);
+    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function generatePrice() { return rand(100, 1000); }
 
     const cards = [];
-    for (let i = 1; i <= 90; i++) {
-      const type = brandKeys[rand(0, brandKeys.length - 1)];
-      const fullNum = genCardNum(type);
-      const price = rand(250, 1850);
+    for (let i = 1; i <= 100; i++) {
+      const type = brands[Math.floor(Math.random() * brands.length)];
+      const fullNum = (cardBrands[type].prefix[0] + Array(cardBrands[type].lengths[0] - cardBrands[type].prefix[0].length).fill(0).map(()=>Math.floor(Math.random()*10)).join('')).slice(0, cardBrands[type].lengths[0]);
+      const price = generatePrice();
       cards.push({
         id: i, type, fullNumber: fullNum,
-        displayNumber: fullNum.slice(0, 12).replace(/(.{4})/g, '$1 ') + ' XXXX',
-        expiry: `${rand(1, 12).toString().padStart(2, '0')}/${rand(26, 30)}`,
-        cvv: type === 'amex' ? rand(1000, 9999).toString() : rand(100, 999).toString(),
-        holder: ['A. SHARMA', 'PRIYA K.', 'ROHAN D.', 'VIKRAM S.'][rand(0, 3)],
-        price: price, balance: price * 9.5
+        displayNumber: fullNum.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX',
+        expiry: `${String(rand(1,12)).padStart(2,'0')}/${rand(26,30)}`,
+        cvv: type==='amex' ? String(rand(1000,9999)) : String(rand(100,999)),
+        holder: ['A. SHARMA','PRIYA K.','ROHAN D.','VIKRAM S.'][rand(0,3)],
+        price: price, balance: price * 10
       });
+    }
+    cards.sort((a,b) => a.price - b.price);
+
+    function maskCVV(cvv) {
+      if (cvv.length === 3) return cvv[0] + '**';
+      else if (cvv.length === 4) return cvv[0] + '**' + cvv[3];
+      return cvv;
+    }
+    function maskPlayCode(code) {
+      if (code.length >= 8) return code.slice(0, 4) + '•••••••' + code.slice(-4);
+      return code.slice(0, 4) + '•••••••';
     }
 
     const playCodes = [];
-    for (let i = 1; i <= 55; i++) {
-      const code = 'GIFT' + Array(12).fill(0).map(() => 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[rand(0, 35)]).join('');
-      const price = rand(180, 1250);
+    for (let i = 1; i <= 60; i++) {
+      const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
+      const price = generatePrice();
       playCodes.push({
-        id: 500 + i, code: code, displayCode: code.slice(0, 8) + '•••••••',
-        value: price * 9.2, balance: price * 9.2, price: price, type: 'playstore'
+        id: 200 + i, code: code,
+        displayCode: code.slice(0,8) + '•••••••',
+        value: price * 10, balance: price * 10, price: price, type: 'playstore'
       });
     }
+    playCodes.sort((a,b) => a.price - b.price);
 
+    const pContainer = document.getElementById('particlesContainer');
+    for (let i=0; i<60; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random()*100+'%';
+      p.style.width = p.style.height = (Math.random()*6+2)+'px';
+      p.style.animationDelay = Math.random()*10+'s';
+      p.style.animationDuration = (Math.random()*8+7)+'s';
+      pContainer.appendChild(p);
+    }
+
+    setInterval(() => { 
+      const newCount = Math.floor(Math.random()*70)+120;
+      document.getElementById('liveUsersCount').textContent = newCount;
+      document.getElementById('liveUsersCountHeader').textContent = newCount;
+    }, 4000);
+
+    let currentItem = null;
     let activeSection = 'cards';
     let currentFilter = 'all';
     let currentSort = 'price-low';
     let playSort = 'price-low';
-    let currentItem = null;
-    let qrInstance = null;
+    let qrCodeInstance = null;
+    let currentQRData = null;
 
-    const getFilteredSorted = () => {
-      let list = activeSection === 'cards' ? [...cards] : [...playCodes];
-      if (activeSection === 'cards' && currentFilter !== 'all') list = list.filter(c => c.type === currentFilter);
+    function getActiveData() {
+      return activeSection === 'cards' ? { list: cards, filter: currentFilter, sort: currentSort } : { list: playCodes, filter: 'all', sort: playSort };
+    }
+
+    function renderGrid() {
+      const { list, filter, sort } = getActiveData();
+      let filtered = activeSection === 'cards' ? (filter === 'all' ? [...list] : list.filter(c => c.type === filter)) : [...list];
+      
       if (activeSection === 'cards') {
-        if (currentSort === 'price-low') list.sort((a, b) => a.price - b.price);
-        else if (currentSort === 'price-high') list.sort((a, b) => b.price - a.price);
-        else list.sort((a, b) => b.balance - a.balance);
+        if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+        else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+        else if (sort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
       } else {
-        if (playSort === 'price-low') list.sort((a, b) => a.price - b.price);
-        else if (playSort === 'price-high') list.sort((a, b) => b.price - a.price);
-        else list.sort((a, b) => b.balance - a.balance);
+        if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+        else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+        else if (sort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
       }
-      return list;
-    };
 
-    const render = () => {
-      const data = getFilteredSorted();
       const grid = document.getElementById('dynamicGrid');
-      if (activeSection === 'cards') {
-        grid.innerHTML = data.map(card => `
-          <div class="card-premium" data-id="${card.id}">
-            <div class="card-top-glow"></div>
-            <div class="card-content">
-              <div class="card-type-row"><span class="network-badge">${cardBrands[card.type].display}</span><span class="price-tag">₹${card.price}</span></div>
-              <div class="card-number-display">${card.displayNumber}</div>
-              <div class="details-grid"><div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${card.expiry}</div></div><div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value">${card.cvv[0] + '**'}</div></div><div class="detail-box"><div class="detail-label">BALANCE</div><div class="detail-value balance-gold">₹${Math.round(card.balance)}</div></div></div>
-            </div>
-            <div class="buy-section" data-id="${card.id}" data-type="card"><span class="buy-text">💳 PURCHASE CARD</span><span class="arrow-icon">→</span></div>
-          </div>
-        `).join('');
-      } else {
-        grid.innerHTML = data.map(codeItem => `
-          <div class="play-card" data-id="${codeItem.id}">
-            <div class="card-top-glow"></div>
-            <div class="card-content">
-              <div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${codeItem.price}</span></div>
-              <div class="code-display">${codeItem.displayCode}</div>
-              <div class="details-grid"><div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${Math.round(codeItem.value)}</div></div><div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div><div class="detail-box"><div class="detail-label">BALANCE</div><div class="detail-value balance-gold">₹${Math.round(codeItem.balance)}</div></div></div>
-            </div>
-            <div class="buy-section" data-id="${codeItem.id}" data-type="play"><span class="buy-text">🎁 PURCHASE REDEEM CODE</span><span class="arrow-icon">→</span></div>
-          </div>
-        `).join('');
-      }
+      grid.innerHTML = filtered.map(item => {
+        if (item.type && item.type !== 'playstore') {
+          return `<div class="card-premium"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div><div class="card-number-display">${item.displayNumber}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div><div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">PURCHASE CARD</span><span class="arrow-icon">→</span></div></div>`;
+        } else {
+          return `<div class="play-card"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div><div class="code-display" style="margin:1rem 0;">${item.displayCode}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div><div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">REDEEM CODE</span><span class="arrow-icon">→</span></div></div>`;
+        }
+      }).join('');
 
       document.querySelectorAll('.buy-section').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = parseInt(btn.dataset.id);
-          const t = btn.dataset.type;
-          currentItem = t === 'card' ? cards.find(c => c.id === id) : playCodes.find(p => p.id === id);
-          if (currentItem) openModal(currentItem);
+          const allData = activeSection === 'cards' ? cards : playCodes;
+          currentItem = allData.find(i => i.id === id);
+          openModal(currentItem);
         });
       });
-    };
+    }
 
-    const openModal = (item) => {
-      const isCard = item.type !== 'playstore';
-      document.getElementById('modalTitle').innerText = isCard ? '💳 CARD ACQUISITION' : '🎮 REDEEM CODE';
-      const previewDiv = document.getElementById('modalItemInfo');
-      if (isCard) {
-        previewDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid var(--border-gold);"><strong>${cardBrands[item.type].display}</strong><div style="font-family:monospace;margin:8px 0;">${item.displayNumber}</div><div class="price-tag" style="display:inline-block;">₹${item.price}</div></div>`;
-      } else {
-        previewDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid #4a90e2;"><strong>🎮 PLAY STORE GIFT CARD</strong><div style="font-family:monospace;margin:8px 0;">${item.displayCode}</div><div class="price-tag" style="display:inline-block;">₹${item.price}</div></div>`;
-      }
+    function generateQRCode(amount, itemId) {
       const container = document.getElementById('qrCodeContainer');
       container.innerHTML = '';
-      const upiUrl = `upi://pay?pa=kartikrawat6266@okhdfcbank&pn=CARDVAULT&am=${item.price.toFixed(2)}&cu=INR&tn=${isCard ? 'CARD' : 'PLAY'}_${item.id}`;
-      try { qrInstance = new QRCode(container, { text: upiUrl, width: 150, height: 150 }); } catch(e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
+      const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${itemId}`;
+      currentQRData = { amount, itemId };
+      try {
+        qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
+      } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
+    }
+
+    function restoreQRCode() {
+      if (currentQRData && document.getElementById('paymentModal').classList.contains('open')) {
+        const container = document.getElementById('qrCodeContainer');
+        container.innerHTML = '';
+        const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${currentQRData.amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${currentQRData.itemId}`;
+        try {
+          qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
+        } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
+      }
+    }
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.type === 'playstore' ? 'PLAY STORE CODE' : 'CARD DETAILS';
+      const infoDiv = document.getElementById('modalItemInfo');
+      if (item.type === 'playstore') {
+        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid #4a90e2;"><p><strong>🎮 PLAY STORE GIFT CARD</strong></p><p style="font-family:monospace;font-size:1.1rem;background:rgba(0,0,0,0.4);padding:0.6rem;border-radius:12px;text-align:center;">${maskPlayCode(item.code)}</p><p style="color:#6a9ff5;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
+      } else {
+        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid var(--border-gold);"><p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p><p>CVV: ${maskCVV(item.cvv)} | EXP: ${item.expiry}</p><p style="color:#e0c78a;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
+      }
+      generateQRCode(item.price, item.id);
       document.getElementById('emailInput').value = '';
       document.getElementById('utrInput').value = '';
       document.getElementById('emailError').classList.remove('show');
@@ -1019,61 +1137,143 @@
       document.getElementById('emailInput').classList.remove('input-error');
       document.getElementById('utrInput').classList.remove('input-error');
       document.getElementById('paymentModal').classList.add('open');
-    };
+      document.body.style.overflow = 'hidden';
+    }
 
-    const closeModal = () => { document.getElementById('paymentModal').classList.remove('open'); if (qrInstance) { qrInstance.clear(); qrInstance = null; } };
-    const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-    const validateUTR = (u) => /^\d{12}$/.test(u);
+    function closeModal() { 
+      document.getElementById('paymentModal').classList.remove('open');
+      document.body.style.overflow = '';
+      if(qrCodeInstance) {
+        qrCodeInstance.clear();
+        qrCodeInstance = null;
+      }
+      currentQRData = null;
+    }
 
-    const showVerification = (email, success, itemType) => {
+    function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+    function validateUTR(utr) { return /^\d{12}$/.test(utr); }
+
+    function showVerificationPopup(email, isSuccess, itemType) {
       const popup = document.getElementById('verificationPopup');
-      const loadingDiv = document.getElementById('verifyLoadingContent');
-      const resultDiv = document.getElementById('verifyResultContent');
-      loadingDiv.style.display = 'block';
-      resultDiv.style.display = 'none';
+      const loadingContent = document.getElementById('verifyLoadingContent');
+      const resultContent = document.getElementById('verifyResultContent');
+      loadingContent.style.display = 'block';
+      resultContent.style.display = 'none';
       popup.classList.add('active');
       setTimeout(() => {
-        loadingDiv.style.display = 'none';
-        resultDiv.style.display = 'block';
-        if (success) {
-          const isPlay = itemType === 'playstore';
-          resultDiv.innerHTML = `<div class="check-icon">✅</div><div class="verifying-text" style="color:#2ecc71;">PAYMENT VERIFICATION SUCCESSFUL!</div><div class="verifying-sub">${isPlay ? '🎮 Your Play Store Redeem Code will be sent to' : '💳 Your Card Details will be sent to'} <strong style="color:#f0d78c;">${email}</strong>.<br>If transaction mismatches, no ${isPlay ? 'code' : 'card'} will be sent.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>`;
+        loadingContent.style.display = 'none';
+        resultContent.style.display = 'block';
+        if (isSuccess) {
+          const isPlayStore = itemType === 'playstore';
+          resultContent.innerHTML = `<div class="check-icon">✅</div><div class="verifying-text" style="color:#2ecc71;">Payment Verified Successfully!</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">${isPlayStore ? '🎮 Your <strong style="color:#6a9ff5;">Play Store Redeem Code</strong> will be sent to your email' : '💳 Your <strong style="color:#f0d78c;">Card Details</strong> will be sent to your email'} <strong style="color:#f0d78c;">${email}</strong> shortly. If the payment was not correct, no ${isPlayStore ? 'code' : 'card'} will be sent.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>`;
         } else {
-          resultDiv.innerHTML = `<div class="error-icon">❌</div><div class="verifying-text" style="color:#e74c3c;">INVALID TRANSACTION ID</div><div class="verifying-sub">UTR must be exactly 12 digits. Check your payment receipt.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">✕ TRY AGAIN</button>`;
+          resultContent.innerHTML = `<div class="error-icon">❌</div><div class="verifying-text" style="color:#e74c3c;">Transaction ID Invalid</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">The Transaction ID you entered is incorrect. UTR must be <strong style="color:#e74c3c;">exactly 12 digits</strong>. Please check your payment app for the correct Transaction ID and try again.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">✕ TRY AGAIN</button>`;
         }
-      }, 2800);
-    };
+      }, 3000);
+    }
 
-    document.getElementById('confirmPaymentBtn').onclick = () => {
+    function openUPI(app) {
+      if (!currentItem) return;
+      const amt = currentItem.price.toFixed(2);
+      const note = currentItem.type === 'playstore' ? `PLAY_${currentItem.id}` : `CARD_${currentItem.id}`;
+      const upiStr = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      
+      if (app === 'fampay') window.location.href = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}#Intent;scheme=upi;package=com.fampay.in;end`;
+      else if (app === 'phonepe') window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      else if (app === 'gpay') window.location.href = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      else if (app === 'paytm') window.location.href = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      
+      setTimeout(() => { 
+        if (!document.hidden) {
+          window.location.href = upiStr;
+        }
+      }, 2000);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && document.getElementById('paymentModal').classList.contains('open')) {
+        setTimeout(() => { restoreQRCode(); }, 300);
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (document.getElementById('paymentModal').classList.contains('open')) {
+        setTimeout(() => { restoreQRCode(); }, 300);
+      }
+    });
+
+    document.getElementById('btnPhonePe').onclick = ()=> openUPI('phonepe');
+    document.getElementById('btnGPay').onclick = ()=> openUPI('gpay');
+    document.getElementById('btnPaytm').onclick = ()=> openUPI('paytm');
+    document.getElementById('btnFamPay').onclick = ()=> openUPI('fampay');
+    
+    document.getElementById('confirmPaymentBtn').onclick = ()=>{
       const email = document.getElementById('emailInput').value.trim();
       const utr = document.getElementById('utrInput').value.trim();
-      let valid = true;
-      if (!email || !validateEmail(email)) { document.getElementById('emailError').classList.add('show'); document.getElementById('emailInput').classList.add('input-error'); valid = false; } else { document.getElementById('emailError').classList.remove('show'); document.getElementById('emailInput').classList.remove('input-error'); }
-      if (!utr || !validateUTR(utr)) { document.getElementById('utrError').classList.add('show'); document.getElementById('utrInput').classList.add('input-error'); valid = false; } else { document.getElementById('utrError').classList.remove('show'); document.getElementById('utrInput').classList.remove('input-error'); }
-      if (!valid || !currentItem) return;
-      const isPlayItem = currentItem.type === 'playstore';
+      const emailError = document.getElementById('emailError');
+      const utrError = document.getElementById('utrError');
+      const emailInput = document.getElementById('emailInput');
+      const utrInput = document.getElementById('utrInput');
+      let hasError = false;
+      emailError.classList.remove('show'); utrError.classList.remove('show');
+      emailInput.classList.remove('input-error'); utrInput.classList.remove('input-error');
+      if(!email || !validateEmail(email)) { emailError.classList.add('show'); emailInput.classList.add('input-error'); hasError = true; }
+      if(!utr || !validateUTR(utr)) { utrError.classList.add('show'); utrInput.classList.add('input-error'); hasError = true; }
+      if(hasError) return;
+      const itemType = currentItem ? currentItem.type : 'card';
       closeModal();
-      showVerification(email, true, isPlayItem ? 'playstore' : 'card');
+      showVerificationPopup(email, true, itemType);
     };
 
     document.getElementById('closeModalBtn').onclick = closeModal;
-    const launchUpiApp = (app) => { if (currentItem) window.location.href = `upi://pay?pa=kartikrawat6266@okhdfcbank&am=${currentItem.price.toFixed(2)}&cu=INR`; };
-    document.getElementById('btnPhonePe').onclick = () => launchUpiApp('phonepe');
-    document.getElementById('btnGPay').onclick = () => launchUpiApp('gpay');
-    document.getElementById('btnPaytm').onclick = () => launchUpiApp('paytm');
-    document.getElementById('btnFamPay').onclick = () => launchUpiApp('fampay');
 
-    document.getElementById('tabCardsBox').onclick = () => { activeSection = 'cards'; document.getElementById('tabCardsBox').classList.add('active'); document.getElementById('tabPlayBox').classList.remove('active'); document.getElementById('cardsSection').classList.remove('hidden-section'); document.getElementById('playStoreSection').classList.add('hidden-section'); render(); };
-    document.getElementById('tabPlayBox').onclick = () => { activeSection = 'play'; document.getElementById('tabPlayBox').classList.add('active'); document.getElementById('tabCardsBox').classList.remove('active'); document.getElementById('cardsSection').classList.add('hidden-section'); document.getElementById('playStoreSection').classList.remove('hidden-section'); render(); };
-    document.getElementById('sortPriceLow').onclick = () => { document.querySelectorAll('#cardsSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('sortPriceLow').classList.add('active'); currentSort = 'price-low'; if (activeSection === 'cards') render(); };
-    document.getElementById('sortPriceHigh').onclick = () => { document.querySelectorAll('#cardsSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('sortPriceHigh').classList.add('active'); currentSort = 'price-high'; if (activeSection === 'cards') render(); };
-    document.getElementById('sortBalanceHigh').onclick = () => { document.querySelectorAll('#cardsSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('sortBalanceHigh').classList.add('active'); currentSort = 'balance-high'; if (activeSection === 'cards') render(); };
-    document.getElementById('playSortLow').onclick = () => { document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('playSortLow').classList.add('active'); playSort = 'price-low'; if (activeSection === 'play') render(); };
-    document.getElementById('playSortHigh').onclick = () => { document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('playSortHigh').classList.add('active'); playSort = 'price-high'; if (activeSection === 'play') render(); };
-    document.getElementById('playSortBalance').onclick = () => { document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => b.classList.remove('active')); document.getElementById('playSortBalance').classList.add('active'); playSort = 'balance-high'; if (activeSection === 'play') render(); };
-    document.querySelectorAll('.btn-filter').forEach(btn => { btn.addEventListener('click', function() { document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.type; if (activeSection === 'cards') render(); }); });
-    setInterval(() => { document.getElementById('liveUsersCount').innerText = rand(120, 310); }, 5000);
-    render();
+    document.getElementById('tabCardsBox').addEventListener('click', ()=>{
+      activeSection = 'cards';
+      document.getElementById('tabCardsBox').classList.add('active');
+      document.getElementById('tabPlayBox').classList.remove('active');
+      document.getElementById('cardsSection').classList.remove('hidden-section');
+      document.getElementById('playStoreSection').classList.add('hidden-section');
+      renderGrid();
+    });
+    document.getElementById('tabPlayBox').addEventListener('click', ()=>{
+      activeSection = 'play';
+      document.getElementById('tabPlayBox').classList.add('active');
+      document.getElementById('tabCardsBox').classList.remove('active');
+      document.getElementById('cardsSection').classList.add('hidden-section');
+      document.getElementById('playStoreSection').classList.remove('hidden-section');
+      renderGrid();
+    });
+
+    document.querySelectorAll('#cardsSection .btn-sort').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#cardsSection .btn-sort').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        if(this.id === 'sortPriceLow') currentSort = 'price-low';
+        else if(this.id === 'sortPriceHigh') currentSort = 'price-high';
+        else currentSort = 'balance-high';
+        if(activeSection==='cards') renderGrid();
+      });
+    });
+    document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#playStoreSection .btn-sort').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        if(this.id === 'playSortLow') playSort = 'price-low';
+        else if(this.id === 'playSortHigh') playSort = 'price-high';
+        else playSort = 'balance-high';
+        if(activeSection==='play') renderGrid();
+      });
+    });
+    document.querySelectorAll('.btn-filter').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('.btn-filter').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.type;
+        if(activeSection==='cards') renderGrid();
+      });
+    });
+
+    renderGrid();
   })();
 </script>
 </body>
