@@ -77,7 +77,7 @@
       z-index: 10;
     }
 
-    /* HEADER - SECURE TERMINAL STYLE */
+    /* HEADER - SECURE TERMINAL STYLE (exactly as per image) */
     .secure-header {
       display: flex;
       flex-wrap: wrap;
@@ -85,7 +85,7 @@
       align-items: flex-end;
       border-bottom: 2px solid var(--border-gold);
       padding-bottom: 1.2rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       gap: 1rem;
     }
 
@@ -158,7 +158,7 @@
       100% { opacity: 1; transform: scale(1.2);}
     }
 
-    /* ===== TAB SYSTEM - INSPIRED BY CARD VAULT UI ===== */
+    /* ===== TAB SYSTEM ===== */
     .tab-bar {
       display: flex;
       gap: 8px;
@@ -193,7 +193,7 @@
       border: 1px solid rgba(201,169,75,0.4);
     }
 
-    /* CONTROL PANEL (SORT/FILTER) - GRID STYLE */
+    /* CONTROL PANEL */
     .control-panel {
       background: rgba(12, 14, 22, 0.7);
       backdrop-filter: blur(20px);
@@ -246,7 +246,7 @@
       color: var(--gold-light);
     }
 
-    /* CARDS GRID — PREMIUM GLASS */
+    /* CARDS GRID */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -376,7 +376,7 @@
       transform: translateX(6px);
     }
 
-    /* MODAL — DARK TERMINAL */
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -511,7 +511,7 @@
 <div class="bg-scan"></div>
 
 <div class="terminal-container">
-  <!-- SECURE HEADER inspired by image -->
+  <!-- SECURE HEADER exactly matching image design -->
   <div class="secure-header">
     <div class="badge-gold">
       <span>⛁ SECURE TERMINAL</span>
@@ -523,11 +523,11 @@
     </div>
     <div class="live-node">
       <span class="blink"></span> NODE: GLOBAL-01<br>
-      <span id="liveCount">189</span> ACTIVE SESSIONS
+      <span id="liveCount">198</span> ACTIVE SESSIONS
     </div>
   </div>
 
-  <!-- TABS -->
+  <!-- TABS: CARDS DATABASE | PLAY CODES VAULT -->
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="cards">💳 CARDS DATABASE</button>
     <button class="tab-btn" data-tab="play">🎮 PLAY CODES VAULT</button>
@@ -579,7 +579,7 @@
     <div style="padding: 1.6rem;">
       <div id="modalPreview"></div>
       <div id="qrContainer" class="qr-box"></div>
-      <div class="upi-ref">UPI: kartikrawat6266@okhdfcbank</div>
+      <div class="upi-ref" style="text-align:center; font-size:0.7rem; color:#aaa; margin-bottom:8px;">UPI: kartikrawat6266@okhdfcbank</div>
       <div class="app-grid-mini">
         <div class="app-mini" id="phonepeBtn">📱 PhonePe</div>
         <div class="app-mini" id="gpayBtn">💚 Google Pay</div>
@@ -608,7 +608,7 @@
 </div>
 
 <script>
-  // ---------- CARD & CODE DATA ----------
+  // ---------- CARD & CODE DATA (SAME AS ORIGINAL - NOTHING CHANGED) ----------
   const cardBrands = {
     visa: { display: 'VISA', prefix: '4' }, mastercard: { display: 'MASTERCARD', prefix: '5' },
     amex: { display: 'AMEX', prefix: '34' }, rupay: { display: 'RUPAY', prefix: '60' }
@@ -658,7 +658,6 @@
   let currentItem = null;
   let qr = null;
 
-  // Helper
   function maskCVV(cvv) { return cvv.toString().slice(0,1)+'**'; }
   function maskPlay(code) { return code.slice(0,6)+'••••••••'; }
 
@@ -748,10 +747,7 @@
   }
 
   function closeModal() {
-    document.getElementById('paymentModal').classList.remove('modal', 'open');
     document.getElementById('paymentModal').classList.remove('open');
-    document.getElementById('paymentModal').style.display = 'none';
-    document.getElementById('paymentModal').classList = 'modal';
     if(qr) { qr.clear(); qr=null; }
   }
 
@@ -774,7 +770,6 @@
     }, 2100);
   }
 
-  // EVENT LISTENERS
   document.getElementById('confirmPayBtn').onclick = () => {
     const email = document.getElementById('modalEmail').value.trim();
     const utr = document.getElementById('modalUtr').value.trim();
@@ -789,18 +784,14 @@
 
   document.getElementById('closeModalBtn').onclick = closeModal;
 
-  // app buttons
   const upiId = "kartikrawat6266@okhdfcbank";
   function launchUpi(app) {
     if(!currentItem) return;
     let amt = currentItem.price;
-    let note = `CARDVAULT_${currentItem.id}`;
-    let url = '';
-    if(app === 'phonepe') url = `phonepe://pay?pa=${upiId}&am=${amt}&cu=INR`;
-    else if(app === 'gpay') url = `tez://upi/pay?pa=${upiId}&am=${amt}&cu=INR`;
-    else if(app === 'paytm') url = `paytmmp://pay?pa=${upiId}&am=${amt}&cu=INR`;
-    else url = `intent://pay?pa=${upiId}&am=${amt}#Intent;scheme=upi;package=com.fampay.in;end`;
-    window.location.href = url;
+    if(app === 'phonepe') window.location.href = `phonepe://pay?pa=${upiId}&am=${amt}&cu=INR`;
+    else if(app === 'gpay') window.location.href = `tez://upi/pay?pa=${upiId}&am=${amt}&cu=INR`;
+    else if(app === 'paytm') window.location.href = `paytmmp://pay?pa=${upiId}&am=${amt}&cu=INR`;
+    else window.location.href = `intent://pay?pa=${upiId}&am=${amt}#Intent;scheme=upi;package=com.fampay.in;end`;
     setTimeout(() => { window.location.href = `upi://pay?pa=${upiId}&am=${amt}&cu=INR`; }, 1000);
   }
   document.getElementById('phonepeBtn').onclick = () => launchUpi('phonepe');
@@ -808,7 +799,6 @@
   document.getElementById('paytmBtn').onclick = () => launchUpi('paytm');
   document.getElementById('fampayBtn').onclick = () => launchUpi('fampay');
 
-  // Tab switching
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -825,7 +815,6 @@
     });
   });
 
-  // Sorting/filter listeners cards
   document.querySelectorAll('#cardsSortRow .ctrl-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#cardsSortRow .ctrl-btn').forEach(b => b.classList.remove('active'));
@@ -852,13 +841,11 @@
   });
 
   setInterval(() => {
-    let cnt = Math.floor(Math.random() * 90) + 140;
+    let cnt = Math.floor(Math.random() * 90) + 150;
     document.getElementById('liveCount').innerText = cnt;
   }, 5000);
   
   render();
-  // fix modal display overriding
-  window.closeModal = closeModal;
 </script>
 </body>
 </html>
