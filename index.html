@@ -287,6 +287,46 @@
       box-shadow: 0 0 25px rgba(245,197,66,0.5);
     }
 
+    /* SWIPE SORT BAR */
+    .swipe-sort-bar {
+      background: rgba(10,10,26,0.8);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 8px;
+      margin-bottom: 28px;
+      border: 1.5px solid rgba(245,197,66,0.25);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .swipe-sort-bar::-webkit-scrollbar {
+      height: 0;
+    }
+    .swipe-option {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      background: rgba(0,0,0,0.5);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+    .swipe-option.active {
+      background: linear-gradient(135deg, #f5c542, #ccaa33);
+      color: #0a0a0a;
+      border-color: transparent;
+      font-weight: 900;
+      box-shadow: 0 0 25px rgba(245,197,66,0.5);
+    }
+
     /* CARDS GRID */
     .cards-grid {
       display: grid;
@@ -663,8 +703,23 @@
     </div>
   </div>
   <div class="tabs"><div class="tab active" id="tabCards"><span class="tab-icon">💳</span> PREMIUM CARDS</div><div class="tab" id="tabPlay"><span class="tab-icon">🎮</span> PLAY STORE CODES</div></div>
-  <div id="cardsCtrl"><div class="controls"><div class="ctrl-label">⚡ SORT BY</div><div class="ctrl-group"><button class="ctrl-btn active" id="sortLow">📉 LOW PRICE</button><button class="ctrl-btn" id="sortHigh">📈 HIGH PRICE</button><button class="ctrl-btn" id="sortBalance">💰 HIGH BALANCE</button></div><div class="ctrl-label">🔮 FILTER NETWORK</div><div class="ctrl-group"><button class="ctrl-btn active" data-filter="all">🌐 ALL</button><button class="ctrl-btn" data-filter="visa">💎 VISA</button><button class="ctrl-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="ctrl-btn" data-filter="amex">🔵 AMEX</button><button class="ctrl-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
-  <div id="playCtrl" class="hidden"><div class="controls"><div class="ctrl-label">⚡ SORT BY</div><div class="ctrl-group"><button class="ctrl-btn active" id="playSortLow">📉 LOW PRICE</button><button class="ctrl-btn" id="playSortHigh">📈 HIGH PRICE</button><button class="ctrl-btn" id="playSortValue">💰 HIGH VALUE</button></div></div></div>
+
+  <!-- SWIPE SORT BAR FOR CARDS -->
+  <div id="cardsSortBar" class="swipe-sort-bar">
+    <div class="swipe-option active" data-sort="price-low">📉 LOW PRICE</div>
+    <div class="swipe-option" data-sort="price-high">📈 HIGH PRICE</div>
+    <div class="swipe-option" data-sort="balance-high">💰 HIGH BALANCE</div>
+  </div>
+  <!-- SWIPE SORT BAR FOR PLAY CODES -->
+  <div id="playSortBar" class="swipe-sort-bar hidden">
+    <div class="swipe-option active" data-sort="price-low">📉 LOW PRICE</div>
+    <div class="swipe-option" data-sort="price-high">📈 HIGH PRICE</div>
+    <div class="swipe-option" data-sort="value-high">💰 HIGH VALUE</div>
+  </div>
+
+  <div id="cardsCtrl"><div class="controls"><div class="ctrl-label">🔮 FILTER NETWORK</div><div class="ctrl-group"><button class="ctrl-btn active" data-filter="all">🌐 ALL</button><button class="ctrl-btn" data-filter="visa">💎 VISA</button><button class="ctrl-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="ctrl-btn" data-filter="amex">🔵 AMEX</button><button class="ctrl-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
+  <div id="playCtrl" class="hidden"><div class="controls"><div class="ctrl-label">🎮 PLAY STORE CODES</div><div class="ctrl-group"><button class="ctrl-btn active">🌐 ALL CODES</button></div></div></div>
+
   <div class="cards-grid" id="cardsGrid"></div>
   <div class="footer">✦ 256-BIT ENCRYPTION • INSTANT DELIVERY • 24/7 SUPPORT ✦</div>
 </div>
@@ -802,19 +857,58 @@
   document.getElementById('payPaytm').onclick=()=>{ if(currentItem) window.open(`paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`); };
   document.getElementById('payFampay').onclick=()=>{ if(currentItem) window.open(`intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`); };
 
-  document.getElementById('tabCards').onclick=()=>{ activeTab='cards'; document.getElementById('tabCards').classList.add('active'); document.getElementById('tabPlay').classList.remove('active'); document.getElementById('cardsCtrl').classList.remove('hidden'); document.getElementById('playCtrl').classList.add('hidden'); render(); };
-  document.getElementById('tabPlay').onclick=()=>{ activeTab='play'; document.getElementById('tabPlay').classList.add('active'); document.getElementById('tabCards').classList.remove('active'); document.getElementById('cardsCtrl').classList.add('hidden'); document.getElementById('playCtrl').classList.remove('hidden'); render(); };
+  // Tab switching
+  document.getElementById('tabCards').onclick=()=>{ 
+    activeTab='cards'; 
+    document.getElementById('tabCards').classList.add('active'); 
+    document.getElementById('tabPlay').classList.remove('active'); 
+    document.getElementById('cardsCtrl').classList.remove('hidden'); 
+    document.getElementById('playCtrl').classList.add('hidden');
+    document.getElementById('cardsSortBar').classList.remove('hidden');
+    document.getElementById('playSortBar').classList.add('hidden');
+    render(); 
+  };
+  document.getElementById('tabPlay').onclick=()=>{ 
+    activeTab='play'; 
+    document.getElementById('tabPlay').classList.add('active'); 
+    document.getElementById('tabCards').classList.remove('active'); 
+    document.getElementById('cardsCtrl').classList.add('hidden'); 
+    document.getElementById('playCtrl').classList.remove('hidden');
+    document.getElementById('cardsSortBar').classList.add('hidden');
+    document.getElementById('playSortBar').classList.remove('hidden');
+    render(); 
+  };
 
-  document.getElementById('sortLow').onclick=function(){ setActive('#cardsCtrl .ctrl-btn',this); currentSort='price-low'; render(); };
-  document.getElementById('sortHigh').onclick=function(){ setActive('#cardsCtrl .ctrl-btn',this); currentSort='price-high'; render(); };
-  document.getElementById('sortBalance').onclick=function(){ setActive('#cardsCtrl .ctrl-btn',this); currentSort='balance-high'; render(); };
-  document.getElementById('playSortLow').onclick=function(){ setActive('#playCtrl .ctrl-btn',this); playSort='price-low'; render(); };
-  document.getElementById('playSortHigh').onclick=function(){ setActive('#playCtrl .ctrl-btn',this); playSort='price-high'; render(); };
-  document.getElementById('playSortValue').onclick=function(){ setActive('#playCtrl .ctrl-btn',this); playSort='balance-high'; render(); };
+  // Swipe sort bar for cards
+  document.querySelectorAll('#cardsSortBar .swipe-option').forEach(opt => {
+    opt.addEventListener('click', function(){
+      document.querySelectorAll('#cardsSortBar .swipe-option').forEach(o=>o.classList.remove('active'));
+      this.classList.add('active');
+      currentSort = this.dataset.sort;
+      if(activeTab==='cards') render();
+    });
+  });
 
-  document.querySelectorAll('[data-filter]').forEach(btn=>{ btn.onclick=function(){ document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentFilter=this.dataset.filter; render(); }; });
+  // Swipe sort bar for play codes
+  document.querySelectorAll('#playSortBar .swipe-option').forEach(opt => {
+    opt.addEventListener('click', function(){
+      document.querySelectorAll('#playSortBar .swipe-option').forEach(o=>o.classList.remove('active'));
+      this.classList.add('active');
+      playSort = this.dataset.sort;
+      if(activeTab==='play') render();
+    });
+  });
 
-  function setActive(s,el){ document.querySelectorAll(s).forEach(b=>b.classList.remove('active')); el.classList.add('active'); }
+  // Filter buttons
+  document.querySelectorAll('[data-filter]').forEach(btn=>{ 
+    btn.onclick=function(){ 
+      document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); 
+      this.classList.add('active'); 
+      currentFilter=this.dataset.filter; 
+      render(); 
+    }; 
+  });
+
   render();
 })();
 </script>
