@@ -38,7 +38,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ========== 🌟 PREMIUM ANIMATED BACKGROUND (NO EMOJI) 🌟 ========== */
+    /* ========== 🌌 PREMIUM BACKGROUND ANIMATION 🌌 ========== */
     .premium-bg-animation {
       position: fixed;
       inset: 0;
@@ -50,147 +50,100 @@
     .floating-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(60px);
+      filter: blur(80px);
       opacity: 0;
       animation: orbFloat linear infinite;
     }
 
     .floating-diamond {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: var(--gold-light);
-      border-radius: 2px;
+      border-radius: 3px;
       transform: rotate(45deg);
       opacity: 0;
       animation: diamondFloat linear infinite;
-      box-shadow: 0 0 20px rgba(240, 215, 140, 0.8), 0 0 40px rgba(212, 168, 67, 0.5);
+      box-shadow: 0 0 25px rgba(240, 215, 140, 0.9), 0 0 50px rgba(212, 168, 67, 0.6);
     }
 
     .floating-line {
       position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(240, 215, 140, 0.6), transparent);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(240, 215, 140, 0.7), transparent);
       opacity: 0;
       animation: lineFloat linear infinite;
+      border-radius: 1px;
     }
 
     .floating-spark {
       position: absolute;
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       background: white;
       border-radius: 50%;
       opacity: 0;
       animation: sparkFloat linear infinite;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 25px rgba(240, 215, 140, 0.7);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(240, 215, 140, 0.9), 0 0 50px rgba(212, 168, 67, 0.6);
+    }
+
+    .floating-ring {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid rgba(240, 215, 140, 0.5);
+      border-radius: 50%;
+      opacity: 0;
+      animation: ringFloat linear infinite;
+      box-shadow: 0 0 20px rgba(240, 215, 140, 0.4);
     }
 
     @keyframes orbFloat {
-      0% {
-        transform: translateY(105vh) translateX(0px) scale(0.3);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.5;
-      }
-      30% {
-        transform: translateY(70vh) translateX(60px) scale(1);
-        opacity: 0.4;
-      }
-      60% {
-        transform: translateY(35vh) translateX(-40px) scale(1.3);
-        opacity: 0.3;
-      }
-      85% {
-        opacity: 0.1;
-      }
-      100% {
-        transform: translateY(-15vh) translateX(0px) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(105vh) translateX(0px) scale(0.3); opacity: 0; }
+      10% { opacity: 0.6; }
+      30% { transform: translateY(65vh) translateX(80px) scale(1.2); opacity: 0.5; }
+      60% { transform: translateY(30vh) translateX(-50px) scale(1.5); opacity: 0.3; }
+      85% { opacity: 0.1; }
+      100% { transform: translateY(-20vh) translateX(0px) scale(0.5); opacity: 0; }
     }
 
     @keyframes diamondFloat {
-      0% {
-        transform: translateY(-15vh) translateX(0px) rotate(45deg) scale(0);
-        opacity: 0;
-      }
-      8% {
-        opacity: 0.9;
-      }
-      25% {
-        transform: translateY(20vh) translateX(-50px) rotate(135deg) scale(1);
-        opacity: 0.8;
-      }
-      50% {
-        transform: translateY(50vh) translateX(40px) rotate(225deg) scale(1.4);
-        opacity: 0.5;
-      }
-      75% {
-        transform: translateY(78vh) translateX(-30px) rotate(315deg) scale(0.9);
-        opacity: 0.3;
-      }
-      95% {
-        opacity: 0.05;
-      }
-      100% {
-        transform: translateY(105vh) translateX(0px) rotate(405deg) scale(0);
-        opacity: 0;
-      }
+      0% { transform: translateY(-15vh) translateX(0px) rotate(45deg) scale(0); opacity: 0; }
+      8% { opacity: 1; }
+      25% { transform: translateY(22vh) translateX(-60px) rotate(135deg) scale(1.2); opacity: 0.9; }
+      50% { transform: translateY(52vh) translateX(50px) rotate(225deg) scale(1.6); opacity: 0.6; }
+      75% { transform: translateY(78vh) translateX(-40px) rotate(315deg) scale(1); opacity: 0.3; }
+      95% { opacity: 0.05; }
+      100% { transform: translateY(105vh) translateX(0px) rotate(405deg) scale(0); opacity: 0; }
     }
 
     @keyframes lineFloat {
-      0% {
-        transform: translateY(105vh) translateX(0px) scaleX(0.5);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.7;
-      }
-      40% {
-        transform: translateY(55vh) translateX(30px) scaleX(1.2);
-        opacity: 0.5;
-      }
-      70% {
-        transform: translateY(20vh) translateX(-20px) scaleX(0.8);
-        opacity: 0.2;
-      }
-      100% {
-        transform: translateY(-10vh) translateX(0px) scaleX(0.3);
-        opacity: 0;
-      }
+      0% { transform: translateY(105vh) translateX(0px) scaleX(0.3); opacity: 0; }
+      15% { opacity: 0.8; }
+      40% { transform: translateY(50vh) translateX(40px) scaleX(1.5); opacity: 0.6; }
+      70% { transform: translateY(18vh) translateX(-30px) scaleX(1); opacity: 0.3; }
+      100% { transform: translateY(-12vh) translateX(0px) scaleX(0.2); opacity: 0; }
     }
 
     @keyframes sparkFloat {
-      0% {
-        transform: translateY(105vh) translateX(0px) scale(0);
-        opacity: 0;
-      }
-      5% {
-        opacity: 1;
-      }
-      20% {
-        transform: translateY(75vh) translateX(70px) scale(1.5);
-        opacity: 0.9;
-      }
-      45% {
-        transform: translateY(40vh) translateX(-50px) scale(1);
-        opacity: 0.6;
-      }
-      70% {
-        transform: translateY(15vh) translateX(40px) scale(0.6);
-        opacity: 0.3;
-      }
-      90% {
-        opacity: 0.05;
-      }
-      100% {
-        transform: translateY(-10vh) translateX(0px) scale(0);
-        opacity: 0;
-      }
+      0% { transform: translateY(105vh) translateX(0px) scale(0); opacity: 0; }
+      5% { opacity: 1; }
+      20% { transform: translateY(70vh) translateX(90px) scale(2); opacity: 0.9; }
+      45% { transform: translateY(35vh) translateX(-60px) scale(1.2); opacity: 0.7; }
+      70% { transform: translateY(12vh) translateX(50px) scale(0.7); opacity: 0.3; }
+      90% { opacity: 0.05; }
+      100% { transform: translateY(-12vh) translateX(0px) scale(0); opacity: 0; }
     }
-    /* ========== END PREMIUM BACKGROUND ========== */
+
+    @keyframes ringFloat {
+      0% { transform: translateY(105vh) translateX(0px) rotate(0deg) scale(0.5); opacity: 0; }
+      12% { opacity: 0.7; }
+      35% { transform: translateY(55vh) translateX(70px) rotate(120deg) scale(1.3); opacity: 0.5; }
+      65% { transform: translateY(20vh) translateX(-50px) rotate(240deg) scale(1); opacity: 0.3; }
+      88% { opacity: 0.1; }
+      100% { transform: translateY(-15vh) translateX(0px) rotate(360deg) scale(0.5); opacity: 0; }
+    }
+    /* ========== END BACKGROUND ========== */
 
     .bg-luxury {
       position: fixed;
@@ -319,35 +272,56 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
 
+    /* Boxed Section Tabs */
     .section-tabs {
       display: flex;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 1.5rem;
       margin: 0.5rem 0 0.5rem;
       flex-wrap: wrap;
     }
 
-    .tab-btn {
-      background: rgba(20, 22, 35, 0.7);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #b8b8cc;
-      padding: 0.8rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
+    .tab-box {
+      background: rgba(18, 20, 32, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 1.2rem 2rem;
       cursor: pointer;
-      transition: all 0.35s;
-      text-transform: uppercase;
-      font-size: 0.85rem;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      text-align: center;
+      min-width: 200px;
     }
 
-    .tab-btn.active {
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    .tab-box.active {
       border-color: var(--gold-light);
-      color: #0a0a10;
-      box-shadow: 0 0 35px rgba(212, 168, 67, 0.6);
-      transform: scale(1.03);
+      box-shadow: 0 0 40px rgba(212, 168, 67, 0.5);
+      transform: translateY(-5px);
+    }
+
+    .tab-box-cards.active {
+      background: linear-gradient(160deg, rgba(212,168,67,0.2), rgba(139,105,20,0.15));
+      border-color: #f0d78c;
+    }
+
+    .tab-box-play.active {
+      background: linear-gradient(160deg, rgba(66,133,244,0.2), rgba(26,91,191,0.15));
+      border-color: #6a9ff5;
+    }
+
+    .tab-box-title {
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .tab-box-sub {
+      font-size: 0.65rem;
+      color: #a0a0b8;
+      margin-top: 4px;
+      letter-spacing: 0.05em;
     }
 
     .sort-section, .filter-section {
@@ -359,10 +333,8 @@
     }
 
     .btn-sort, .btn-filter {
-      background: rgba(18, 20, 30, 0.8);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #c5c5d8;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
       padding: 0.6rem 1.8rem;
       border-radius: 50px;
       font-weight: 600;
@@ -370,15 +342,26 @@
       letter-spacing: 0.06em;
       cursor: pointer;
       transition: all 0.3s;
+      text-transform: uppercase;
     }
 
-    .btn-sort.active, .btn-filter.active {
-      background: var(--gold);
-      border-color: var(--gold-light);
-      color: #0a0a12;
-      font-weight: 700;
-      box-shadow: 0 0 25px rgba(212, 168, 67, 0.5);
-    }
+    /* Unique Button Colors */
+    .btn-sort-low { background: rgba(46, 204, 113, 0.15); border-color: rgba(46, 204, 113, 0.4); color: #2ecc71; }
+    .btn-sort-low.active { background: #2ecc71; border-color: #2ecc71; color: #000; box-shadow: 0 0 30px rgba(46,204,113,0.6); }
+    .btn-sort-high { background: rgba(231, 76, 60, 0.15); border-color: rgba(231, 76, 60, 0.4); color: #e74c3c; }
+    .btn-sort-high.active { background: #e74c3c; border-color: #e74c3c; color: #fff; box-shadow: 0 0 30px rgba(231,76,60,0.6); }
+    .btn-sort-balance { background: rgba(155, 89, 182, 0.15); border-color: rgba(155, 89, 182, 0.4); color: #9b59b6; }
+    .btn-sort-balance.active { background: #9b59b6; border-color: #9b59b6; color: #fff; box-shadow: 0 0 30px rgba(155,89,182,0.6); }
+    .btn-filter-all { background: rgba(241, 196, 15, 0.15); border-color: rgba(241, 196, 15, 0.4); color: #f1c40f; }
+    .btn-filter-all.active { background: #f1c40f; border-color: #f1c40f; color: #000; }
+    .btn-filter-visa { background: rgba(26, 188, 156, 0.15); border-color: rgba(26, 188, 156, 0.4); color: #1abc9c; }
+    .btn-filter-visa.active { background: #1abc9c; border-color: #1abc9c; color: #fff; }
+    .btn-filter-mc { background: rgba(230, 126, 34, 0.15); border-color: rgba(230, 126, 34, 0.4); color: #e67e22; }
+    .btn-filter-mc.active { background: #e67e22; border-color: #e67e22; color: #fff; }
+    .btn-filter-amex { background: rgba(52, 152, 219, 0.15); border-color: rgba(52, 152, 219, 0.4); color: #3498db; }
+    .btn-filter-amex.active { background: #3498db; border-color: #3498db; color: #fff; }
+    .btn-filter-rupay { background: rgba(142, 68, 173, 0.15); border-color: rgba(142, 68, 173, 0.4); color: #8e44ad; }
+    .btn-filter-rupay.active { background: #8e44ad; border-color: #8e44ad; color: #fff; }
 
     .cards-grid {
       display: grid;
@@ -879,7 +862,7 @@
 </head>
 <body>
 
-<!-- 🌟 PREMIUM ANIMATED BACKGROUND (NO EMOJI) 🌟 -->
+<!-- 🌌 PREMIUM BACKGROUND ANIMATION 🌌 -->
 <div class="premium-bg-animation" id="premiumBg"></div>
 
 <div class="bg-luxury"></div>
@@ -911,29 +894,35 @@
   </div>
 
   <div class="section-tabs">
-    <button class="tab-btn active" id="tabCards">💳 ALL CARDS</button>
-    <button class="tab-btn" id="tabPlayStore">🎮 PLAY STORE CODES</button>
+    <div class="tab-box tab-box-cards active" id="tabCardsBox">
+      <div class="tab-box-title">💳 ALL CARDS</div>
+      <div class="tab-box-sub">Premium Bank Cards</div>
+    </div>
+    <div class="tab-box tab-box-play" id="tabPlayBox">
+      <div class="tab-box-title">🎮 PLAY STORE REDEEM CODE</div>
+      <div class="tab-box-sub">Gift Cards & Codes</div>
+    </div>
   </div>
 
   <div id="cardsSection">
     <div class="sort-section">
-      <button class="btn-sort active" id="sortPriceLow">Price ↑</button>
-      <button class="btn-sort" id="sortPriceHigh">Price ↓</button>
-      <button class="btn-sort" id="sortBalanceHigh">Balance</button>
+      <button class="btn-sort btn-sort-low active" id="sortPriceLow">Price ↑ Low</button>
+      <button class="btn-sort btn-sort-high" id="sortPriceHigh">Price ↓ High</button>
+      <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">Balance ↑ High</button>
     </div>
     <div class="filter-section" id="filterWrap">
-      <button class="btn-filter active" data-type="all">All</button>
-      <button class="btn-filter" data-type="visa">Visa</button>
-      <button class="btn-filter" data-type="mastercard">Mastercard</button>
-      <button class="btn-filter" data-type="amex">Amex</button>
-      <button class="btn-filter" data-type="rupay">RuPay</button>
+      <button class="btn-filter btn-filter-all active" data-type="all">All</button>
+      <button class="btn-filter btn-filter-visa" data-type="visa">Visa</button>
+      <button class="btn-filter btn-filter-mc" data-type="mastercard">Mastercard</button>
+      <button class="btn-filter btn-filter-amex" data-type="amex">Amex</button>
+      <button class="btn-filter btn-filter-rupay" data-type="rupay">RuPay</button>
     </div>
   </div>
 
   <div id="playStoreSection" class="hidden-section">
     <div class="sort-section">
-      <button class="btn-sort active" id="playSortLow">Price ↑</button>
-      <button class="btn-sort" id="playSortHigh">Price ↓</button>
+      <button class="btn-sort btn-sort-low active" id="playSortLow">Price ↑ Low</button>
+      <button class="btn-sort btn-sort-high" id="playSortHigh">Price ↓ High</button>
     </div>
   </div>
 
@@ -968,54 +957,58 @@
 
 <script>
   (function() {
-    // 🌟 PREMIUM BACKGROUND ANIMATION - Orbs, Diamonds, Lines, Sparks (NO EMOJI) 🌟
+    // 🌌 PREMIUM BACKGROUND ANIMATION SETUP
     const bgContainer = document.getElementById('premiumBg');
+    const orbColors = ['rgba(212,168,67,0.3)', 'rgba(240,215,140,0.2)', 'rgba(66,133,244,0.15)', 'rgba(255,107,53,0.12)', 'rgba(155,89,182,0.15)'];
     
-    // Create floating orbs
-    const orbColors = ['rgba(212,168,67,0.3)', 'rgba(240,215,140,0.2)', 'rgba(66,133,244,0.15)', 'rgba(255,107,53,0.12)'];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
       const orb = document.createElement('div');
       orb.className = 'floating-orb';
-      orb.style.width = (Math.random() * 200 + 100) + 'px';
+      orb.style.width = (Math.random() * 250 + 100) + 'px';
       orb.style.height = orb.style.width;
       orb.style.background = orbColors[Math.floor(Math.random() * orbColors.length)];
       orb.style.left = Math.random() * 100 + '%';
-      orb.style.animationDuration = (Math.random() * 18 + 14) + 's';
-      orb.style.animationDelay = Math.random() * 15 + 's';
+      orb.style.animationDuration = (Math.random() * 20 + 15) + 's';
+      orb.style.animationDelay = Math.random() * 18 + 's';
       bgContainer.appendChild(orb);
     }
     
-    // Create floating diamonds
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
       const diamond = document.createElement('div');
       diamond.className = 'floating-diamond';
       diamond.style.left = Math.random() * 100 + '%';
-      diamond.style.width = (Math.random() * 6 + 3) + 'px';
-      diamond.style.height = diamond.style.width;
-      diamond.style.animationDuration = (Math.random() * 10 + 8) + 's';
-      diamond.style.animationDelay = Math.random() * 10 + 's';
+      diamond.style.width = diamond.style.height = (Math.random() * 7 + 4) + 'px';
+      diamond.style.animationDuration = (Math.random() * 12 + 9) + 's';
+      diamond.style.animationDelay = Math.random() * 12 + 's';
       bgContainer.appendChild(diamond);
     }
     
-    // Create floating lines
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 15; i++) {
       const line = document.createElement('div');
       line.className = 'floating-line';
-      line.style.width = (Math.random() * 150 + 80) + 'px';
+      line.style.width = (Math.random() * 200 + 100) + 'px';
       line.style.left = Math.random() * 100 + '%';
-      line.style.animationDuration = (Math.random() * 14 + 12) + 's';
-      line.style.animationDelay = Math.random() * 14 + 's';
+      line.style.animationDuration = (Math.random() * 16 + 14) + 's';
+      line.style.animationDelay = Math.random() * 16 + 's';
       bgContainer.appendChild(line);
     }
     
-    // Create floating sparks
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
       const spark = document.createElement('div');
       spark.className = 'floating-spark';
       spark.style.left = Math.random() * 100 + '%';
-      spark.style.animationDuration = (Math.random() * 7 + 5) + 's';
-      spark.style.animationDelay = Math.random() * 8 + 's';
+      spark.style.animationDuration = (Math.random() * 8 + 6) + 's';
+      spark.style.animationDelay = Math.random() * 10 + 's';
       bgContainer.appendChild(spark);
+    }
+    
+    for (let i = 0; i < 12; i++) {
+      const ring = document.createElement('div');
+      ring.className = 'floating-ring';
+      ring.style.left = Math.random() * 100 + '%';
+      ring.style.animationDuration = (Math.random() * 14 + 12) + 's';
+      ring.style.animationDelay = Math.random() * 14 + 's';
+      bgContainer.appendChild(ring);
     }
 
     const UPI_ID = "kartikrawat6266@okhdfcbank";
@@ -1218,7 +1211,7 @@
       return /^\d{12}$/.test(utr);
     }
 
-    function showVerificationPopup(email, isSuccess) {
+    function showVerificationPopup(email, isSuccess, itemType) {
       const popup = document.getElementById('verificationPopup');
       const loadingContent = document.getElementById('verifyLoadingContent');
       const resultContent = document.getElementById('verifyResultContent');
@@ -1232,11 +1225,15 @@
         resultContent.style.display = 'block';
         
         if (isSuccess) {
+          const isPlayStore = itemType === 'playstore';
           resultContent.innerHTML = `
             <div class="check-icon">✅</div>
             <div class="verifying-text" style="color: #2ecc71;">Payment Verified Successfully!</div>
             <div class="verifying-sub" style="color: #a0a0b8; margin-top: 0.8rem;">
-              Your payment has been confirmed. If the payment was made correctly, your card details will be sent to your email <strong style="color: #f0d78c;">${email}</strong> shortly. If the payment was not correct, no card will be sent.
+              ${isPlayStore ? 
+                '🎮 Your <strong style="color:#6a9ff5;">Play Store Redeem Code</strong> will be sent to your email' : 
+                '💳 Your <strong style="color:#f0d78c;">Card Details</strong> will be sent to your email'} 
+              <strong style="color: #f0d78c;">${email}</strong> shortly. If the payment was not correct, no ${isPlayStore ? 'code' : 'card'} will be sent.
             </div>
             <button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>
           `;
@@ -1301,24 +1298,26 @@
       
       if(hasError) return;
       
+      const itemType = currentItem ? currentItem.type : 'card';
       closeModal();
-      showVerificationPopup(email, true);
+      showVerificationPopup(email, true, itemType);
     };
 
     document.getElementById('closeModalBtn').onclick = closeModal;
 
-    document.getElementById('tabCards').addEventListener('click', ()=>{
+    document.getElementById('tabCardsBox').addEventListener('click', ()=>{
       activeSection = 'cards';
-      document.getElementById('tabCards').classList.add('active');
-      document.getElementById('tabPlayStore').classList.remove('active');
+      document.getElementById('tabCardsBox').classList.add('active');
+      document.getElementById('tabPlayBox').classList.remove('active');
       document.getElementById('cardsSection').classList.remove('hidden-section');
       document.getElementById('playStoreSection').classList.add('hidden-section');
       renderGrid();
     });
-    document.getElementById('tabPlayStore').addEventListener('click', ()=>{
+    
+    document.getElementById('tabPlayBox').addEventListener('click', ()=>{
       activeSection = 'play';
-      document.getElementById('tabPlayStore').classList.add('active');
-      document.getElementById('tabCards').classList.remove('active');
+      document.getElementById('tabPlayBox').classList.add('active');
+      document.getElementById('tabCardsBox').classList.remove('active');
       document.getElementById('cardsSection').classList.add('hidden-section');
       document.getElementById('playStoreSection').classList.remove('hidden-section');
       renderGrid();
