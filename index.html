@@ -63,7 +63,62 @@
       padding: 22px;
     }
 
-    /* PREMIUM COLORFUL HEADER - ALL BOLD */
+    /* TELEGRAM SUPPORT BOX */
+    .telegram-support-box {
+      background: linear-gradient(135deg, rgba(0,229,255,0.12), rgba(176,0,255,0.12));
+      backdrop-filter: blur(25px);
+      border-radius: 32px;
+      padding: 18px 30px;
+      margin-bottom: 28px;
+      border: 2px solid rgba(0,229,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 0 35px rgba(0,229,255,0.3), 0 0 55px rgba(176,0,255,0.2);
+    }
+    .telegram-icon svg {
+      width: 42px;
+      height: 42px;
+      fill: #00e5ff;
+      filter: drop-shadow(0 0 10px rgba(0,229,255,0.6));
+    }
+    .telegram-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 12px rgba(0,229,255,0.5);
+    }
+    .telegram-button {
+      background: linear-gradient(135deg, #00e5ff, #b000ff);
+      border: none;
+      border-radius: 40px;
+      padding: 12px 28px;
+      font-size: 0.9rem;
+      font-weight: 900;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 25px rgba(0,229,255,0.5);
+      transition: all 0.3s;
+      animation: buttonGlow 2s infinite alternate;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    @keyframes buttonGlow {
+      0% { box-shadow: 0 0 25px rgba(0,229,255,0.5); }
+      100% { box-shadow: 0 0 45px rgba(176,0,255,0.7), 0 0 25px rgba(0,229,255,0.8); }
+    }
+    .telegram-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 55px rgba(0,229,255,0.9), 0 0 35px rgba(176,0,255,0.9);
+    }
+
+    /* PREMIUM HEADER */
     .premium-header {
       background: linear-gradient(135deg, #0f0c1f 0%, #1a1035 25%, #0d1a2d 50%, #1a0f2e 75%, #0f0c1f 100%);
       backdrop-filter: blur(30px);
@@ -686,6 +741,20 @@
 <div class="bg-3d"></div>
 <div class="floating-neon"><div class="neon-line" style="top:20%"></div><div class="neon-line" style="top:50%;animation-delay:3s"></div><div class="neon-line" style="top:80%;animation-delay:6s"></div></div>
 <div class="container">
+
+  <!-- TELEGRAM SUPPORT BOX -->
+  <div class="telegram-support-box">
+    <div class="telegram-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.46-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.348-.373-1.296-.788.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.119.098.152.228.166.33.016.123.036.4.024.514z"/>
+      </svg>
+    </div>
+    <span class="telegram-text">Telegram Help And Support Center</span>
+    <a href="http://Genie_Ff.t.me" target="_blank" class="telegram-button">
+      <span>✦ JOIN NOW ✦</span>
+    </a>
+  </div>
+
   <div class="premium-header">
     <div class="logo">
       <h1>✦ CARDING VAULT ✦</h1>
@@ -857,29 +926,9 @@
   document.getElementById('payPaytm').onclick=()=>{ if(currentItem) window.open(`paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`); };
   document.getElementById('payFampay').onclick=()=>{ if(currentItem) window.open(`intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`); };
 
-  // Tab switching
-  document.getElementById('tabCards').onclick=()=>{ 
-    activeTab='cards'; 
-    document.getElementById('tabCards').classList.add('active'); 
-    document.getElementById('tabPlay').classList.remove('active'); 
-    document.getElementById('cardsCtrl').classList.remove('hidden'); 
-    document.getElementById('playCtrl').classList.add('hidden');
-    document.getElementById('cardsSortBar').classList.remove('hidden');
-    document.getElementById('playSortBar').classList.add('hidden');
-    render(); 
-  };
-  document.getElementById('tabPlay').onclick=()=>{ 
-    activeTab='play'; 
-    document.getElementById('tabPlay').classList.add('active'); 
-    document.getElementById('tabCards').classList.remove('active'); 
-    document.getElementById('cardsCtrl').classList.add('hidden'); 
-    document.getElementById('playCtrl').classList.remove('hidden');
-    document.getElementById('cardsSortBar').classList.add('hidden');
-    document.getElementById('playSortBar').classList.remove('hidden');
-    render(); 
-  };
+  document.getElementById('tabCards').onclick=()=>{ activeTab='cards'; document.getElementById('tabCards').classList.add('active'); document.getElementById('tabPlay').classList.remove('active'); document.getElementById('cardsCtrl').classList.remove('hidden'); document.getElementById('playCtrl').classList.add('hidden'); document.getElementById('cardsSortBar').classList.remove('hidden'); document.getElementById('playSortBar').classList.add('hidden'); render(); };
+  document.getElementById('tabPlay').onclick=()=>{ activeTab='play'; document.getElementById('tabPlay').classList.add('active'); document.getElementById('tabCards').classList.remove('active'); document.getElementById('cardsCtrl').classList.add('hidden'); document.getElementById('playCtrl').classList.remove('hidden'); document.getElementById('cardsSortBar').classList.add('hidden'); document.getElementById('playSortBar').classList.remove('hidden'); render(); };
 
-  // Swipe sort bar for cards
   document.querySelectorAll('#cardsSortBar .swipe-option').forEach(opt => {
     opt.addEventListener('click', function(){
       document.querySelectorAll('#cardsSortBar .swipe-option').forEach(o=>o.classList.remove('active'));
@@ -888,8 +937,6 @@
       if(activeTab==='cards') render();
     });
   });
-
-  // Swipe sort bar for play codes
   document.querySelectorAll('#playSortBar .swipe-option').forEach(opt => {
     opt.addEventListener('click', function(){
       document.querySelectorAll('#playSortBar .swipe-option').forEach(o=>o.classList.remove('active'));
@@ -899,7 +946,6 @@
     });
   });
 
-  // Filter buttons
   document.querySelectorAll('[data-filter]').forEach(btn=>{ 
     btn.onclick=function(){ 
       document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); 
