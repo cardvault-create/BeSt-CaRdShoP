@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>CARDVAULT • ELITE PREMIUM</title>
+  <title>CARD VAULT • ELITE SECURE TERMINAL</title>
   <style>
     * {
       margin: 0;
@@ -12,1275 +12,702 @@
     }
 
     :root {
-      --bg-deep: #010208;
-      --gold: #d4a843;
-      --gold-light: #f0d78c;
-      --gold-dark: #8b6914;
-      --platinum: #e8ecf1;
-      --play-blue: #4285f4;
-      --play-blue-dark: #1a5bbf;
-      --text-primary: #f2f2f7;
-      --text-muted: #9a9ab0;
-      --border-gold: rgba(212, 168, 67, 0.45);
-      --shadow-gold: 0 25px 50px -15px rgba(212, 168, 67, 0.3);
-      --success-green: #2ecc71;
-      --error-red: #e74c3c;
+      --bg-deep: #05070f;
+      --bg-card: #0c0e1a;
+      --gold: #d9af4b;
+      --gold-light: #f5e2a1;
+      --gold-dark: #9e7a2c;
+      --platinum: #eef2f7;
+      --blue-accent: #2d6eff;
+      --blue-glow: #0047ab;
+      --text-primary: #f0f2fa;
+      --text-muted: #8e93b0;
+      --border-gold: rgba(217, 175, 75, 0.45);
+      --shadow-gold: 0 30px 50px -15px rgba(217, 175, 75, 0.4);
+      --shadow-blue: 0 30px 50px -15px rgba(45, 110, 255, 0.3);
+      --success: #10b981;
+      --error: #ef4444;
+      --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     }
 
     body {
-      background: var(--bg-deep);
-      font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 30%, #0a0e1c, #02040c);
+      font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
       color: var(--text-primary);
       min-height: 100vh;
-      padding: 20px;
+      padding: 24px 28px;
       position: relative;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
     }
 
-    .bg-luxury {
+    /* PREMIUM BG EFFECTS */
+    .luxury-aura {
       position: fixed;
       inset: 0;
-      z-index: 0;
       background: 
-        radial-gradient(ellipse at 25% 15%, rgba(212, 168, 67, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 60%, rgba(66, 133, 244, 0.05) 0%, transparent 55%),
-        radial-gradient(ellipse at 10% 80%, rgba(255, 107, 53, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at 85% 25%, rgba(240, 215, 140, 0.04) 0%, transparent 45%);
+        radial-gradient(ellipse at 15% 20%, rgba(217, 175, 75, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(45, 110, 255, 0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 45% 90%, rgba(217, 175, 75, 0.04) 0%, transparent 60%);
       pointer-events: none;
+      z-index: 0;
     }
 
-    .particles-layer {
+    .grid-lines {
       position: fixed;
       inset: 0;
-      z-index: 0;
+      background-image: 
+        linear-gradient(rgba(217, 175, 75, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217, 175, 75, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
       pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      background: var(--gold-light);
-      border-radius: 50%;
-      filter: blur(2px);
-      opacity: 0;
-      animation: floatParticle 10s infinite ease-in-out;
-      box-shadow: 0 0 15px rgba(240, 215, 140, 0.5);
-    }
-
-    @keyframes floatParticle {
-      0% { transform: translateY(105vh) scale(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.8; }
-      50% { opacity: 0.3; }
-      90% { opacity: 0.1; }
-      100% { transform: translateY(-20vh) scale(1.5) rotate(180deg); opacity: 0; }
+      z-index: 0;
     }
 
     .container {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       max-width: 1500px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
     }
 
-    /* ========== NEW HEADER DESIGN - CARD VAULT SECURE TERMINAL STYLE ========== */
-    .secure-header {
+    /* ========== SUPREME HEADER - SECURE VAULT STYLE ========== */
+    .vault-header {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--border-gold);
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid rgba(217, 175, 75, 0.5);
+      box-shadow: 0 8px 20px -10px rgba(0,0,0,0.5);
     }
 
-    .terminal-badge {
-      background: rgba(10, 12, 22, 0.7);
+    .terminal-metrics {
+      display: flex;
+      gap: 1rem;
+      background: rgba(8, 10, 20, 0.7);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border-gold);
-      border-radius: 16px;
-      padding: 0.75rem 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
+      border-radius: 24px;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid rgba(217, 175, 75, 0.3);
     }
 
-    .terminal-badge .label {
-      font-size: 0.65rem;
+    .metric {
+      display: flex;
+      flex-direction: column;
+    }
+    .metric-label {
+      font-size: 0.55rem;
       letter-spacing: 0.2em;
       color: var(--text-muted);
       text-transform: uppercase;
     }
-
-    .terminal-badge .value {
-      font-size: 0.9rem;
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
       font-weight: 700;
       color: var(--gold-light);
-      letter-spacing: 0.05em;
     }
 
-    .vault-title-center {
+    .vault-brand {
       text-align: center;
     }
-
-    .vault-title-center h1 {
-      font-size: clamp(2.2rem, 6vw, 3.5rem);
+    .vault-brand h1 {
+      font-size: clamp(2.5rem, 7vw, 4.2rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff, var(--gold-light), var(--gold));
+      background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 55%, var(--gold) 90%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      font-family: 'JetBrains Mono', monospace;
+      text-shadow: 0 0 30px rgba(217, 175, 75, 0.4);
+      font-family: var(--font-mono);
     }
-
-    .vault-title-center .sub {
+    .vault-brand .sub {
       font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+      letter-spacing: 0.35em;
       color: var(--text-muted);
-      margin-top: 4px;
+      text-transform: uppercase;
+      margin-top: 6px;
     }
 
-    .node-status {
-      text-align: right;
-      font-family: 'JetBrains Mono', monospace;
-      background: rgba(10, 12, 22, 0.7);
+    .status-panel {
+      background: rgba(8, 10, 20, 0.7);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 0.75rem 1.5rem;
+      border-radius: 24px;
+      padding: 0.8rem 1.8rem;
+      border: 1px solid rgba(45, 110, 255, 0.4);
+      text-align: right;
     }
-
-    .node-status .node-name {
+    .node-id {
+      font-family: var(--font-mono);
       font-size: 0.7rem;
       color: var(--gold);
-      letter-spacing: 0.1em;
     }
-
-    .node-status .live-dot {
-      display: inline-block;
+    .online-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      margin-top: 6px;
+    }
+    .pulse-dot {
       width: 8px;
       height: 8px;
-      background: var(--success-green);
+      background: var(--success);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--success-green);
-      animation: pulse 1.5s infinite;
-      margin-right: 6px;
+      box-shadow: 0 0 10px var(--success);
+      animation: pulseLive 1.5s infinite;
     }
+    @keyframes pulseLive { 0% { opacity: 0.5; } 100% { opacity: 1; transform: scale(1.2); } }
 
-    .live-tag {
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50px;
-      padding: 0.5rem 2.2rem;
+    .live-users-bar {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0 2rem;
+    }
+    .glass-live {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(16px);
+      border-radius: 60px;
+      padding: 0.5rem 2rem;
+      border: 1px solid var(--border-gold);
       display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 12px;
       font-weight: 600;
-      color: #f0d78c;
-      margin-top: 1.2rem;
+      font-family: var(--font-mono);
     }
 
-    .dot-live {
-      width: 10px;
-      height: 10px;
-      background: #2ecc71;
-      border-radius: 50%;
-      box-shadow: 0 0 20px #2ecc71;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    /* ========== BOXED SECTION TABS - SMALLER ========== */
-    .section-tabs-box {
+    /* TABS — ELEVATED */
+    .tab-elevated {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin: 0.5rem 0;
-      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 2rem 0 1.5rem;
     }
-    .tab-box {
-      background: rgba(18, 20, 32, 0.9);
-      backdrop-filter: blur(25px);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 1rem 1.8rem;
+    .tab-premium {
+      background: rgba(12, 14, 26, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 60px;
+      padding: 0.9rem 2.2rem;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
       text-align: center;
-      min-width: 180px;
-      position: relative;
-      overflow: hidden;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      min-width: 200px;
     }
-    .tab-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.03));
-      pointer-events: none;
-    }
-    .tab-box:hover {
-      border-color: rgba(255,255,255,0.3);
+    .tab-premium.active {
+      border-color: var(--gold);
+      background: linear-gradient(145deg, rgba(217,175,75,0.2), rgba(139,105,20,0.1));
+      box-shadow: 0 0 30px rgba(217,175,75,0.4);
       transform: translateY(-3px);
     }
-    .tab-box.active {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    }
-    .tab-box-cards {
-      border-color: rgba(212, 168, 67, 0.4);
-    }
-    .tab-box-cards.active {
-      background: linear-gradient(160deg, rgba(212,168,67,0.25), rgba(139,105,20,0.15));
-      border-color: #f0d78c;
-      box-shadow: 0 0 40px rgba(212, 168, 67, 0.5);
-    }
-    .tab-box-play {
-      border-color: rgba(66, 133, 244, 0.4);
-    }
-    .tab-box-play.active {
-      background: linear-gradient(160deg, rgba(66,133,244,0.25), rgba(26,91,191,0.15));
-      border-color: #6a9ff5;
-      box-shadow: 0 0 40px rgba(66, 133, 244, 0.5);
-    }
-    .tab-box-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.3rem;
-    }
-    .tab-box-title {
-      font-weight: 800;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .tab-box-sub {
-      font-size: 0.6rem;
-      color: #a0a0b8;
-      margin-top: 3px;
-      letter-spacing: 0.06em;
-    }
+    .tab-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .tab-title { font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; }
+    .tab-desc { font-size: 0.6rem; color: var(--text-muted); margin-top: 4px; }
 
-    /* ========== BOXED SORT & FILTER ========== */
-    .controls-box {
-      background: rgba(18, 20, 32, 0.7);
-      backdrop-filter: blur(25px);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 30px;
+    /* CONTROL BOX LUXURY */
+    .control-luxury {
+      background: rgba(8, 10, 18, 0.65);
+      backdrop-filter: blur(20px);
+      border-radius: 36px;
       padding: 1.5rem 2rem;
-      margin-bottom: 0.5rem;
+      margin: 1rem 0 2rem;
+      border: 1px solid rgba(217, 175, 75, 0.2);
     }
-    
-    /* ALL THREE BUTTONS IN ONE ROW */
-    .sort-row {
+    .filter-group {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 0.8rem;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
     }
-    
-    .filter-section {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 0.8rem;
-    }
-    .filter-section:last-child {
-      margin-bottom: 0;
-    }
-    .section-label {
-      width: 100%;
-      text-align: center;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .btn-sort, .btn-filter {
-      background: rgba(18, 20, 30, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1.5px solid rgba(255, 255, 255, 0.12);
-      color: #c5c5d8;
-      padding: 0.7rem 2rem;
+    .btn-premium {
+      background: #0e101d;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.7rem 1.8rem;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
       cursor: pointer;
-      transition: all 0.3s;
-      text-transform: uppercase;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      transition: all 0.25s;
+      color: #cbd0e8;
     }
-    .btn-sort:hover, .btn-filter:hover {
-      border-color: rgba(255,255,255,0.3);
-      color: #fff;
-      transform: translateY(-2px);
+    .btn-premium.active {
+      background: var(--gold-dark);
+      border-color: var(--gold);
+      color: #010101;
+      box-shadow: 0 0 15px rgba(217,175,75,0.6);
     }
-    .btn-sort:active, .btn-filter:active {
-      transform: scale(0.96);
-      transition: all 0.1s ease;
-    }
-    .btn-sort-low { border-color: rgba(46, 204, 113, 0.4); color: #2ecc71; }
-    .btn-sort-low.active { background: #2ecc71; border-color: #2ecc71; color: #000; box-shadow: 0 0 30px rgba(46,204,113,0.5); }
-    .btn-sort-high { border-color: rgba(231, 76, 60, 0.4); color: #e74c3c; }
-    .btn-sort-high.active { background: #e74c3c; border-color: #e74c3c; color: #fff; box-shadow: 0 0 30px rgba(231,76,60,0.5); }
-    .btn-sort-balance { border-color: rgba(155, 89, 182, 0.4); color: #9b59b6; }
-    .btn-sort-balance.active { background: #9b59b6; border-color: #9b59b6; color: #fff; box-shadow: 0 0 30px rgba(155,89,182,0.5); }
-    .btn-filter-all { border-color: rgba(241, 196, 15, 0.4); color: #f1c40f; }
-    .btn-filter-all.active { background: #f1c40f; border-color: #f1c40f; color: #000; }
-    .btn-filter-visa { border-color: rgba(26, 188, 156, 0.4); color: #1abc9c; }
-    .btn-filter-visa.active { background: #1abc9c; border-color: #1abc9c; color: #fff; }
-    .btn-filter-mc { border-color: rgba(230, 126, 34, 0.4); color: #e67e22; }
-    .btn-filter-mc.active { background: #e67e22; border-color: #e67e22; color: #fff; }
-    .btn-filter-amex { border-color: rgba(52, 152, 219, 0.4); color: #3498db; }
-    .btn-filter-amex.active { background: #3498db; border-color: #3498db; color: #fff; }
-    .btn-filter-rupay { border-color: rgba(142, 68, 173, 0.4); color: #8e44ad; }
-    .btn-filter-rupay.active { background: #8e44ad; border-color: #8e44ad; color: #fff; }
+    .btn-premium:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
 
-    .cards-grid {
+    /* CARD GRID — SUPREME */
+    .cards-grid-supreme {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 2rem;
+      margin: 2rem 0;
     }
 
-    .card-premium, .play-card {
-      background: linear-gradient(160deg, rgba(20, 22, 35, 0.85) 0%, rgba(8, 10, 20, 0.95) 100%);
-      backdrop-filter: blur(22px);
-      border: 1px solid rgba(212, 168, 67, 0.3);
+    .card-supreme {
+      background: linear-gradient(145deg, rgba(16, 18, 30, 0.95), rgba(8, 9, 18, 0.98));
+      backdrop-filter: blur(12px);
       border-radius: 40px;
+      border: 1px solid rgba(217, 175, 75, 0.3);
+      transition: all 0.4s ease;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-      box-shadow: 0 30px 45px -18px rgba(0,0,0,0.85);
+      box-shadow: 0 30px 40px -20px black;
       cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
     }
-
-    .card-premium:hover, .play-card:hover {
-      transform: translateY(-14px) scale(1.02);
+    .card-supreme:hover {
+      transform: translateY(-12px) scale(1.01);
       border-color: var(--gold-light);
-      box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 168, 67, 0.25);
+      box-shadow: var(--shadow-gold), 0 0 40px rgba(217,175,75,0.2);
     }
-
-    .play-card {
-      border-color: rgba(66, 133, 244, 0.4);
+    .card-strip {
+      height: 5px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
     }
-
-    .play-card:hover {
-      border-color: #6a9ff5;
-      box-shadow: 0 35px 55px -5px rgba(66, 133, 244, 0.5);
+    .card-strip-blue {
+      background: linear-gradient(90deg, #0047ab, #2d6eff, #0047ab);
     }
-
-    .card-top-glow {
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-    }
-
-    .play-card .card-top-glow {
-      background: linear-gradient(90deg, #1a5bbf, #6a9ff5, #1a5bbf);
-    }
-
-    .card-content {
-      padding: 1.5rem;
-    }
-
-    .card-type-row {
+    .card-inner { padding: 1.6rem; }
+    .card-header-flex {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.2rem;
     }
-
-    .network-badge, .play-badge {
+    .network-badge-premium {
+      background: rgba(217,175,75,0.2);
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
       font-weight: 700;
-      font-size: 0.75rem;
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      border: 0.5px solid rgba(217,175,75,0.5);
     }
-
-    .network-badge {
-      background: rgba(212, 168, 67, 0.2);
-      color: #f0d78c;
-      border: 1px solid rgba(212,168,67,0.4);
-    }
-
-    .play-badge {
-      background: rgba(66, 133, 244, 0.2);
-      color: #8bb9ff;
-      border: 1px solid rgba(66,133,244,0.4);
-    }
-
-    .price-tag {
-      font-weight: 700;
-      background: rgba(0,0,0,0.5);
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      color: #f0d78c;
-      border: 1px solid var(--border-gold);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .card-number-display, .code-display {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 1.05rem;
-      letter-spacing: 0.12em;
-      background: rgba(0,0,0,0.6);
-      padding: 0.7rem;
-      border-radius: 16px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.18);
-      margin: 0.5rem 0;
-    }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0.9rem;
-      margin: 1.2rem 0 0.8rem;
-    }
-
-    .detail-box {
-      background: rgba(0,0,0,0.45);
-      border-radius: 14px;
-      padding: 0.6rem;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .detail-label {
-      font-size: 0.55rem;
-      color: #a0a0b8;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .detail-value {
-      font-weight: 700;
-      font-size: 0.8rem;
-    }
-
-    .balance-gold {
-      color: #f0d78c;
+    .price-premium {
+      font-family: var(--font-mono);
       font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--gold-light);
     }
-
-    .cvv-partial-hidden {
-      letter-spacing: 0.15em;
+    .card-number-masked {
+      font-family: var(--font-mono);
+      background: rgba(0,0,0,0.55);
+      text-align: center;
+      padding: 0.9rem;
+      border-radius: 24px;
+      letter-spacing: 0.12em;
+      font-size: 1rem;
+      margin: 1rem 0;
     }
-
-    .buy-section {
-      background: rgba(212, 168, 67, 0.06);
-      border-top: 1px solid rgba(212, 168, 67, 0.4);
-      padding: 1rem 1.6rem;
+    .grid-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+    .detail-premium {
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .buy-action {
+      border-top: 1px solid rgba(217,175,75,0.4);
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 700;
-      transition: all 0.3s;
-      cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      transition: 0.2s;
     }
+    .buy-action span:first-child { font-weight: 800; letter-spacing: 0.05em; }
 
-    .play-card .buy-section {
-      background: rgba(66, 133, 244, 0.06);
-      border-top: 1px solid rgba(66, 133, 244, 0.5);
-    }
-
-    .buy-text {
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      color: #f0d78c;
-    }
-
-    .arrow-icon {
-      font-size: 1.5rem;
-      color: var(--gold);
-      transition: 0.3s;
-    }
-
-    .card-premium:hover .arrow-icon, .play-card:hover .arrow-icon {
-      transform: translateX(8px);
-      color: #f5e3b3;
-    }
-
-    /* Modal */
-    .modal {
+    /* MODAL DARK LUXURY */
+    .modal-luxury {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.94);
-      backdrop-filter: blur(35px);
+      background: rgba(3, 5, 12, 0.98);
+      backdrop-filter: blur(48px);
       align-items: center;
       justify-content: center;
       padding: 1rem;
     }
-
-    .modal.open {
-      display: flex;
-    }
-
-    .modal-dialog {
-      background: linear-gradient(160deg, #0e0f1c 0%, #06070f 100%);
+    .modal-luxury.open { display: flex; }
+    .modal-card {
+      background: linear-gradient(145deg, #0e1020, #060812);
+      border-radius: 56px;
       border: 2px solid var(--border-gold);
-      border-radius: 48px;
+      max-width: 520px;
       width: 100%;
-      max-width: 500px;
-      max-height: 92vh;
-      overflow-y: auto;
-      box-shadow: 0 0 100px rgba(212, 168, 67, 0.5);
+      box-shadow: 0 0 100px rgba(217,175,75,0.4);
     }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(212,168,67,0.4);
-    }
-
-    .close-btn {
-      background: rgba(212,168,67,0.1);
-      border: 1px solid var(--border-gold);
-      color: var(--gold);
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      font-size: 1.4rem;
-      cursor: pointer;
-      transition: 0.3s;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .close-btn:hover {
-      background: rgba(212,168,67,0.3);
-    }
-
-    /* Boxed App Buttons */
-    .app-grid-box {
-      background: rgba(18, 20, 32, 0.6);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 28px;
-      padding: 1.2rem;
-      margin: 1.5rem 0;
-    }
-    .app-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .app-btn {
-      background: #141526;
-      border: 1.5px solid rgba(255,255,255,0.12);
-      border-radius: 20px;
-      padding: 16px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-      color: #ddd;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .app-btn:hover {
-      border-color: var(--gold);
-      background: #1e1f35;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .app-icon-real {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.2rem;
-    }
-
-    .icon-phonepe { background: #5c2d91; color: white; }
-    .icon-gpay { background: white; color: #1a73e8; border: 2px solid #1a73e8; }
-    .icon-paytm { background: linear-gradient(135deg, #00baf2, #0077b6); color: white; }
-    .icon-fampay { background: #ff6b35; color: white; }
-
-    .btn-gold-premium {
-      background: linear-gradient(135deg, #b8943a, #e0c78a);
-      color: #0a0a10;
-      font-weight: 800;
-      border: none;
-      padding: 1rem;
-      border-radius: 40px;
-      width: 100%;
-      margin-top: 12px;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: 0.3s;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-gold-premium:hover {
-      box-shadow: 0 0 30px rgba(212,168,67,0.6);
-    }
-
-    .input-premium {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 30px;
-      background: #12131f;
-      border: 1.5px solid rgba(212,168,67,0.4);
-      color: white;
-      margin: 10px 0;
-      font-size: 0.85rem;
-      transition: 0.3s;
-    }
-
-    .input-premium:focus {
-      border-color: var(--gold-light);
-      outline: none;
-      box-shadow: 0 0 20px rgba(212,168,67,0.3);
-    }
-
-    .input-error {
-      border-color: var(--error-red) !important;
-      box-shadow: 0 0 20px rgba(231, 76, 60, 0.3) !important;
-    }
-
-    .qr-container {
+    .qr-premium-box {
       background: white;
-      padding: 16px;
-      border-radius: 28px;
+      padding: 20px;
+      border-radius: 32px;
       display: flex;
       justify-content: center;
       margin: 1rem 0;
-      min-height: 182px;
-      align-items: center;
     }
-
-    .upi-text {
-      font-size: 0.7rem;
-      color: #999;
+    .app-buttons-premium {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .app-icon-premium {
+      background: #13162b;
+      border: 1px solid rgba(217,175,75,0.3);
+      border-radius: 28px;
+      padding: 14px;
       text-align: center;
-      margin-top: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .footer-note {
-      text-align: center;
-      color: #7a7a90;
-      margin-top: 2rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-    }
-
-    .hidden-section {
-      display: none;
-    }
-
-    /* Premium Verification Popup */
-    .verification-overlay {
+    /* VERIFICATION OVERLAY */
+    .verify-premium {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(0,0,0,0.96);
-      backdrop-filter: blur(40px);
+      background: rgba(0,0,0,0.97);
+      backdrop-filter: blur(32px);
       align-items: center;
       justify-content: center;
-      flex-direction: column;
     }
-
-    .verification-overlay.active {
-      display: flex;
-    }
-
-    .verification-card {
-      background: linear-gradient(160deg, #0e0f1c 0%, #06070f 100%);
-      border: 2px solid var(--border-gold);
-      border-radius: 48px;
-      padding: 2.5rem 2rem;
+    .verify-premium.active { display: flex; }
+    .verify-card {
+      background: #0b0d1a;
+      border-radius: 56px;
+      padding: 2.2rem;
       text-align: center;
-      box-shadow: 0 0 100px rgba(212, 168, 67, 0.6);
-      animation: modalGlow 0.4s ease;
-      max-width: 440px;
-      width: 90%;
-      transition: all 0.5s ease;
+      border: 2px solid var(--gold);
+      max-width: 400px;
     }
-
-    @keyframes modalGlow {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
     .spinner-gold {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(212, 168, 67, 0.2);
-      border-top: 3px solid var(--gold-light);
+      width: 54px;
+      height: 54px;
+      border: 3px solid rgba(217,175,75,0.2);
+      border-top: 3px solid var(--gold);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1.5rem;
+      animation: spin 1s infinite;
+      margin: 0 auto 1rem;
     }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .check-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(46, 204, 113, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2.5rem;
-      animation: popIn 0.5s ease;
-    }
-
-    .error-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(231, 76, 60, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 2.5rem;
-      animation: popIn 0.5s ease;
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0); }
-      70% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    .verifying-text {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
-    }
-
-    .verifying-sub {
-      font-size: 0.78rem;
-      color: #a0a0b8;
-      letter-spacing: 0.06em;
-      line-height: 1.5;
-    }
-
-    .verification-dots {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 1.2rem;
-    }
-
-    .verification-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: dotBounce 1.4s infinite ease-in-out;
-    }
-
-    .verification-dot:nth-child(1) { animation-delay: 0s; }
-    .verification-dot:nth-child(2) { animation-delay: 0.2s; }
-    .verification-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes dotBounce {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-
-    .btn-close-verify {
-      background: linear-gradient(135deg, #b8943a, #e0c78a);
-      color: #0a0a10;
-      font-weight: 700;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      transition: 0.3s;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-close-verify:hover {
-      box-shadow: 0 0 25px rgba(212,168,67,0.6);
-    }
-
-    .code-hidden-modal {
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.15em;
-      background: rgba(0,0,0,0.4);
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      display: inline-block;
-    }
-
-    .error-message-premium {
-      color: var(--error-red);
-      font-size: 0.7rem;
-      margin-top: 4px;
-      display: none;
-      letter-spacing: 0.04em;
-      font-weight: 600;
-    }
-
-    .error-message-premium.show {
-      display: block;
-      animation: shakeError 0.5s ease;
-    }
-
-    @keyframes shakeError {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-6px); }
-      75% { transform: translateX(6px); }
-    }
+    .hidden-sect { display: none; }
+    footer { text-align: center; margin-top: 3rem; color: #5a5e7e; font-size: 0.7rem; letter-spacing: 0.2em; }
+    input, button { font-family: inherit; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="bg-luxury"></div>
-<div class="particles-layer" id="particlesContainer"></div>
-
-<!-- Premium Verification Popup -->
-<div class="verification-overlay" id="verificationPopup">
-  <div class="verification-card" id="verificationCard">
-    <div id="verifyLoadingContent">
-      <div class="spinner-gold"></div>
-      <div class="verifying-text">Verifying Payment</div>
-      <div class="verifying-sub">Please wait a moment while we check your transaction...</div>
-      <div class="verification-dots">
-        <div class="verification-dot"></div>
-        <div class="verification-dot"></div>
-        <div class="verification-dot"></div>
-      </div>
-    </div>
-    <div id="verifyResultContent" style="display:none;"></div>
-  </div>
-</div>
+<div class="luxury-aura"></div>
+<div class="grid-lines"></div>
 
 <div class="container">
-  <!-- NEW HEADER - SECURE TERMINAL STYLE (Only top design changed, rest same) -->
-  <div class="secure-header">
-    <div class="terminal-badge">
-      <div class="label">SECURE TERMINAL</div>
-      <div class="value">UID-HLSVU08G</div>
+  <!-- HEADER VAULT PREMIUM -->
+  <div class="vault-header">
+    <div class="terminal-metrics">
+      <div class="metric"><span class="metric-label">SECURE NODE</span><span class="metric-value">GLOBAL-01</span></div>
+      <div class="metric"><span class="metric-label">ENCRYPTION</span><span class="metric-value">AES-256</span></div>
     </div>
-    <div class="vault-title-center">
+    <div class="vault-brand">
       <h1>CARD VAULT</h1>
-      <div class="sub">ELITE PREMIUM • UNVERIFIED REGISTRY</div>
+      <div class="sub">✦ ELITE PRIVATE TERMINAL ✦</div>
     </div>
-    <div class="node-status">
-      <div class="node-name"><span class="live-dot"></span> NODE: GLOBAL-01</div>
-      <div style="font-size:0.7rem; color:var(--text-muted);" id="liveUsersCount">157</div>
+    <div class="status-panel">
+      <div class="node-id">UID-HLSV08G</div>
+      <div class="online-badge"><span class="pulse-dot"></span> UNVERIFIED REGISTRY</div>
     </div>
   </div>
-  <!-- Live tag below header -->
-  <div style="display: flex; justify-content: center;">
-    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount2">157</span> COLLECTORS ONLINE</div>
+  <div class="live-users-bar">
+    <div class="glass-live"><span class="pulse-dot" style="background: #2ecc71;"></span> <span id="globalLiveCount">241</span> COLLECTORS ONLINE</div>
   </div>
 
-  <!-- BOXED SECTION TABS - SMALLER -->
-  <div class="section-tabs-box">
-    <div class="tab-box tab-box-cards active" id="tabCardsBox">
-      <div class="tab-box-icon">💳</div>
-      <div class="tab-box-title">ALL CARDS</div>
-      <div class="tab-box-sub">Premium Bank Cards</div>
+  <!-- TABS PREMIUM -->
+  <div class="tab-elevated">
+    <div class="tab-premium active" id="premiumTabCards">
+      <div class="tab-icon">💎</div><div class="tab-title">BANK CARDS</div><div class="tab-desc">Premium Financial Assets</div>
     </div>
-    <div class="tab-box tab-box-play" id="tabPlayBox">
-      <div class="tab-box-icon">🎮</div>
-      <div class="tab-box-title">PLAY STORE CODES</div>
-      <div class="tab-box-sub">Gift Cards & Redeem Codes</div>
+    <div class="tab-premium" id="premiumTabPlay">
+      <div class="tab-icon">🎮</div><div class="tab-title">PLAY CODES</div><div class="tab-desc">Digital Gift Vault</div>
     </div>
   </div>
 
-  <div id="cardsSection">
-    <div class="controls-box">
-      <div class="section-label">◆ SORT BY ◆</div>
-      <!-- ALL THREE BUTTONS IN ONE ROW -->
-      <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 Low Price</button>
-        <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 High Price</button>
-        <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 High Balance</button>
+  <!-- Cards Section Controls -->
+  <div id="cardsControlArea">
+    <div class="control-luxury">
+      <div style="text-align:center; font-size:0.65rem; letter-spacing:0.2em; margin-bottom:12px;">⚡ SORTING PROTOCOL ⚡</div>
+      <div class="filter-group" id="cardsSortGroup">
+        <button class="btn-premium active" data-sort="low">📉 LOW VALUE</button>
+        <button class="btn-premium" data-sort="high">📈 HIGH VALUE</button>
+        <button class="btn-premium" data-sort="balance">💰 HIGH BALANCE</button>
       </div>
-      <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY ◆</div>
-      <div class="filter-section" id="filterWrap">
-        <button class="btn-filter btn-filter-all active" data-type="all">🌐 All</button>
-        <button class="btn-filter btn-filter-visa" data-type="visa">💎 Visa</button>
-        <button class="btn-filter btn-filter-mc" data-type="mastercard">🔴 Mastercard</button>
-        <button class="btn-filter btn-filter-amex" data-type="amex">🔵 Amex</button>
-        <button class="btn-filter btn-filter-rupay" data-type="rupay">🟣 RuPay</button>
+      <div style="text-align:center; font-size:0.65rem; letter-spacing:0.2em; margin: 16px 0 8px;">🔮 NETWORK FILTER</div>
+      <div class="filter-group" id="networkFilterGroup">
+        <button class="btn-premium active" data-filter="all">ALL</button>
+        <button class="btn-premium" data-filter="visa">VISA</button>
+        <button class="btn-premium" data-filter="mastercard">MASTERCARD</button>
+        <button class="btn-premium" data-filter="amex">AMEX</button>
+        <button class="btn-premium" data-filter="rupay">RUPAY</button>
       </div>
     </div>
   </div>
-
-  <div id="playStoreSection" class="hidden-section">
-    <div class="controls-box">
-      <div class="section-label">◆ SORT BY ◆</div>
-      <!-- ALL THREE BUTTONS IN ONE ROW FOR PLAY STORE TOO -->
-      <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="playSortLow">📉 Low Price</button>
-        <button class="btn-sort btn-sort-high" id="playSortHigh">📈 High Price</button>
-        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 High Balance</button>
+  <div id="playControlArea" class="hidden-sect">
+    <div class="control-luxury">
+      <div style="text-align:center; font-size:0.65rem;">🎮 SORT CODES</div>
+      <div class="filter-group" id="playSortGroup">
+        <button class="btn-premium active" data-play="low">📉 LOW PRICE</button>
+        <button class="btn-premium" data-play="high">📈 HIGH PRICE</button>
+        <button class="btn-premium" data-play="balance">💰 HIGH VALUE</button>
       </div>
     </div>
   </div>
 
-  <div class="cards-grid" id="dynamicGrid"></div>
-  <div class="footer-note">◆ FORTUNE FAVORS THE BOLD ◆</div>
+  <div id="dynamicPremiumGrid" class="cards-grid-supreme"></div>
+  <footer>⚜️ ENCRYPTED TRANSACTIONS | VERIFIED BY CARDVAULT SECURE ⚜️</footer>
 </div>
 
-<div class="modal" id="paymentModal">
-  <div class="modal-dialog">
-    <div class="modal-header">
-      <span style="color:#e0c78a; font-weight: 800; letter-spacing:0.05em;" id="modalTitle">DETAILS</span>
-      <button class="close-btn" id="closeModalBtn">✕</button>
+<!-- MODAL PREMIUM -->
+<div id="premiumModal" class="modal-luxury">
+  <div class="modal-card">
+    <div style="padding:1.5rem; border-bottom:1px solid rgba(217,175,75,0.3); display:flex; justify-content:space-between;">
+      <span id="modalTitlePremium" style="font-weight:800; color:var(--gold);">PURCHASE</span>
+      <button id="closePremiumModal" style="background:none; border:none; color:white; font-size:1.8rem; cursor:pointer;">&times;</button>
     </div>
-    <div style="padding:1.5rem;">
-      <div id="modalItemInfo"></div>
-      <div class="qr-container" id="qrCodeContainer"></div>
-      <div class="upi-text">UPI: kartikrawat6266@okhdfcbank</div>
-      <div class="app-grid-box">
-        <div class="app-grid">
-          <div class="app-btn" id="btnPhonePe"><div class="app-icon-real icon-phonepe">₹</div>PhonePe</div>
-          <div class="app-btn" id="btnGPay"><div class="app-icon-real icon-gpay">G</div>Google Pay</div>
-          <div class="app-btn" id="btnPaytm"><div class="app-icon-real icon-paytm">P</div>Paytm</div>
-          <div class="app-btn" id="btnFamPay"><div class="app-icon-real icon-fampay">F</div>FamPay</div>
-        </div>
+    <div style="padding:1.8rem;">
+      <div id="modalItemPreview"></div>
+      <div id="qrPremiumContainer" class="qr-premium-box"></div>
+      <div class="upi-ref" style="font-size:0.7rem; text-align:center; color:#aaa;">UPI: kartikrawat6266@okhdfcbank</div>
+      <div class="app-buttons-premium">
+        <div class="app-icon-premium" id="premiumPhonePe">📱 PhonePe</div>
+        <div class="app-icon-premium" id="premiumGPay">💚 Google Pay</div>
+        <div class="app-icon-premium" id="premiumPaytm">💙 Paytm</div>
+        <div class="app-icon-premium" id="premiumFamPay">🎯 FamPay</div>
       </div>
-      <input class="input-premium" id="emailInput" placeholder="📧 Enter your email address" type="email">
-      <div class="error-message-premium" id="emailError">❌ Please enter a valid email address</div>
-      <input class="input-premium" id="utrInput" placeholder="🔢 UTR / Transaction ID (12 digits)" type="text" maxlength="12">
-      <div class="error-message-premium" id="utrError">❌ Transaction ID must be exactly 12 digits</div>
-      <button class="btn-gold-premium" id="confirmPaymentBtn">✦ CONFIRM & PURCHASE ✦</button>
+      <input type="email" id="premiumEmail" class="input-premium" placeholder="📧 Enter email to receive assets" style="width:100%; background:#11131f; border:1px solid #2a2d42; padding:14px; border-radius:60px; margin:8px 0; color:white;">
+      <div id="premiumEmailError" style="color:#ef4444; font-size:0.65rem; display:none;">Valid email required</div>
+      <input type="text" id="premiumUtr" maxlength="12" placeholder="🔢 UTR / Transaction ID (12 digits)" style="width:100%; background:#11131f; border:1px solid #2a2d42; padding:14px; border-radius:60px; margin:8px 0;">
+      <div id="premiumUtrError" style="color:#ef4444; font-size:0.65rem; display:none;">Exactly 12 digits required</div>
+      <button id="confirmPremiumPurchase" class="btn-gold-premium" style="background:linear-gradient(135deg,#b8943a,#e0c78a); width:100%; padding:14px; border-radius:60px; font-weight:800; margin-top:16px;">✦ CONFIRM & UNLOCK ✦</button>
     </div>
+  </div>
+</div>
+
+<div id="premiumVerification" class="verify-premium">
+  <div class="verify-card" id="verifyDynamicContent">
+    <div id="verifyLoader"><div class="spinner-gold"></div><div class="verifying-text">SECURE VERIFICATION</div><div>Processing payment confirmation...</div></div>
+    <div id="verifySuccessBox" style="display:none;"></div>
   </div>
 </div>
 
 <script>
   (function() {
-    const UPI_ID = "kartikrawat6266@okhdfcbank";
-    const MERCHANT = "CARDVAULT";
-
-    const cardBrands = {
-      visa: { prefix: ['4'], lengths: [16], display: 'VISA' },
-      mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD' },
-      amex: { prefix: ['34','37'], lengths: [15], display: 'AMEX' },
-      rupay: { prefix: ['60','65','81','82'], lengths: [16], display: 'RUPAY' },
-      discover: { prefix: ['6011','65'], lengths: [16], display: 'DISCOVER' }
-    };
-    const brands = Object.keys(cardBrands);
-    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    function generatePrice() { return rand(100, 1000); }
-
+    // DATA GENERATION (premium cards & codes)
+    const cardTypes = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
+    const typeArr = ['visa','mastercard','amex','rupay'];
+    function rand(min,max) { return Math.floor(Math.random()*(max-min+1))+min; }
     const cards = [];
-    for (let i = 1; i <= 100; i++) {
-      const type = brands[Math.floor(Math.random() * brands.length)];
-      const fullNum = (cardBrands[type].prefix[0] + Array(cardBrands[type].lengths[0] - cardBrands[type].prefix[0].length).fill(0).map(()=>Math.floor(Math.random()*10)).join('')).slice(0, cardBrands[type].lengths[0]);
-      const price = generatePrice();
-      cards.push({
-        id: i, type, fullNumber: fullNum,
-        displayNumber: fullNum.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX',
-        expiry: `${String(rand(1,12)).padStart(2,'0')}/${rand(26,30)}`,
-        cvv: type==='amex' ? String(rand(1000,9999)) : String(rand(100,999)),
-        holder: ['A. SHARMA','PRIYA K.','ROHAN D.','VIKRAM S.'][rand(0,3)],
-        price: price, balance: price * 10
-      });
+    for(let i=1;i<=100;i++) {
+      let t = typeArr[Math.floor(Math.random()*4)];
+      let price = rand(120, 1250);
+      let num = '';
+      if(t==='visa') num = '4' + Array(15).fill().map(()=>rand(0,9)).join('');
+      else if(t==='mastercard') num = '5' + rand(1,5) + Array(14).fill().map(()=>rand(0,9)).join('');
+      else if(t==='amex') num = '34' + Array(13).fill().map(()=>rand(0,9)).join('');
+      else num = '60' + Array(14).fill().map(()=>rand(0,9)).join('');
+      let display = num.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX';
+      cards.push({ id:i, type:t, fullNum:num, displayNum:display, expiry:`${rand(1,12)}/${rand(26,30)}`, cvv:t==='amex'?rand(1000,9999):rand(100,999), price:price, balance:price*12 });
     }
-    cards.sort((a,b) => a.price - b.price);
-
-    function maskCVV(cvv) {
-      if (cvv.length === 3) return cvv[0] + '**';
-      else if (cvv.length === 4) return cvv[0] + '**' + cvv[3];
-      return cvv;
-    }
-    function maskPlayCode(code) {
-      if (code.length >= 8) return code.slice(0, 4) + '•••••••' + code.slice(-4);
-      return code.slice(0, 4) + '•••••••';
-    }
-
     const playCodes = [];
-    for (let i = 1; i <= 60; i++) {
-      const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
-      const price = generatePrice();
-      playCodes.push({
-        id: 200 + i, code: code,
-        displayCode: code.slice(0,8) + '•••••••',
-        value: price * 10, balance: price * 10, price: price, type: 'playstore'
-      });
-    }
-    playCodes.sort((a,b) => a.price - b.price);
-
-    const pContainer = document.getElementById('particlesContainer');
-    for (let i=0; i<60; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.left = Math.random()*100+'%';
-      p.style.width = p.style.height = (Math.random()*6+2)+'px';
-      p.style.animationDelay = Math.random()*10+'s';
-      p.style.animationDuration = (Math.random()*8+7)+'s';
-      pContainer.appendChild(p);
+    for(let i=1;i<=65;i++) {
+      let code = 'GIFT' + Array(12).fill().map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*36)]).join('');
+      let price = rand(100, 990);
+      playCodes.push({ id:500+i, code:code, displayCode:code.slice(0,8)+'•••••••', value:price*10, balance:price*10, price:price });
     }
 
-    setInterval(() => { 
-      const newCount = Math.floor(Math.random()*70)+120;
-      document.getElementById('liveUsersCount').textContent = newCount;
-      document.getElementById('liveUsersCount2').textContent = newCount;
-    }, 4000);
-
-    let currentItem = null;
-    let activeSection = 'cards';
+    let active = 'cards';
     let currentFilter = 'all';
-    let currentSort = 'price-low';
-    let playSort = 'price-low';
-    let qrCodeInstance = null;
-    let currentQRData = null;
+    let currentSort = 'low';
+    let playSort = 'low';
+    let selectedItem = null;
+    let qrInstance = null;
+    let currentQRdata = null;
 
-    function getActiveData() {
-      return activeSection === 'cards' ? { list: cards, filter: currentFilter, sort: currentSort } : { list: playCodes, filter: 'all', sort: playSort };
-    }
-
-    function renderGrid() {
-      const { list, filter, sort } = getActiveData();
-      let filtered = activeSection === 'cards' ? (filter === 'all' ? [...list] : list.filter(c => c.type === filter)) : [...list];
-      
-      if (activeSection === 'cards') {
-        if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
-        else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
-        else if (sort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
+    function renderSupreme() {
+      let dataList = active === 'cards' ? [...cards] : [...playCodes];
+      if(active === 'cards' && currentFilter !== 'all') dataList = dataList.filter(c => c.type === currentFilter);
+      if(active === 'cards') {
+        if(currentSort === 'low') dataList.sort((a,b)=>a.price-b.price);
+        else if(currentSort === 'high') dataList.sort((a,b)=>b.price-a.price);
+        else dataList.sort((a,b)=>b.balance-a.balance);
       } else {
-        if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
-        else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
-        else if (sort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
+        if(playSort === 'low') dataList.sort((a,b)=>a.price-b.price);
+        else if(playSort === 'high') dataList.sort((a,b)=>b.price-a.price);
+        else dataList.sort((a,b)=>b.balance-a.balance);
       }
-
-      const grid = document.getElementById('dynamicGrid');
-      grid.innerHTML = filtered.map(item => {
-        if (item.type && item.type !== 'playstore') {
-          return `<div class="card-premium"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div><div class="card-number-display">${item.displayNumber}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div><div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">PURCHASE CARD</span><span class="arrow-icon">→</span></div></div>`;
+      const grid = document.getElementById('dynamicPremiumGrid');
+      grid.innerHTML = dataList.map(item => {
+        if(active === 'cards') {
+          return `<div class="card-supreme" data-id="${item.id}" data-type="card">
+            <div class="card-strip"></div>
+            <div class="card-inner">
+              <div class="card-header-flex"><span class="network-badge-premium">${cardTypes[item.type]}</span><span class="price-premium">₹${item.price}</span></div>
+              <div class="card-number-masked">${item.displayNum}</div>
+              <div class="grid-details"><div class="detail-premium"><div class="detail-label">EXP</div><div>${item.expiry}</div></div><div class="detail-premium"><div class="detail-label">CVV</div><div>${item.cvv.toString().slice(0,1)}***</div></div><div class="detail-premium"><div class="detail-label">BALANCE</div><div style="color:var(--gold-light)">₹${item.balance}</div></div></div>
+            </div>
+            <div class="buy-action" data-purchase-id="${item.id}" data-purchase-type="card"><span>💳 PURCHASE CARD</span><span style="font-size:1.4rem;">→</span></div>
+          </div>`;
         } else {
-          return `<div class="play-card"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div><div class="code-display" style="margin:1rem 0;">${item.displayCode}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div><div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">REDEEM CODE</span><span class="arrow-icon">→</span></div></div>`;
+          return `<div class="card-supreme" data-id="${item.id}" data-type="play">
+            <div class="card-strip card-strip-blue"></div>
+            <div class="card-inner">
+              <div class="card-header-flex"><span class="network-badge-premium" style="background:#1e3a8a30; color:#8bb9ff;">🎮 PLAY STORE</span><span class="price-premium">₹${item.price}</span></div>
+              <div class="card-number-masked" style="font-size:0.9rem;">${item.displayCode}</div>
+              <div class="grid-details"><div class="detail-premium"><div class="detail-label">VALUE</div><div style="color:var(--gold-light)">₹${item.value}</div></div><div class="detail-premium"><div class="detail-label">TYPE</div><div>REDEEM</div></div><div class="detail-premium"><div class="detail-label">STATUS</div><div>ACTIVE</div></div></div>
+            </div>
+            <div class="buy-action" data-purchase-id="${item.id}" data-purchase-type="play"><span>🎁 REDEEM CODE</span><span style="font-size:1.4rem;">→</span></div>
+          </div>`;
         }
       }).join('');
-
-      document.querySelectorAll('.buy-section').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const id = parseInt(btn.dataset.id);
-          const allData = activeSection === 'cards' ? cards : playCodes;
-          currentItem = allData.find(i => i.id === id);
-          openModal(currentItem);
+      document.querySelectorAll('[data-purchase-id]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(el.dataset.purchaseId);
+          const type = el.dataset.purchaseType;
+          if(type === 'card') selectedItem = cards.find(c => c.id === id);
+          else selectedItem = playCodes.find(p => p.id === id);
+          if(selectedItem) openPremiumModal(selectedItem);
         });
       });
     }
 
-    function generateQRCode(amount, itemId) {
-      const container = document.getElementById('qrCodeContainer');
-      container.innerHTML = '';
-      const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${itemId}`;
-      currentQRData = { amount, itemId };
-      try {
-        qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-      } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
-    }
-
-    function restoreQRCode() {
-      if (currentQRData && document.getElementById('paymentModal').classList.contains('open')) {
-        const container = document.getElementById('qrCodeContainer');
-        container.innerHTML = '';
-        const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${currentQRData.amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${currentQRData.itemId}`;
-        try {
-          qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-        } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
-      }
-    }
-
-    function openModal(item) {
-      document.getElementById('modalTitle').innerText = item.type === 'playstore' ? 'PLAY STORE CODE' : 'CARD DETAILS';
-      const infoDiv = document.getElementById('modalItemInfo');
-      if (item.type === 'playstore') {
-        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid #4a90e2;"><p><strong>🎮 PLAY STORE GIFT CARD</strong></p><p style="font-family:monospace;font-size:1.1rem;background:rgba(0,0,0,0.4);padding:0.6rem;border-radius:12px;text-align:center;">${maskPlayCode(item.code)}</p><p style="color:#6a9ff5;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
+    function openPremiumModal(item) {
+      document.getElementById('modalTitlePremium').innerText = item.type ? 'CARD ACQUISITION' : 'PLAY CODE UNLOCK';
+      const previewDiv = document.getElementById('modalItemPreview');
+      if(item.type) {
+        previewDiv.innerHTML = `<div style="background:#11131f; border-radius:28px; padding:1rem; text-align:center;"><span class="network-badge-premium">${cardTypes[item.type]}</span><div style="font-family:monospace; margin:8px 0;">${item.displayNum}</div><div style="font-size:1.5rem; color:var(--gold);">₹${item.price}</div></div>`;
       } else {
-        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid var(--border-gold);"><p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p><p>CVV: ${maskCVV(item.cvv)} | EXP: ${item.expiry}</p><p style="color:#e0c78a;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
+        previewDiv.innerHTML = `<div style="background:#11131f; border-radius:28px; padding:1rem;text-align:center;"><span style="background:#1e3a8a30; padding:4px 12px; border-radius:40px;">🎮 PLAY STORE</span><div style="font-family:monospace; margin:8px;">${item.displayCode}</div><div style="font-size:1.4rem; color:var(--gold);">₹${item.price}</div></div>`;
       }
-      generateQRCode(item.price, item.id);
-      document.getElementById('emailInput').value = '';
-      document.getElementById('utrInput').value = '';
-      document.getElementById('emailError').classList.remove('show');
-      document.getElementById('utrError').classList.remove('show');
-      document.getElementById('emailInput').classList.remove('input-error');
-      document.getElementById('utrInput').classList.remove('input-error');
-      document.getElementById('paymentModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+      generateQR(item.price, item.id);
+      document.getElementById('premiumEmail').value = '';
+      document.getElementById('premiumUtr').value = '';
+      document.getElementById('premiumEmailError').style.display = 'none';
+      document.getElementById('premiumUtrError').style.display = 'none';
+      document.getElementById('premiumModal').classList.add('open');
+    }
+
+    function generateQR(amount, id) {
+      const upi = `upi://pay?pa=kartikrawat6266@okhdfcbank&pn=CARDVAULT&am=${amount.toFixed(2)}&cu=INR&tn=${active}_${id}`;
+      const container = document.getElementById('qrPremiumContainer');
+      container.innerHTML = '';
+      try {
+        qrInstance = new QRCode(container, { text: upi, width: 160, height: 160, colorDark: "#000", colorLight: "#fff" });
+        currentQRdata = upi;
+      } catch(e) { container.innerHTML = '<div>QR unavailable</div>'; }
     }
 
     function closeModal() { 
-      document.getElementById('paymentModal').classList.remove('open');
-      document.body.style.overflow = '';
-      if(qrCodeInstance) {
-        qrCodeInstance.clear();
-        qrCodeInstance = null;
-      }
-      currentQRData = null;
+      document.getElementById('premiumModal').classList.remove('open');
+      if(qrInstance) { qrInstance.clear(); qrInstance=null; }
     }
-
-    function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
-    function validateUTR(utr) { return /^\d{12}$/.test(utr); }
-
-    function showVerificationPopup(email, isSuccess, itemType) {
-      const popup = document.getElementById('verificationPopup');
-      const loadingContent = document.getElementById('verifyLoadingContent');
-      const resultContent = document.getElementById('verifyResultContent');
-      loadingContent.style.display = 'block';
-      resultContent.style.display = 'none';
-      popup.classList.add('active');
+    function showVerify(email, success, isPlay) {
+      const overlay = document.getElementById('premiumVerification');
+      const loaderDiv = document.getElementById('verifyLoader');
+      const successDiv = document.getElementById('verifySuccessBox');
+      loaderDiv.style.display = 'block';
+      successDiv.style.display = 'none';
+      overlay.classList.add('active');
       setTimeout(() => {
-        loadingContent.style.display = 'none';
-        resultContent.style.display = 'block';
-        if (isSuccess) {
-          const isPlayStore = itemType === 'playstore';
-          resultContent.innerHTML = `<div class="check-icon">✅</div><div class="verifying-text" style="color:#2ecc71;">Payment Verified Successfully!</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">${isPlayStore ? '🎮 Your <strong style="color:#6a9ff5;">Play Store Redeem Code</strong> will be sent to your email' : '💳 Your <strong style="color:#f0d78c;">Card Details</strong> will be sent to your email'} <strong style="color:#f0d78c;">${email}</strong> shortly. If the payment was not correct, no ${isPlayStore ? 'code' : 'card'} will be sent.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>`;
+        loaderDiv.style.display = 'none';
+        successDiv.style.display = 'block';
+        if(success) {
+          successDiv.innerHTML = `<div style="font-size:3.2rem;">✅</div><div style="color:#10b981; font-weight:800;">PAYMENT SECURED</div><div style="margin:12px 0;">Credentials will be delivered to <strong style="color:var(--gold);">${email}</strong><br>within 5 minutes.</div><button id="closeVerifyBtn" style="background:var(--gold); border:none; padding:10px 28px; border-radius:60px; margin-top:12px; font-weight:700;">CLOSE</button>`;
         } else {
-          resultContent.innerHTML = `<div class="error-icon">❌</div><div class="verifying-text" style="color:#e74c3c;">Transaction ID Invalid</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">The Transaction ID you entered is incorrect. UTR must be <strong style="color:#e74c3c;">exactly 12 digits</strong>. Please check your payment app for the correct Transaction ID and try again.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">✕ TRY AGAIN</button>`;
+          successDiv.innerHTML = `<div style="font-size:3rem;">❌</div><div style="color:#ef4444;">INVALID TRANSACTION ID</div><div>UTR must be exactly 12 digits.</div><button id="closeVerifyBtn" style="background:#2c2a3a; border:none; padding:10px 28px; border-radius:60px; margin-top:12px;">TRY AGAIN</button>`;
         }
-      }, 3000);
+        document.getElementById('closeVerifyBtn')?.addEventListener('click', () => overlay.classList.remove('active'));
+      }, 2500);
     }
 
-    function openUPI(app) {
-      if (!currentItem) return;
-      const amt = currentItem.price.toFixed(2);
-      const note = currentItem.type === 'playstore' ? `PLAY_${currentItem.id}` : `CARD_${currentItem.id}`;
-      const upiStr = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
-      
-      if (app === 'fampay') window.location.href = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}#Intent;scheme=upi;package=com.fampay.in;end`;
-      else if (app === 'phonepe') window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
-      else if (app === 'gpay') window.location.href = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
-      else if (app === 'paytm') window.location.href = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
-      
-      setTimeout(() => { 
-        if (!document.hidden) {
-          window.location.href = upiStr;
-        }
-      }, 2000);
-    }
-
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && document.getElementById('paymentModal').classList.contains('open')) {
-        setTimeout(() => { restoreQRCode(); }, 300);
-      }
-    });
-
-    window.addEventListener('focus', () => {
-      if (document.getElementById('paymentModal').classList.contains('open')) {
-        setTimeout(() => { restoreQRCode(); }, 300);
-      }
-    });
-
-    document.getElementById('btnPhonePe').onclick = ()=> openUPI('phonepe');
-    document.getElementById('btnGPay').onclick = ()=> openUPI('gpay');
-    document.getElementById('btnPaytm').onclick = ()=> openUPI('paytm');
-    document.getElementById('btnFamPay').onclick = ()=> openUPI('fampay');
-    
-    document.getElementById('confirmPaymentBtn').onclick = ()=>{
-      const email = document.getElementById('emailInput').value.trim();
-      const utr = document.getElementById('utrInput').value.trim();
-      const emailError = document.getElementById('emailError');
-      const utrError = document.getElementById('utrError');
-      const emailInput = document.getElementById('emailInput');
-      const utrInput = document.getElementById('utrInput');
-      let hasError = false;
-      emailError.classList.remove('show'); utrError.classList.remove('show');
-      emailInput.classList.remove('input-error'); utrInput.classList.remove('input-error');
-      if(!email || !validateEmail(email)) { emailError.classList.add('show'); emailInput.classList.add('input-error'); hasError = true; }
-      if(!utr || !validateUTR(utr)) { utrError.classList.add('show'); utrInput.classList.add('input-error'); hasError = true; }
-      if(hasError) return;
-      const itemType = currentItem ? currentItem.type : 'card';
+    document.getElementById('confirmPremiumPurchase').onclick = () => {
+      const email = document.getElementById('premiumEmail').value.trim();
+      const utr = document.getElementById('premiumUtr').value.trim();
+      let err = false;
+      if(!email || !/^\S+@\S+\.\S+$/.test(email)) { document.getElementById('premiumEmailError').style.display = 'block'; err=true; } else document.getElementById('premiumEmailError').style.display = 'none';
+      if(!/^\d{12}$/.test(utr)) { document.getElementById('premiumUtrError').style.display = 'block'; err=true; } else document.getElementById('premiumUtrError').style.display = 'none';
+      if(err) return;
+      const isPlayItem = selectedItem && !selectedItem.type;
       closeModal();
-      showVerificationPopup(email, true, itemType);
+      showVerify(email, true, isPlayItem);
     };
 
-    document.getElementById('closeModalBtn').onclick = closeModal;
+    document.getElementById('closePremiumModal').onclick = closeModal;
+    // app buttons
+    const upi_id = "kartikrawat6266@okhdfcbank";
+    function launchApp(appName) {
+      if(!selectedItem) return;
+      let amt = selectedItem.price;
+      if(appName === 'phonepe') window.location.href = `phonepe://pay?pa=${upi_id}&am=${amt}`;
+      else if(appName === 'gpay') window.location.href = `tez://upi/pay?pa=${upi_id}&am=${amt}`;
+      else if(appName === 'paytm') window.location.href = `paytmmp://pay?pa=${upi_id}&am=${amt}`;
+      else window.location.href = `intent://pay?pa=${upi_id}&am=${amt}#Intent;scheme=upi;package=com.fampay.in;end`;
+      setTimeout(() => { window.location.href = `upi://pay?pa=${upi_id}&am=${amt}`; }, 800);
+    }
+    document.getElementById('premiumPhonePe').onclick = () => launchApp('phonepe');
+    document.getElementById('premiumGPay').onclick = () => launchApp('gpay');
+    document.getElementById('premiumPaytm').onclick = () => launchApp('paytm');
+    document.getElementById('premiumFamPay').onclick = () => launchApp('fampay');
 
-    document.getElementById('tabCardsBox').addEventListener('click', ()=>{
-      activeSection = 'cards';
-      document.getElementById('tabCardsBox').classList.add('active');
-      document.getElementById('tabPlayBox').classList.remove('active');
-      document.getElementById('cardsSection').classList.remove('hidden-section');
-      document.getElementById('playStoreSection').classList.add('hidden-section');
-      renderGrid();
+    // TABS
+    document.getElementById('premiumTabCards').addEventListener('click', () => {
+      active='cards'; document.getElementById('premiumTabCards').classList.add('active'); document.getElementById('premiumTabPlay').classList.remove('active');
+      document.getElementById('cardsControlArea').classList.remove('hidden-sect'); document.getElementById('playControlArea').classList.add('hidden-sect');
+      renderSupreme();
     });
-    document.getElementById('tabPlayBox').addEventListener('click', ()=>{
-      activeSection = 'play';
-      document.getElementById('tabPlayBox').classList.add('active');
-      document.getElementById('tabCardsBox').classList.remove('active');
-      document.getElementById('cardsSection').classList.add('hidden-section');
-      document.getElementById('playStoreSection').classList.remove('hidden-section');
-      renderGrid();
+    document.getElementById('premiumTabPlay').addEventListener('click', () => {
+      active='play'; document.getElementById('premiumTabPlay').classList.add('active'); document.getElementById('premiumTabCards').classList.remove('active');
+      document.getElementById('cardsControlArea').classList.add('hidden-sect'); document.getElementById('playControlArea').classList.remove('hidden-sect');
+      renderSupreme();
     });
-
-    document.querySelectorAll('#cardsSection .btn-sort').forEach(b => {
-      b.addEventListener('click', function() {
-        document.querySelectorAll('#cardsSection .btn-sort').forEach(x => x.classList.remove('active'));
+    // sort & filter events
+    document.querySelectorAll('#cardsSortGroup .btn-premium').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#cardsSortGroup .btn-premium').forEach(b=>b.classList.remove('active'));
         this.classList.add('active');
-        if(this.id === 'sortPriceLow') currentSort = 'price-low';
-        else if(this.id === 'sortPriceHigh') currentSort = 'price-high';
-        else currentSort = 'balance-high';
-        if(activeSection==='cards') renderGrid();
+        currentSort = this.dataset.sort;
+        if(active==='cards') renderSupreme();
       });
     });
-    document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => {
-      b.addEventListener('click', function() {
-        document.querySelectorAll('#playStoreSection .btn-sort').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('#networkFilterGroup .btn-premium').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#networkFilterGroup .btn-premium').forEach(b=>b.classList.remove('active'));
         this.classList.add('active');
-        if(this.id === 'playSortLow') playSort = 'price-low';
-        else if(this.id === 'playSortHigh') playSort = 'price-high';
-        else playSort = 'balance-high';
-        if(activeSection==='play') renderGrid();
+        currentFilter = this.dataset.filter;
+        if(active==='cards') renderSupreme();
       });
     });
-    document.querySelectorAll('.btn-filter').forEach(b => {
-      b.addEventListener('click', function() {
-        document.querySelectorAll('.btn-filter').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('#playSortGroup .btn-premium').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#playSortGroup .btn-premium').forEach(b=>b.classList.remove('active'));
         this.classList.add('active');
-        currentFilter = this.dataset.type;
-        if(activeSection==='cards') renderGrid();
+        playSort = this.dataset.play;
+        if(active==='play') renderSupreme();
       });
     });
-
-    renderGrid();
+    setInterval(() => { document.getElementById('globalLiveCount').innerText = Math.floor(Math.random()*150)+180; }, 4500);
+    renderSupreme();
   })();
 </script>
 </body>
