@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ CRYSTAL VAULT | PREMIUM ELITE ✦</title>
+  <title>✦ NEO VAULT | NEXT GEN ELITE ✦</title>
   <style>
     * {
       margin: 0;
@@ -11,565 +11,516 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Clash+Display:wght@400;500;600;700&display=swap');
 
     :root {
-      --bg-dark: #070714;
-      --bg-card: rgba(16, 16, 30, 0.6);
-      --gold: #FFD966;
-      --gold-dark: #D4A843;
-      --silver: #C0C0C0;
-      --cyan: #00E5FF;
-      --purple: #B000FF;
-      --green: #00FF88;
-      --red: #FF4444;
+      --bg-void: #04040A;
+      --card-neon: rgba(12, 12, 28, 0.7);
+      --neon-amber: #FFB347;
+      --neon-mint: #00FFC2;
+      --neon-lavender: #B891FF;
+      --neon-coral: #FF6B6B;
+      --glow-amber: 0 0 20px rgba(255, 180, 71, 0.4);
+      --glow-mint: 0 0 20px rgba(0, 255, 194, 0.3);
       --text-white: #FFFFFF;
-      --text-dim: #A0A0C0;
-      --border-glow: rgba(255, 217, 102, 0.25);
-      --shadow-premium: 0 25px 45px -15px rgba(0, 0, 0, 0.5);
+      --text-dim: #8A8AA8;
     }
 
     body {
-      background: var(--bg-dark);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-void);
+      font-family: 'Space Grotesk', sans-serif;
       color: var(--text-white);
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow: hidden;
+      position: relative;
     }
 
-    /* ========== PREMIUM BACKGROUND ========== */
-    .premium-bg {
+    /* ANIMATED WAVES BACKGROUND */
+    .wave-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: radial-gradient(ellipse at 20% 30%, rgba(255, 217, 102, 0.08), transparent 60%),
-                  radial-gradient(ellipse at 80% 70%, rgba(0, 229, 255, 0.05), transparent 60%),
-                  repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.01) 0px, rgba(255, 255, 255, 0.01) 1px, transparent 1px, transparent 30px);
+      background: linear-gradient(125deg, #04040A 0%, #0A0A18 50%, #060612 100%);
+    }
+    .wave {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,180,71,0.05)" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      background-size: cover;
+      animation: waveMove 15s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes waveMove {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1440px; }
     }
 
-    .floating-shadows {
+    /* FLOATING DOTS */
+    .floating-dots {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
     }
-    .shadow-orb {
+    .dot {
       position: absolute;
-      width: 400px;
-      height: 400px;
+      width: 2px;
+      height: 2px;
+      background: var(--neon-amber);
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.2;
-      animation: floatShadow 25s infinite alternate;
+      opacity: 0;
+      animation: floatDot 8s infinite;
     }
-    .shadow-1 { background: #FFD966; top: -150px; right: -100px; }
-    .shadow-2 { background: #00E5FF; bottom: -150px; left: -100px; }
-    .shadow-3 { background: #B000FF; top: 40%; left: 20%; }
-    @keyframes floatShadow {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, 50px) scale(1.2); }
+    @keyframes floatDot {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.4; }
+      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
     }
 
-    .container {
+    .main-container {
       position: relative;
       z-index: 10;
-      max-width: 1500px;
+      max-width: 1450px;
       margin: 0 auto;
-      padding: 25px;
+      padding: 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    /* ========== STABLE PROFESSIONAL HEADER ========== */
-    .trust-header {
-      background: rgba(10, 10, 22, 0.75);
-      backdrop-filter: blur(25px);
-      border-radius: 28px;
-      padding: 22px 35px;
-      margin-bottom: 35px;
-      border: 1px solid var(--border-glow);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* ========== COMPACT HEADER ========== */
+    .neo-header {
+      background: rgba(4, 4, 10, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 14px 28px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 180, 71, 0.25);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
     }
-
-    .brand-section {
-      display: flex;
-      flex-direction: column;
-    }
-    .brand-section h1 {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFD966, #00E5FF, #B000FF);
+    .logo-neo h1 {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FFB347, #00FFC2, #B891FF);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.5px;
     }
-    .brand-section p {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      color: var(--text-dim);
-      margin-top: 5px;
-    }
-
-    .trust-seals {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .seal-item {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 40px;
-      padding: 6px 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      color: var(--green);
-    }
-
-    .live-monitor {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 8px 22px;
-      border-radius: 60px;
-      border: 1px solid rgba(0, 255, 136, 0.4);
-    }
-    .live-pulse {
-      width: 10px;
-      height: 10px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulseLive 1.2s infinite;
-      box-shadow: 0 0 10px var(--green);
-    }
-    @keyframes pulseLive {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-    .live-count {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--green);
-    }
-
-    /* ========== TABS ========== */
-    .premium-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 30px 0 25px;
-    }
-    .premium-tab {
-      background: rgba(12, 12, 24, 0.7);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 60px;
-      padding: 14px 38px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-    .premium-tab:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-    }
-    .premium-tab.active {
-      border-color: var(--gold);
-      background: linear-gradient(135deg, rgba(255, 217, 102, 0.12), rgba(0, 229, 255, 0.06));
-      box-shadow: 0 0 25px rgba(255, 217, 102, 0.2);
-    }
-    .tab-icon { font-size: 1.5rem; margin-bottom: 5px; }
-    .tab-title { font-weight: 700; font-size: 0.9rem; }
-    .tab-sub { font-size: 0.6rem; color: var(--text-dim); }
-
-    /* ========== CONTROLS ========== */
-    .filter-section {
-      background: rgba(8, 8, 18, 0.6);
-      backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 20px 25px;
-      margin-bottom: 30px;
-      border: 1px solid rgba(255, 217, 102, 0.12);
-    }
-    .filter-title {
-      text-align: center;
-      font-family: 'Orbitron', monospace;
-      font-size: 0.7rem;
+    .logo-neo p {
+      font-size: 0.55rem;
       letter-spacing: 0.2em;
-      color: var(--gold);
-      margin-bottom: 15px;
+      color: var(--text-dim);
     }
-    .filter-buttons {
+    .trust-strip {
+      display: flex;
+      gap: 12px;
+    }
+    .trust-chip-neo {
+      background: rgba(0, 255, 194, 0.08);
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      border: 1px solid rgba(0, 255, 194, 0.3);
+      color: #00FFC2;
+    }
+    .live-neo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 18px;
+      border-radius: 40px;
+    }
+    .pulse-neo {
+      width: 8px;
+      height: 8px;
+      background: #00FFC2;
+      border-radius: 50%;
+      animation: pulseNeo 1s infinite;
+    }
+    @keyframes pulseNeo {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    /* ========== TABS MINI ========== */
+    .neo-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .neo-tab {
+      background: rgba(12, 12, 28, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 50px;
+      padding: 8px 32px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .neo-tab:hover { border-color: #FFB347; transform: translateY(-2px); }
+    .neo-tab.active {
+      border-color: #FFB347;
+      background: rgba(255, 180, 71, 0.12);
+      box-shadow: 0 0 20px rgba(255, 180, 71, 0.2);
+    }
+    .neo-tab span { font-size: 0.8rem; font-weight: 600; }
+    .neo-tab small { font-size: 0.6rem; color: var(--text-dim); display: block; }
+
+    /* ========== FILTER ROW ========== */
+    .filter-row {
+      background: rgba(8, 8, 20, 0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 12px 20px;
+      margin-bottom: 20px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 18px;
+      border: 1px solid rgba(255, 180, 71, 0.1);
     }
-    .filter-btn {
+    .filter-chip {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-dim);
-      padding: 8px 24px;
-      border-radius: 40px;
+      padding: 6px 18px;
+      border-radius: 30px;
       font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
-      text-transform: uppercase;
     }
-    .filter-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-    .filter-btn.active {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    .filter-chip:hover { border-color: #FFB347; color: #FFB347; }
+    .filter-chip.active {
+      background: linear-gradient(135deg, #FFB347, #E8952E);
       border-color: transparent;
-      color: #0a0a0a;
-      box-shadow: 0 0 15px rgba(255, 217, 102, 0.4);
+      color: #04040A;
     }
 
-    /* ========== CARDS GRID ========== */
-    .cards-grid-premium {
+    /* ========== CARDS GRID (SCROLLABLE AREA ONLY) ========== */
+    .cards-scroll-area {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 5px;
+      margin-bottom: 5px;
+    }
+    .cards-scroll-area::-webkit-scrollbar {
+      width: 4px;
+    }
+    .cards-scroll-area::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+    .cards-scroll-area::-webkit-scrollbar-thumb {
+      background: #FFB347;
+      border-radius: 10px;
+    }
+
+    .neo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
     }
 
-    /* ========== PREMIUM CARD DESIGN ========== */
-    .premium-card-item {
-      background: linear-gradient(145deg, rgba(18, 18, 35, 0.9), rgba(10, 10, 22, 0.95));
-      backdrop-filter: blur(15px);
-      border-radius: 32px;
+    /* ========== COMPACT CARD ========== */
+    .neo-card {
+      background: linear-gradient(145deg, rgba(16, 16, 32, 0.85), rgba(8, 8, 20, 0.95));
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(255, 217, 102, 0.2);
-      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 180, 71, 0.2);
+      transition: all 0.3s ease;
       cursor: pointer;
     }
-    .premium-card-item:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 30px 45px -20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 217, 102, 0.2);
+    .neo-card:hover {
+      transform: translateY(-6px);
+      border-color: #FFB347;
+      box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.5);
     }
-
-    .card-accent {
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--cyan), var(--purple));
+    .card-glow-neo {
+      height: 2px;
+      background: linear-gradient(90deg, #FFB347, #00FFC2, #B891FF);
     }
-    .play-accent {
-      background: linear-gradient(90deg, #4285F4, #00E5FF, #1A5BBF);
+    .card-body-neo {
+      padding: 18px;
     }
-
-    .card-content-premium {
-      padding: 22px;
-    }
-
-    .card-row {
+    .card-head-neo {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
-    .card-badge-premium {
-      background: rgba(255, 217, 102, 0.12);
-      border: 1px solid rgba(255, 217, 102, 0.3);
-      padding: 5px 18px;
+    .network-neo {
+      background: rgba(255, 180, 71, 0.12);
+      padding: 3px 14px;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #FFB347;
+    }
+    .price-neo {
+      font-family: monospace;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: var(--gold);
+      color: #FFB347;
     }
-    .card-price-premium {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
-
-    .card-number-premium {
-      font-family: 'Courier New', monospace;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 12px;
-      border-radius: 18px;
-      text-align: center;
-      margin: 15px 0;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-    }
-
-    .card-details-premium {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin: 18px 0;
-    }
-    .card-detail-item {
-      background: rgba(0, 0, 0, 0.35);
+    .number-neo {
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.4);
       padding: 10px;
       border-radius: 16px;
       text-align: center;
+      font-size: 0.8rem;
+      margin: 12px 0;
+      letter-spacing: 0.05em;
     }
-    .detail-label-sm {
-      font-size: 0.5rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
+    .details-neo {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 12px 0;
     }
-    .detail-value-md {
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-top: 5px;
+    .detail-neo {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 6px;
+      border-radius: 12px;
+      text-align: center;
+      flex: 1;
     }
-
-    /* PURCHASE BUTTON */
-    .purchase-footer {
-      background: linear-gradient(135deg, rgba(255, 217, 102, 0.08), rgba(204, 170, 51, 0.03));
-      border-top: 1px solid rgba(255, 217, 102, 0.25);
-      padding: 14px 22px;
+    .detail-label-neo { font-size: 0.45rem; color: var(--text-dim); }
+    .detail-value-neo { font-size: 0.7rem; font-weight: 600; margin-top: 3px; }
+    .buy-neo {
+      background: rgba(255, 180, 71, 0.08);
+      border-top: 1px solid rgba(255, 180, 71, 0.2);
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.3s;
     }
-    .purchase-footer:hover {
-      background: linear-gradient(135deg, rgba(255, 217, 102, 0.15), rgba(204, 170, 51, 0.08));
-    }
-    .purchase-text-premium {
-      font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      color: var(--gold);
-    }
-    .purchase-arrow-premium {
-      font-size: 1.3rem;
-      transition: transform 0.3s;
-    }
-    .premium-card-item:hover .purchase-arrow-premium {
-      transform: translateX(8px);
-    }
+    .buy-neo span { font-size: 0.75rem; font-weight: 700; color: #FFB347; }
+    .buy-neo i { font-size: 1.1rem; transition: 0.2s; }
+    .neo-card:hover .buy-neo i { transform: translateX(5px); }
 
-    /* ========== MODAL ========== */
-    .premium-modal {
+    /* ========== COMPACT MODAL - NO SCROLL ========== */
+    .compact-modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.98);
-      backdrop-filter: blur(50px);
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: blur(40px);
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
-    .premium-modal.open { display: flex; }
-    .modal-container-premium {
-      background: linear-gradient(145deg, #0E0E20, #060612);
-      border: 2px solid var(--gold);
-      border-radius: 48px;
-      max-width: 520px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 0 80px rgba(255, 217, 102, 0.3);
+    .compact-modal.open { display: flex; }
+    .compact-modal-content {
+      background: linear-gradient(145deg, #0A0A1A, #050510);
+      border: 1px solid #FFB347;
+      border-radius: 32px;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 0 60px rgba(255, 180, 71, 0.3);
     }
-    .modal-header-premium {
+    .compact-header {
       display: flex;
       justify-content: space-between;
-      padding: 22px 28px;
-      border-bottom: 1px solid rgba(255, 217, 102, 0.3);
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 180, 71, 0.2);
     }
-    .modal-title-premium {
-      font-family: 'Orbitron', monospace;
+    .compact-header h3 { font-size: 1rem; color: #FFB347; }
+    .compact-close {
+      background: rgba(255, 180, 71, 0.1);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 20px;
       font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
-    .modal-close-premium {
-      background: rgba(255, 217, 102, 0.1);
-      border: 1px solid var(--gold);
-      width: 40px;
-      height: 40px;
-      border-radius: 30px;
-      font-size: 1.3rem;
       cursor: pointer;
-      color: var(--gold);
+      color: #FFB347;
     }
-    .modal-body-premium { padding: 28px; }
+    .compact-body { padding: 20px; }
 
-    .qr-area {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 28px;
-      padding: 20px;
-      margin: 20px 0;
+    .compact-info {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 12px;
       text-align: center;
+      margin-bottom: 15px;
     }
-    .qr-box {
+    .compact-info p { font-size: 0.75rem; margin: 5px 0; }
+
+    .qr-compact {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 12px;
+      text-align: center;
+      margin: 15px 0;
+    }
+    .qr-box-compact {
       background: white;
-      padding: 16px;
-      border-radius: 24px;
+      padding: 10px;
+      border-radius: 18px;
       display: inline-block;
     }
 
-    .apps-premium {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 22px 0;
+    /* COMPACT APPS */
+    .apps-compact {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 15px 0;
     }
-    .app-premium {
+    .app-compact {
       background: #0C0C1C;
-      border: 1px solid rgba(255, 217, 102, 0.2);
-      border-radius: 24px;
-      padding: 14px;
+      border: 1px solid rgba(255, 180, 71, 0.2);
+      border-radius: 16px;
+      padding: 8px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
+      min-width: 70px;
     }
-    .app-premium:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-      background: #141430;
+    .app-compact:hover {
+      border-color: #FFB347;
+      transform: translateY(-2px);
     }
-    .app-icon-premium {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
+    .app-icon-compact {
+      width: 35px;
+      height: 35px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      font-weight: 800;
+      font-size: 1rem;
+      font-weight: 700;
     }
 
-    .input-premium-field {
+    .input-compact {
       width: 100%;
-      background: #0A0A16;
-      border: 1px solid rgba(255, 217, 102, 0.3);
-      border-radius: 50px;
-      padding: 14px 20px;
+      background: #0A0A14;
+      border: 1px solid rgba(255, 180, 71, 0.3);
+      border-radius: 40px;
+      padding: 10px 16px;
       color: white;
-      margin: 12px 0;
+      font-size: 0.8rem;
+      margin: 8px 0;
     }
-    .input-premium-field:focus {
+    .input-compact:focus {
       outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 15px rgba(255, 217, 102, 0.3);
+      border-color: #FFB347;
     }
-
-    .confirm-premium-btn {
+    .confirm-compact {
       width: 100%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      background: linear-gradient(135deg, #FFB347, #E8952E);
       border: none;
-      border-radius: 60px;
-      padding: 16px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      color: #0a0a0a;
+      border-radius: 40px;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #04040A;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 12px;
+    }
+    .warning-compact {
+      font-size: 0.55rem;
+      color: #FF8888;
+      text-align: center;
+      margin-top: 10px;
+      padding: 8px;
+      background: rgba(255, 68, 68, 0.1);
+      border-radius: 16px;
     }
 
-    /* ========== VERIFICATION ========== */
-    .verify-premium-overlay {
+    /* VERIFICATION */
+    .verify-neo {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 2000;
       background: rgba(0, 0, 0, 0.99);
-      backdrop-filter: blur(60px);
+      backdrop-filter: blur(50px);
       align-items: center;
       justify-content: center;
     }
-    .verify-premium-overlay.active { display: flex; }
-    .verify-premium-card {
-      background: linear-gradient(145deg, #0E0E20, #060612);
-      border: 2px solid var(--gold);
-      border-radius: 60px;
-      padding: 45px 40px;
+    .verify-neo.active { display: flex; }
+    .verify-neo-card {
+      background: linear-gradient(145deg, #0A0A1A, #050510);
+      border: 1px solid #FFB347;
+      border-radius: 40px;
+      padding: 30px 25px;
       text-align: center;
-      max-width: 520px;
+      max-width: 400px;
       width: 90%;
     }
-    .spinner-premium {
-      width: 70px;
-      height: 70px;
-      border: 3px solid rgba(255, 217, 102, 0.2);
-      border-top: 3px solid var(--gold);
+    .neo-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 180, 71, 0.2);
+      border-top: 3px solid #FFB347;
       border-radius: 50%;
-      animation: spinPremium 1s linear infinite;
-      margin: 0 auto 20px;
+      animation: spinNeo 1s linear infinite;
+      margin: 0 auto 15px;
     }
-    @keyframes spinPremium { to { transform: rotate(360deg); } }
+    @keyframes spinNeo { to { transform: rotate(360deg); } }
 
-    .footer-premium {
-      text-align: center;
-      margin-top: 50px;
-      padding: 20px;
-      color: var(--text-dim);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-    }
+    .error-msg-neo { color: #FF6B6B; font-size: 0.6rem; margin-top: 4px; display: none; }
+    .error-msg-neo.show { display: block; }
     .hidden { display: none; }
-    .error-premium { color: var(--red); font-size: 0.65rem; margin-top: -5px; margin-bottom: 8px; display: none; }
-    .error-premium.show { display: block; }
+
+    .footer-neo {
+      text-align: center;
+      padding: 12px;
+      font-size: 0.55rem;
+      color: var(--text-dim);
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="premium-bg"></div>
-<div class="floating-shadows"><div class="shadow-orb shadow-1"></div><div class="shadow-orb shadow-2"></div><div class="shadow-orb shadow-3"></div></div>
+<div class="wave-bg"></div>
+<div class="wave"></div>
+<div class="floating-dots" id="dotContainer"></div>
 
-<div class="container">
-  <!-- STABLE TRUST HEADER -->
-  <div class="trust-header">
-    <div class="brand-section">
-      <h1>✦ CRYSTAL VAULT ✦</h1>
-      <p>ELITE PREMIUM • VERIFIED MARKET</p>
-    </div>
-    <div class="trust-seals">
-      <div class="seal-item">🔒 256-BIT SSL</div>
-      <div class="seal-item">✅ VERIFIED SELLER</div>
-      <div class="seal-item">⭐ 4.98/5 (12K+)</div>
-      <div class="seal-item">🛡️ ESCROW PROTECTED</div>
-    </div>
-    <div class="live-monitor">
-      <div class="live-pulse"></div>
-      <span class="live-count" id="liveCountPremium">247</span>
-      <span style="font-size:0.75rem;">ACTIVE NOW</span>
-    </div>
+<div class="main-container">
+  <!-- HEADER -->
+  <div class="neo-header">
+    <div class="logo-neo"><h1>✦ NEO VAULT ✦</h1><p>NEXT GEN ELITE ACCESS</p></div>
+    <div class="trust-strip"><div class="trust-chip-neo">🔒 SECURE</div><div class="trust-chip-neo">✅ VERIFIED</div><div class="trust-chip-neo">⭐ 5.0</div></div>
+    <div class="live-neo"><div class="pulse-neo"></div><span id="liveNeoCount" style="font-weight:700;">247</span><span style="font-size:0.7rem;">LIVE</span></div>
   </div>
 
   <!-- TABS -->
-  <div class="premium-tabs">
-    <div class="premium-tab active" id="tabCardsPremium"><div class="tab-icon">💳</div><div class="tab-title">PREMIUM CARDS</div><div class="tab-sub">BANK • CREDIT • DEBIT</div></div>
-    <div class="premium-tab" id="tabPlayPremium"><div class="tab-icon">🎮</div><div class="tab-title">PLAY STORE</div><div class="tab-sub">GIFT CARDS & CODES</div></div>
-  </div>
+  <div class="neo-tabs"><div class="neo-tab active" id="neoTabCards"><span>💳 CARDS</span><small>PREMIUM</small></div><div class="neo-tab" id="neoTabPlay"><span>🎮 PLAY STORE</span><small>CODES</small></div></div>
 
-  <!-- CONTROLS -->
-  <div id="cardsCtrlPremium"><div class="filter-section"><div class="filter-title">⚡ SORT BY VALUE</div><div class="filter-buttons"><button class="filter-btn active" id="sortLowPremium">📉 LOW PRICE</button><button class="filter-btn" id="sortHighPremium">📈 HIGH PRICE</button><button class="filter-btn" id="sortBalancePremium">💰 HIGH BALANCE</button></div><div class="filter-title">🔮 FILTER NETWORK</div><div class="filter-buttons"><button class="filter-btn active" data-filter="all">🌐 ALL</button><button class="filter-btn" data-filter="visa">💎 VISA</button><button class="filter-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="filter-btn" data-filter="amex">🔵 AMEX</button><button class="filter-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
-  <div id="playCtrlPremium" class="hidden"><div class="filter-section"><div class="filter-title">⚡ SORT BY VALUE</div><div class="filter-buttons"><button class="filter-btn active" id="playSortLowPremium">📉 LOW PRICE</button><button class="filter-btn" id="playSortHighPremium">📈 HIGH PRICE</button><button class="filter-btn" id="playSortValuePremium">💰 HIGH VALUE</button></div></div></div>
+  <!-- FILTER -->
+  <div id="neoCardsCtrl"><div class="filter-row"><div class="filter-chip active" id="neoSortLow">📉 LOW</div><div class="filter-chip" id="neoSortHigh">📈 HIGH</div><div class="filter-chip" id="neoSortBal">💰 BALANCE</div><div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px;"></div><div class="filter-chip active" data-filter="all">ALL</div><div class="filter-chip" data-filter="visa">VISA</div><div class="filter-chip" data-filter="mastercard">MC</div><div class="filter-chip" data-filter="amex">AMEX</div><div class="filter-chip" data-filter="rupay">RUPAY</div></div></div>
+  <div id="neoPlayCtrl" class="hidden"><div class="filter-row"><div class="filter-chip active" id="neoPlaySortLow">📉 LOW</div><div class="filter-chip" id="neoPlaySortHigh">📈 HIGH</div><div class="filter-chip" id="neoPlaySortVal">💰 VALUE</div></div></div>
 
-  <!-- CARDS GRID -->
-  <div class="cards-grid-premium" id="cardsGridPremium"></div>
-  <div class="footer-premium">✦ 256-BIT ENCRYPTION • INSTANT DELIVERY • 24/7 SUPPORT • TRUSTED SINCE 2024 ✦</div>
+  <!-- SCROLLABLE CARDS AREA -->
+  <div class="cards-scroll-area"><div class="neo-grid" id="neoCardsGrid"></div></div>
+  <div class="footer-neo">✦ QUANTUM ENCRYPTION • INSTANT DELIVERY ✦</div>
 </div>
 
-<!-- MODAL -->
-<div class="premium-modal" id="paymentModalPremium"><div class="modal-container-premium"><div class="modal-header-premium"><span class="modal-title-premium" id="modalTitlePremium">PURCHASE DETAILS</span><button class="modal-close-premium" id="closeModalPremium">✕</button></div><div class="modal-body-premium"><div id="itemInfoPremium"></div><div class="qr-area"><div class="qr-box" id="qrContainerPremium"></div><div style="margin-top: 12px; font-family: monospace; color: #FFD966;">UPI: kartikrawat6266@okhdfcbank</div></div><div class="apps-premium"><div class="app-premium" id="payPhonepePremium"><div class="app-icon-premium" style="background:#5C2D91;">₹</div><span>PhonePe</span></div><div class="app-premium" id="payGpayPremium"><div class="app-icon-premium" style="background:white; color:#1A73E8;">G</div><span>Google Pay</span></div><div class="app-premium" id="payPaytmPremium"><div class="app-icon-premium" style="background:#00BAF2;">P</div><span>Paytm</span></div><div class="app-premium" id="payFampayPremium"><div class="app-icon-premium" style="background:#FF6B35;">F</div><span>FamPay</span></div></div><input class="input-premium-field" id="emailPremium" placeholder="📧 Enter your email address"><div class="error-premium" id="emailErrorPremium">❌ Valid email required</div><input class="input-premium-field" id="utrPremium" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-premium" id="utrErrorPremium">❌ UTR must be exactly 12 digits</div><button class="confirm-premium-btn" id="confirmPremiumBtn">✦ CONFIRM & PURCHASE ✦</button><div style="margin-top:15px; padding:10px; background:rgba(255,68,68,0.1); border-radius:20px; text-align:center; font-size:0.65rem; color:#FF8888;">⚠️ REAL PAYMENT REQUIRED • FAKE UTR = NO DELIVERY • YOUR IP IS LOGGED</div></div></div></div>
+<!-- COMPACT MODAL - NO SCROLL -->
+<div class="compact-modal" id="neoModal"><div class="compact-modal-content"><div class="compact-header"><h3 id="neoModalTitle">PURCHASE</h3><button class="compact-close" id="neoCloseModal">✕</button></div><div class="compact-body"><div id="neoModalInfo"></div><div class="qr-compact"><div class="qr-box-compact" id="neoQR"></div><div style="font-size:0.6rem; margin-top:6px; color:#FFB347;">UPI: kartikrawat6266@okhdfcbank</div></div><div class="apps-compact"><div class="app-compact" id="neoPhonepe"><div class="app-icon-compact" style="background:#5C2D91;">₹</div><span style="font-size:0.6rem;">PhonePe</span></div><div class="app-compact" id="neoGpay"><div class="app-icon-compact" style="background:white; color:#1A73E8;">G</div><span style="font-size:0.6rem;">G Pay</span></div><div class="app-compact" id="neoPaytm"><div class="app-icon-compact" style="background:#00BAF2;">P</div><span style="font-size:0.6rem;">Paytm</span></div><div class="app-compact" id="neoFampay"><div class="app-icon-compact" style="background:#FF6B35;">F</div><span style="font-size:0.6rem;">FamPay</span></div></div><input class="input-compact" id="neoEmail" placeholder="📧 Email"><div class="error-msg-neo" id="neoEmailError">❌ Valid email required</div><input class="input-compact" id="neoUtr" placeholder="🔢 UTR (12 digits)" maxlength="12"><div class="error-msg-neo" id="neoUtrError">❌ UTR must be 12 digits</div><button class="confirm-compact" id="neoConfirm">✦ CONFIRM ✦</button><div class="warning-compact">⚠️ REAL PAYMENT = DELIVERY • FAKE UTR = NO CARD</div></div></div></div>
 
 <!-- VERIFICATION -->
-<div class="verify-premium-overlay" id="verifyPremiumPopup"><div class="verify-premium-card"><div id="verifyLoadPremium"><div class="spinner-premium"></div><div style="font-size:1.2rem; font-weight:700;">AUTHENTICATING TRANSACTION</div><div style="margin-top:10px; color:#aaa;">Verifying on secure gateway...</div></div><div id="verifyResultPremium" style="display:none;"></div></div></div>
+<div class="verify-neo" id="neoVerify"><div class="verify-neo-card"><div id="neoVerifyLoad"><div class="neo-spinner"></div><div style="font-weight:700;">VERIFYING</div><div style="font-size:0.7rem; margin-top:5px;">Processing...</div></div><div id="neoVerifyResult" style="display:none;"></div></div></div>
 
 <script>
 (function(){
@@ -578,7 +529,10 @@
   const types = ['visa','mastercard','amex','rupay'];
   function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // 100 CARDS (₹100 - ₹1000)
+  // PARTICLES
+  for(let i=0;i<80;i++){ let d=document.createElement('div'); d.className='dot'; d.style.left=Math.random()*100+'%'; d.style.width=d.style.height=(Math.random()*3+1)+'px'; d.style.animationDelay=Math.random()*10+'s'; d.style.animationDuration=(Math.random()*8+5)+'s'; document.getElementById('dotContainer').appendChild(d); }
+  
+  // CARDS
   const cards = [];
   for(let i=1;i<=100;i++){
     let t = types[rand(0,3)];
@@ -587,24 +541,17 @@
     cards.push({ id:i, type:t, display: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${rand(1,12)}/${rand(26,30)}`, cvv: rand(100,999), price:price, balance:price*10 });
   }
   
-  // 60 PLAY CODES
+  // PLAY CODES
   const plays = [];
   for(let i=1;i<=60;i++){
-    let code = 'CRYSTAL'+rand(10000,99999)+'-'+rand(10000,99999)+'-'+rand(10000,99999);
+    let code = 'NEO'+rand(10000,99999)+'-'+rand(10000,99999);
     let price = rand(100,1000);
-    plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' });
+    plays.push({ id:500+i, code:code, display: code.slice(0,6)+'•••••••', value:price*10, price:price, type:'play' });
   }
   
-  // LIVE COUNTER
-  setInterval(()=>{ let c=rand(140,380); document.getElementById('liveCountPremium').innerText=c; },5000);
+  setInterval(()=>{ let c=rand(140,380); document.getElementById('liveNeoCount').innerText=c; },5000);
   
-  let currentItem = null;
-  let activeTab = 'cards';
-  let currentFilter = 'all';
-  let currentSort = 'price-low';
-  let playSort = 'price-low';
-  let currentQR = null;
-  
+  let currentItem = null, activeTab='cards', currentFilter='all', currentSort='price-low', playSort='price-low';
   function maskCvv(c){ return c.toString()[0]+'**'; }
   
   function getData(){
@@ -625,132 +572,77 @@
   
   function render(){
     let data = getData();
-    let grid = document.getElementById('cardsGridPremium');
+    let grid = document.getElementById('neoCardsGrid');
     grid.innerHTML = data.map(item => {
       if(item.type!=='play'){
-        return `<div class="premium-card-item"><div class="card-accent"></div><div class="card-content-premium"><div class="card-row"><span class="card-badge-premium">${networks[item.type]}</span><span class="card-price-premium">₹${item.price}</span></div><div class="card-number-premium">${item.display}</div><div class="card-details-premium"><div class="card-detail-item"><div class="detail-label-sm">EXPIRY</div><div class="detail-value-md">${item.expiry}</div></div><div class="card-detail-item"><div class="detail-label-sm">CVV</div><div class="detail-value-md">${maskCvv(item.cvv)}</div></div><div class="card-detail-item"><div class="detail-label-sm">BALANCE</div><div class="detail-value-md" style="color:#FFD966;">₹${item.balance}</div></div></div></div><div class="purchase-footer" data-id="${item.id}"><span class="purchase-text-premium">💳 PURCHASE CARD</span><span class="purchase-arrow-premium">→</span></div></div>`;
+        return `<div class="neo-card"><div class="card-glow-neo"></div><div class="card-body-neo"><div class="card-head-neo"><span class="network-neo">${networks[item.type]}</span><span class="price-neo">₹${item.price}</span></div><div class="number-neo">${item.display}</div><div class="details-neo"><div class="detail-neo"><div class="detail-label-neo">EXP</div><div class="detail-value-neo">${item.expiry}</div></div><div class="detail-neo"><div class="detail-label-neo">CVV</div><div class="detail-value-neo">${maskCvv(item.cvv)}</div></div><div class="detail-neo"><div class="detail-label-neo">BAL</div><div class="detail-value-neo" style="color:#FFB347;">₹${item.balance}</div></div></div></div><div class="buy-neo" data-id="${item.id}"><span>💳 PURCHASE</span><i>→</i></div></div>`;
       } else {
-        return `<div class="premium-card-item"><div class="card-accent play-accent"></div><div class="card-content-premium"><div class="card-row"><span class="card-badge-premium" style="background:rgba(0,229,255,0.12); border-color:#00E5FF; color:#00E5FF;">🎮 PLAY STORE</span><span class="card-price-premium">₹${item.price}</span></div><div class="card-number-premium" style="font-size:0.85rem;">${item.display}</div><div class="card-details-premium"><div class="card-detail-item"><div class="detail-label-sm">VALUE</div><div class="detail-value-md">₹${item.value}</div></div><div class="card-detail-item"><div class="detail-label-sm">TYPE</div><div class="detail-value-md">GIFT CODE</div></div><div class="card-detail-item"><div class="detail-label-sm">REDEEM</div><div class="detail-value-md">GOOGLE PLAY</div></div></div></div><div class="purchase-footer" data-id="${item.id}"><span class="purchase-text-premium">🎮 REDEEM CODE</span><span class="purchase-arrow-premium">→</span></div></div>`;
+        return `<div class="neo-card"><div class="card-glow-neo" style="background:linear-gradient(90deg,#00FFC2,#B891FF);"></div><div class="card-body-neo"><div class="card-head-neo"><span class="network-neo" style="background:rgba(0,255,194,0.12); color:#00FFC2;">🎮 PLAY</span><span class="price-neo">₹${item.price}</span></div><div class="number-neo" style="font-size:0.75rem;">${item.display}</div><div class="details-neo"><div class="detail-neo"><div class="detail-label-neo">VALUE</div><div class="detail-value-neo">₹${item.value}</div></div><div class="detail-neo"><div class="detail-label-neo">TYPE</div><div class="detail-value-neo">CODE</div></div><div class="detail-neo"><div class="detail-label-neo">REDEEM</div><div class="detail-value-neo">PLAY</div></div></div></div><div class="buy-neo" data-id="${item.id}"><span>🎮 REDEEM</span><i>→</i></div></div>`;
       }
     }).join('');
-    
-    document.querySelectorAll('.purchase-footer').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        let id = parseInt(btn.dataset.id);
-        let all = activeTab==='cards' ? cards : plays;
-        currentItem = all.find(i=>i.id===id);
-        openModal();
-      });
-    });
+    document.querySelectorAll('.buy-neo').forEach(btn=>{ btn.addEventListener('click',()=>{ let id=parseInt(btn.dataset.id); let all=activeTab==='cards'?cards:plays; currentItem=all.find(i=>i.id===id); openModal(); }); });
   }
   
   function openModal(){
-    document.getElementById('modalTitlePremium').innerText = currentItem.type==='play' ? '🎮 PLAY STORE CODE' : '💳 PREMIUM CARD';
-    let info = document.getElementById('itemInfoPremium');
+    document.getElementById('neoModalTitle').innerText = currentItem.type==='play'?'🎮 PLAY CODE':'💳 CARD';
+    let info = document.getElementById('neoModalInfo');
     if(currentItem.type==='play'){
-      info.innerHTML = `<div style="background:#0C0C1C; border-radius:26px; padding:18px; text-align:center;"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:16px; margin:12px;">${currentItem.display}</div><div style="font-size:1.8rem; font-weight:800; color:#FFD966;">₹${currentItem.price}</div></div>`;
+      info.innerHTML = `<div class="compact-info"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:8px; border-radius:12px; margin:8px;">${currentItem.display}</div><div style="font-size:1.3rem; font-weight:800; color:#FFB347;">₹${currentItem.price}</div></div>`;
     } else {
-      info.innerHTML = `<div style="background:#0C0C1C; border-radius:26px; padding:18px; text-align:center;"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:10px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.8rem; font-weight:800; color:#FFD966; margin-top:10px;">₹${currentItem.price}</div></div>`;
+      info.innerHTML = `<div class="compact-info"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:5px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.3rem; font-weight:800; color:#FFB347;">₹${currentItem.price}</div></div>`;
     }
-    
-    let qrContainer = document.getElementById('qrContainerPremium');
-    qrContainer.innerHTML = '';
-    let upiStr = `upi://pay?pa=${UPI}&pn=CRYSTAL&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
-    currentQR = new QRCode(qrContainer, { text: upiStr, width: 160, height: 160 });
-    
-    document.getElementById('emailPremium').value = '';
-    document.getElementById('utrPremium').value = '';
-    document.getElementById('paymentModalPremium').classList.add('open');
+    document.getElementById('neoQR').innerHTML = '';
+    let upiStr = `upi://pay?pa=${UPI}&pn=NEO&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
+    new QRCode(document.getElementById('neoQR'), { text: upiStr, width: 120, height: 120 });
+    document.getElementById('neoEmail').value = ''; document.getElementById('neoUtr').value = '';
+    document.getElementById('neoModal').classList.add('open');
   }
   
-  function closeModal(){ 
-    document.getElementById('paymentModalPremium').classList.remove('open');
-    let qrContainer = document.getElementById('qrContainerPremium');
-    qrContainer.innerHTML = '';
-    currentQR = null;
-  }
+  function closeModal(){ document.getElementById('neoModal').classList.remove('open'); }
   
   function showVerify(email, success, type){
-    let popup = document.getElementById('verifyPremiumPopup'), load = document.getElementById('verifyLoadPremium'), result = document.getElementById('verifyResultPremium');
+    let popup = document.getElementById('neoVerify'), load = document.getElementById('neoVerifyLoad'), result = document.getElementById('neoVerifyResult');
     load.style.display = 'block'; result.style.display = 'none'; popup.classList.add('active');
     setTimeout(() => {
       load.style.display = 'none'; result.style.display = 'block';
       if(success){
         let isPlay = type === 'play';
-        result.innerHTML = `
-          <div style="font-size:4rem;">✅</div>
-          <div style="font-size:1.5rem; font-weight:800; color:#00FF88; margin:15px 0;">PAYMENT VERIFIED SUCCESSFULLY!</div>
-          <div style="font-size:1rem;">${isPlay ? '🎮 Your Play Store Redeem Code has been sent to' : '💳 Your Premium Card Details have been sent to'} <strong style="color:#FFD966;">${email}</strong></div>
-          <div style="margin-top:20px; padding:15px; background:rgba(255,68,68,0.12); border-radius:25px; border-left:3px solid #FF4444; text-align:left;">
-            <strong style="color:#FF8888;">⚠️ IMPORTANT SECURITY NOTICE ⚠️</strong><br><br>
-            • REAL PAYMENT REQUIRED - Fake UTR = NO DELIVERY<br>
-            • Your IP address and device fingerprint have been logged<br>
-            • Multiple fake attempts = PERMANENT BLACKLIST<br>
-            • Only verified payments receive the product instantly<br>
-            • If you did NOT make the payment, you will NOT receive anything
-          </div>
-          <button onclick="document.getElementById('verifyPremiumPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:linear-gradient(135deg,#FFD966,#D4A843); border:none; border-radius:60px; font-weight:800; cursor:pointer;">✦ CLOSE ✦</button>
-        `;
+        result.innerHTML = `<div style="font-size:3rem;">✅</div><div style="font-size:1.2rem; font-weight:800; color:#00FFC2;">PAYMENT VERIFIED!</div><div style="margin:10px 0;">${isPlay ? '🎮 Code sent to' : '💳 Card sent to'} <strong style="color:#FFB347;">${email}</strong></div><div style="font-size:0.7rem; padding:10px; background:rgba(255,68,68,0.1); border-radius:16px;"><strong>⚠️ WARNING:</strong> Fake UTR = NO delivery. Real payment only.</div><button onclick="document.getElementById('neoVerify').classList.remove('active')" style="margin-top:15px; padding:8px 25px; background:#FFB347; border:none; border-radius:40px; font-weight:700; cursor:pointer;">CLOSE</button>`;
       } else {
-        result.innerHTML = `
-          <div style="font-size:4rem;">❌</div>
-          <div style="font-size:1.5rem; font-weight:800; color:#FF4444; margin:15px 0;">INVALID TRANSACTION ID</div>
-          <div style="font-size:1rem;">UTR must be exactly 12 digits. Please check your payment app.</div>
-          <div style="margin-top:20px; padding:15px; background:rgba(255,68,68,0.12); border-radius:25px; border-left:3px solid #FF4444; text-align:left;">
-            <strong style="color:#FF8888;">⚠️ SECURITY ALERT ⚠️</strong><br><br>
-            • Fake UTR detected • Your IP has been logged<br>
-            • NO card/code will be sent without real payment<br>
-            • Continued fake attempts = PERMANENT BAN
-          </div>
-          <button onclick="document.getElementById('verifyPremiumPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:#FF4444; border:none; border-radius:60px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>
-        `;
+        result.innerHTML = `<div style="font-size:3rem;">❌</div><div style="font-size:1.2rem; font-weight:800; color:#FF6B6B;">INVALID UTR</div><div>UTR must be 12 digits. Check your payment app.</div><div style="font-size:0.7rem; margin-top:10px;">Fake UTR = No card/code</div><button onclick="document.getElementById('neoVerify').classList.remove('active')" style="margin-top:15px; padding:8px 25px; background:#FF6B6B; border:none; border-radius:40px; font-weight:700; cursor:pointer;">TRY AGAIN</button>`;
       }
-    }, 3200);
+    }, 2500);
   }
   
-  // EVENT LISTENERS
-  document.getElementById('confirmPremiumBtn').onclick = () => {
-    let email = document.getElementById('emailPremium').value.trim();
-    let utr = document.getElementById('utrPremium').value.trim();
+  document.getElementById('neoConfirm').onclick = () => {
+    let email = document.getElementById('neoEmail').value.trim();
+    let utr = document.getElementById('neoUtr').value.trim();
     let ok = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailErrorPremium').classList.add('show'); ok=false; } else document.getElementById('emailErrorPremium').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrErrorPremium').classList.add('show'); ok=false; } else document.getElementById('utrErrorPremium').classList.remove('show');
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('neoEmailError').classList.add('show'); ok=false; } else document.getElementById('neoEmailError').classList.remove('show');
+    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('neoUtrError').classList.add('show'); ok=false; } else document.getElementById('neoUtrError').classList.remove('show');
     if(!ok) return;
-    let t = currentItem ? (currentItem.type==='play'?'play':'card') : 'card';
-    console.log("📧 EMAIL SENT TO: " + email);
-    console.log("⚠️ CRYSTAL VAULT: Fake payment = No delivery. IP Logged.");
-    closeModal();
-    showVerify(email, true, t);
+    console.log("📧 NEO VAULT - DELIVERY TO: "+email);
+    closeModal(); showVerify(email, true, currentItem?.type==='play'?'play':'card');
   };
   
-  document.getElementById('closeModalPremium').onclick = closeModal;
+  document.getElementById('neoCloseModal').onclick = closeModal;
   
-  document.getElementById('payPhonepePremium').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payGpayPremium').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payPaytmPremium').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payFampayPremium').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
+  document.getElementById('neoPhonepe').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('neoGpay').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('neoPaytm').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('neoFampay').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,600); };
   
-  // TABS
-  document.getElementById('tabCardsPremium').onclick = () => { activeTab='cards'; document.getElementById('tabCardsPremium').classList.add('active'); document.getElementById('tabPlayPremium').classList.remove('active'); document.getElementById('cardsCtrlPremium').classList.remove('hidden'); document.getElementById('playCtrlPremium').classList.add('hidden'); render(); };
-  document.getElementById('tabPlayPremium').onclick = () => { activeTab='play'; document.getElementById('tabPlayPremium').classList.add('active'); document.getElementById('tabCardsPremium').classList.remove('active'); document.getElementById('cardsCtrlPremium').classList.add('hidden'); document.getElementById('playCtrlPremium').classList.remove('hidden'); render(); };
+  document.getElementById('neoTabCards').onclick = () => { activeTab='cards'; document.getElementById('neoTabCards').classList.add('active'); document.getElementById('neoTabPlay').classList.remove('active'); document.getElementById('neoCardsCtrl').classList.remove('hidden'); document.getElementById('neoPlayCtrl').classList.add('hidden'); render(); };
+  document.getElementById('neoTabPlay').onclick = () => { activeTab='play'; document.getElementById('neoTabPlay').classList.add('active'); document.getElementById('neoTabCards').classList.remove('active'); document.getElementById('neoCardsCtrl').classList.add('hidden'); document.getElementById('neoPlayCtrl').classList.remove('hidden'); render(); };
   
-  // SORT
-  document.getElementById('sortLowPremium').onclick = function(){ document.querySelectorAll('#cardsCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
-  document.getElementById('sortHighPremium').onclick = function(){ document.querySelectorAll('#cardsCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
-  document.getElementById('sortBalancePremium').onclick = function(){ document.querySelectorAll('#cardsCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
-  document.getElementById('playSortLowPremium').onclick = function(){ document.querySelectorAll('#playCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
-  document.getElementById('playSortHighPremium').onclick = function(){ document.querySelectorAll('#playCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
-  document.getElementById('playSortValuePremium').onclick = function(){ document.querySelectorAll('#playCtrlPremium .filter-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
+  document.getElementById('neoSortLow').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
+  document.getElementById('neoSortHigh').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
+  document.getElementById('neoSortBal').onclick = function(){ document.querySelectorAll('#neoCardsCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
+  document.getElementById('neoPlaySortLow').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
+  document.getElementById('neoPlaySortHigh').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
+  document.getElementById('neoPlaySortVal').onclick = function(){ document.querySelectorAll('#neoPlayCtrl .filter-chip').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
   
-  // FILTER
-  document.querySelectorAll('[data-filter]').forEach(btn => {
-    btn.onclick = function(){
-      document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
-      this.classList.add('active');
-      currentFilter = this.dataset.filter;
-      if(activeTab==='cards') render();
-    };
-  });
+  document.querySelectorAll('[data-filter]').forEach(btn => { btn.onclick = function(){ document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; if(activeTab==='cards') render(); }; });
   
   render();
 })();
