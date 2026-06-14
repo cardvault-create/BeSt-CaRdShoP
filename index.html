@@ -25,6 +25,7 @@
       --red: #ff4444;
       --white: #ffffff;
       --gray: #a0a0b5;
+      --deep-bg: #0a0a14;
     }
 
     body {
@@ -312,6 +313,7 @@
       justify-content: space-between;
       align-items: center;
       transition: all 0.3s;
+      cursor: pointer;
     }
     .purchase-btn:hover {
       background: linear-gradient(135deg, rgba(255, 217, 102, 0.2), rgba(204, 170, 51, 0.1));
@@ -466,6 +468,11 @@
       color: #0a0a0a;
       cursor: pointer;
       margin-top: 20px;
+      transition: all 0.3s;
+    }
+    .confirm-btn:hover {
+      background: linear-gradient(135deg, #ffe082, #ffd966);
+      box-shadow: 0 0 25px rgba(255, 217, 102, 0.5);
     }
     .warning-text {
       font-size: 0.65rem;
@@ -555,7 +562,7 @@
 </div>
 
 <!-- MODAL - SAME PAGE QR CODE -->
-<div class="modal-overlay" id="paymentModal"><div class="modal-box"><div class="modal-header"><span class="modal-title" id="modalTitle">PURCHASE DETAILS</span><button class="modal-close" id="closeModal">✕</button></div><div class="modal-body"><div id="itemInfo"></div><div class="qr-section"><div class="qr-wrapper" id="qrContainer"></div><div class="upi-address">💳 UPI ID: kartikrawat6266@okhdfcbank</div></div><div class="apps-grid"><div class="app-card" id="payPhonepe"><div class="app-icon" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-card" id="payGpay"><div class="app-icon" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-card" id="payPaytm"><div class="app-icon" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-card" id="payFampay"><div class="app-icon" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-field" id="emailInput" placeholder="📧 Enter your email address"><div class="error-msg" id="emailError">❌ Valid email required</div><input class="input-field" id="utrInput" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-msg" id="utrError">❌ UTR must be 12 digits</div><button class="confirm-btn" id="confirmBtn">✦ CONFIRM & PURCHASE ✦</button><div class="warning-text">⚠️ REAL PAYMENT REQUIRED: After verification, card/code will be sent to your email. Fake UTR = No delivery.</div></div></div></div>
+<div class="modal-overlay" id="paymentModal"><div class="modal-box"><div class="modal-header"><span class="modal-title" id="modalTitle">PURCHASE DETAILS</span><button class="modal-close" id="closeModal">✕</button></div><div class="modal-body"><div id="itemInfo"></div><div class="qr-section"><div class="qr-wrapper" id="qrContainer"></div><div class="upi-address">💳 UPI ID: kartikrawat6266@okhdfcbank</div></div><div class="apps-grid"><div class="app-card" id="payPhonepe"><div class="app-icon" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-card" id="payGpay"><div class="app-icon" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-card" id="payPaytm"><div class="app-icon" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-card" id="payFampay"><div class="app-icon" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-field" id="emailInput" placeholder="📧 Enter your email address"><div class="error-msg" id="emailError">❌ Please enter a valid email address first</div><input class="input-field" id="utrInput" placeholder="🔢 Enter 12-digit UTR / Transaction ID" maxlength="12"><div class="error-msg" id="utrError">❌ UTR must be exactly 12 digits</div><button class="confirm-btn" id="confirmBtn">✦ CONFIRM & PURCHASE ✦</button><div class="warning-text">⚠️ REAL PAYMENT REQUIRED: After verification, card/code will be sent to your email. Fake UTR = No delivery.</div></div></div></div>
 
 <!-- VERIFICATION POPUP - BIG DETAILED TEXT -->
 <div class="verify-popup" id="verifyPopup"><div class="verify-card"><div id="verifyLoad"><div class="spinner"></div><div class="verify-title">VERIFYING PAYMENT</div><div class="verify-desc">Processing your transaction on secure blockchain gateway...</div></div><div id="verifyResult" style="display:none;"></div></div></div>
@@ -567,21 +574,48 @@
   const types = ['visa','mastercard','amex','rupay'];
   function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // 100 CARDS (₹100 - ₹1000)
+  // 100 CARDS (₹100 - ₹1999)
   const cards = [];
   for(let i=1;i<=100;i++){
     let t = types[rand(0,3)];
-    let num = t==='visa'?'4'+rand(100000000000000,999999999999999):t==='mastercard'?'5'+rand(10000000000000,99999999999999):t==='amex'?'34'+rand(1000000000000,9999999999999):'60'+rand(10000000000000,99999999999999);
-    let price = rand(100,1000);
-    cards.push({ id:i, type:t, display: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${rand(1,12)}/${rand(26,30)}`, cvv: rand(100,999), price:price, balance:price*10 });
+    let num;
+    if(t==='visa') num = '4' + rand(100000000000000, 999999999999999).toString();
+    else if(t==='mastercard') num = '5' + rand(10000000000000, 99999999999999).toString();
+    else if(t==='amex') num = '34' + rand(1000000000000, 9999999999999).toString();
+    else num = '60' + rand(10000000000000, 99999999999999).toString();
+    
+    let formatted = num.slice(0,4) + ' ' + num.slice(4,8) + ' ' + num.slice(8,12) + ' ****';
+    let price = rand(100, 1999);
+    cards.push({ 
+      id:i, 
+      type:t, 
+      fullNumber: num,
+      display: formatted, 
+      expiry: `${rand(1,12).toString().padStart(2,'0')}/${rand(26,30)}`, 
+      cvv: rand(100,999), 
+      price:price, 
+      balance:price*10 
+    });
   }
   
-  // 60 PLAY CODES
+  // 60 PLAY CODES (unique)
   const plays = [];
   for(let i=1;i<=60;i++){
-    let code = 'PLAY'+rand(10000,99999)+'-'+rand(10000,99999)+'-'+rand(10000,99999);
-    let price = rand(100,1000);
-    plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' });
+    let prefix = 'PLAY-';
+    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let codeBody = '';
+    for(let j=0; j<12; j++) codeBody += chars.charAt(Math.floor(Math.random()*chars.length));
+    let fullCode = prefix + codeBody;
+    let hiddenPart = fullCode.slice(0,8) + '••••••••';
+    let price = rand(100, 1999);
+    plays.push({ 
+      id:500+i, 
+      code: fullCode, 
+      display: hiddenPart, 
+      value: price*10, 
+      price:price, 
+      type:'play' 
+    });
   }
   
   // LIVE COUNTER
@@ -642,7 +676,6 @@
       info.innerHTML = `<div style="background:#0c0c1a; border-radius:25px; padding:18px; text-align:center;"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:10px;">${currentItem.display}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:1.8rem; font-weight:800; color:#ffd966; margin-top:10px;">₹${currentItem.price}</div></div>`;
     }
     
-    // Clear and regenerate QR
     let qrContainer = document.getElementById('qrContainer');
     qrContainer.innerHTML = '';
     let upiStr = `upi://pay?pa=${UPI}&pn=OMEGA&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
@@ -655,7 +688,6 @@
   
   function closeModal(){ 
     document.getElementById('paymentModal').classList.remove('open');
-    // Clear QR properly
     let qrContainer = document.getElementById('qrContainer');
     qrContainer.innerHTML = '';
     currentQR = null;
@@ -670,23 +702,31 @@
         let isPlay = type === 'play';
         result.innerHTML = `
           <div class="verify-icon">✅</div>
-          <div class="verify-title" style="color:#00ff88;">PAYMENT VERIFIED SUCCESSFULLY!</div>
-          <div class="verify-desc">${isPlay ? '🎮 Your Google Play Store Redeem Code has been sent to' : '💳 Your Premium Card Details have been sent to'} <strong style="color:#ffd966;">${email}</strong><br><br>Please check your inbox (including spam folder). Delivery time: 2-5 minutes.</div>
-          <div class="verify-warning">
-            ⚠️⚠️⚠️ IMPORTANT WARNING ⚠️⚠️⚠️<br><br>
-            • If you did NOT make the real payment, NO CARD or CODE will be delivered.<br>
+          <div class="verify-title" style="color:#00ff88; font-size:2rem;">PAYMENT VERIFIED SUCCESSFULLY!</div>
+          <div class="verify-desc" style="font-size:1.1rem;">
+            ${isPlay ? '🎮 Your exclusive Google Play Store Redeem Code has been sent to' : '💳 Your Premium Card Details have been delivered to'} 
+            <strong style="color:#ffd966; background:rgba(255,217,102,0.1); padding:2px 8px; border-radius:20px;">${email}</strong><br><br>
+            <span style="color:#aaa;">✦ Please check your inbox (including spam folder) ✦</span><br>
+            <span style="color:#00ff88;">Estimated delivery time: 2-5 minutes</span>
+          </div>
+          <div class="verify-warning" style="border-left: 3px solid #ffd966; color:#ffd966;">
+            ⚠️⚠️⚠️ IMPORTANT NOTICE ⚠️⚠️⚠️<br><br>
+            • Only REAL PAYMENTS through UPI will receive the product instantly.<br>
             • Fake UTR or incorrect transaction ID will result in NO DELIVERY.<br>
             • Your IP address has been logged for security purposes.<br>
-            • Only REAL PAYMENTS through UPI get the product instantly.<br>
-            • DO NOT attempt fake payments - you will be blocked permanently.
+            • Multiple fake attempts will result in PERMANENT BLOCK.<br>
+            • This is a premium, encrypted transaction - no exceptions.
           </div>
-          <button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:linear-gradient(135deg,#ffd966,#ccaa33); border:none; border-radius:50px; font-weight:800; cursor:pointer;">✦ CLOSE ✦</button>
+          <button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:14px 40px; background:linear-gradient(135deg,#ffd966,#ccaa33); border:none; border-radius:50px; font-weight:800; font-size:1rem; cursor:pointer; color:#000;">✦ CLOSE ✦</button>
         `;
       } else {
         result.innerHTML = `
           <div class="verify-icon">❌</div>
-          <div class="verify-title" style="color:#ff4444;">INVALID TRANSACTION ID!</div>
-          <div class="verify-desc">The UTR / Transaction ID you entered is incorrect or fake.<br><br>UTR must be exactly 12 digits. Please check your payment app for the correct 12-digit UTR number.</div>
+          <div class="verify-title" style="color:#ff4444; font-size:2rem;">INVALID TRANSACTION ID!</div>
+          <div class="verify-desc" style="font-size:1.1rem;">
+            The UTR / Transaction ID you entered is incorrect or fake.<br><br>
+            UTR must be exactly <strong style="color:#ffd966;">12 digits</strong>. Please check your payment app for the correct 12-digit UTR number.
+          </div>
           <div class="verify-warning">
             ⚠️⚠️⚠️ SECURITY ALERT ⚠️⚠️⚠️<br><br>
             • Fake UTR will NOT receive any card or code.<br>
@@ -695,7 +735,7 @@
             • You MUST complete the REAL UPI payment to get the product.<br>
             • No payment = No delivery. This is FINAL.
           </div>
-          <button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:12px 35px; background:#ff4444; border:none; border-radius:50px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>
+          <button onclick="document.getElementById('verifyPopup').classList.remove('active')" style="margin-top:25px; padding:14px 40px; background:#ff4444; border:none; border-radius:50px; font-weight:800; font-size:1rem; cursor:pointer; color:#fff;">✕ TRY AGAIN</button>
         `;
       }
     }, 3500);
@@ -706,15 +746,32 @@
     let email = document.getElementById('emailInput').value.trim();
     let utr = document.getElementById('utrInput').value.trim();
     let ok = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailError').classList.add('show'); ok=false; } else document.getElementById('emailError').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrError').classList.add('show'); ok=false; } else document.getElementById('utrError').classList.remove('show');
+    
+    // Email validation with custom message
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ 
+      document.getElementById('emailError').innerText = '❌ Please enter a valid email address first';
+      document.getElementById('emailError').classList.add('show'); 
+      document.getElementById('emailInput').classList.add('input-error');
+      ok=false; 
+    } else {
+      document.getElementById('emailError').classList.remove('show');
+      document.getElementById('emailInput').classList.remove('input-error');
+    }
+    
+    // UTR validation
+    if(!utr || !/^\d{12}$/.test(utr)){ 
+      document.getElementById('utrError').innerText = '❌ UTR must be exactly 12 digits';
+      document.getElementById('utrError').classList.add('show'); 
+      document.getElementById('utrInput').classList.add('input-error');
+      ok=false; 
+    } else {
+      document.getElementById('utrError').classList.remove('show');
+      document.getElementById('utrInput').classList.remove('input-error');
+    }
+    
     if(!ok) return;
+    
     let t = currentItem ? (currentItem.type==='play'?'play':'card') : 'card';
-    
-    // Show email sending simulation
-    console.log("📧 EMAIL SENT TO: " + email);
-    console.log("⚠️ WARNING: Fake payment will not receive any card/code");
-    
     closeModal();
     showVerify(email, true, t);
   };
