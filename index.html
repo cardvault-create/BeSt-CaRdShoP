@@ -40,7 +40,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Luxurious animated background */
     .bg-luxury {
       position: fixed;
       inset: 0;
@@ -354,10 +353,10 @@
       font-weight: 800;
     }
 
-    .cvv-hidden {
-      color: transparent;
-      text-shadow: 0 0 8px rgba(255,255,255,0.6);
-      letter-spacing: 0.3em;
+    /* CVV now fully visible, no hidden effect */
+    .cvv-visible {
+      color: #ffffff;
+      letter-spacing: 0.05em;
     }
 
     .buy-section {
@@ -393,7 +392,6 @@
       color: #f5e3b3;
     }
 
-    /* Modal Premium */
     .modal {
       display: none;
       position: fixed;
@@ -574,7 +572,7 @@
   </div>
 
   <div class="section-tabs">
-    <button class="tab-btn active" id="tabCards">💳 BANK CARDS</button>
+    <button class="tab-btn active" id="tabCards">💳 ALL CARDS</button>
     <button class="tab-btn" id="tabPlayStore">🎮 PLAY STORE CODES</button>
   </div>
 
@@ -643,6 +641,7 @@
     const brands = Object.keys(cardBrands);
     function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
+    // ---------- ORIGINAL PRICE POOL & CARDS ----------
     const cards = [];
     const pricePool = [250, 350, 450, 550, 650, 750, 850, 950];
     for (let i = 1; i <= 100; i++) {
@@ -660,6 +659,7 @@
     }
     cards.sort((a,b) => a.price - b.price);
 
+    // ---------- ORIGINAL PLAY CODES WITH SAME PRICE POOL ----------
     const playCodes = [];
     for (let i = 1; i <= 60; i++) {
       const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
@@ -714,6 +714,7 @@
       const grid = document.getElementById('dynamicGrid');
       grid.innerHTML = filtered.map(item => {
         if (item.type && item.type !== 'playstore') {
+          // ---------- CVV FULLY VISIBLE, NO HIDING ----------
           return `
             <div class="card-premium">
               <div class="card-top-glow"></div>
@@ -722,7 +723,7 @@
                 <div class="card-number-display">${item.displayNumber}</div>
                 <div class="details-grid">
                   <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div>
-                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-hidden">•••</div></div>
+                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-visible">${item.cvv}</div></div>
                   <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div>
                 </div>
               </div>
