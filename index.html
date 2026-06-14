@@ -23,6 +23,8 @@
       --text-muted: #9a9ab0;
       --border-gold: rgba(212, 168, 67, 0.45);
       --shadow-gold: 0 25px 50px -15px rgba(212, 168, 67, 0.3);
+      --success-green: #2ecc71;
+      --error-red: #e74c3c;
     }
 
     body {
@@ -518,6 +520,11 @@
       box-shadow: 0 0 20px rgba(212,168,67,0.3);
     }
 
+    .input-error {
+      border-color: var(--error-red) !important;
+      box-shadow: 0 0 20px rgba(231, 76, 60, 0.3) !important;
+    }
+
     .qr-container {
       background: white;
       padding: 16px;
@@ -567,12 +574,13 @@
       background: linear-gradient(160deg, #0e0f1c 0%, #06070f 100%);
       border: 2px solid var(--border-gold);
       border-radius: 48px;
-      padding: 3rem 2rem;
+      padding: 2.5rem 2rem;
       text-align: center;
       box-shadow: 0 0 100px rgba(212, 168, 67, 0.6);
       animation: modalGlow 0.4s ease;
-      max-width: 420px;
+      max-width: 440px;
       width: 90%;
+      transition: all 0.5s ease;
     }
 
     @keyframes modalGlow {
@@ -581,13 +589,13 @@
     }
 
     .spinner-gold {
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       border: 3px solid rgba(212, 168, 67, 0.2);
       border-top: 3px solid var(--gold-light);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin: 0 auto 1.8rem;
+      margin: 0 auto 1.5rem;
     }
 
     @keyframes spin {
@@ -595,36 +603,63 @@
       100% { transform: rotate(360deg); }
     }
 
+    .check-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(46, 204, 113, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      animation: popIn 0.5s ease;
+    }
+
+    .error-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(231, 76, 60, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      animation: popIn 0.5s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
     .verifying-text {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-      animation: fadeText 1.5s infinite;
-    }
-
-    @keyframes fadeText {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      margin-bottom: 0.4rem;
     }
 
     .verifying-sub {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #a0a0b8;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
+      line-height: 1.5;
     }
 
     .verification-dots {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
-      margin-top: 1.5rem;
+      margin-top: 1.2rem;
     }
 
     .verification-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--gold);
       animation: dotBounce 1.4s infinite ease-in-out;
@@ -639,6 +674,24 @@
       40% { transform: scale(1); opacity: 1; }
     }
 
+    .btn-close-verify {
+      background: linear-gradient(135deg, #b8943a, #e0c78a);
+      color: #0a0a10;
+      font-weight: 700;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: 0.3s;
+    }
+
+    .btn-close-verify:hover {
+      box-shadow: 0 0 25px rgba(212,168,67,0.6);
+    }
+
     .code-hidden-modal {
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: 0.15em;
@@ -646,6 +699,26 @@
       padding: 0.5rem 1rem;
       border-radius: 10px;
       display: inline-block;
+    }
+
+    .error-message-premium {
+      color: var(--error-red);
+      font-size: 0.7rem;
+      margin-top: 4px;
+      display: none;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .error-message-premium.show {
+      display: block;
+      animation: shakeError 0.5s ease;
+    }
+
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -656,15 +729,18 @@
 
 <!-- Premium Verification Popup -->
 <div class="verification-overlay" id="verificationPopup">
-  <div class="verification-card">
-    <div class="spinner-gold"></div>
-    <div class="verifying-text">Verifying Payment</div>
-    <div class="verifying-sub">Please wait a moment...</div>
-    <div class="verification-dots">
-      <div class="verification-dot"></div>
-      <div class="verification-dot"></div>
-      <div class="verification-dot"></div>
+  <div class="verification-card" id="verificationCard">
+    <div id="verifyLoadingContent">
+      <div class="spinner-gold"></div>
+      <div class="verifying-text">Verifying Payment</div>
+      <div class="verifying-sub">Please wait a moment while we check your transaction...</div>
+      <div class="verification-dots">
+        <div class="verification-dot"></div>
+        <div class="verification-dot"></div>
+        <div class="verification-dot"></div>
+      </div>
     </div>
+    <div id="verifyResultContent" style="display:none;"></div>
   </div>
 </div>
 
@@ -724,8 +800,9 @@
         <div class="app-btn" id="btnFamPay"><div class="app-icon-real icon-fampay">F</div>FamPay</div>
       </div>
       <input class="input-premium" id="emailInput" placeholder="📧 Enter your email address" type="email">
-      <div id="emailError" style="color:#e74c3c; font-size:0.7rem; display:none;">Please enter a valid email address</div>
-      <input class="input-premium" id="utrInput" placeholder="🔢 UTR / Transaction ID">
+      <div class="error-message-premium" id="emailError">❌ Please enter a valid email address</div>
+      <input class="input-premium" id="utrInput" placeholder="🔢 UTR / Transaction ID (12 digits)" type="text" maxlength="12">
+      <div class="error-message-premium" id="utrError">❌ Transaction ID must be exactly 12 digits</div>
       <button class="btn-gold-premium" id="confirmPaymentBtn">✦ CONFIRM & PURCHASE ✦</button>
     </div>
   </div>
@@ -913,7 +990,10 @@
       generateQRCode(item.price, item.id);
       document.getElementById('emailInput').value = '';
       document.getElementById('utrInput').value = '';
-      document.getElementById('emailError').style.display = 'none';
+      document.getElementById('emailError').classList.remove('show');
+      document.getElementById('utrError').classList.remove('show');
+      document.getElementById('emailInput').classList.remove('input-error');
+      document.getElementById('utrInput').classList.remove('input-error');
       document.getElementById('paymentModal').classList.add('open');
     }
 
@@ -926,11 +1006,43 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    function showVerificationPopup() {
-      document.getElementById('verificationPopup').classList.add('active');
+    function validateUTR(utr) {
+      return /^\d{12}$/.test(utr);
+    }
+
+    function showVerificationPopup(email, isSuccess) {
+      const popup = document.getElementById('verificationPopup');
+      const loadingContent = document.getElementById('verifyLoadingContent');
+      const resultContent = document.getElementById('verifyResultContent');
+      
+      loadingContent.style.display = 'block';
+      resultContent.style.display = 'none';
+      popup.classList.add('active');
+      
       setTimeout(() => {
-        document.getElementById('verificationPopup').classList.remove('active');
-      }, 3500);
+        loadingContent.style.display = 'none';
+        resultContent.style.display = 'block';
+        
+        if (isSuccess) {
+          resultContent.innerHTML = `
+            <div class="check-icon">✅</div>
+            <div class="verifying-text" style="color: #2ecc71;">Payment Verified Successfully!</div>
+            <div class="verifying-sub" style="color: #a0a0b8; margin-top: 0.8rem;">
+              Your payment has been confirmed. If the payment was made correctly, your card details will be sent to your email <strong style="color: #f0d78c;">${email}</strong> shortly. If the payment was not correct, no card will be sent.
+            </div>
+            <button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>
+          `;
+        } else {
+          resultContent.innerHTML = `
+            <div class="error-icon">❌</div>
+            <div class="verifying-text" style="color: #e74c3c;">Transaction ID Invalid</div>
+            <div class="verifying-sub" style="color: #a0a0b8; margin-top: 0.8rem;">
+              The Transaction ID you entered is incorrect. UTR must be <strong style="color: #e74c3c;">exactly 12 digits</strong>. Please check your payment app for the correct Transaction ID and try again.
+            </div>
+            <button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">✕ TRY AGAIN</button>
+          `;
+        }
+      }, 3000);
     }
 
     function openUPI(app) {
@@ -952,20 +1064,40 @@
     
     document.getElementById('confirmPaymentBtn').onclick = ()=>{
       const email = document.getElementById('emailInput').value.trim();
-      const emailError = document.getElementById('emailError');
-      if(!email || !validateEmail(email)) {
-        emailError.style.display = 'block';
-        emailError.textContent = '❌ Please enter a valid email address';
-        return;
-      }
-      emailError.style.display = 'none';
       const utr = document.getElementById('utrInput').value.trim();
-      if(!utr) {
-        alert('Please enter UTR/Transaction ID');
-        return;
+      const emailError = document.getElementById('emailError');
+      const utrError = document.getElementById('utrError');
+      const emailInput = document.getElementById('emailInput');
+      const utrInput = document.getElementById('utrInput');
+      
+      let hasError = false;
+      
+      // Reset errors
+      emailError.classList.remove('show');
+      utrError.classList.remove('show');
+      emailInput.classList.remove('input-error');
+      utrInput.classList.remove('input-error');
+      
+      // Validate email
+      if(!email || !validateEmail(email)) {
+        emailError.classList.add('show');
+        emailError.textContent = '❌ Please enter a valid email address';
+        emailInput.classList.add('input-error');
+        hasError = true;
       }
+      
+      // Validate UTR (12 digits)
+      if(!utr || !validateUTR(utr)) {
+        utrError.classList.add('show');
+        utrError.textContent = '❌ Transaction ID must be exactly 12 digits';
+        utrInput.classList.add('input-error');
+        hasError = true;
+      }
+      
+      if(hasError) return;
+      
       closeModal();
-      showVerificationPopup();
+      showVerificationPopup(email, true);
     };
 
     document.getElementById('closeModalBtn').onclick = closeModal;
