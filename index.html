@@ -38,7 +38,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ========== SIMPLE PREMIUM BACKGROUND ========== */
     .bg-luxury {
       position: fixed;
       inset: 0;
@@ -247,14 +246,32 @@
       padding: 1.5rem 2rem;
       margin-bottom: 0.5rem;
     }
-    .sort-section, .filter-section {
+    
+    /* Sort row - Low Price & High Price together, High Balance below */
+    .sort-row {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 0.9rem;
       margin-bottom: 0.8rem;
     }
-    .sort-section:last-child, .filter-section:last-child {
+    
+    .sort-row-full {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .filter-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 0.8rem;
+    }
+    .filter-section:last-child {
       margin-bottom: 0;
     }
     .section-label {
@@ -638,6 +655,8 @@
       display: flex;
       justify-content: center;
       margin: 1rem 0;
+      min-height: 182px;
+      align-items: center;
     }
 
     .upi-text {
@@ -877,9 +896,13 @@
   <div id="cardsSection">
     <div class="controls-box">
       <div class="section-label">◆ SORT BY ◆</div>
-      <div class="sort-section">
+      <!-- Low Price & High Price together in one row -->
+      <div class="sort-row">
         <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 Low Price</button>
         <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 High Price</button>
+      </div>
+      <!-- High Balance in separate row -->
+      <div class="sort-row-full">
         <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 High Balance</button>
       </div>
       <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY ◆</div>
@@ -896,7 +919,8 @@
   <div id="playStoreSection" class="hidden-section">
     <div class="controls-box">
       <div class="section-label">◆ SORT BY ◆</div>
-      <div class="sort-section">
+      <!-- Low Price & High Price together -->
+      <div class="sort-row">
         <button class="btn-sort btn-sort-low active" id="playSortLow">📉 Low Price</button>
         <button class="btn-sort btn-sort-high" id="playSortHigh">📈 High Price</button>
       </div>
@@ -1007,6 +1031,7 @@
     let currentSort = 'price-low';
     let playSort = 'price-low';
     let qrCodeInstance = null;
+    let currentQRData = null;
 
     function getActiveData() {
       return activeSection === 'cards' ? { list: cards, filter: currentFilter, sort: currentSort } : { list: playCodes, filter: 'all', sort: playSort };
@@ -1047,9 +1072,21 @@
       const container = document.getElementById('qrCodeContainer');
       container.innerHTML = '';
       const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${itemId}`;
+      currentQRData = { amount, itemId };
       try {
         qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
       } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
+    }
+
+    function restoreQRCode() {
+      if (currentQRData && document.getElementById('paymentModal').classList.contains('open')) {
+        const container = document.getElementById('qrCodeContainer');
+        container.innerHTML = '';
+        const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${currentQRData.amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${currentQRData.itemId}`;
+        try {
+          qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
+        } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
+      }
     }
 
     function openModal(item) {
@@ -1068,11 +1105,17 @@
       document.getElementById('emailInput').classList.remove('input-error');
       document.getElementById('utrInput').classList.remove('input-error');
       document.getElementById('paymentModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() { 
-      document.getElementById('paymentModal').classList.remove('open'); 
-      if(qrCodeInstance) qrCodeInstance.clear();
+      document.getElementById('paymentModal').classList.remove('open');
+      document.body.style.overflow = '';
+      if(qrCodeInstance) {
+        qrCodeInstance.clear();
+        qrCodeInstance = null;
+      }
+      currentQRData = null;
     }
 
     function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
@@ -1102,12 +1145,30 @@
       const amt = currentItem.price.toFixed(2);
       const note = currentItem.type === 'playstore' ? `PLAY_${currentItem.id}` : `CARD_${currentItem.id}`;
       const upiStr = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      
       if (app === 'fampay') window.location.href = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}#Intent;scheme=upi;package=com.fampay.in;end`;
       else if (app === 'phonepe') window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
       else if (app === 'gpay') window.location.href = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
       else if (app === 'paytm') window.location.href = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
-      setTimeout(() => { if (!document.hidden) window.location.href = upiStr; }, 1800);
+      
+      setTimeout(() => { 
+        if (!document.hidden) {
+          window.location.href = upiStr;
+        }
+      }, 2000);
     }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && document.getElementById('paymentModal').classList.contains('open')) {
+        setTimeout(() => { restoreQRCode(); }, 300);
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (document.getElementById('paymentModal').classList.contains('open')) {
+        setTimeout(() => { restoreQRCode(); }, 300);
+      }
+    });
 
     document.getElementById('btnPhonePe').onclick = ()=> openUPI('phonepe');
     document.getElementById('btnGPay').onclick = ()=> openUPI('gpay');
