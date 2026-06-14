@@ -85,7 +85,6 @@
       gap: 2.5rem;
     }
 
-    /* ========== HEADER FROM FIRST CODE ========== */
     .secure-header {
       display: flex;
       flex-wrap: wrap;
@@ -247,7 +246,6 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    /* ========== BOXED SECTION TABS ========== */
     .section-tabs-box {
       display: flex;
       justify-content: center;
@@ -319,7 +317,6 @@
       letter-spacing: 0.06em;
     }
 
-    /* ========== BOXED SORT & FILTER ========== */
     .controls-box {
       background: rgba(18, 20, 32, 0.7);
       backdrop-filter: blur(25px);
@@ -401,174 +398,134 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+      margin: 1rem 0 2rem;
     }
 
-    .card-premium, .play-card {
-      background: linear-gradient(160deg, rgba(20, 22, 35, 0.85) 0%, rgba(8, 10, 20, 0.95) 100%);
-      backdrop-filter: blur(22px);
-      border: 1px solid rgba(212, 168, 67, 0.3);
-      border-radius: 40px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-      box-shadow: 0 30px 45px -18px rgba(0,0,0,0.85);
+    .vault-card {
+      background: linear-gradient(145deg, rgba(15, 17, 28, 0.9), rgba(8, 9, 18, 0.95));
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      border: 1px solid rgba(201,169,75,0.25);
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -15px black;
     }
 
-    .card-premium:hover, .play-card:hover {
-      transform: translateY(-14px) scale(1.02);
-      border-color: var(--gold-light);
-      box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 168, 67, 0.25);
+    .vault-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 28px 45px -18px rgba(201,169,75,0.4);
     }
 
-    .play-card {
-      border-color: rgba(66, 133, 244, 0.4);
+    .card-header-line {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
     }
 
-    .play-card:hover {
-      border-color: #6a9ff5;
-      box-shadow: 0 35px 55px -5px rgba(66, 133, 244, 0.5);
+    .card-body {
+      padding: 1.4rem;
     }
 
-    .card-top-glow {
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-    }
-
-    .play-card .card-top-glow {
-      background: linear-gradient(90deg, #1a5bbf, #6a9ff5, #1a5bbf);
-    }
-
-    .card-content {
-      padding: 1.5rem;
-    }
-
-    .card-type-row {
+    .card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
-    .network-badge, .play-badge {
+    .network-chip {
+      background: rgba(201,169,75,0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
       font-weight: 700;
-      font-size: 0.75rem;
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+      border: 0.5px solid rgba(201,169,75,0.4);
     }
 
-    .network-badge {
-      background: rgba(212, 168, 67, 0.2);
-      color: #f0d78c;
-      border: 1px solid rgba(212,168,67,0.4);
-    }
-
-    .play-badge {
-      background: rgba(66, 133, 244, 0.2);
-      color: #8bb9ff;
-      border: 1px solid rgba(66,133,244,0.4);
-    }
-
-    .price-tag {
-      font-weight: 700;
-      background: rgba(0,0,0,0.5);
-      padding: 0.4rem 1.4rem;
-      border-radius: 30px;
-      color: #f0d78c;
-      border: 1px solid var(--border-gold);
+    .price-chip {
       font-family: 'JetBrains Mono', monospace;
+      background: #00000055;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--gold);
     }
 
-    .card-number-display, .code-display {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 1.05rem;
-      letter-spacing: 0.12em;
-      background: rgba(0,0,0,0.6);
-      padding: 0.7rem;
-      border-radius: 16px;
+    .card-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      background: rgba(0,0,0,0.5);
       text-align: center;
-      border: 1px solid rgba(255,255,255,0.18);
-      margin: 0.5rem 0;
-    }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0.9rem;
-      margin: 1.2rem 0 0.8rem;
-    }
-
-    .detail-box {
-      background: rgba(0,0,0,0.45);
-      border-radius: 14px;
-      padding: 0.6rem;
-      text-align: center;
+      padding: 0.8rem;
+      border-radius: 20px;
+      margin: 0.8rem 0;
       border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .details-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0 0.5rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 18px;
+      padding: 0.6rem;
+    }
+
+    .detail-item {
+      text-align: center;
+      flex: 1;
     }
 
     .detail-label {
       font-size: 0.55rem;
-      color: #a0a0b8;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
+      color: var(--text-muted);
     }
 
     .detail-value {
       font-weight: 700;
       font-size: 0.8rem;
+      margin-top: 4px;
     }
 
-    .balance-gold {
-      color: #f0d78c;
-      font-weight: 800;
+    .gold-bal {
+      color: var(--gold-light);
     }
 
-    .cvv-partial-hidden {
-      letter-spacing: 0.15em;
-    }
-
-    .buy-section {
-      background: rgba(212, 168, 67, 0.06);
-      border-top: 1px solid rgba(212, 168, 67, 0.4);
-      padding: 1rem 1.6rem;
+    .buy-footer {
+      border-top: 1px solid rgba(201,169,75,0.3);
+      padding: 1rem 1.4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 700;
-      transition: all 0.3s;
+      transition: 0.3s;
+      background: rgba(0,0,0,0.2);
       cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .play-card .buy-section {
-      background: rgba(66, 133, 244, 0.06);
-      border-top: 1px solid rgba(66, 133, 244, 0.5);
     }
 
     .buy-text {
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      color: #f0d78c;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      color: var(--gold);
     }
 
     .arrow-icon {
-      font-size: 1.5rem;
-      color: var(--gold);
+      font-size: 1.3rem;
       transition: 0.3s;
     }
 
-    .card-premium:hover .arrow-icon, .play-card:hover .arrow-icon {
-      transform: translateX(8px);
-      color: #f5e3b3;
+    .vault-card:hover .arrow-icon {
+      transform: translateX(6px);
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -942,7 +899,6 @@
 </div>
 
 <div class="container">
-  <!-- HEADER FROM FIRST CODE -->
   <div class="secure-header">
     <div class="badge-gold">
       <span>⛁ SECURE TERMINAL</span>
@@ -958,7 +914,6 @@
     </div>
   </div>
 
-  <!-- BOXED SECTION TABS -->
   <div class="section-tabs-box">
     <div class="tab-box tab-box-cards active" id="tabCardsBox">
       <div class="tab-box-icon">💳</div>
@@ -967,7 +922,7 @@
     </div>
     <div class="tab-box tab-box-play" id="tabPlayBox">
       <div class="tab-box-icon">🎮</div>
-      <div class="tab-box-title">PLAY STORE CODES</div>
+      <div class="tab-box-title">PLAY STORE REDEEM CODES</div>
       <div class="tab-box-sub">Gift Cards & Redeem Codes</div>
     </div>
   </div>
@@ -1129,13 +1084,13 @@
       const grid = document.getElementById('dynamicGrid');
       grid.innerHTML = filtered.map(item => {
         if (item.type && item.type !== 'playstore') {
-          return `<div class="card-premium"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div><div class="card-number-display">${item.displayNumber}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div><div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">PURCHASE CARD</span><span class="arrow-icon">→</span></div></div>`;
+          return `<div class="vault-card"><div class="card-header-line"></div><div class="card-body"><div class="card-meta"><span class="network-chip">${cardBrands[item.type].display}</span><span class="price-chip">₹${item.price}</span></div><div class="card-number">${item.displayNumber}</div><div class="details-row"><div class="detail-item"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div><div class="detail-item"><div class="detail-label">CVV</div><div class="detail-value">${maskCVV(item.cvv)}</div></div><div class="detail-item"><div class="detail-label">BAL</div><div class="detail-value gold-bal">₹${item.balance}</div></div></div></div><div class="buy-footer" data-id="${item.id}"><span class="buy-text">UNLOCK CARD →</span><span class="arrow-icon">⤍</span></div></div>`;
         } else {
-          return `<div class="play-card"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div><div class="code-display" style="margin:1rem 0;">${item.displayCode}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div><div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">REDEEM CODE</span><span class="arrow-icon">→</span></div></div>`;
+          return `<div class="vault-card"><div class="card-header-line" style="background:linear-gradient(90deg,#3b82f6,#8bb9ff);"></div><div class="card-body"><div class="card-meta"><span class="network-chip" style="background:#1e3a8a30; color:#8bb9ff;">🎮 PLAY STORE</span><span class="price-chip">₹${item.price}</span></div><div class="card-number" style="font-size:0.9rem;">${item.displayCode}</div><div class="details-row"><div class="detail-item"><div class="detail-label">VALUE</div><div class="detail-value gold-bal">₹${item.value}</div></div><div class="detail-item"><div class="detail-label">STATUS</div><div class="detail-value">READY</div></div><div class="detail-item"><div class="detail-label">BAL</div><div class="detail-value gold-bal">₹${item.balance}</div></div></div></div><div class="buy-footer" data-id="${item.id}"><span class="buy-text">REDEEM NOW →</span><span class="arrow-icon">⤍</span></div></div>`;
         }
       }).join('');
 
-      document.querySelectorAll('.buy-section').forEach(btn => {
+      document.querySelectorAll('.buy-footer').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = parseInt(btn.dataset.id);
           const allData = activeSection === 'cards' ? cards : playCodes;
