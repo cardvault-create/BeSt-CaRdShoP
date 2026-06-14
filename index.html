@@ -82,22 +82,22 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
-    /* ========== HEADER - EXACTLY AS PER SCREENSHOT ========== */
-    .secure-header {
+    /* ========== NEW HEADER - AS PER SCREENSHOT ========== */
+    .screenshot-header {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
       border-bottom: 2px solid var(--border-gold);
       padding-bottom: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       gap: 1rem;
     }
 
-    .secure-left {
+    .header-box {
       background: rgba(10, 12, 22, 0.7);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-gold);
@@ -105,23 +105,23 @@
       padding: 0.6rem 1.2rem;
       font-family: 'JetBrains Mono', monospace;
     }
-    .secure-left .line1 {
-      font-size: 0.6rem;
+    .header-box .line-top {
+      font-size: 0.55rem;
       letter-spacing: 0.2em;
       color: var(--text-muted);
       text-transform: uppercase;
     }
-    .secure-left .line2 {
+    .header-box .line-bottom {
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.05em;
     }
 
-    .secure-center {
+    .header-center-box {
       text-align: center;
     }
-    .secure-center h1 {
+    .header-center-box h1 {
       font-size: clamp(2rem, 6vw, 3.2rem);
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -131,15 +131,15 @@
       color: transparent;
       font-family: 'JetBrains Mono', monospace;
     }
-    .secure-center .sub {
-      font-size: 0.6rem;
+    .header-center-box .sub-text {
+      font-size: 0.55rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-top: 4px;
     }
 
-    .secure-right {
+    .header-right-box {
       text-align: right;
       font-family: 'JetBrains Mono', monospace;
       background: rgba(10, 12, 22, 0.7);
@@ -148,12 +148,12 @@
       border-radius: 16px;
       padding: 0.6rem 1.2rem;
     }
-    .secure-right .node {
+    .header-right-box .node-name {
       font-size: 0.7rem;
       color: var(--gold);
       letter-spacing: 0.1em;
     }
-    .secure-right .dot {
+    .header-right-box .green-dot {
       display: inline-block;
       width: 8px;
       height: 8px;
@@ -163,7 +163,7 @@
       animation: pulse 1.5s infinite;
       margin-right: 6px;
     }
-    .secure-right .sessions {
+    .header-right-box .session-count {
       font-size: 0.7rem;
       color: var(--text-muted);
     }
@@ -173,14 +173,13 @@
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50px;
-      padding: 0.4rem 1.8rem;
+      padding: 0.5rem 2.2rem;
       display: inline-flex;
       align-items: center;
       gap: 0.8rem;
       font-weight: 600;
       color: #f0d78c;
-      margin-top: 0.3rem;
-      font-size: 0.8rem;
+      margin-top: 0;
     }
 
     .dot-live {
@@ -194,7 +193,7 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    /* ========== TABS - EXACTLY AS PER SCREENSHOT ========== */
+    /* ========== BOXED SECTION TABS - ORIGINAL ========== */
     .section-tabs-box {
       display: flex;
       justify-content: center;
@@ -207,11 +206,11 @@
       backdrop-filter: blur(25px);
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
-      padding: 0.8rem 1.5rem;
+      padding: 1rem 1.8rem;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
       text-align: center;
-      min-width: 160px;
+      min-width: 180px;
       position: relative;
       overflow: hidden;
       user-select: none;
@@ -249,24 +248,24 @@
       box-shadow: 0 0 40px rgba(66, 133, 244, 0.5);
     }
     .tab-box-icon {
-      font-size: 1.3rem;
-      margin-bottom: 0.2rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
     }
     .tab-box-title {
       font-weight: 800;
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #fff;
     }
     .tab-box-sub {
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       color: #a0a0b8;
       margin-top: 3px;
       letter-spacing: 0.06em;
     }
 
-    /* ========== CONTROL BOX - SORT & FILTER AS PER SCREENSHOT ========== */
+    /* ========== BOXED SORT & FILTER - ORIGINAL ========== */
     .controls-box {
       background: rgba(18, 20, 32, 0.7);
       backdrop-filter: blur(25px);
@@ -300,7 +299,7 @@
       font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--gold-light);
+      color: var(--text-muted);
       margin-bottom: 0.5rem;
     }
 
@@ -309,10 +308,10 @@
       backdrop-filter: blur(12px);
       border: 1.5px solid rgba(255, 255, 255, 0.12);
       color: #c5c5d8;
-      padding: 0.6rem 1.8rem;
+      padding: 0.7rem 2rem;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       letter-spacing: 0.06em;
       cursor: pointer;
       transition: all 0.3s;
@@ -568,6 +567,7 @@
       background: rgba(212,168,67,0.3);
     }
 
+    /* Boxed App Buttons */
     .app-grid-box {
       background: rgba(18, 20, 32, 0.6);
       backdrop-filter: blur(20px);
@@ -696,7 +696,7 @@
       display: none;
     }
 
-    /* Verification Popup */
+    /* Premium Verification Popup */
     .verification-overlay {
       display: none;
       position: fixed;
@@ -723,6 +723,7 @@
       animation: modalGlow 0.4s ease;
       max-width: 440px;
       width: 90%;
+      transition: all 0.5s ease;
     }
 
     @keyframes modalGlow {
@@ -836,6 +837,15 @@
       box-shadow: 0 0 25px rgba(212,168,67,0.6);
     }
 
+    .code-hidden-modal {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.15em;
+      background: rgba(0,0,0,0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
     .error-message-premium {
       color: var(--error-red);
       font-size: 0.7rem;
@@ -862,7 +872,7 @@
 <div class="bg-luxury"></div>
 <div class="particles-layer" id="particlesContainer"></div>
 
-<!-- Verification Popup -->
+<!-- Premium Verification Popup -->
 <div class="verification-overlay" id="verificationPopup">
   <div class="verification-card" id="verificationCard">
     <div id="verifyLoadingContent">
@@ -880,62 +890,65 @@
 </div>
 
 <div class="container">
-  <!-- HEADER - EXACTLY AS PER SCREENSHOT -->
-  <div class="secure-header">
-    <div class="secure-left">
-      <div class="line1">SECURE TERMINAL</div>
-      <div class="line2">UID-HLSVU08G</div>
+  <!-- NEW HEADER - EXACTLY AS PER SCREENSHOT -->
+  <div class="screenshot-header">
+    <div class="header-box">
+      <div class="line-top">SECURE TERMINAL</div>
+      <div class="line-bottom">UID-HLSVU08G</div>
     </div>
-    <div class="secure-center">
+    <div class="header-center-box">
       <h1>CARD VAULT</h1>
-      <div class="sub">ELITE ACCESS // UNVERIFIED REGISTRY</div>
+      <div class="sub-text">ELITE ACCESS // UNVERIFIED REGISTRY</div>
     </div>
-    <div class="secure-right">
-      <div class="node"><span class="dot"></span> NODE: GLOBAL-01</div>
-      <div class="sessions"><span id="liveUsersCount">198</span> ACTIVE SESSIONS</div>
+    <div class="header-right-box">
+      <div class="node-name"><span class="green-dot"></span> NODE: GLOBAL-01</div>
+      <div class="session-count"><span id="liveUsersCountHeader">198</span> ACTIVE SESSIONS</div>
     </div>
   </div>
+  <div style="display: flex; justify-content: center;">
+    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount">198</span> COLLECTORS ONLINE</div>
+  </div>
 
-  <!-- TABS - AS PER SCREENSHOT -->
+  <!-- BOXED SECTION TABS - SMALLER -->
   <div class="section-tabs-box">
     <div class="tab-box tab-box-cards active" id="tabCardsBox">
       <div class="tab-box-icon">💳</div>
-      <div class="tab-box-title">CARDS DATABASE</div>
+      <div class="tab-box-title">ALL CARDS</div>
       <div class="tab-box-sub">Premium Bank Cards</div>
     </div>
     <div class="tab-box tab-box-play" id="tabPlayBox">
       <div class="tab-box-icon">🎮</div>
-      <div class="tab-box-title">PLAY CODES VAULT</div>
+      <div class="tab-box-title">PLAY STORE CODES</div>
       <div class="tab-box-sub">Gift Cards & Redeem Codes</div>
     </div>
   </div>
 
   <div id="cardsSection">
     <div class="controls-box">
-      <div class="section-label">◆ SORT PROTOCOL ◆</div>
+      <div class="section-label">◆ SORT BY ◆</div>
       <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 LOW VALUE</button>
-        <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 HIGH VALUE</button>
-        <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 HIGH BALANCE</button>
+        <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 Low Price</button>
+        <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 High Price</button>
+        <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 High Balance</button>
       </div>
-      <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY NETWORK ◆</div>
+      <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY ◆</div>
       <div class="filter-section" id="filterWrap">
-        <button class="btn-filter btn-filter-all active" data-type="all">🌐 ALL</button>
-        <button class="btn-filter btn-filter-visa" data-type="visa">💎 VISA</button>
-        <button class="btn-filter btn-filter-mc" data-type="mastercard">🔴 MASTERCARD</button>
-        <button class="btn-filter btn-filter-amex" data-type="amex">🔵 AMEX</button>
-        <button class="btn-filter btn-filter-rupay" data-type="rupay">🟣 RUPAY</button>
+        <button class="btn-filter btn-filter-all active" data-type="all">🌐 All</button>
+        <button class="btn-filter btn-filter-visa" data-type="visa">💎 Visa</button>
+        <button class="btn-filter btn-filter-mc" data-type="mastercard">🔴 Mastercard</button>
+        <button class="btn-filter btn-filter-amex" data-type="amex">🔵 Amex</button>
+        <button class="btn-filter btn-filter-rupay" data-type="rupay">🟣 RuPay</button>
       </div>
     </div>
   </div>
 
   <div id="playStoreSection" class="hidden-section">
     <div class="controls-box">
-      <div class="section-label">◆ SORT CODES ◆</div>
+      <div class="section-label">◆ SORT BY ◆</div>
       <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="playSortLow">📉 LOW PRICE</button>
-        <button class="btn-sort btn-sort-high" id="playSortHigh">📈 HIGH PRICE</button>
-        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 HIGH VALUE</button>
+        <button class="btn-sort btn-sort-low active" id="playSortLow">📉 Low Price</button>
+        <button class="btn-sort btn-sort-high" id="playSortHigh">📈 High Price</button>
+        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 High Balance</button>
       </div>
     </div>
   </div>
@@ -1037,8 +1050,9 @@
     }
 
     setInterval(() => { 
-      const newCount = Math.floor(Math.random()*70)+150;
+      const newCount = Math.floor(Math.random()*70)+120;
       document.getElementById('liveUsersCount').textContent = newCount;
+      document.getElementById('liveUsersCountHeader').textContent = newCount;
     }, 4000);
 
     let currentItem = null;
