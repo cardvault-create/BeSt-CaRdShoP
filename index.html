@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ NEXUS VAULT • ELITE DARK ✦</title>
+  <title>✦ PHANTOM VAULT | ELITE DARK MARKET ✦</title>
   <style>
     * {
       margin: 0;
@@ -11,94 +11,125 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --bg-dark: #03030a;
-      --bg-card: #0c0c18;
-      --bg-card-hover: #111122;
-      --gold: #ffd966;
-      --gold-dark: #ccaa33;
-      --cyan: #00e5ff;
-      --purple: #b000ff;
-      --pink: #ff2d75;
-      --green: #00ff88;
-      --red: #ff4444;
+      --bg-dark: #05050a;
+      --bg-card: rgba(10, 10, 20, 0.6);
+      --neon-gold: #ffd700;
+      --neon-cyan: #00e5ff;
+      --neon-purple: #b000ff;
+      --neon-pink: #ff2d75;
+      --neon-green: #00ff88;
+      --neon-red: #ff3333;
       --text-white: #ffffff;
-      --text-dim: #a0a0bb;
-      --border-glow: rgba(255, 217, 102, 0.3);
-      --shadow-glow: 0 0 20px rgba(255, 217, 102, 0.2);
-      --shadow-cyan: 0 0 20px rgba(0, 229, 255, 0.2);
+      --text-dim: #a0a0b0;
+      --glow-gold: 0 0 20px rgba(255, 215, 0, 0.5);
+      --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.5);
+      --glow-purple: 0 0 20px rgba(176, 0, 255, 0.5);
     }
 
     body {
       background: var(--bg-dark);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
       color: var(--text-white);
       min-height: 100vh;
       overflow-x: hidden;
+      cursor: default;
     }
 
-    /* NEON BACKGROUND */
-    .cyber-grid {
+    /* 3D Animated Background */
+    .three-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
+      overflow: hidden;
+    }
+
+    .grid-3d {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
       background-image: 
-        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
+        linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: rotateX(45deg) rotateZ(45deg);
+      animation: gridMove 20s linear infinite;
     }
 
-    .glow-orb {
+    @keyframes gridMove {
+      0% { transform: rotateX(45deg) rotateZ(45deg) translate(0, 0); }
+      100% { transform: rotateX(45deg) rotateZ(45deg) translate(60px, 60px); }
+    }
+
+    .glow-orbs {
       position: fixed;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255,217,102,0.08), transparent 70%);
+      inset: 0;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
       border-radius: 50%;
-      top: -200px;
-      right: -200px;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: orbFloat 15s infinite alternate;
+    }
+
+    .orb-1 { width: 400px; height: 400px; background: #ffd700; top: -150px; right: -100px; animation-duration: 12s; }
+    .orb-2 { width: 350px; height: 350px; background: #00e5ff; bottom: -100px; left: -100px; animation-duration: 18s; }
+    .orb-3 { width: 300px; height: 300px; background: #b000ff; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 25s; }
+
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      100% { transform: translate(50px, 50px) scale(1.2); opacity: 0.6; }
+    }
+
+    /* Floating Particles */
+    .particles-3d {
+      position: fixed;
+      inset: 0;
       z-index: 0;
       pointer-events: none;
-      animation: floatGlow 20s infinite alternate;
     }
 
-    .glow-orb-2 {
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0,229,255,0.06), transparent 70%);
+    .particle-3d {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, #ffd700, #00e5ff);
       border-radius: 50%;
-      bottom: -150px;
-      left: -150px;
-      z-index: 0;
-      pointer-events: none;
-      animation: floatGlow 15s infinite alternate-reverse;
+      opacity: 0;
+      animation: particleFloat 12s infinite;
     }
 
-    @keyframes floatGlow {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-      100% { transform: translate(50px, 50px) scale(1.2); opacity: 0.8; }
+    @keyframes particleFloat {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
     }
 
     .container {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       max-width: 1500px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 25px;
     }
 
-    /* HEADER - BIG & BOLD */
-    .hero-header {
-      background: linear-gradient(135deg, rgba(12,12,24,0.9), rgba(6,6,16,0.95));
-      backdrop-filter: blur(20px);
-      border-radius: 32px;
-      padding: 28px 35px;
-      margin-bottom: 30px;
-      border: 1px solid var(--border-glow);
-      box-shadow: var(--shadow-glow);
+    /* KHATARNAK HEADER */
+    .header-killer {
+      background: rgba(5, 5, 10, 0.7);
+      backdrop-filter: blur(25px);
+      border-radius: 35px;
+      padding: 25px 35px;
+      margin-bottom: 35px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -106,289 +137,277 @@
       gap: 20px;
     }
 
-    .brand h1 {
+    .logo-killer h1 {
       font-family: 'Orbitron', monospace;
       font-size: 2.2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--gold), var(--cyan), var(--purple));
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #00e5ff, #b000ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
       letter-spacing: -1px;
     }
-    .brand p {
-      font-size: 0.7rem;
+    .logo-killer p {
+      font-size: 0.65rem;
       letter-spacing: 0.3em;
       color: var(--text-dim);
-      text-transform: uppercase;
-      margin-top: 5px;
     }
 
-    .stats-block {
+    .trust-seal {
       display: flex;
-      gap: 40px;
+      gap: 20px;
     }
-    .stat-item {
+    .seal-item {
+      text-align: center;
+      padding: 10px 18px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+    .seal-icon { font-size: 1.5rem; }
+    .seal-text { font-size: 0.7rem; font-weight: 600; color: #00ff88; }
+
+    .live-stats {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .live-stat {
       text-align: center;
     }
-    .stat-number {
+    .live-number {
       font-family: 'Orbitron', monospace;
       font-size: 1.8rem;
       font-weight: 800;
-      color: var(--gold);
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
     }
-    .stat-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
+    .live-label {
+      font-size: 0.6rem;
       color: var(--text-dim);
     }
-
-    .live-badge-large {
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(0,255,136,0.5);
-      border-radius: 60px;
-      padding: 8px 24px;
+    .pulse-badge {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      background: rgba(0, 255, 136, 0.15);
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1px solid rgba(0, 255, 136, 0.5);
     }
-    .pulse-dot {
+    .pulse-dot-killer {
       width: 12px;
       height: 12px;
-      background: var(--green);
+      background: #00ff88;
       border-radius: 50%;
-      animation: pulseGreen 1.5s infinite;
-      box-shadow: 0 0 15px var(--green);
+      animation: pulseKiller 1.2s infinite;
+      box-shadow: 0 0 15px #00ff88;
     }
-    @keyframes pulseGreen {
+    @keyframes pulseKiller {
       0%,100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.8); }
     }
-    .live-text-large {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--green);
-    }
 
-    /* BIG TABS */
-    .big-tabs {
+    /* TABS - 3D STYLE */
+    .tabs-killer {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 30px;
       margin: 35px 0 30px;
     }
-    .big-tab {
-      background: rgba(12,12,24,0.85);
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(255,255,255,0.08);
-      border-radius: 80px;
-      padding: 16px 42px;
+    .tab-killer {
+      background: rgba(10, 10, 20, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.05);
+      border-radius: 60px;
+      padding: 18px 45px;
       cursor: pointer;
-      transition: all 0.4s;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .big-tab:hover {
-      border-color: var(--gold);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    .tab-killer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 229, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
     }
-    .big-tab.active {
-      background: linear-gradient(135deg, rgba(255,217,102,0.2), rgba(204,170,51,0.1));
-      border-color: var(--gold);
-      box-shadow: 0 0 35px rgba(255,217,102,0.4);
+    .tab-killer:hover::before { opacity: 1; }
+    .tab-killer:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.5); }
+    .tab-killer.active {
+      border-color: #ffd700;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 229, 255, 0.08));
     }
-    .big-tab-icon {
-      font-size: 2rem;
-      margin-bottom: 5px;
-    }
-    .big-tab-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-    .big-tab-sub {
-      font-size: 0.65rem;
-      color: var(--text-dim);
-    }
+    .tab-icon-killer { font-size: 2rem; margin-bottom: 5px; }
+    .tab-title-killer { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; }
+    .tab-sub-killer { font-size: 0.6rem; color: var(--text-dim); }
 
-    /* BIG CONTROLS */
-    .big-controls {
-      background: rgba(12,12,24,0.7);
+    /* CONTROLS */
+    .controls-killer {
+      background: rgba(5, 5, 10, 0.6);
       backdrop-filter: blur(20px);
       border-radius: 35px;
       padding: 25px 30px;
       margin-bottom: 35px;
-      border: 1px solid rgba(255,217,102,0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
-    .control-block {
-      margin-bottom: 20px;
-    }
-    .control-block:last-child {
-      margin-bottom: 0;
-    }
-    .control-title-big {
+    .ctrl-row { margin-bottom: 20px; }
+    .ctrl-title {
       text-align: center;
       font-family: 'Orbitron', monospace;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       letter-spacing: 0.2em;
-      color: var(--gold);
+      color: #ffd700;
       margin-bottom: 15px;
     }
-    .big-btn-group {
+    .btn-group-killer {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
     }
-    .big-ctrl-btn {
-      background: rgba(6,6,16,0.9);
-      border: 1.5px solid rgba(255,255,255,0.1);
+    .btn-killer {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
       color: var(--text-dim);
-      padding: 12px 30px;
-      border-radius: 60px;
+      padding: 12px 28px;
+      border-radius: 50px;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
       transition: all 0.3s;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
-    .big-ctrl-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+    .btn-killer:hover {
+      border-color: #ffd700;
+      color: #ffd700;
       transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
     }
-    .big-ctrl-btn.active {
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    .btn-killer.active {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
       border-color: transparent;
       color: #0a0a0a;
-      box-shadow: 0 0 20px rgba(255,217,102,0.5);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
     }
 
-    /* CARDS GRID */
-    .cards-grid {
+    /* CARDS GRID - KHATARNAK */
+    .cards-grid-killer {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 35px;
     }
 
-    /* MODERN PREMIUM CARD */
-    .premium-card {
-      background: linear-gradient(145deg, #0c0c18, #080810);
-      border-radius: 35px;
+    /* 3D CARD */
+    .card-killer {
+      background: linear-gradient(145deg, rgba(12, 12, 24, 0.9), rgba(6, 6, 16, 0.95));
+      backdrop-filter: blur(15px);
+      border-radius: 40px;
       overflow: hidden;
-      border: 1px solid rgba(255,217,102,0.2);
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
       cursor: pointer;
       position: relative;
+      transform-style: preserve-3d;
     }
-    .premium-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 35px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(255,217,102,0.4), transparent, rgba(0,229,255,0.2));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .premium-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: rgba(255,217,102,0.5);
-      box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8), 0 0 30px rgba(255,217,102,0.3);
-    }
-    .premium-card:hover::before {
-      opacity: 1;
+    .card-killer:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: #ffd700;
+      box-shadow: 0 35px 55px -20px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 215, 0, 0.4);
     }
 
-    .card-glow-strip {
-      height: 4px;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--cyan), var(--purple));
+    .card-glow-killer {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+      transition: left 0.6s;
+      pointer-events: none;
     }
-    .play-card .card-glow-strip {
+    .card-killer:hover .card-glow-killer { left: 100%; }
+
+    .card-strip {
+      height: 4px;
+      background: linear-gradient(90deg, #ffd700, #00e5ff, #b000ff);
+    }
+    .play-strip {
       background: linear-gradient(90deg, #1a5bbf, #4285f4, #00e5ff);
     }
 
-    .card-inner {
+    .card-body {
       padding: 25px;
     }
 
-    .card-head {
+    .card-head-killer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-    .card-badge-lg {
-      background: rgba(255,217,102,0.15);
-      border: 1px solid rgba(255,217,102,0.4);
+    .network-badge-killer {
+      background: rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.4);
       padding: 6px 20px;
       border-radius: 40px;
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 0.05em;
-      color: var(--gold);
+      color: #ffd700;
     }
-    .play-badge-lg {
-      background: rgba(0,229,255,0.15);
-      border-color: rgba(0,229,255,0.4);
-      color: var(--cyan);
-    }
-    .card-price-lg {
+    .price-badge-killer {
       font-family: 'Orbitron', monospace;
       font-size: 1.6rem;
       font-weight: 800;
-      color: var(--gold);
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
 
-    .card-number-lg {
+    .card-number-killer {
       font-family: 'Courier New', monospace;
       font-size: 1rem;
       letter-spacing: 0.1em;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       padding: 14px;
-      border-radius: 20px;
+      border-radius: 22px;
       text-align: center;
-      margin: 15px 0;
+      margin: 18px 0;
+      border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
-    .card-info-grid {
+    .details-grid-killer {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 15px;
       margin: 20px 0;
     }
-    .info-tile {
-      background: rgba(0,0,0,0.4);
+    .detail-killer {
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 18px;
       padding: 10px;
       text-align: center;
     }
-    .info-label-sm {
+    .detail-label-killer {
       font-size: 0.55rem;
       color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
-    .info-value-md {
+    .detail-value-killer {
       font-size: 0.85rem;
       font-weight: 700;
       margin-top: 5px;
     }
-    .balance-gold-lg {
-      color: var(--gold);
-      font-weight: 800;
-    }
 
     /* BIG PURCHASE BUTTON */
-    .purchase-btn-big {
-      background: linear-gradient(135deg, rgba(255,217,102,0.1), rgba(204,170,51,0.05));
-      border-top: 1px solid rgba(255,217,102,0.3);
+    .purchase-killer {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(204, 170, 51, 0.05));
+      border-top: 1px solid rgba(255, 215, 0, 0.3);
       padding: 18px 25px;
       display: flex;
       justify-content: space-between;
@@ -396,86 +415,81 @@
       transition: all 0.3s;
       cursor: pointer;
     }
-    .purchase-btn-big:hover {
-      background: linear-gradient(135deg, rgba(255,217,102,0.2), rgba(204,170,51,0.1));
+    .purchase-killer:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(204, 170, 51, 0.1));
     }
-    .purchase-text-lg {
-      font-size: 1rem;
+    .purchase-text-killer {
       font-weight: 800;
+      font-size: 1rem;
       letter-spacing: 0.08em;
-      color: var(--gold);
+      color: #ffd700;
     }
-    .purchase-arrow-lg {
-      font-size: 1.6rem;
+    .purchase-arrow-killer {
+      font-size: 1.5rem;
       transition: transform 0.3s;
     }
-    .premium-card:hover .purchase-arrow-lg {
+    .card-killer:hover .purchase-arrow-killer {
       transform: translateX(12px);
     }
 
-    /* MODAL - LARGE & DETAILED */
-    .modal-full {
+    /* MODAL - PREMIUM */
+    .modal-killer {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.98);
-      backdrop-filter: blur(40px);
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(50px);
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
-    .modal-full.open {
-      display: flex;
-    }
-    .modal-container-lg {
-      background: linear-gradient(145deg, #0e0e1c, #06060e);
-      border: 2px solid var(--border-glow);
-      border-radius: 55px;
+    .modal-killer.open { display: flex; }
+    .modal-content-killer {
+      background: linear-gradient(145deg, #0a0a18, #050510);
+      border: 2px solid #ffd700;
+      border-radius: 60px;
       max-width: 550px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
+      box-shadow: 0 0 80px rgba(255, 215, 0, 0.4);
     }
-    .modal-header-lg {
+    .modal-header-killer {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 25px 30px;
-      border-bottom: 1px solid rgba(255,217,102,0.3);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
     }
-    .modal-title-lg {
+    .modal-title-killer {
       font-family: 'Orbitron', monospace;
       font-size: 1.3rem;
       font-weight: 800;
-      color: var(--gold);
+      color: #ffd700;
     }
-    .modal-close-lg {
-      background: rgba(255,217,102,0.1);
-      border: 1px solid var(--border-glow);
+    .modal-close-killer {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid #ffd700;
       width: 45px;
       height: 45px;
       border-radius: 30px;
       font-size: 1.5rem;
       cursor: pointer;
-      color: var(--gold);
+      color: #ffd700;
     }
-    .modal-body-lg {
-      padding: 30px;
-    }
+    .modal-body-killer { padding: 30px; }
 
-    /* BIG PAYMENT APPS BOXES */
-    .payment-apps-lg {
+    .apps-grid-killer {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin: 25px 0;
     }
-    .app-box-lg {
-      background: #10101c;
-      border: 1.5px solid rgba(255,255,255,0.08);
+    .app-card-killer {
+      background: #0c0c1a;
+      border: 1.5px solid rgba(255, 215, 0, 0.2);
       border-radius: 28px;
-      padding: 20px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -483,12 +497,12 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    .app-box-lg:hover {
-      border-color: var(--gold);
+    .app-card-killer:hover {
+      border-color: #ffd700;
       transform: translateY(-5px);
-      background: #151525;
+      background: #12122a;
     }
-    .app-icon-lg {
+    .app-icon-killer {
       width: 60px;
       height: 60px;
       border-radius: 20px;
@@ -498,30 +512,25 @@
       font-size: 1.5rem;
       font-weight: 800;
     }
-    .app-name-lg {
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
 
-    .input-field-lg {
+    .input-killer {
       width: 100%;
       background: #0a0a14;
-      border: 1.5px solid rgba(255,217,102,0.3);
+      border: 1.5px solid rgba(255, 215, 0, 0.3);
       border-radius: 50px;
       padding: 16px 22px;
       color: white;
       font-size: 0.9rem;
       margin: 12px 0;
     }
-    .input-field-lg:focus {
+    .input-killer:focus {
       outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 15px rgba(255,217,102,0.3);
+      border-color: #ffd700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
     }
-
-    .confirm-btn-lg {
+    .confirm-killer {
       width: 100%;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
       border: none;
       border-radius: 60px;
       padding: 18px;
@@ -531,24 +540,17 @@
       color: #0a0a0a;
       cursor: pointer;
       margin-top: 20px;
-      transition: 0.3s;
     }
-    .confirm-btn-lg:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 30px rgba(255,217,102,0.5);
-    }
-
-    .warning-text-lg {
+    .warning-killer {
       font-size: 0.7rem;
-      color: #ff6666;
+      color: #ff8888;
       text-align: center;
       margin-top: 15px;
-      padding: 10px;
-      background: rgba(255,68,68,0.1);
-      border-radius: 20px;
+      padding: 12px;
+      background: rgba(255, 68, 68, 0.1);
+      border-radius: 25px;
     }
-
-    .qr-box-lg {
+    .qr-killer {
       background: white;
       padding: 20px;
       border-radius: 35px;
@@ -557,288 +559,214 @@
       margin: 20px 0;
     }
 
-    /* VERIFICATION POPUP - BIG TEXT */
-    .verify-popup-lg {
+    /* VERIFICATION - KHATARNAK */
+    .verify-killer {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(0,0,0,0.98);
-      backdrop-filter: blur(50px);
+      background: rgba(0, 0, 0, 0.99);
+      backdrop-filter: blur(60px);
       align-items: center;
       justify-content: center;
     }
-    .verify-popup-lg.active {
-      display: flex;
-    }
-    .verify-card-lg {
-      background: linear-gradient(145deg, #0e0e1c, #06060e);
-      border: 2px solid var(--border-glow);
-      border-radius: 60px;
+    .verify-killer.active { display: flex; }
+    .verify-card-killer {
+      background: linear-gradient(145deg, #0a0a18, #050510);
+      border: 2px solid #ffd700;
+      border-radius: 70px;
       padding: 50px 40px;
       text-align: center;
-      max-width: 500px;
+      max-width: 550px;
       width: 90%;
+      box-shadow: 0 0 100px rgba(255, 215, 0, 0.5);
     }
-    .spinner-lg {
-      width: 70px;
-      height: 70px;
-      border: 4px solid rgba(255,217,102,0.2);
-      border-top: 4px solid var(--gold);
+    .spinner-killer {
+      width: 75px;
+      height: 75px;
+      border: 4px solid rgba(255, 215, 0, 0.2);
+      border-top: 4px solid #ffd700;
       border-radius: 50%;
-      animation: spin 1s linear infinite;
+      animation: spinKiller 1s linear infinite;
       margin: 0 auto 25px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .verify-icon-lg { font-size: 4rem; margin-bottom: 20px; }
-    .verify-title-lg { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
-    .verify-desc-lg { font-size: 1rem; color: var(--text-dim); line-height: 1.6; margin-top: 15px; }
-    .verify-warning-lg { font-size: 0.85rem; color: #ff8888; margin-top: 20px; padding: 12px; background: rgba(255,68,68,0.1); border-radius: 25px; }
-    .verify-close-lg {
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    @keyframes spinKiller { to { transform: rotate(360deg); } }
+    .verify-title-killer { font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
+    .verify-desc-killer { font-size: 1rem; color: var(--text-dim); line-height: 1.6; }
+    .verify-close-killer {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
       border: none;
       border-radius: 50px;
-      padding: 14px 35px;
+      padding: 14px 40px;
       font-weight: 800;
-      font-size: 0.9rem;
       margin-top: 25px;
       cursor: pointer;
     }
 
-    .footer-big {
+    .footer-killer {
       text-align: center;
       margin-top: 50px;
       padding: 20px;
       color: var(--text-dim);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.15em;
     }
-
-    .hidden-section {
-      display: none;
-    }
-    .error-msg { color: #ff4444; font-size: 0.7rem; margin-top: 5px; display: none; }
-    .error-msg.show { display: block; }
-    .input-error { border-color: #ff4444 !important; }
+    .hidden { display: none; }
+    .error-killer { color: #ff4444; font-size: 0.7rem; margin-top: 5px; display: none; }
+    .error-killer.show { display: block; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="cyber-grid"></div>
-<div class="glow-orb"></div>
-<div class="glow-orb-2"></div>
+<div class="three-bg"><div class="grid-3d"></div></div>
+<div class="glow-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="particles-3d" id="particles3d"></div>
 
 <div class="container">
-  <!-- BIG HEADER -->
-  <div class="hero-header">
-    <div class="brand">
-      <h1>✦ NEXUS VAULT ✦</h1>
-      <p>ELITE DARK MARKET | PREMIUM ACCESS</p>
-    </div>
-    <div class="stats-block">
-      <div class="stat-item"><div class="stat-number" id="liveCountMain">198</div><div class="stat-label">ACTIVE USERS</div></div>
-      <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">PREMIUM CARDS</div></div>
-      <div class="stat-item"><div class="stat-number">60+</div><div class="stat-label">PLAY CODES</div></div>
-    </div>
-    <div class="live-badge-large"><div class="pulse-dot"></div><span class="live-text-large" id="liveTextMain">198 COLLECTORS ONLINE</span></div>
+  <!-- KHATARNAK HEADER -->
+  <div class="header-killer">
+    <div class="logo-killer"><h1>✦ PHANTOM VAULT ✦</h1><p>ELITE DARK MARKET | LEVEL 3 ACCESS</p></div>
+    <div class="trust-seal"><div class="seal-item"><div class="seal-icon">🔒</div><div class="seal-text">256-BIT SSL</div></div><div class="seal-item"><div class="seal-icon">✅</div><div class="seal-text">VERIFIED</div></div><div class="seal-item"><div class="seal-icon">⭐</div><div class="seal-text">4.9/5 RATING</div></div></div>
+    <div class="live-stats"><div class="live-stat"><div class="live-number" id="liveMain">198</div><div class="live-label">ACTIVE USERS</div></div><div class="pulse-badge"><div class="pulse-dot-killer"></div><span id="liveTextMain">198 ONLINE NOW</span></div></div>
   </div>
 
-  <!-- BIG TABS -->
-  <div class="big-tabs">
-    <div class="big-tab active" id="tabCardsMain"><div class="big-tab-icon">💳</div><div class="big-tab-title">BANK CARDS</div><div class="big-tab-sub">PREMIUM CREDIT CARDS</div></div>
-    <div class="big-tab" id="tabPlayMain"><div class="big-tab-icon">🎮</div><div class="big-tab-title">PLAY STORE</div><div class="big-tab-sub">GIFT CARDS & CODES</div></div>
-  </div>
+  <!-- TABS -->
+  <div class="tabs-killer"><div class="tab-killer active" id="tabMainCards"><div class="tab-icon-killer">💳</div><div class="tab-title-killer">BANK CARDS</div><div class="tab-sub-killer">PREMIUM CREDIT CARDS</div></div><div class="tab-killer" id="tabMainPlay"><div class="tab-icon-killer">🎮</div><div class="tab-title-killer">PLAY STORE</div><div class="tab-sub-killer">GIFT CARDS & CODES</div></div></div>
 
   <!-- CONTROLS -->
-  <div id="cardsPanelMain">
-    <div class="big-controls">
-      <div class="control-block"><div class="control-title-big">⚡ SORT OPTIONS</div><div class="big-btn-group"><button class="big-ctrl-btn active" id="sortLowMain">📉 LOW PRICE</button><button class="big-ctrl-btn" id="sortHighMain">📈 HIGH PRICE</button><button class="big-ctrl-btn" id="sortBalanceMain">💰 HIGH BALANCE</button></div></div>
-      <div class="control-block"><div class="control-title-big">🔮 FILTER BY NETWORK</div><div class="big-btn-group"><button class="big-ctrl-btn active" data-filter="all">🌐 ALL</button><button class="big-ctrl-btn" data-filter="visa">💎 VISA</button><button class="big-ctrl-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="big-ctrl-btn" data-filter="amex">🔵 AMEX</button><button class="big-ctrl-btn" data-filter="rupay">🟣 RUPAY</button></div></div>
-    </div>
-  </div>
-  <div id="playPanelMain" class="hidden-section"><div class="big-controls"><div class="control-block"><div class="control-title-big">⚡ SORT OPTIONS</div><div class="big-btn-group"><button class="big-ctrl-btn active" id="playSortLowMain">📉 LOW PRICE</button><button class="big-ctrl-btn" id="playSortHighMain">📈 HIGH PRICE</button><button class="big-ctrl-btn" id="playSortBalanceMain">💰 HIGH VALUE</button></div></div></div></div>
+  <div id="cardsPanel"><div class="controls-killer"><div class="ctrl-row"><div class="ctrl-title">⚡ SORT BY</div><div class="btn-group-killer"><button class="btn-killer active" id="sortLowBtn">📉 LOW PRICE</button><button class="btn-killer" id="sortHighBtn">📈 HIGH PRICE</button><button class="btn-killer" id="sortBalanceBtn">💰 HIGH BALANCE</button></div></div><div class="ctrl-row"><div class="ctrl-title">🔮 FILTER NETWORK</div><div class="btn-group-killer"><button class="btn-killer active" data-filter="all">🌐 ALL</button><button class="btn-killer" data-filter="visa">💎 VISA</button><button class="btn-killer" data-filter="mastercard">🔴 MASTERCARD</button><button class="btn-killer" data-filter="amex">🔵 AMEX</button><button class="btn-killer" data-filter="rupay">🟣 RUPAY</button></div></div></div></div>
+  <div id="playPanel" class="hidden"><div class="controls-killer"><div class="ctrl-row"><div class="ctrl-title">⚡ SORT BY</div><div class="btn-group-killer"><button class="btn-killer active" id="playSortLowBtn">📉 LOW PRICE</button><button class="btn-killer" id="playSortHighBtn">📈 HIGH PRICE</button><button class="btn-killer" id="playSortValueBtn">💰 HIGH VALUE</button></div></div></div></div>
 
   <!-- CARDS GRID -->
-  <div class="cards-grid" id="dynamicGridMain"></div>
-  <div class="footer-big">✦ 256-BIT ENCRYPTED | SECURE TRANSACTIONS ✦</div>
+  <div class="cards-grid-killer" id="cardsGridMain"></div>
+  <div class="footer-killer">✦ 256-BIT ENCRYPTION | INSTANT DELIVERY | 24/7 SUPPORT ✦</div>
 </div>
 
 <!-- MODAL -->
-<div class="modal-full" id="paymentModalMain"><div class="modal-container-lg"><div class="modal-header-lg"><span class="modal-title-lg" id="modalTitleMain">PURCHASE</span><button class="modal-close-lg" id="closeModalMain">✕</button></div><div class="modal-body-lg"><div id="modalInfoMain"></div><div class="qr-box-lg" id="qrContainerMain"></div><div class="upi-text" style="text-align:center; font-size:0.75rem; color:#888;">UPI: kartikrawat6266@okhdfcbank</div><div class="payment-apps-lg"><div class="app-box-lg" id="payPhonepeMain"><div class="app-icon-lg" style="background:#5c2d91;">₹</div><span class="app-name-lg">PhonePe</span></div><div class="app-box-lg" id="payGpayMain"><div class="app-icon-lg" style="background:white; color:#1a73e8;">G</div><span class="app-name-lg">Google Pay</span></div><div class="app-box-lg" id="payPaytmMain"><div class="app-icon-lg" style="background:#00baf2;">P</div><span class="app-name-lg">Paytm</span></div><div class="app-box-lg" id="payFampayMain"><div class="app-icon-lg" style="background:#ff6b35;">F</div><span class="app-name-lg">FamPay</span></div></div><input class="input-field-lg" id="emailInputMain" placeholder="📧 Enter your email address"><div class="error-msg" id="emailErrorMain">❌ Please enter a valid email address</div><input class="input-field-lg" id="utrInputMain" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-msg" id="utrErrorMain">❌ Transaction ID must be exactly 12 digits</div><button class="confirm-btn-lg" id="confirmBtnMain">✦ CONFIRM & PURCHASE ✦</button><div class="warning-text-lg">⚠️ IMPORTANT: After successful payment verification, your card details / Play Store code will be sent to your email address immediately. Fake UTR or invalid transaction will NOT receive any code or card. Real payment required.</div></div></div></div>
+<div class="modal-killer" id="modalMain"><div class="modal-content-killer"><div class="modal-header-killer"><span class="modal-title-killer" id="modalTitleMain">PURCHASE</span><button class="modal-close-killer" id="closeModalBtnMain">✕</button></div><div class="modal-body-killer"><div id="modalInfoMain"></div><div class="qr-killer" id="qrMain"></div><div style="text-align:center; font-size:0.7rem; color:#888;">UPI: kartikrawat6266@okhdfcbank</div><div class="apps-grid-killer"><div class="app-card-killer" id="payPhonepeMain"><div class="app-icon-killer" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-card-killer" id="payGpayMain"><div class="app-icon-killer" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-card-killer" id="payPaytmMain"><div class="app-icon-killer" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-card-killer" id="payFampayMain"><div class="app-icon-killer" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-killer" id="emailMain" placeholder="📧 Enter your email address"><div class="error-killer" id="emailErrorMain">❌ Valid email required</div><input class="input-killer" id="utrMain" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-killer" id="utrErrorMain">❌ UTR must be 12 digits</div><button class="confirm-killer" id="confirmMain">✦ CONFIRM & PURCHASE ✦</button><div class="warning-killer">⚠️ REAL PAYMENT REQUIRED: After verification, card/code will be sent to your email. Fake UTR = No delivery.</div></div></div></div>
 
-<!-- VERIFICATION POPUP - BIG DETAILED TEXT -->
-<div class="verify-popup-lg" id="verifyPopupMain"><div class="verify-card-lg"><div id="verifyLoadingMain"><div class="spinner-lg"></div><div class="verify-title-lg">Verifying Payment</div><div class="verify-desc-lg">Please wait while we verify your transaction on secure gateway...</div></div><div id="verifyResultMain" style="display:none;"></div></div></div>
+<!-- VERIFICATION -->
+<div class="verify-killer" id="verifyMain"><div class="verify-card-killer"><div id="verifyLoadMain"><div class="spinner-killer"></div><div class="verify-title-killer">Verifying Payment</div><div class="verify-desc-killer">Processing transaction on secure blockchain gateway...</div></div><div id="verifyResultMain" style="display:none;"></div></div></div>
 
 <script>
 (function(){
   const UPI = "kartikrawat6266@okhdfcbank";
-  const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
-  const brandList = ['visa','mastercard','amex','rupay'];
-  function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+  const nets = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
+  const types = ['visa','mastercard','amex','rupay'];
+  function r(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // 100 CARDS - PRICE ₹100-₹1000
+  // PARTICLES
+  for(let i=0;i<100;i++){ let p=document.createElement('div'); p.className='particle-3d'; p.style.left=Math.random()*100+'%'; p.style.width=p.style.height=(Math.random()*5+2)+'px'; p.style.animationDelay=Math.random()*10+'s'; p.style.animationDuration=(Math.random()*10+8)+'s'; document.getElementById('particles3d').appendChild(p); }
+  
+  // 100 CARDS
   const cards = [];
   for(let i=1;i<=100;i++){
-    let type = brandList[rand(0,3)];
-    let num = '';
-    if(type==='visa') num = '4' + rand(100000000000000,999999999999999);
-    else if(type==='mastercard') num = '5' + rand(10000000000000,99999999999999);
-    else if(type==='amex') num = '34' + rand(1000000000000,9999999999999);
-    else num = '60' + rand(10000000000000,99999999999999);
-    let price = rand(100,1000);
-    cards.push({ id:i, type:type, displayNum: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${rand(1,12)}/${rand(26,30)}`, cvv: rand(100,999), price:price, balance:price*10 });
+    let t = types[r(0,3)];
+    let num = t==='visa'?'4'+r(100000000000000,999999999999999):t==='mastercard'?'5'+r(10000000000000,99999999999999):t==='amex'?'34'+r(1000000000000,9999999999999):'60'+r(10000000000000,99999999999999);
+    let price = r(100,1000);
+    cards.push({ id:i, type:t, display: num.toString().slice(0,4)+' **** **** '+num.toString().slice(-4), expiry: `${r(1,12)}/${r(26,30)}`, cvv: r(100,999), price:price, balance:price*10 });
   }
   
   // 60 PLAY CODES
-  const playCodes = [];
-  for(let i=1;i<=60;i++){
-    let code = 'GPLAY' + rand(10000,99999) + '-' + rand(10000,99999) + '-' + rand(10000,99999);
-    let price = rand(100,1000);
-    playCodes.push({ id:500+i, code:code, displayCode: code.slice(0,8)+'•••••••', value:price*10, balance:price*10, price:price, type:'play' });
-  }
+  const plays = [];
+  for(let i=1;i<=60;i++){ let code = 'GIFT'+r(10000,99999)+'-'+r(10000,99999)+'-'+r(10000,99999); let price=r(100,1000); plays.push({ id:500+i, code:code, display: code.slice(0,8)+'•••••••', value:price*10, price:price, type:'play' }); }
   
-  // Live counter
-  setInterval(()=>{ let c = rand(120,280); document.getElementById('liveCountMain').innerText=c; document.getElementById('liveTextMain').innerText=c+' COLLECTORS ONLINE'; },5000);
+  setInterval(()=>{ let c=r(120,300); document.getElementById('liveMain').innerText=c; document.getElementById('liveTextMain').innerText=c+' ONLINE NOW'; },5000);
   
-  let currentItem = null;
-  let activeTab = 'cards';
-  let currentFilter = 'all';
-  let currentSort = 'price-low';
-  let playSort = 'price-low';
+  let current = null, tab='cards', filter='all', sort='price-low', playSort='price-low';
   
   function getData(){
-    if(activeTab==='cards'){
-      let filtered = currentFilter==='all' ? [...cards] : cards.filter(c=>c.type===currentFilter);
-      if(currentSort==='price-low') filtered.sort((a,b)=>a.price-b.price);
-      else if(currentSort==='price-high') filtered.sort((a,b)=>b.price-a.price);
-      else filtered.sort((a,b)=>b.balance-a.balance);
-      return filtered;
+    if(tab==='cards'){
+      let f = filter==='all'?[...cards]:cards.filter(c=>c.type===filter);
+      if(sort==='price-low') f.sort((a,b)=>a.price-b.price);
+      else if(sort==='price-high') f.sort((a,b)=>b.price-a.price);
+      else f.sort((a,b)=>b.balance-a.balance);
+      return f;
     } else {
-      let filtered = [...playCodes];
-      if(playSort==='price-low') filtered.sort((a,b)=>a.price-b.price);
-      else if(playSort==='price-high') filtered.sort((a,b)=>b.price-a.price);
-      else filtered.sort((a,b)=>b.value-a.value);
-      return filtered;
+      let f = [...plays];
+      if(playSort==='price-low') f.sort((a,b)=>a.price-b.price);
+      else if(playSort==='price-high') f.sort((a,b)=>b.price-a.price);
+      else f.sort((a,b)=>b.value-a.value);
+      return f;
     }
   }
   
-  function maskCvv(cvv){ return cvv.toString()[0] + '**'; }
+  function maskC(c){ return c.toString()[0]+'**'; }
   
   function render(){
-    const data = getData();
-    const grid = document.getElementById('dynamicGridMain');
+    let data = getData();
+    let grid = document.getElementById('cardsGridMain');
     grid.innerHTML = data.map(item => {
-      if(item.type !== 'play'){
-        return `<div class="premium-card"><div class="card-glow-strip"></div><div class="card-inner"><div class="card-head"><span class="card-badge-lg">${networks[item.type]}</span><span class="card-price-lg">₹${item.price}</span></div><div class="card-number-lg">${item.displayNum}</div><div class="card-info-grid"><div class="info-tile"><div class="info-label-sm">EXPIRY</div><div class="info-value-md">${item.expiry}</div></div><div class="info-tile"><div class="info-label-sm">CVV</div><div class="info-value-md">${maskCvv(item.cvv)}</div></div><div class="info-tile"><div class="info-label-sm">BALANCE</div><div class="info-value-md balance-gold-lg">₹${item.balance}</div></div></div></div><div class="purchase-btn-big" data-id="${item.id}"><span class="purchase-text-lg">💳 PURCHASE CARD</span><span class="purchase-arrow-lg">→</span></div></div>`;
+      if(item.type!=='play'){
+        return `<div class="card-killer"><div class="card-glow-killer"></div><div class="card-strip"></div><div class="card-body"><div class="card-head-killer"><span class="network-badge-killer">${nets[item.type]}</span><span class="price-badge-killer">₹${item.price}</span></div><div class="card-number-killer">${item.display}</div><div class="details-grid-killer"><div class="detail-killer"><div class="detail-label-killer">EXPIRY</div><div class="detail-value-killer">${item.expiry}</div></div><div class="detail-killer"><div class="detail-label-killer">CVV</div><div class="detail-value-killer">${maskC(item.cvv)}</div></div><div class="detail-killer"><div class="detail-label-killer">BALANCE</div><div class="detail-value-killer" style="color:#ffd700;">₹${item.balance}</div></div></div></div><div class="purchase-killer" data-id="${item.id}"><span class="purchase-text-killer">💳 PURCHASE CARD</span><span class="purchase-arrow-killer">→</span></div></div>`;
       } else {
-        return `<div class="premium-card play-card"><div class="card-glow-strip"></div><div class="card-inner"><div class="card-head"><span class="card-badge-lg play-badge-lg">🎮 PLAY STORE</span><span class="card-price-lg">₹${item.price}</span></div><div class="card-number-lg" style="font-size:0.9rem;">${item.displayCode}</div><div class="card-info-grid"><div class="info-tile"><div class="info-label-sm">VALUE</div><div class="info-value-md">₹${item.value}</div></div><div class="info-tile"><div class="info-label-sm">TYPE</div><div class="info-value-md">GIFT CODE</div></div><div class="info-tile"><div class="info-label-sm">REDEEM</div><div class="info-value-md">GOOGLE PLAY</div></div></div></div><div class="purchase-btn-big" data-id="${item.id}"><span class="purchase-text-lg">🎮 REDEEM CODE</span><span class="purchase-arrow-lg">→</span></div></div>`;
+        return `<div class="card-killer"><div class="card-glow-killer"></div><div class="card-strip play-strip"></div><div class="card-body"><div class="card-head-killer"><span class="network-badge-killer" style="background:rgba(0,229,255,0.15); border-color:#00e5ff; color:#00e5ff;">🎮 PLAY STORE</span><span class="price-badge-killer">₹${item.price}</span></div><div class="card-number-killer" style="font-size:0.85rem;">${item.display}</div><div class="details-grid-killer"><div class="detail-killer"><div class="detail-label-killer">VALUE</div><div class="detail-value-killer">₹${item.value}</div></div><div class="detail-killer"><div class="detail-label-killer">TYPE</div><div class="detail-value-killer">GIFT CODE</div></div><div class="detail-killer"><div class="detail-label-killer">REDEEM</div><div class="detail-value-killer">GOOGLE PLAY</div></div></div></div><div class="purchase-killer" data-id="${item.id}"><span class="purchase-text-killer">🎮 REDEEM CODE</span><span class="purchase-arrow-killer">→</span></div></div>`;
       }
     }).join('');
-    
-    document.querySelectorAll('.purchase-btn-big').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        let id = parseInt(btn.dataset.id);
-        let all = activeTab==='cards' ? cards : playCodes;
-        currentItem = all.find(i=>i.id===id);
-        openModal();
-      });
-    });
+    document.querySelectorAll('.purchase-killer').forEach(btn=>{ btn.addEventListener('click',(e)=>{ let id=parseInt(btn.dataset.id); let all=tab==='cards'?cards:plays; current=all.find(i=>i.id===id); openModal(); }); });
   }
   
   function openModal(){
-    document.getElementById('modalTitleMain').innerText = currentItem.type==='play' ? '🎮 PLAY STORE CODE' : '💳 PREMIUM CARD';
+    document.getElementById('modalTitleMain').innerText = current.type==='play'?'🎮 PLAY STORE CODE':'💳 PREMIUM CARD';
     let info = document.getElementById('modalInfoMain');
-    if(currentItem.type==='play'){
-      info.innerHTML = `<div style="background:#10101c; border-radius:28px; padding:20px; text-align:center;"><div style="font-size:1.2rem; font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:18px; margin:15px;">${currentItem.displayCode}</div><div style="font-size:2rem; font-weight:800; color:#ffd966;">₹${currentItem.price}</div></div>`;
+    if(current.type==='play'){
+      info.innerHTML = `<div style="background:#0c0c1a; border-radius:30px; padding:20px;"><div style="font-size:1.2rem; font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:18px; margin:15px;">${current.display}</div><div style="font-size:2rem; font-weight:800; color:#ffd700;">₹${current.price}</div></div>`;
     } else {
-      info.innerHTML = `<div style="background:#10101c; border-radius:28px; padding:20px; text-align:center;"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:12px;">${currentItem.displayNum}</div><div>CVV: ${maskCvv(currentItem.cvv)} | EXP: ${currentItem.expiry}</div><div style="font-size:2rem; font-weight:800; color:#ffd966; margin-top:12px;">₹${currentItem.price}</div></div>`;
+      info.innerHTML = `<div style="background:#0c0c1a; border-radius:30px; padding:20px;"><div><strong>${nets[current.type]}</strong></div><div style="font-family:monospace; margin:12px;">${current.display}</div><div>CVV: ${maskC(current.cvv)} | EXP: ${current.expiry}</div><div style="font-size:2rem; font-weight:800; color:#ffd700; margin-top:12px;">₹${current.price}</div></div>`;
     }
-    document.getElementById('qrContainerMain').innerHTML = '';
-    let upiStr = `upi://pay?pa=${UPI}&pn=NEXUSVAULT&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${currentItem.id}`;
-    new QRCode(document.getElementById('qrContainerMain'), { text: upiStr, width: 160, height: 160 });
-    document.getElementById('emailInputMain').value = '';
-    document.getElementById('utrInputMain').value = '';
-    document.getElementById('paymentModalMain').classList.add('open');
+    document.getElementById('qrMain').innerHTML = '';
+    let upiStr = `upi://pay?pa=${UPI}&pn=PHANTOM&am=${current.price}&cu=INR&tn=${tab==='cards'?'CARD':'PLAY'}_${current.id}`;
+    new QRCode(document.getElementById('qrMain'), { text: upiStr, width: 160, height: 160 });
+    document.getElementById('emailMain').value = '';
+    document.getElementById('utrMain').value = '';
+    document.getElementById('modalMain').classList.add('open');
   }
   
-  function closeModal(){ document.getElementById('paymentModalMain').classList.remove('open'); }
+  function closeModal(){ document.getElementById('modalMain').classList.remove('open'); }
   
-  function showVerify(email, success, itemType){
-    const popup = document.getElementById('verifyPopupMain');
-    const loading = document.getElementById('verifyLoadingMain');
-    const result = document.getElementById('verifyResultMain');
-    loading.style.display = 'block';
-    result.style.display = 'none';
-    popup.classList.add('active');
+  function showVerify(email, success, type){
+    let popup = document.getElementById('verifyMain'), load = document.getElementById('verifyLoadMain'), result = document.getElementById('verifyResultMain');
+    load.style.display = 'block'; result.style.display = 'none'; popup.classList.add('active');
     setTimeout(() => {
-      loading.style.display = 'none';
-      result.style.display = 'block';
+      load.style.display = 'none'; result.style.display = 'block';
       if(success){
-        let isPlay = itemType === 'play';
-        result.innerHTML = `<div class="verify-icon-lg">✅</div><div class="verify-title-lg" style="color:#00ff88;">PAYMENT VERIFIED SUCCESSFULLY!</div><div class="verify-desc-lg">${isPlay ? '🎮 Your Google Play Store Redeem Code has been sent to' : '💳 Your Premium Card Details have been sent to'} <strong style="color:#ffd966;">${email}</strong><br><br>Please check your inbox (including spam folder). The ${isPlay ? 'code' : 'card details'} will arrive within 2-5 minutes.</div><div class="verify-warning-lg">⚠️ IMPORTANT: If you did NOT make the payment, no code/card will be delivered. This is a real transaction verification system. Only successful UPI payments receive the product.</div><button class="verify-close-lg" onclick="document.getElementById('verifyPopupMain').classList.remove('active')">✦ CLOSE ✦</button>`;
+        let isPlay = type === 'play';
+        result.innerHTML = `<div style="font-size:4rem;">✅</div><div class="verify-title-killer" style="color:#00ff88;">PAYMENT VERIFIED!</div><div class="verify-desc-killer">${isPlay ? '🎮 Your Play Store Redeem Code has been sent to' : '💳 Your Card Details have been sent to'} <strong style="color:#ffd700;">${email}</strong><br><br>Check your inbox (spam folder). Delivery within 2-5 minutes.</div><div class="warning-killer" style="margin-top:20px;">⚠️ REAL PAYMENT ONLY: If you did not pay, no code/card will be delivered.</div><button class="verify-close-killer" onclick="document.getElementById('verifyMain').classList.remove('active')">✦ CLOSE ✦</button>`;
       } else {
-        result.innerHTML = `<div class="verify-icon-lg">❌</div><div class="verify-title-lg" style="color:#ff4444;">INVALID TRANSACTION ID</div><div class="verify-desc-lg">The UTR / Transaction ID you entered is not valid. It must be exactly 12 digits.<br><br>Please check your payment app for the correct 12-digit UTR number and try again.</div><div class="verify-warning-lg">⚠️ Fake or incorrect UTR will NOT receive any card or code. You must complete the real UPI payment to get the product.</div><button class="verify-close-lg" onclick="document.getElementById('verifyPopupMain').classList.remove('active')" style="background:#ff4444; color:white;">✕ TRY AGAIN</button>`;
+        result.innerHTML = `<div style="font-size:4rem;">❌</div><div class="verify-title-killer" style="color:#ff4444;">INVALID TRANSACTION</div><div class="verify-desc-killer">UTR must be exactly 12 digits. Please check your payment app.<br><br>Fake UTR = No delivery.</div><button class="verify-close-killer" onclick="document.getElementById('verifyMain').classList.remove('active')" style="background:#ff4444;">✕ TRY AGAIN</button>`;
       }
-    }, 3200);
+    }, 3000);
   }
   
-  document.getElementById('confirmBtnMain').onclick = () => {
-    let email = document.getElementById('emailInputMain').value.trim();
-    let utr = document.getElementById('utrInputMain').value.trim();
+  document.getElementById('confirmMain').onclick = () => {
+    let email = document.getElementById('emailMain').value.trim();
+    let utr = document.getElementById('utrMain').value.trim();
     let ok = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailErrorMain').classList.add('show'); ok=false; }
-    else document.getElementById('emailErrorMain').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrErrorMain').classList.add('show'); ok=false; }
-    else document.getElementById('utrErrorMain').classList.remove('show');
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailErrorMain').classList.add('show'); ok=false; } else document.getElementById('emailErrorMain').classList.remove('show');
+    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrErrorMain').classList.add('show'); ok=false; } else document.getElementById('utrErrorMain').classList.remove('show');
     if(!ok) return;
-    let type = currentItem ? (currentItem.type==='play' ? 'play' : 'card') : 'card';
-    closeModal();
-    showVerify(email, true, type);
+    let t = current ? (current.type==='play'?'play':'card') : 'card';
+    closeModal(); showVerify(email, true, t);
   };
   
-  document.getElementById('closeModalMain').onclick = closeModal;
+  document.getElementById('closeModalBtnMain').onclick = closeModal;
   
-  // Payment apps
-  document.getElementById('payPhonepeMain').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payGpayMain').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payPaytmMain').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
-  document.getElementById('payFampayMain').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=${UPI}&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${currentItem.price}&cu=INR`,800); };
+  document.getElementById('payPhonepeMain').onclick = () => { if(current) window.location.href = `phonepe://pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
+  document.getElementById('payGpayMain').onclick = () => { if(current) window.location.href = `tez://upi/pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
+  document.getElementById('payPaytmMain').onclick = () => { if(current) window.location.href = `paytmmp://pay?pa=${UPI}&am=${current.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
+  document.getElementById('payFampayMain').onclick = () => { if(current) window.location.href = `intent://pay?pa=${UPI}&am=${current.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI}&am=${current.price}&cu=INR`,800); };
   
-  // Tabs
-  document.getElementById('tabCardsMain').onclick = () => {
-    activeTab='cards';
-    document.getElementById('tabCardsMain').classList.add('active');
-    document.getElementById('tabPlayMain').classList.remove('active');
-    document.getElementById('cardsPanelMain').classList.remove('hidden-section');
-    document.getElementById('playPanelMain').classList.add('hidden-section');
-    render();
-  };
-  document.getElementById('tabPlayMain').onclick = () => {
-    activeTab='play';
-    document.getElementById('tabPlayMain').classList.add('active');
-    document.getElementById('tabCardsMain').classList.remove('active');
-    document.getElementById('cardsPanelMain').classList.add('hidden-section');
-    document.getElementById('playPanelMain').classList.remove('hidden-section');
-    render();
-  };
+  document.getElementById('tabMainCards').onclick = () => { tab='cards'; document.getElementById('tabMainCards').classList.add('active'); document.getElementById('tabMainPlay').classList.remove('active'); document.getElementById('cardsPanel').classList.remove('hidden'); document.getElementById('playPanel').classList.add('hidden'); render(); };
+  document.getElementById('tabMainPlay').onclick = () => { tab='play'; document.getElementById('tabMainPlay').classList.add('active'); document.getElementById('tabMainCards').classList.remove('active'); document.getElementById('cardsPanel').classList.add('hidden'); document.getElementById('playPanel').classList.remove('hidden'); render(); };
   
-  // Sort
-  document.getElementById('sortLowMain').onclick = function(){ document.querySelectorAll('#cardsPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
-  document.getElementById('sortHighMain').onclick = function(){ document.querySelectorAll('#cardsPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
-  document.getElementById('sortBalanceMain').onclick = function(){ document.querySelectorAll('#cardsPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
-  document.getElementById('playSortLowMain').onclick = function(){ document.querySelectorAll('#playPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
-  document.getElementById('playSortHighMain').onclick = function(){ document.querySelectorAll('#playPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
-  document.getElementById('playSortBalanceMain').onclick = function(){ document.querySelectorAll('#playPanelMain .big-ctrl-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
+  document.getElementById('sortLowBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='price-low'; if(tab==='cards') render(); };
+  document.getElementById('sortHighBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='price-high'; if(tab==='cards') render(); };
+  document.getElementById('sortBalanceBtn').onclick = function(){ document.querySelectorAll('#cardsPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); sort='balance-high'; if(tab==='cards') render(); };
+  document.getElementById('playSortLowBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(tab==='play') render(); };
+  document.getElementById('playSortHighBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(tab==='play') render(); };
+  document.getElementById('playSortValueBtn').onclick = function(){ document.querySelectorAll('#playPanel .btn-killer').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(tab==='play') render(); };
   
-  // Filter
-  document.querySelectorAll('[data-filter]').forEach(btn => {
-    btn.onclick = function(){
-      document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
-      this.classList.add('active');
-      currentFilter = this.dataset.filter;
-      if(activeTab==='cards') render();
-    };
-  });
+  document.querySelectorAll('[data-filter]').forEach(btn => { btn.onclick = function(){ document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active')); this.classList.add('active'); filter = this.dataset.filter; if(tab==='cards') render(); }; });
   
   render();
 })();
