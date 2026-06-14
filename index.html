@@ -29,6 +29,7 @@
       color: var(--white);
       min-height: 100vh;
       overflow-x: hidden;
+      font-weight: 700;
     }
     .bg-3d {
       position: fixed;
@@ -62,7 +63,7 @@
       padding: 22px;
     }
 
-    /* ✦ PREMIUM COLORFUL HEADER ✦ */
+    /* PREMIUM COLORFUL HEADER - ALL BOLD */
     .premium-header {
       background: linear-gradient(135deg, #0f0c1f 0%, #1a1035 25%, #0d1a2d 50%, #1a0f2e 75%, #0f0c1f 100%);
       backdrop-filter: blur(30px);
@@ -110,7 +111,6 @@
       font-family: 'Orbitron', monospace;
       font-size: 2.2rem;
       font-weight: 900;
-      font-style: italic;
       background: linear-gradient(135deg, #ffe08a, #f5c542, #00e5ff, #b000ff);
       -webkit-background-clip: text;
       background-clip: text;
@@ -118,18 +118,23 @@
       letter-spacing: 0.04em;
       filter: drop-shadow(0 0 20px rgba(255,217,102,0.6));
     }
-    .logo p {
+    .logo .subtitle-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .logo .subtitle-box span {
       font-size: 0.7rem;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.2em;
       color: #e2e8f0;
       font-weight: 700;
-      font-style: italic;
       background: rgba(0,0,0,0.4);
       padding: 5px 14px;
       border-radius: 25px;
       display: inline-block;
-      margin-top: 6px;
       border: 1px solid rgba(255,217,102,0.35);
+      text-transform: uppercase;
     }
     .trust-badges {
       display: flex;
@@ -141,7 +146,6 @@
       border-radius: 40px;
       font-size: 0.74rem;
       font-weight: 800;
-      font-style: italic;
       border: 1.5px solid rgba(0,255,136,0.5);
       color: #00ff88;
       letter-spacing: 0.05em;
@@ -155,10 +159,11 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: rgba(0,0,0,0.55);
-      padding: 10px 24px;
+      background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,0,0,0.6));
+      padding: 12px 26px;
       border-radius: 55px;
-      border: 1.5px solid rgba(0,255,136,0.5);
+      border: 2px solid rgba(0,255,136,0.6);
+      box-shadow: 0 0 25px rgba(0,255,136,0.25);
     }
     .live-dot {
       width: 12px;
@@ -176,15 +181,36 @@
       font-family: 'Orbitron', monospace;
       font-size: 1.4rem;
       font-weight: 900;
-      font-style: italic;
       color: #00ff88;
       text-shadow: 0 0 12px rgba(0,255,136,0.5);
     }
     .live-label {
       font-size: 0.74rem;
       font-weight: 700;
-      font-style: italic;
-      color: #cbd5e1;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+    }
+    .online-history-box {
+      background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(176,0,255,0.1));
+      border: 2px solid rgba(0,229,255,0.5);
+      border-radius: 30px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #00e5ff;
+      box-shadow: 0 0 25px rgba(0,229,255,0.2);
+      letter-spacing: 0.04em;
+    }
+    .online-history-box .history-icon {
+      font-size: 1.2rem;
+    }
+    .online-history-box .history-count {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.2rem;
+      color: #ffe08a;
     }
 
     /* TABS */
@@ -202,10 +228,10 @@
       padding: 14px 40px;
       cursor: pointer;
       transition: all 0.35s;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
       font-size: 0.94rem;
       color: #cbd5e1;
+      letter-spacing: 0.04em;
     }
     .tab.active {
       border-color: #f5c542;
@@ -238,8 +264,8 @@
       letter-spacing: 0.2em;
       color: #94a3b8;
       margin-bottom: 12px;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
+      text-transform: uppercase;
     }
     .ctrl-btn {
       background: rgba(0,0,0,0.6);
@@ -248,16 +274,16 @@
       padding: 10px 26px;
       border-radius: 45px;
       font-size: 0.74rem;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
       cursor: pointer;
       transition: all 0.25s;
+      letter-spacing: 0.03em;
     }
     .ctrl-btn.active {
       background: linear-gradient(135deg, #f5c542, #ccaa33);
       color: #0a0a0a;
       border-color: transparent;
-      font-weight: 800;
+      font-weight: 900;
       box-shadow: 0 0 25px rgba(245,197,66,0.5);
     }
 
@@ -301,14 +327,13 @@
       border-radius: 35px;
       font-size: 0.74rem;
       font-weight: 800;
-      font-style: italic;
       color: #ffe08a;
+      letter-spacing: 0.05em;
     }
     .price {
       font-family: 'Orbitron', monospace;
       font-size: 1.5rem;
       font-weight: 900;
-      font-style: italic;
       color: #f5c542;
       text-shadow: 0 0 14px rgba(245,197,66,0.4);
     }
@@ -320,8 +345,7 @@
       text-align: center;
       margin: 16px 0;
       font-size: 0.92rem;
-      font-weight: 600;
-      font-style: italic;
+      font-weight: 700;
       color: #e2e8f0;
     }
     .card-details {
@@ -339,14 +363,13 @@
     .detail-label {
       font-size: 0.55rem;
       color: #94a3b8;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
     .detail-value {
       font-size: 0.82rem;
       font-weight: 800;
-      font-style: italic;
       margin-top: 5px;
     }
     .purchase-btn {
@@ -358,12 +381,12 @@
       align-items: center;
     }
     .purchase-text {
-      font-weight: 800;
-      font-style: italic;
+      font-weight: 900;
       font-size: 0.9rem;
       color: #ffe08a;
+      letter-spacing: 0.04em;
     }
-    .purchase-arrow { font-size: 1.4rem; }
+    .purchase-arrow { font-size: 1.4rem; font-weight: 700; }
 
     /* MODAL */
     .modal-overlay {
@@ -397,8 +420,8 @@
       font-family: 'Orbitron', monospace;
       font-size: 1.2rem;
       font-weight: 900;
-      font-style: italic;
       color: #ffe08a;
+      letter-spacing: 0.04em;
     }
     .modal-close {
       background: rgba(245,197,66,0.15);
@@ -412,6 +435,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: 700;
     }
     .modal-body { padding: 30px; }
     .qr-section {
@@ -436,7 +460,7 @@
       font-size: 0.82rem;
       margin-top: 12px;
       color: #f5c542;
-      font-weight: 600;
+      font-weight: 700;
     }
     .apps-grid {
       display: grid;
@@ -454,8 +478,7 @@
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
     }
     .app-icon {
       width: 52px;
@@ -476,6 +499,7 @@
       color: white;
       margin: 14px 0;
       font-size: 0.88rem;
+      font-weight: 600;
     }
     .confirm-btn {
       width: 100%;
@@ -484,11 +508,11 @@
       border-radius: 55px;
       padding: 18px;
       font-weight: 900;
-      font-style: italic;
       font-size: 0.95rem;
       color: #0a0a0a;
       cursor: pointer;
       margin-top: 22px;
+      letter-spacing: 0.05em;
     }
     .warning-text {
       font-size: 0.68rem;
@@ -498,7 +522,7 @@
       padding: 12px;
       background: rgba(255,68,68,0.12);
       border-radius: 22px;
-      font-weight: 600;
+      font-weight: 700;
     }
     .file-upload-label {
       display: flex;
@@ -511,8 +535,7 @@
       border-radius: 55px;
       padding: 16px 22px;
       cursor: pointer;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
       color: #cbd5e1;
     }
     .file-upload-label.has-file {
@@ -526,7 +549,7 @@
       color: #00ff88;
       text-align: center;
       margin-top: 8px;
-      font-weight: 700;
+      font-weight: 800;
     }
     .verify-popup {
       display: none;
@@ -559,8 +582,8 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .verify-icon { font-size: 4rem; margin-bottom: 22px; }
-    .verify-title { font-size: 1.7rem; font-weight: 900; font-style: italic; margin-bottom: 16px; }
-    .verify-desc { font-size: 1rem; color: #cbd5e1; line-height: 1.7; }
+    .verify-title { font-size: 1.7rem; font-weight: 900; margin-bottom: 16px; }
+    .verify-desc { font-size: 1rem; color: #cbd5e1; line-height: 1.7; font-weight: 600; }
     .verify-warning {
       font-size: 0.85rem;
       color: #fca5a5;
@@ -569,6 +592,7 @@
       background: rgba(255,68,68,0.15);
       border-radius: 28px;
       border-left: 3px solid #ff4444;
+      font-weight: 600;
     }
     .footer {
       text-align: center;
@@ -577,8 +601,7 @@
       color: #94a3b8;
       font-size: 0.65rem;
       letter-spacing: 0.14em;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
     }
     .hidden { display: none; }
     .error-msg {
@@ -587,8 +610,7 @@
       margin-top: -4px;
       margin-bottom: 10px;
       display: none;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
     }
     .error-msg.show { display: block; }
     .input-error { border-color: #ff4444 !important; }
@@ -608,14 +630,13 @@
     .info-label {
       font-size: 0.74rem;
       color: #94a3b8;
-      font-weight: 700;
-      font-style: italic;
+      font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .info-value {
       font-size: 0.9rem;
-      font-weight: 800;
-      font-style: italic;
+      font-weight: 900;
       color: #ffe08a;
     }
   </style>
@@ -626,9 +647,20 @@
 <div class="floating-neon"><div class="neon-line" style="top:20%"></div><div class="neon-line" style="top:50%;animation-delay:3s"></div><div class="neon-line" style="top:80%;animation-delay:6s"></div></div>
 <div class="container">
   <div class="premium-header">
-    <div class="logo"><h1>✦ CARDING VAULT ✦</h1><p>ELITE CARD & PLAY STORE REDEEM CODE MARKET • LEVEL 3 ACCESS</p></div>
+    <div class="logo">
+      <h1>✦ CARDING VAULT ✦</h1>
+      <div class="subtitle-box">
+        <span>ELITE CARD MARKET</span>
+        <span>🎮 PLAY STORE REDEEM CODES</span>
+      </div>
+    </div>
     <div class="trust-badges"><div class="badge">🔒 256-BIT SSL</div><div class="badge">✅ VERIFIED</div><div class="badge" id="ratingPill">⭐ <span id="ratingValue">4.7</span></div></div>
     <div class="live-counter"><div class="live-dot"></div><span class="live-number" id="liveCount">1</span><span class="live-label">LIVE USERS</span></div>
+    <div class="online-history-box">
+      <span class="history-icon">📊</span>
+      <span>TODAY'S VISITORS:</span>
+      <span class="history-count" id="historyCount">1,247</span>
+    </div>
   </div>
   <div class="tabs"><div class="tab active" id="tabCards"><span class="tab-icon">💳</span> PREMIUM CARDS</div><div class="tab" id="tabPlay"><span class="tab-icon">🎮</span> PLAY STORE CODES</div></div>
   <div id="cardsCtrl"><div class="controls"><div class="ctrl-label">⚡ SORT BY</div><div class="ctrl-group"><button class="ctrl-btn active" id="sortLow">📉 LOW PRICE</button><button class="ctrl-btn" id="sortHigh">📈 HIGH PRICE</button><button class="ctrl-btn" id="sortBalance">💰 HIGH BALANCE</button></div><div class="ctrl-label">🔮 FILTER NETWORK</div><div class="ctrl-group"><button class="ctrl-btn active" data-filter="all">🌐 ALL</button><button class="ctrl-btn" data-filter="visa">💎 VISA</button><button class="ctrl-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="ctrl-btn" data-filter="amex">🔵 AMEX</button><button class="ctrl-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
@@ -647,9 +679,8 @@
   const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMEX', rupay:'RUPAY' };
   function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
 
-  // UNIQUE PRICES: 100 cards, each price used only once across the whole set
   const allPrices = [];
-  for(let p=100; p<=2000; p+=19) allPrices.push(p); // ~100 unique prices
+  for(let p=100; p<=2000; p+=19) allPrices.push(p);
   function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
   const shuffledPrices = shuffle([...allPrices]);
 
@@ -683,6 +714,14 @@
   updateLive();
   function updateRating(){ document.getElementById('ratingValue').innerText=(3.1+(Math.min(liveCount,300)/300)*1.8).toFixed(1); }
   setInterval(updateRating,3000); updateRating();
+
+  function updateHistoryCount() {
+    const base = 800;
+    const extra = Math.floor(Math.random() * 800);
+    document.getElementById('historyCount').innerText = (base + extra).toLocaleString();
+  }
+  updateHistoryCount();
+  setInterval(updateHistoryCount, 8000);
 
   let currentItem=null, activeTab='cards', currentFilter='all', currentSort='price-low', playSort='price-low', currentQR=null, selectedFile=null;
   const fileInput=document.getElementById('fileInput'), fileLabel=document.getElementById('fileLabel'), fileNameDisplay=document.getElementById('fileNameDisplay');
