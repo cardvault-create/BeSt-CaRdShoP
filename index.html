@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>CARDVAULT • LUXE EDITION</title>
+  <title>CARDVAULT • LUXE EDITION + PLAY STORE</title>
   <style>
     * {
       margin: 0;
@@ -12,16 +12,18 @@
     }
 
     :root {
-      --bg-deep: #03050a;
-      --surface-glass: rgba(10, 15, 25, 0.75);
-      --gold-primary: #e5b663;
-      --gold-secondary: #c99a3c;
-      --platinum: #e0e7ff;
+      --bg-deep: #020308;
+      --surface-glass: rgba(12, 18, 28, 0.8);
+      --gold-primary: #e7b85d;
+      --gold-secondary: #c49a3c;
+      --platinum: #e8ecf1;
       --accent-red: #c23a2e;
-      --text-primary: #f3f3f7;
-      --text-muted: #8e8ea0;
-      --border-glow: rgba(229, 182, 99, 0.4);
-      --card-shadow: 0 25px 40px -20px rgba(0,0,0,0.8);
+      --text-primary: #f0f0f5;
+      --text-muted: #9a9aaf;
+      --border-glow: rgba(231, 184, 93, 0.5);
+      --play-color: #4a90e2;
+      --play-bg: rgba(74, 144, 226, 0.18);
+      --card-shadow: 0 30px 45px -20px rgba(0,0,0,0.9);
     }
 
     body {
@@ -34,14 +36,14 @@
       overflow-x: hidden;
     }
 
-    /* Dynamic animated background */
-    .bg-animated {
+    .bg-premium {
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(229, 182, 99, 0.08) 0%, transparent 55%),
-                  radial-gradient(ellipse at 80% 70%, rgba(200, 120, 60, 0.1) 0%, transparent 60%),
-                  radial-gradient(ellipse at 10% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(231, 184, 93, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 65%, rgba(70, 130, 210, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 85%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -56,29 +58,28 @@
       position: absolute;
       background: var(--gold-primary);
       border-radius: 50%;
-      filter: blur(1px);
+      filter: blur(1.5px);
       opacity: 0;
-      animation: floatParticle 8s infinite ease-in;
+      animation: floatParticle 9s infinite ease-in;
     }
 
     @keyframes floatParticle {
       0% { transform: translateY(105vh) scale(0); opacity: 0; }
       10% { opacity: 0.7; }
       90% { opacity: 0.1; }
-      100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+      100% { transform: translateY(-15vh) scale(1.3); opacity: 0; }
     }
 
     .container {
       position: relative;
       z-index: 2;
-      max-width: 1450px;
+      max-width: 1500px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 3rem;
     }
 
-    /* Typography & Header */
     .header {
       text-align: center;
       margin-bottom: 1rem;
@@ -88,135 +89,165 @@
       display: inline-flex;
       align-items: center;
       gap: 0.7rem;
-      background: rgba(229, 182, 99, 0.1);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(229, 182, 99, 0.4);
-      padding: 0.5rem 2rem;
+      background: rgba(231, 184, 93, 0.12);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(231, 184, 93, 0.45);
+      padding: 0.5rem 2.2rem;
       border-radius: 60px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold-primary);
       margin-bottom: 1.8rem;
-      box-shadow: 0 0 30px rgba(229, 182, 99, 0.2);
+      box-shadow: 0 0 35px rgba(231, 184, 93, 0.25);
     }
 
-    .animated-text {
-      font-size: clamp(3rem, 10vw, 5.5rem);
-      font-weight: 700;
+    .title-glow {
+      font-size: clamp(3.2rem, 10vw, 5.8rem);
+      font-weight: 750;
       line-height: 1;
       letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-      background: linear-gradient(180deg, #ffffff 20%, #c2a36b 80%);
+      background: linear-gradient(180deg, #ffffff 20%, #dbb45c 80%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 25px rgba(229, 182, 99, 0.5));
-      animation: titleGlow 3s infinite alternate;
+      filter: drop-shadow(0 0 35px rgba(231, 184, 93, 0.7));
+      animation: titlePulse 3s infinite alternate;
     }
 
-    @keyframes titleGlow {
-      0% { filter: drop-shadow(0 0 15px rgba(229, 182, 99, 0.4)); }
-      100% { filter: drop-shadow(0 0 35px rgba(229, 182, 99, 0.8)); }
+    @keyframes titlePulse {
+      0% { filter: drop-shadow(0 0 18px rgba(231, 184, 93, 0.5)); }
+      100% { filter: drop-shadow(0 0 45px rgba(231, 184, 93, 0.9)); }
     }
 
     .subtitle {
       font-size: 1rem;
-      color: var(--text-muted);
+      color: #b9b9cc;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      font-weight: 400;
     }
 
-    .counter-live {
-      background: rgba(0,0,0,0.5);
+    .live-tag {
+      background: rgba(0,0,0,0.55);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 40px;
-      padding: 0.4rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      padding: 0.4rem 2rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.8rem;
       font-weight: 600;
-      color: #e5b663;
+      color: #e7b85d;
       margin-top: 1.2rem;
     }
 
     .dot-live {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       background: #2ecc71;
       border-radius: 50%;
-      box-shadow: 0 0 15px #2ecc71;
+      box-shadow: 0 0 18px #2ecc71;
       animation: pulse 1.5s infinite;
     }
 
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .section-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #b0b0c0;
+      padding: 0.75rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
+      text-transform: uppercase;
+    }
+
+    .tab-btn.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: #0a0a10;
+      box-shadow: 0 0 30px rgba(231, 184, 93, 0.7);
+    }
 
     .sort-section, .filter-section {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .btn-sort, .btn-filter {
-      background: rgba(20, 20, 30, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #c0c0d0;
-      padding: 0.65rem 1.6rem;
+      background: rgba(20, 22, 32, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #cacad8;
+      padding: 0.6rem 1.7rem;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.75rem;
       letter-spacing: 0.05em;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-    }
-
-    .btn-sort:hover, .btn-filter:hover {
-      border-color: var(--gold-primary);
-      color: var(--gold-primary);
-      background: rgba(229, 182, 99, 0.1);
+      transition: 0.3s;
     }
 
     .btn-sort.active, .btn-filter.active {
       background: var(--gold-primary);
       border-color: var(--gold-primary);
-      color: #0a0a0f;
+      color: #0b0b14;
       font-weight: 700;
-      box-shadow: 0 0 25px rgba(229, 182, 99, 0.5);
     }
 
-    /* Premium Card Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
 
-    .card-premium {
-      background: linear-gradient(145deg, rgba(20, 20, 30, 0.8) 0%, rgba(10, 10, 18, 0.9) 100%);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(229, 182, 99, 0.2);
-      border-radius: 36px;
+    .card-premium, .play-card {
+      background: linear-gradient(145deg, rgba(18, 22, 32, 0.85) 0%, rgba(8, 10, 18, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(231, 184, 93, 0.25);
+      border-radius: 38px;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
-      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.7);
+      transition: all 0.4s ease;
+      box-shadow: 0 25px 40px -18px black;
       cursor: pointer;
     }
 
-    .card-premium:hover {
+    .card-premium:hover, .play-card:hover {
       transform: translateY(-12px) scale(1.02);
       border-color: var(--gold-primary);
-      box-shadow: 0 35px 55px -10px rgba(229, 182, 99, 0.4);
+      box-shadow: 0 40px 60px -10px rgba(231, 184, 93, 0.45);
+    }
+
+    .play-card {
+      border-color: rgba(74, 144, 226, 0.4);
+    }
+
+    .play-card:hover {
+      border-color: #4a90e2;
+      box-shadow: 0 35px 55px -5px rgba(74, 144, 226, 0.5);
     }
 
     .card-top-glow {
       height: 4px;
-      background: linear-gradient(90deg, #c99a3c, #f5e3b3, #c99a3c);
+      background: linear-gradient(90deg, #c49a3c, #f5e3b3, #c49a3c);
+    }
+
+    .play-card .card-top-glow {
+      background: linear-gradient(90deg, #4a90e2, #a0c4f0, #4a90e2);
     }
 
     .card-content {
@@ -230,62 +261,41 @@
       margin-bottom: 1rem;
     }
 
-    .network-badge {
+    .network-badge, .play-badge {
       font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: #e5b663;
-      background: rgba(229, 182, 99, 0.15);
-      padding: 0.3rem 1rem;
+      font-size: 0.75rem;
+      padding: 0.3rem 1.2rem;
       border-radius: 30px;
+    }
+
+    .network-badge {
+      background: rgba(231, 184, 93, 0.18);
+      color: #e7b85d;
+    }
+
+    .play-badge {
+      background: var(--play-bg);
+      color: #8bb9ff;
     }
 
     .price-tag {
-      font-family: 'Inter', monospace;
       font-weight: 700;
-      background: #1f1f2e;
-      padding: 0.3rem 1rem;
+      background: #1f1f30;
+      padding: 0.3rem 1.2rem;
       border-radius: 30px;
       color: #f0c27b;
-      border: 1px solid #c99a3c;
+      border: 1px solid #c49a3c;
     }
 
-    .card-visual {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 1rem 0;
-    }
-
-    .chip-gold {
-      width: 42px;
-      height: 32px;
-      background: linear-gradient(135deg, #e5b663, #a67c2e);
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3px;
-      box-shadow: 0 5px 15px rgba(229, 182, 99, 0.6);
-    }
-
-    .chip-line {
-      width: 65%;
-      height: 2px;
-      background: #5e3e1a;
-    }
-
-    .card-number-display {
+    .card-number-display, .code-display {
       font-family: 'Fira Code', monospace;
       font-size: 1.1rem;
       letter-spacing: 0.1em;
-      background: rgba(0,0,0,0.5);
-      padding: 0.6rem;
-      border-radius: 14px;
+      background: rgba(0,0,0,0.55);
+      padding: 0.7rem;
+      border-radius: 16px;
       text-align: center;
       border: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(5px);
     }
 
     .details-grid {
@@ -296,7 +306,7 @@
     }
 
     .detail-box {
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.4);
       border-radius: 14px;
       padding: 0.5rem;
       text-align: center;
@@ -304,66 +314,53 @@
 
     .detail-label {
       font-size: 0.55rem;
-      color: #a0a0b0;
+      color: #a0a0b8;
       text-transform: uppercase;
     }
 
     .detail-value {
       font-weight: 700;
       font-size: 0.8rem;
-      color: #f0e6d2;
     }
 
     .balance-gold {
-      color: #e5b663;
+      color: #e7b85d;
       font-weight: 800;
     }
 
-    .holder-name {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #b0a08a;
-    }
-
     .buy-section {
-      background: rgba(229, 182, 99, 0.08);
-      border-top: 1px solid rgba(229, 182, 99, 0.4);
+      background: rgba(231, 184, 93, 0.07);
+      border-top: 1px solid rgba(231, 184, 93, 0.4);
       padding: 1rem 1.5rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      transition: 0.3s;
-    }
-
-    .card-premium:hover .buy-section {
-      background: rgba(229, 182, 99, 0.18);
-    }
-
-    .buy-text {
+      align-items: center;
       font-weight: 700;
-      color: #e5b663;
+    }
+
+    .play-card .buy-section {
+      background: rgba(74, 144, 226, 0.08);
+      border-top: 1px solid rgba(74, 144, 226, 0.5);
     }
 
     .arrow-icon {
       font-size: 1.5rem;
-      color: #c99a3c;
       transition: 0.3s;
     }
 
-    .card-premium:hover .arrow-icon {
-      transform: translateX(6px);
+    .card-premium:hover .arrow-icon, .play-card:hover .arrow-icon {
+      transform: translateX(7px);
       color: #f5e3b3;
     }
 
-    /* Modal premium */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0,0,0,0.9);
-      backdrop-filter: blur(25px);
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(30px);
       align-items: center;
       justify-content: center;
       padding: 1rem;
@@ -374,29 +371,29 @@
     }
 
     .modal-dialog {
-      background: #0e0e1a;
-      border: 2px solid #c99a3c;
+      background: #0c0c1a;
+      border: 2px solid #c49a3c;
       border-radius: 48px;
       width: 100%;
-      max-width: 520px;
+      max-width: 500px;
       max-height: 92vh;
       overflow-y: auto;
-      box-shadow: 0 0 80px rgba(229, 182, 99, 0.5);
+      box-shadow: 0 0 90px rgba(231, 184, 93, 0.55);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       padding: 1.5rem;
-      border-bottom: 1px solid #c99a3c;
+      border-bottom: 1px solid #c49a3c;
     }
 
     .close-btn {
       background: none;
-      border: 1px solid #c99a3c;
-      color: #c99a3c;
-      width: 36px;
-      height: 36px;
+      border: 1px solid #c49a3c;
+      color: #c49a3c;
+      width: 38px;
+      height: 38px;
       border-radius: 14px;
       font-size: 1.3rem;
       cursor: pointer;
@@ -405,30 +402,58 @@
     .app-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 15px;
       margin: 1.5rem 0;
     }
 
     .app-btn {
-      background: #151525;
-      border: 1px solid rgba(229, 182, 99, 0.3);
+      background: #15152a;
+      border: 1px solid rgba(231, 184, 93, 0.35);
       border-radius: 24px;
       padding: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       cursor: pointer;
+      font-weight: 600;
     }
 
     .btn-gold {
-      background: linear-gradient(135deg, #c99a3c, #e5b663);
+      background: linear-gradient(135deg, #c49a3c, #e7b85d);
       color: black;
       font-weight: 800;
       border: none;
       padding: 1rem;
       border-radius: 40px;
       width: 100%;
+      margin-top: 10px;
+    }
+
+    .input-email {
+      width: 100%;
+      padding: 14px;
+      border-radius: 30px;
+      background: #1a1a30;
+      border: 1px solid #c49a3c;
+      color: white;
+      margin: 12px 0;
+    }
+
+    .qr-container {
+      background: white;
+      padding: 15px;
+      border-radius: 24px;
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .upi-id-text {
+      font-size: 0.7rem;
+      color: #a0a0b8;
+      text-align: center;
+      margin-top: 5px;
     }
 
     .footer-note {
@@ -436,54 +461,75 @@
       color: #8e8ea0;
       margin-top: 2rem;
     }
+
+    .hidden-section {
+      display: none;
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="bg-animated"></div>
+<div class="bg-premium"></div>
 <div class="particles-layer" id="particlesContainer"></div>
 
 <div class="container">
   <div class="header">
     <div class="luxe-badge"><span>◆</span> ELITE VAULT <span>◆</span></div>
-    <div class="animated-text">CARD<span style="color:#e5b663;">VAULT</span></div>
+    <div class="title-glow">CARD<span style="color:#e7b85d;">VAULT</span></div>
     <div class="subtitle">Premium Digital Assets</div>
-    <div class="counter-live"><span class="dot-live"></span> <span id="liveUsersCount">124</span> COLLECTORS ONLINE</div>
+    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount">134</span> COLLECTORS</div>
   </div>
 
-  <div class="sort-section">
-    <button class="btn-sort active" id="sortPriceLow">Price ↑</button>
-    <button class="btn-sort" id="sortPriceHigh">Price ↓</button>
-    <button class="btn-sort" id="sortBalanceHigh">Balance</button>
+  <div class="section-tabs">
+    <button class="tab-btn active" id="tabCards">💳 BANK CARDS</button>
+    <button class="tab-btn" id="tabPlayStore">🎮 PLAY STORE CODES</button>
   </div>
 
-  <div class="filter-section" id="filterWrap">
-    <button class="btn-filter active" data-type="all">All</button>
-    <button class="btn-filter" data-type="visa">Visa</button>
-    <button class="btn-filter" data-type="mastercard">Mastercard</button>
-    <button class="btn-filter" data-type="amex">Amex</button>
-    <button class="btn-filter" data-type="rupay">RuPay</button>
+  <div id="cardsSection">
+    <div class="sort-section">
+      <button class="btn-sort active" id="sortPriceLow">Price ↑</button>
+      <button class="btn-sort" id="sortPriceHigh">Price ↓</button>
+      <button class="btn-sort" id="sortBalanceHigh">Balance</button>
+    </div>
+    <div class="filter-section" id="filterWrap">
+      <button class="btn-filter active" data-type="all">All</button>
+      <button class="btn-filter" data-type="visa">Visa</button>
+      <button class="btn-filter" data-type="mastercard">Mastercard</button>
+      <button class="btn-filter" data-type="amex">Amex</button>
+      <button class="btn-filter" data-type="rupay">RuPay</button>
+    </div>
   </div>
 
-  <div class="cards-grid" id="cardsGrid"></div>
-  <div class="footer-note">◆ SECURE TRANSACTIONS ◆</div>
+  <div id="playStoreSection" class="hidden-section">
+    <div class="sort-section">
+      <button class="btn-sort active" id="playSortLow">Price ↑</button>
+      <button class="btn-sort" id="playSortHigh">Price ↓</button>
+    </div>
+  </div>
+
+  <div class="cards-grid" id="dynamicGrid"></div>
+  <div class="footer-note">◆ SECURE • INSTANT DELIVERY ◆</div>
 </div>
 
 <div class="modal" id="paymentModal">
   <div class="modal-dialog">
     <div class="modal-header">
-      <span style="color:#e5b663; font-weight: bold;">CARD DETAILS</span>
+      <span style="color:#e7b85d; font-weight: bold;" id="modalTitle">DETAILS</span>
       <button class="close-btn" id="closeModalBtn">✕</button>
     </div>
     <div style="padding:1.5rem;">
-      <div id="modalCardInfo"></div>
+      <div id="modalItemInfo"></div>
+      <div class="qr-container" id="qrCodeContainer"></div>
+      <div class="upi-id-text">UPI: kartikrawat6266@okhdfcbank</div>
       <div class="app-grid">
         <div class="app-btn" id="btnPhonePe"><span>📱</span> PhonePe</div>
         <div class="app-btn" id="btnGPay"><span>G</span> Google Pay</div>
         <div class="app-btn" id="btnPaytm"><span>P</span> Paytm</div>
         <div class="app-btn" id="btnFamPay"><span>F</span> FamPay</div>
       </div>
-      <input class="input-custom" id="utrInput" placeholder="UTR / Transaction ID" style="width:100%; padding:14px; border-radius:30px; background:#1a1a2e; border:1px solid #c99a3c; color:white; margin:12px 0;">
-      <button class="btn-gold" id="confirmPaymentBtn">CONFIRM PAYMENT</button>
+      <input class="input-email" id="emailInput" placeholder="Email address (required)" type="email">
+      <input class="input-email" id="utrInput" placeholder="UTR / Transaction ID">
+      <button class="btn-gold" id="confirmPaymentBtn">CONFIRM & REDEEM</button>
     </div>
   </div>
 </div>
@@ -493,7 +539,6 @@
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT = "CARDVAULT";
 
-    // Premium cards data
     const cardBrands = {
       visa: { prefix: ['4'], lengths: [16], display: 'VISA' },
       mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD' },
@@ -503,104 +548,159 @@
     };
     const brands = Object.keys(cardBrands);
     function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    
+
     const cards = [];
-    for (let i = 1; i <= 110; i++) {
+    for (let i = 1; i <= 100; i++) {
       const type = brands[Math.floor(Math.random() * brands.length)];
       const fullNum = (cardBrands[type].prefix[0] + Array(cardBrands[type].lengths[0] - cardBrands[type].prefix[0].length).fill(0).map(()=>Math.floor(Math.random()*10)).join('')).slice(0, cardBrands[type].lengths[0]);
-      const price = rand(150, 950);
       cards.push({
         id: i, type, fullNumber: fullNum,
         displayNumber: fullNum.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX',
         expiry: `${String(rand(1,12)).padStart(2,'0')}/${rand(26,30)}`,
         cvv: type==='amex' ? String(rand(1000,9999)) : String(rand(100,999)),
         holder: ['A. SHARMA','PRIYA K.','ROHAN D.','VIKRAM S.'][rand(0,3)],
-        price: price, balance: price * 10
+        price: rand(180, 980), balance: 0
       });
+      cards[i-1].balance = cards[i-1].price * 10;
     }
     cards.sort((a,b) => a.price - b.price);
 
-    // Background particles
+    const playCodes = [];
+    for (let i = 1; i <= 60; i++) {
+      const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
+      playCodes.push({
+        id: 200 + i,
+        code: code,
+        displayCode: code.slice(0,8) + '•••••••',
+        value: rand(180, 980),
+        price: rand(180, 980),
+        type: 'playstore'
+      });
+    }
+    playCodes.sort((a,b) => a.price - b.price);
+
     const pContainer = document.getElementById('particlesContainer');
-    for (let i=0; i<50; i++) {
+    for (let i=0; i<55; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       p.style.left = Math.random()*100+'%';
       p.style.width = p.style.height = (Math.random()*5+2)+'px';
-      p.style.animationDelay = Math.random()*8+'s';
-      p.style.animationDuration = (Math.random()*7+5)+'s';
+      p.style.animationDelay = Math.random()*9+'s';
+      p.style.animationDuration = (Math.random()*7+6)+'s';
       pContainer.appendChild(p);
     }
 
-    // Live counter
-    const liveEl = document.getElementById('liveUsersCount');
-    setInterval(() => { liveEl.textContent = Math.floor(Math.random()*50)+90; }, 4000);
+    setInterval(() => { document.getElementById('liveUsersCount').textContent = Math.floor(Math.random()*60)+100; }, 4000);
 
-    let currentCard = null;
+    let currentItem = null;
+    let activeSection = 'cards';
     let currentFilter = 'all';
     let currentSort = 'price-low';
+    let playSort = 'price-low';
+    let qrCodeInstance = null;
 
-    function renderCards() {
-      let filtered = currentFilter === 'all' ? [...cards] : cards.filter(c => c.type === currentFilter);
-      if (currentSort === 'price-low') filtered.sort((a,b) => a.price - b.price);
-      else if (currentSort === 'price-high') filtered.sort((a,b) => b.price - a.price);
-      else if (currentSort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
+    function getActiveData() {
+      return activeSection === 'cards' ? { list: cards, filter: currentFilter, sort: currentSort } : { list: playCodes, filter: 'all', sort: playSort };
+    }
+
+    function renderGrid() {
+      const { list, filter, sort } = getActiveData();
+      let filtered = activeSection === 'cards' ? (filter === 'all' ? [...list] : list.filter(c => c.type === filter)) : [...list];
       
-      const grid = document.getElementById('cardsGrid');
-      grid.innerHTML = filtered.map(c => `
-        <div class="card-premium">
-          <div class="card-top-glow"></div>
-          <div class="card-content">
-            <div class="card-type-row">
-              <span class="network-badge">${cardBrands[c.type].display}</span>
-              <span class="price-tag">₹${c.price}</span>
-            </div>
-            <div class="card-visual">
-              <div class="chip-gold"><div class="chip-line"></div><div class="chip-line"></div></div>
-            </div>
-            <div class="card-number-display">${c.displayNumber}</div>
-            <div class="details-grid">
-              <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${c.expiry}</div></div>
-              <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value">${c.cvv}</div></div>
-              <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${c.balance}</div></div>
-            </div>
-            <div class="holder-name">${c.holder}</div>
-          </div>
-          <div class="buy-section" data-id="${c.id}">
-            <span class="buy-text">UNLOCK CARD</span>
-            <span class="arrow-icon">→</span>
-          </div>
-        </div>
-      `).join('');
-      
+      if (activeSection === 'cards') {
+        if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+        else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+        else if (sort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
+      } else {
+        filtered.sort((a,b) => sort === 'price-low' ? a.price - b.price : b.price - a.price);
+      }
+
+      const grid = document.getElementById('dynamicGrid');
+      grid.innerHTML = filtered.map(item => {
+        if (item.type && item.type !== 'playstore') {
+          return `
+            <div class="card-premium">
+              <div class="card-top-glow"></div>
+              <div class="card-content">
+                <div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div>
+                <div class="card-number-display">${item.displayNumber}</div>
+                <div class="details-grid">
+                  <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div>
+                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value">${item.cvv}</div></div>
+                  <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div>
+                </div>
+              </div>
+              <div class="buy-section" data-id="${item.id}"><span>UNLOCK CARD</span><span class="arrow-icon">→</span></div>
+            </div>`;
+        } else {
+          return `
+            <div class="play-card">
+              <div class="card-top-glow"></div>
+              <div class="card-content">
+                <div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div>
+                <div class="code-display" style="margin:1rem 0;">${item.displayCode}</div>
+                <div class="details-grid">
+                  <div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div>
+                  <div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">GIFT CARD</div></div>
+                  <div class="detail-box"><div class="detail-label">REGION</div><div class="detail-value">IN</div></div>
+                </div>
+              </div>
+              <div class="buy-section" data-id="${item.id}"><span>REDEEM CODE</span><span class="arrow-icon">→</span></div>
+            </div>`;
+        }
+      }).join('');
+
       document.querySelectorAll('.buy-section').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = parseInt(btn.dataset.id);
-          currentCard = cards.find(c => c.id === id);
-          openModal(currentCard);
+          const allData = activeSection === 'cards' ? cards : playCodes;
+          currentItem = allData.find(i => i.id === id);
+          openModal(currentItem);
         });
       });
     }
 
-    function openModal(card) {
-      document.getElementById('modalCardInfo').innerHTML = `
-        <div style="background:#1a1a2e; border-radius:24px; padding:1rem; margin-bottom:1rem;">
-          <p><strong>${cardBrands[card.type].display}</strong> • ${card.displayNumber}</p>
-          <p>CVV: ${card.cvv} | EXP: ${card.expiry}</p>
-          <p style="color:#e5b663; font-size:1.5rem; font-weight:bold;">₹${card.price}</p>
-        </div>
-      `;
+    function generateQRCode(amount, itemId) {
+      const container = document.getElementById('qrCodeContainer');
+      container.innerHTML = '';
+      const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${itemId}`;
+      try {
+        qrCodeInstance = new QRCode(container, {
+          text: upiString,
+          width: 150,
+          height: 150,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      } catch (e) {
+        container.innerHTML = '<div style="color:red;">QR Error</div>';
+      }
+    }
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.type === 'playstore' ? 'PLAY STORE CODE' : 'CARD DETAILS';
+      const infoDiv = document.getElementById('modalItemInfo');
+      if (item.type === 'playstore') {
+        infoDiv.innerHTML = `<div style="background:#1a1a32; border-radius:24px; padding:1rem;"><p><strong>🎮 PLAY STORE</strong></p><p>Code: ${item.code}</p><p style="color:#4a90e2; font-size:1.8rem; font-weight:bold;">₹${item.price}</p></div>`;
+      } else {
+        infoDiv.innerHTML = `<div style="background:#1a1a2e; border-radius:24px; padding:1rem;"><p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p><p>CVV: ${item.cvv} | EXP: ${item.expiry}</p><p style="color:#e7b85d; font-size:1.8rem;">₹${item.price}</p></div>`;
+      }
+      generateQRCode(item.price, item.id);
+      document.getElementById('emailInput').value = '';
+      document.getElementById('utrInput').value = '';
       document.getElementById('paymentModal').classList.add('open');
     }
 
-    function closeModal() {
-      document.getElementById('paymentModal').classList.remove('open');
+    function closeModal() { 
+      document.getElementById('paymentModal').classList.remove('open'); 
+      if(qrCodeInstance) qrCodeInstance.clear();
     }
 
-    function openUPIApp(app) {
-      if (!currentCard) return;
-      const amt = currentCard.price.toFixed(2);
-      const note = `CARD_${currentCard.id}`;
+    function openUPI(app) {
+      if (!currentItem) return;
+      const amt = currentItem.price.toFixed(2);
+      const note = currentItem.type === 'playstore' ? `PLAY_${currentItem.id}` : `CARD_${currentItem.id}`;
       const upiStr = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
       if (app === 'fampay') window.location.href = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}#Intent;scheme=upi;package=com.fampay.in;end`;
       else if (app === 'phonepe') window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
@@ -609,25 +709,51 @@
       setTimeout(() => { if (!document.hidden) window.location.href = upiStr; }, 1800);
     }
 
-    document.getElementById('btnPhonePe').onclick = ()=> openUPIApp('phonepe');
-    document.getElementById('btnGPay').onclick = ()=> openUPIApp('gpay');
-    document.getElementById('btnPaytm').onclick = ()=> openUPIApp('paytm');
-    document.getElementById('btnFamPay').onclick = ()=> openUPIApp('fampay');
+    document.getElementById('btnPhonePe').onclick = ()=> openUPI('phonepe');
+    document.getElementById('btnGPay').onclick = ()=> openUPI('gpay');
+    document.getElementById('btnPaytm').onclick = ()=> openUPI('paytm');
+    document.getElementById('btnFamPay').onclick = ()=> openUPI('fampay');
     document.getElementById('confirmPaymentBtn').onclick = ()=>{
-      const utr = document.getElementById('utrInput').value.trim();
-      if(!utr) alert('Enter UTR');
-      else { alert('Payment confirmed'); closeModal(); }
+      const email = document.getElementById('emailInput').value.trim();
+      if(!email) { alert('Email is required for purchase'); return; }
+      alert('Payment confirmed! Code/Card will be sent to ' + email);
+      closeModal();
     };
     document.getElementById('closeModalBtn').onclick = closeModal;
 
-    document.querySelectorAll('.btn-sort').forEach(b => {
+    document.getElementById('tabCards').addEventListener('click', ()=>{
+      activeSection = 'cards';
+      document.getElementById('tabCards').classList.add('active');
+      document.getElementById('tabPlayStore').classList.remove('active');
+      document.getElementById('cardsSection').classList.remove('hidden-section');
+      document.getElementById('playStoreSection').classList.add('hidden-section');
+      renderGrid();
+    });
+    document.getElementById('tabPlayStore').addEventListener('click', ()=>{
+      activeSection = 'play';
+      document.getElementById('tabPlayStore').classList.add('active');
+      document.getElementById('tabCards').classList.remove('active');
+      document.getElementById('cardsSection').classList.add('hidden-section');
+      document.getElementById('playStoreSection').classList.remove('hidden-section');
+      renderGrid();
+    });
+
+    document.querySelectorAll('#cardsSection .btn-sort').forEach(b => {
       b.addEventListener('click', function() {
-        document.querySelectorAll('.btn-sort').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('#cardsSection .btn-sort').forEach(x => x.classList.remove('active'));
         this.classList.add('active');
         if(this.id === 'sortPriceLow') currentSort = 'price-low';
         else if(this.id === 'sortPriceHigh') currentSort = 'price-high';
         else currentSort = 'balance-high';
-        renderCards();
+        if(activeSection==='cards') renderGrid();
+      });
+    });
+    document.querySelectorAll('#playStoreSection .btn-sort').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('#playStoreSection .btn-sort').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        playSort = this.id === 'playSortLow' ? 'price-low' : 'price-high';
+        if(activeSection==='play') renderGrid();
       });
     });
 
@@ -636,11 +762,11 @@
         document.querySelectorAll('.btn-filter').forEach(x => x.classList.remove('active'));
         this.classList.add('active');
         currentFilter = this.dataset.type;
-        renderCards();
+        if(activeSection==='cards') renderGrid();
       });
     });
 
-    renderCards();
+    renderGrid();
   })();
 </script>
 </body>
