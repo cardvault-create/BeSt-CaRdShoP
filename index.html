@@ -85,7 +85,7 @@
       gap: 2.5rem;
     }
 
-    /* ========== NEW SECURE HEADER (as per screenshot) ========== */
+    /* ========== HEADER - AS PER SCREENSHOT ========== */
     .secure-header {
       display: flex;
       flex-wrap: wrap;
@@ -195,7 +195,7 @@
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } }
 
-    /* ========== BOXED SECTION TABS - SMALLER ========== */
+    /* ========== BOXED SECTION TABS - AS PER ORIGINAL ========== */
     .section-tabs-box {
       display: flex;
       justify-content: center;
@@ -267,7 +267,7 @@
       letter-spacing: 0.06em;
     }
 
-    /* ========== BOXED SORT & FILTER ========== */
+    /* ========== CONTROL BOX - SORT & FILTER (ORIGINAL STYLE) ========== */
     .controls-box {
       background: rgba(18, 20, 32, 0.7);
       backdrop-filter: blur(25px);
@@ -328,7 +328,6 @@
     }
     .btn-sort:active, .btn-filter:active {
       transform: scale(0.96);
-      transition: all 0.1s ease;
     }
     .btn-sort-low { border-color: rgba(46, 204, 113, 0.4); color: #2ecc71; }
     .btn-sort-low.active { background: #2ecc71; border-color: #2ecc71; color: #000; box-shadow: 0 0 30px rgba(46,204,113,0.5); }
@@ -570,7 +569,6 @@
       background: rgba(212,168,67,0.3);
     }
 
-    /* Boxed App Buttons */
     .app-grid-box {
       background: rgba(18, 20, 32, 0.6);
       backdrop-filter: blur(20px);
@@ -699,7 +697,7 @@
       display: none;
     }
 
-    /* Premium Verification Popup */
+    /* Verification Popup */
     .verification-overlay {
       display: none;
       position: fixed;
@@ -726,7 +724,6 @@
       animation: modalGlow 0.4s ease;
       max-width: 440px;
       width: 90%;
-      transition: all 0.5s ease;
     }
 
     @keyframes modalGlow {
@@ -840,15 +837,6 @@
       box-shadow: 0 0 25px rgba(212,168,67,0.6);
     }
 
-    .code-hidden-modal {
-      font-family: 'JetBrains Mono', monospace;
-      letter-spacing: 0.15em;
-      background: rgba(0,0,0,0.4);
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      display: inline-block;
-    }
-
     .error-message-premium {
       color: var(--error-red);
       font-size: 0.7rem;
@@ -875,7 +863,7 @@
 <div class="bg-luxury"></div>
 <div class="particles-layer" id="particlesContainer"></div>
 
-<!-- Premium Verification Popup -->
+<!-- Verification Popup -->
 <div class="verification-overlay" id="verificationPopup">
   <div class="verification-card" id="verificationCard">
     <div id="verifyLoadingContent">
@@ -893,7 +881,7 @@
 </div>
 
 <div class="container">
-  <!-- NEW SECURE HEADER (Only top part changed as per screenshot) -->
+  <!-- HEADER - AS PER SCREENSHOT -->
   <div class="secure-header">
     <div class="terminal-badge">
       <div class="label">SECURE TERMINAL</div>
@@ -905,54 +893,53 @@
     </div>
     <div class="node-status">
       <div class="node-name"><span class="live-dot"></span> NODE: GLOBAL-01</div>
-      <div style="font-size:0.7rem; color:var(--text-muted);" id="liveUsersCount">157</div>
+      <div style="font-size:0.7rem; color:var(--text-muted);" id="liveUsersCount">198</div>
     </div>
   </div>
-  <!-- Live tag below header -->
   <div style="display: flex; justify-content: center;">
-    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount2">157</span> COLLECTORS ONLINE</div>
+    <div class="live-tag"><span class="dot-live"></span> <span id="liveUsersCount2">198</span> ACTIVE SESSIONS</div>
   </div>
 
-  <!-- BOXED SECTION TABS - SMALLER -->
+  <!-- TABS -->
   <div class="section-tabs-box">
     <div class="tab-box tab-box-cards active" id="tabCardsBox">
       <div class="tab-box-icon">💳</div>
-      <div class="tab-box-title">ALL CARDS</div>
+      <div class="tab-box-title">CARDS DATABASE</div>
       <div class="tab-box-sub">Premium Bank Cards</div>
     </div>
     <div class="tab-box tab-box-play" id="tabPlayBox">
       <div class="tab-box-icon">🎮</div>
-      <div class="tab-box-title">PLAY STORE CODES</div>
+      <div class="tab-box-title">PLAY CODES VAULT</div>
       <div class="tab-box-sub">Gift Cards & Redeem Codes</div>
     </div>
   </div>
 
   <div id="cardsSection">
     <div class="controls-box">
-      <div class="section-label">◆ SORT BY ◆</div>
+      <div class="section-label">◆ SORT PROTOCOL ◆</div>
       <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 Low Price</button>
-        <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 High Price</button>
-        <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 High Balance</button>
+        <button class="btn-sort btn-sort-low active" id="sortPriceLow">📉 LOW VALUE</button>
+        <button class="btn-sort btn-sort-high" id="sortPriceHigh">📈 HIGH VALUE</button>
+        <button class="btn-sort btn-sort-balance" id="sortBalanceHigh">💰 HIGH BALANCE</button>
       </div>
-      <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY ◆</div>
+      <div class="section-label" style="margin-top: 0.8rem;">◆ FILTER BY NETWORK ◆</div>
       <div class="filter-section" id="filterWrap">
-        <button class="btn-filter btn-filter-all active" data-type="all">🌐 All</button>
-        <button class="btn-filter btn-filter-visa" data-type="visa">💎 Visa</button>
-        <button class="btn-filter btn-filter-mc" data-type="mastercard">🔴 Mastercard</button>
-        <button class="btn-filter btn-filter-amex" data-type="amex">🔵 Amex</button>
-        <button class="btn-filter btn-filter-rupay" data-type="rupay">🟣 RuPay</button>
+        <button class="btn-filter btn-filter-all active" data-type="all">🌐 ALL</button>
+        <button class="btn-filter btn-filter-visa" data-type="visa">💎 VISA</button>
+        <button class="btn-filter btn-filter-mc" data-type="mastercard">🔴 MASTERCARD</button>
+        <button class="btn-filter btn-filter-amex" data-type="amex">🔵 AMEX</button>
+        <button class="btn-filter btn-filter-rupay" data-type="rupay">🟣 RUPAY</button>
       </div>
     </div>
   </div>
 
   <div id="playStoreSection" class="hidden-section">
     <div class="controls-box">
-      <div class="section-label">◆ SORT BY ◆</div>
+      <div class="section-label">◆ SORT CODES ◆</div>
       <div class="sort-row">
-        <button class="btn-sort btn-sort-low active" id="playSortLow">📉 Low Price</button>
-        <button class="btn-sort btn-sort-high" id="playSortHigh">📈 High Price</button>
-        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 High Balance</button>
+        <button class="btn-sort btn-sort-low active" id="playSortLow">📉 LOW PRICE</button>
+        <button class="btn-sort btn-sort-high" id="playSortHigh">📈 HIGH PRICE</button>
+        <button class="btn-sort btn-sort-balance" id="playSortBalance">💰 HIGH VALUE</button>
       </div>
     </div>
   </div>
@@ -1054,7 +1041,7 @@
     }
 
     setInterval(() => { 
-      const newCount = Math.floor(Math.random()*70)+120;
+      const newCount = Math.floor(Math.random()*70)+150;
       document.getElementById('liveUsersCount').textContent = newCount;
       document.getElementById('liveUsersCount2').textContent = newCount;
     }, 4000);
