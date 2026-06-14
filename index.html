@@ -38,103 +38,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ========== 🌌 PREMIUM BACKGROUND ANIMATION 🌌 ========== */
-    .premium-bg-animation {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .floating-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0;
-      animation: orbFloat linear infinite;
-    }
-    .floating-diamond {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--gold-light);
-      border-radius: 3px;
-      transform: rotate(45deg);
-      opacity: 0;
-      animation: diamondFloat linear infinite;
-      box-shadow: 0 0 25px rgba(240, 215, 140, 0.9), 0 0 50px rgba(212, 168, 67, 0.6);
-    }
-    .floating-line {
-      position: absolute;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(240, 215, 140, 0.7), transparent);
-      opacity: 0;
-      animation: lineFloat linear infinite;
-      border-radius: 1px;
-    }
-    .floating-spark {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0;
-      animation: sparkFloat linear infinite;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(240, 215, 140, 0.9);
-    }
-    .floating-ring {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 2px solid rgba(240, 215, 140, 0.5);
-      border-radius: 50%;
-      opacity: 0;
-      animation: ringFloat linear infinite;
-      box-shadow: 0 0 20px rgba(240, 215, 140, 0.4);
-    }
-    @keyframes orbFloat {
-      0% { transform: translateY(105vh) translateX(0px) scale(0.3); opacity: 0; }
-      10% { opacity: 0.6; }
-      30% { transform: translateY(65vh) translateX(80px) scale(1.2); opacity: 0.5; }
-      60% { transform: translateY(30vh) translateX(-50px) scale(1.5); opacity: 0.3; }
-      85% { opacity: 0.1; }
-      100% { transform: translateY(-20vh) translateX(0px) scale(0.5); opacity: 0; }
-    }
-    @keyframes diamondFloat {
-      0% { transform: translateY(-15vh) translateX(0px) rotate(45deg) scale(0); opacity: 0; }
-      8% { opacity: 1; }
-      25% { transform: translateY(22vh) translateX(-60px) rotate(135deg) scale(1.2); opacity: 0.9; }
-      50% { transform: translateY(52vh) translateX(50px) rotate(225deg) scale(1.6); opacity: 0.6; }
-      75% { transform: translateY(78vh) translateX(-40px) rotate(315deg) scale(1); opacity: 0.3; }
-      95% { opacity: 0.05; }
-      100% { transform: translateY(105vh) translateX(0px) rotate(405deg) scale(0); opacity: 0; }
-    }
-    @keyframes lineFloat {
-      0% { transform: translateY(105vh) translateX(0px) scaleX(0.3); opacity: 0; }
-      15% { opacity: 0.8; }
-      40% { transform: translateY(50vh) translateX(40px) scaleX(1.5); opacity: 0.6; }
-      70% { transform: translateY(18vh) translateX(-30px) scaleX(1); opacity: 0.3; }
-      100% { transform: translateY(-12vh) translateX(0px) scaleX(0.2); opacity: 0; }
-    }
-    @keyframes sparkFloat {
-      0% { transform: translateY(105vh) translateX(0px) scale(0); opacity: 0; }
-      5% { opacity: 1; }
-      20% { transform: translateY(70vh) translateX(90px) scale(2); opacity: 0.9; }
-      45% { transform: translateY(35vh) translateX(-60px) scale(1.2); opacity: 0.7; }
-      70% { transform: translateY(12vh) translateX(50px) scale(0.7); opacity: 0.3; }
-      90% { opacity: 0.05; }
-      100% { transform: translateY(-12vh) translateX(0px) scale(0); opacity: 0; }
-    }
-    @keyframes ringFloat {
-      0% { transform: translateY(105vh) translateX(0px) rotate(0deg) scale(0.5); opacity: 0; }
-      12% { opacity: 0.7; }
-      35% { transform: translateY(55vh) translateX(70px) rotate(120deg) scale(1.3); opacity: 0.5; }
-      65% { transform: translateY(20vh) translateX(-50px) rotate(240deg) scale(1); opacity: 0.3; }
-      88% { opacity: 0.1; }
-      100% { transform: translateY(-15vh) translateX(0px) rotate(360deg) scale(0.5); opacity: 0; }
-    }
-    /* ========== END BACKGROUND ========== */
-
+    /* ========== SIMPLE PREMIUM BACKGROUND ========== */
     .bg-luxury {
       position: fixed;
       inset: 0;
@@ -378,8 +282,6 @@
       text-transform: uppercase;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
-      position: relative;
-      z-index: 1;
     }
     .btn-sort:hover, .btn-filter:hover {
       border-color: rgba(255,255,255,0.3);
@@ -430,11 +332,6 @@
       transform: translateY(-14px) scale(1.02);
       border-color: var(--gold-light);
       box-shadow: var(--shadow-gold), 0 0 60px rgba(212, 168, 67, 0.25);
-    }
-
-    .card-premium:active, .play-card:active {
-      transform: scale(0.98);
-      transition: all 0.1s ease;
     }
 
     .play-card {
@@ -559,19 +456,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .buy-section:active {
-      background: rgba(212, 168, 67, 0.2);
-      transform: scale(0.98);
-      transition: all 0.1s ease;
-    }
-
     .play-card .buy-section {
       background: rgba(66, 133, 244, 0.06);
       border-top: 1px solid rgba(66, 133, 244, 0.5);
-    }
-
-    .play-card .buy-section:active {
-      background: rgba(66, 133, 244, 0.2);
     }
 
     .buy-text {
@@ -645,11 +532,6 @@
       background: rgba(212,168,67,0.3);
     }
 
-    .close-btn:active {
-      transform: scale(0.9);
-      transition: all 0.1s ease;
-    }
-
     /* Boxed App Buttons */
     .app-grid-box {
       background: rgba(18, 20, 32, 0.6);
@@ -689,11 +571,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .app-btn:active {
-      transform: scale(0.95);
-      transition: all 0.1s ease;
-    }
-
     .app-icon-real {
       width: 44px;
       height: 44px;
@@ -729,11 +606,6 @@
 
     .btn-gold-premium:hover {
       box-shadow: 0 0 30px rgba(212,168,67,0.6);
-    }
-
-    .btn-gold-premium:active {
-      transform: scale(0.97);
-      transition: all 0.1s ease;
     }
 
     .input-premium {
@@ -928,11 +800,6 @@
       box-shadow: 0 0 25px rgba(212,168,67,0.6);
     }
 
-    .btn-close-verify:active {
-      transform: scale(0.95);
-      transition: all 0.1s ease;
-    }
-
     .code-hidden-modal {
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: 0.15em;
@@ -965,10 +832,6 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-
-<!-- 🌌 PREMIUM BACKGROUND ANIMATION 🌌 -->
-<div class="premium-bg-animation" id="premiumBg"></div>
-
 <div class="bg-luxury"></div>
 <div class="particles-layer" id="particlesContainer"></div>
 
@@ -1012,7 +875,6 @@
   </div>
 
   <div id="cardsSection">
-    <!-- BOXED SORT & FILTER CONTROLS -->
     <div class="controls-box">
       <div class="section-label">◆ SORT BY ◆</div>
       <div class="sort-section">
@@ -1032,7 +894,6 @@
   </div>
 
   <div id="playStoreSection" class="hidden-section">
-    <!-- BOXED SORT CONTROLS FOR PLAY STORE -->
     <div class="controls-box">
       <div class="section-label">◆ SORT BY ◆</div>
       <div class="sort-section">
@@ -1056,7 +917,6 @@
       <div id="modalItemInfo"></div>
       <div class="qr-container" id="qrCodeContainer"></div>
       <div class="upi-text">UPI: kartikrawat6266@okhdfcbank</div>
-      <!-- BOXED APP BUTTONS -->
       <div class="app-grid-box">
         <div class="app-grid">
           <div class="app-btn" id="btnPhonePe"><div class="app-icon-real icon-phonepe">₹</div>PhonePe</div>
@@ -1076,60 +936,6 @@
 
 <script>
   (function() {
-    // 🌌 PREMIUM BACKGROUND ANIMATION SETUP
-    const bgContainer = document.getElementById('premiumBg');
-    const orbColors = ['rgba(212,168,67,0.3)', 'rgba(240,215,140,0.2)', 'rgba(66,133,244,0.15)', 'rgba(255,107,53,0.12)', 'rgba(155,89,182,0.15)'];
-    
-    for (let i = 0; i < 10; i++) {
-      const orb = document.createElement('div');
-      orb.className = 'floating-orb';
-      orb.style.width = (Math.random() * 250 + 100) + 'px';
-      orb.style.height = orb.style.width;
-      orb.style.background = orbColors[Math.floor(Math.random() * orbColors.length)];
-      orb.style.left = Math.random() * 100 + '%';
-      orb.style.animationDuration = (Math.random() * 20 + 15) + 's';
-      orb.style.animationDelay = Math.random() * 18 + 's';
-      bgContainer.appendChild(orb);
-    }
-    
-    for (let i = 0; i < 35; i++) {
-      const diamond = document.createElement('div');
-      diamond.className = 'floating-diamond';
-      diamond.style.left = Math.random() * 100 + '%';
-      diamond.style.width = diamond.style.height = (Math.random() * 7 + 4) + 'px';
-      diamond.style.animationDuration = (Math.random() * 12 + 9) + 's';
-      diamond.style.animationDelay = Math.random() * 12 + 's';
-      bgContainer.appendChild(diamond);
-    }
-    
-    for (let i = 0; i < 15; i++) {
-      const line = document.createElement('div');
-      line.className = 'floating-line';
-      line.style.width = (Math.random() * 200 + 100) + 'px';
-      line.style.left = Math.random() * 100 + '%';
-      line.style.animationDuration = (Math.random() * 16 + 14) + 's';
-      line.style.animationDelay = Math.random() * 16 + 's';
-      bgContainer.appendChild(line);
-    }
-    
-    for (let i = 0; i < 50; i++) {
-      const spark = document.createElement('div');
-      spark.className = 'floating-spark';
-      spark.style.left = Math.random() * 100 + '%';
-      spark.style.animationDuration = (Math.random() * 8 + 6) + 's';
-      spark.style.animationDelay = Math.random() * 10 + 's';
-      bgContainer.appendChild(spark);
-    }
-    
-    for (let i = 0; i < 12; i++) {
-      const ring = document.createElement('div');
-      ring.className = 'floating-ring';
-      ring.style.left = Math.random() * 100 + '%';
-      ring.style.animationDuration = (Math.random() * 14 + 12) + 's';
-      ring.style.animationDelay = Math.random() * 14 + 's';
-      bgContainer.appendChild(ring);
-    }
-
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT = "CARDVAULT";
 
@@ -1142,10 +948,7 @@
     };
     const brands = Object.keys(cardBrands);
     function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-
-    function generatePrice() {
-      return rand(100, 1000);
-    }
+    function generatePrice() { return rand(100, 1000); }
 
     const cards = [];
     for (let i = 1; i <= 100; i++) {
@@ -1164,18 +967,12 @@
     cards.sort((a,b) => a.price - b.price);
 
     function maskCVV(cvv) {
-      if (cvv.length === 3) {
-        return cvv[0] + '**';
-      } else if (cvv.length === 4) {
-        return cvv[0] + '**' + cvv[3];
-      }
+      if (cvv.length === 3) return cvv[0] + '**';
+      else if (cvv.length === 4) return cvv[0] + '**' + cvv[3];
       return cvv;
     }
-
     function maskPlayCode(code) {
-      if (code.length >= 8) {
-        return code.slice(0, 4) + '•••••••' + code.slice(-4);
-      }
+      if (code.length >= 8) return code.slice(0, 4) + '•••••••' + code.slice(-4);
       return code.slice(0, 4) + '•••••••';
     }
 
@@ -1184,12 +981,9 @@
       const code = 'PLY' + Array(12).fill(0).map(()=>'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'[Math.floor(Math.random()*34)]).join('');
       const price = generatePrice();
       playCodes.push({
-        id: 200 + i,
-        code: code,
+        id: 200 + i, code: code,
         displayCode: code.slice(0,8) + '•••••••',
-        value: price * 10,
-        price: price,
-        type: 'playstore'
+        value: price * 10, price: price, type: 'playstore'
       });
     }
     playCodes.sort((a,b) => a.price - b.price);
@@ -1233,35 +1027,9 @@
       const grid = document.getElementById('dynamicGrid');
       grid.innerHTML = filtered.map(item => {
         if (item.type && item.type !== 'playstore') {
-          return `
-            <div class="card-premium">
-              <div class="card-top-glow"></div>
-              <div class="card-content">
-                <div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div>
-                <div class="card-number-display">${item.displayNumber}</div>
-                <div class="details-grid">
-                  <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div>
-                  <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div>
-                  <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div>
-                </div>
-              </div>
-              <div class="buy-section" data-id="${item.id}"><span class="buy-text">PURCHASE CARD</span><span class="arrow-icon">→</span></div>
-            </div>`;
+          return `<div class="card-premium"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="network-badge">${cardBrands[item.type].display}</span><span class="price-tag">₹${item.price}</span></div><div class="card-number-display">${item.displayNumber}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${item.expiry}</div></div><div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value cvv-partial-hidden">${maskCVV(item.cvv)}</div></div><div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${item.balance}</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">PURCHASE CARD</span><span class="arrow-icon">→</span></div></div>`;
         } else {
-          return `
-            <div class="play-card">
-              <div class="card-top-glow"></div>
-              <div class="card-content">
-                <div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div>
-                <div class="code-display" style="margin:1rem 0;">${item.displayCode}</div>
-                <div class="details-grid">
-                  <div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div>
-                  <div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div>
-                  <div class="detail-box"><div class="detail-label">REGION</div><div class="detail-value">IN</div></div>
-                </div>
-              </div>
-              <div class="buy-section" data-id="${item.id}"><span class="buy-text">REDEEM CODE</span><span class="arrow-icon">→</span></div>
-            </div>`;
+          return `<div class="play-card"><div class="card-top-glow"></div><div class="card-content"><div class="card-type-row"><span class="play-badge">🎮 PLAY STORE</span><span class="price-tag">₹${item.price}</span></div><div class="code-display" style="margin:1rem 0;">${item.displayCode}</div><div class="details-grid"><div class="detail-box"><div class="detail-label">VALUE</div><div class="detail-value">₹${item.value}</div></div><div class="detail-box"><div class="detail-label">TYPE</div><div class="detail-value">REDEEM CODE</div></div><div class="detail-box"><div class="detail-label">REGION</div><div class="detail-value">IN</div></div></div></div><div class="buy-section" data-id="${item.id}"><span class="buy-text">REDEEM CODE</span><span class="arrow-icon">→</span></div></div>`;
         }
       }).join('');
 
@@ -1280,10 +1048,7 @@
       container.innerHTML = '';
       const upiString = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amount.toFixed(2)}&cu=INR&tn=${activeSection === 'play' ? 'PLAY_' : 'CARD_'}${itemId}`;
       try {
-        qrCodeInstance = new QRCode(container, {
-          text: upiString, width: 150, height: 150,
-          colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H
-        });
+        qrCodeInstance = new QRCode(container, { text: upiString, width: 150, height: 150, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
       } catch (e) { container.innerHTML = '<div style="color:red;">QR Error</div>'; }
     }
 
@@ -1291,21 +1056,9 @@
       document.getElementById('modalTitle').innerText = item.type === 'playstore' ? 'PLAY STORE CODE' : 'CARD DETAILS';
       const infoDiv = document.getElementById('modalItemInfo');
       if (item.type === 'playstore') {
-        infoDiv.innerHTML = `
-          <div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid #4a90e2;">
-            <p><strong>🎮 PLAY STORE GIFT CARD</strong></p>
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; letter-spacing: 0.1em; background: rgba(0,0,0,0.4); padding: 0.6rem; border-radius: 12px; text-align: center;">
-              ${maskPlayCode(item.code)}
-            </p>
-            <p style="color:#6a9ff5; font-size:1.8rem; font-weight:800;">₹${item.price}</p>
-          </div>`;
+        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid #4a90e2;"><p><strong>🎮 PLAY STORE GIFT CARD</strong></p><p style="font-family:monospace;font-size:1.1rem;background:rgba(0,0,0,0.4);padding:0.6rem;border-radius:12px;text-align:center;">${maskPlayCode(item.code)}</p><p style="color:#6a9ff5;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
       } else {
-        infoDiv.innerHTML = `
-          <div style="background:#141526; border-radius:24px; padding:1rem; border:1px solid var(--border-gold);">
-            <p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p>
-            <p>CVV: ${maskCVV(item.cvv)} | EXP: ${item.expiry}</p>
-            <p style="color:#e0c78a; font-size:1.8rem; font-weight:800;">₹${item.price}</p>
-          </div>`;
+        infoDiv.innerHTML = `<div style="background:#141526;border-radius:24px;padding:1rem;border:1px solid var(--border-gold);"><p><strong>${cardBrands[item.type].display}</strong> • ${item.displayNumber}</p><p>CVV: ${maskCVV(item.cvv)} | EXP: ${item.expiry}</p><p style="color:#e0c78a;font-size:1.8rem;font-weight:800;">₹${item.price}</p></div>`;
       }
       generateQRCode(item.price, item.id);
       document.getElementById('emailInput').value = '';
@@ -1322,49 +1075,24 @@
       if(qrCodeInstance) qrCodeInstance.clear();
     }
 
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function validateUTR(utr) {
-      return /^\d{12}$/.test(utr);
-    }
+    function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+    function validateUTR(utr) { return /^\d{12}$/.test(utr); }
 
     function showVerificationPopup(email, isSuccess, itemType) {
       const popup = document.getElementById('verificationPopup');
       const loadingContent = document.getElementById('verifyLoadingContent');
       const resultContent = document.getElementById('verifyResultContent');
-      
       loadingContent.style.display = 'block';
       resultContent.style.display = 'none';
       popup.classList.add('active');
-      
       setTimeout(() => {
         loadingContent.style.display = 'none';
         resultContent.style.display = 'block';
-        
         if (isSuccess) {
           const isPlayStore = itemType === 'playstore';
-          resultContent.innerHTML = `
-            <div class="check-icon">✅</div>
-            <div class="verifying-text" style="color: #2ecc71;">Payment Verified Successfully!</div>
-            <div class="verifying-sub" style="color: #a0a0b8; margin-top: 0.8rem;">
-              ${isPlayStore ? 
-                '🎮 Your <strong style="color:#6a9ff5;">Play Store Redeem Code</strong> will be sent to your email' : 
-                '💳 Your <strong style="color:#f0d78c;">Card Details</strong> will be sent to your email'} 
-              <strong style="color: #f0d78c;">${email}</strong> shortly. If the payment was not correct, no ${isPlayStore ? 'code' : 'card'} will be sent.
-            </div>
-            <button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>
-          `;
+          resultContent.innerHTML = `<div class="check-icon">✅</div><div class="verifying-text" style="color:#2ecc71;">Payment Verified Successfully!</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">${isPlayStore ? '🎮 Your <strong style="color:#6a9ff5;">Play Store Redeem Code</strong> will be sent to your email' : '💳 Your <strong style="color:#f0d78c;">Card Details</strong> will be sent to your email'} <strong style="color:#f0d78c;">${email}</strong> shortly. If the payment was not correct, no ${isPlayStore ? 'code' : 'card'} will be sent.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')">✦ GOT IT ✦</button>`;
         } else {
-          resultContent.innerHTML = `
-            <div class="error-icon">❌</div>
-            <div class="verifying-text" style="color: #e74c3c;">Transaction ID Invalid</div>
-            <div class="verifying-sub" style="color: #a0a0b8; margin-top: 0.8rem;">
-              The Transaction ID you entered is incorrect. UTR must be <strong style="color: #e74c3c;">exactly 12 digits</strong>. Please check your payment app for the correct Transaction ID and try again.
-            </div>
-            <button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">✕ TRY AGAIN</button>
-          `;
+          resultContent.innerHTML = `<div class="error-icon">❌</div><div class="verifying-text" style="color:#e74c3c;">Transaction ID Invalid</div><div class="verifying-sub" style="color:#a0a0b8;margin-top:0.8rem;">The Transaction ID you entered is incorrect. UTR must be <strong style="color:#e74c3c;">exactly 12 digits</strong>. Please check your payment app for the correct Transaction ID and try again.</div><button class="btn-close-verify" onclick="document.getElementById('verificationPopup').classList.remove('active')" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">✕ TRY AGAIN</button>`;
         }
       }, 3000);
     }
@@ -1393,30 +1121,12 @@
       const utrError = document.getElementById('utrError');
       const emailInput = document.getElementById('emailInput');
       const utrInput = document.getElementById('utrInput');
-      
       let hasError = false;
-      
-      emailError.classList.remove('show');
-      utrError.classList.remove('show');
-      emailInput.classList.remove('input-error');
-      utrInput.classList.remove('input-error');
-      
-      if(!email || !validateEmail(email)) {
-        emailError.classList.add('show');
-        emailError.textContent = '❌ Please enter a valid email address';
-        emailInput.classList.add('input-error');
-        hasError = true;
-      }
-      
-      if(!utr || !validateUTR(utr)) {
-        utrError.classList.add('show');
-        utrError.textContent = '❌ Transaction ID must be exactly 12 digits';
-        utrInput.classList.add('input-error');
-        hasError = true;
-      }
-      
+      emailError.classList.remove('show'); utrError.classList.remove('show');
+      emailInput.classList.remove('input-error'); utrInput.classList.remove('input-error');
+      if(!email || !validateEmail(email)) { emailError.classList.add('show'); emailInput.classList.add('input-error'); hasError = true; }
+      if(!utr || !validateUTR(utr)) { utrError.classList.add('show'); utrInput.classList.add('input-error'); hasError = true; }
       if(hasError) return;
-      
       const itemType = currentItem ? currentItem.type : 'card';
       closeModal();
       showVerificationPopup(email, true, itemType);
@@ -1432,7 +1142,6 @@
       document.getElementById('playStoreSection').classList.add('hidden-section');
       renderGrid();
     });
-    
     document.getElementById('tabPlayBox').addEventListener('click', ()=>{
       activeSection = 'play';
       document.getElementById('tabPlayBox').classList.add('active');
@@ -1460,7 +1169,6 @@
         if(activeSection==='play') renderGrid();
       });
     });
-
     document.querySelectorAll('.btn-filter').forEach(b => {
       b.addEventListener('click', function() {
         document.querySelectorAll('.btn-filter').forEach(x => x.classList.remove('active'));
