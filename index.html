@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ VELORA PRIME | ELITE DARK MARKET ✦</title>
+  <title>✦ AETHER VAULT | ELITE BAZAAR ✦</title>
   <style>
     * {
       margin: 0;
@@ -11,749 +11,766 @@
       box-sizing: border-box;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --bg: #010105;
-      --card-bg: rgba(12, 12, 28, 0.75);
-      --gold: #FFD966;
-      --gold-dark: #D4A843;
-      --cyan: #00E5FF;
-      --purple: #B000FF;
-      --green: #00FF88;
-      --red: #FF4444;
-      --white: #FFFFFF;
-      --gray: #A0A0C0;
+      --dark-bg: #05050a;
+      --card-glass: rgba(20, 20, 40, 0.4);
+      --neon-gold: #ffd700;
+      --neon-cyan: #0ff;
+      --neon-purple: #c0f;
+      --neon-pink: #f0f;
+      --neon-green: #0f6;
+      --text-light: #fff;
+      --text-dim: #a0a0c0;
+      --glow-gold: 0 0 30px rgba(255, 215, 0, 0.5);
+      --glow-cyan: 0 0 30px rgba(0, 255, 255, 0.4);
+      --glow-purple: 0 0 30px rgba(192, 0, 255, 0.4);
     }
 
     body {
-      background: var(--bg);
-      font-family: 'Inter', sans-serif;
-      color: var(--white);
+      background: var(--dark-bg);
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      color: var(--text-light);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ========== CINEMATIC BACKGROUND ========== */
+    .cinematic-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.05), transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.04), transparent 60%),
+                  radial-gradient(circle at 50% 50%, rgba(192, 0, 255, 0.03), transparent 70%);
+    }
+
+    .orb-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       overflow: hidden;
-    }
-
-    .premium-bg {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 25% 20%, rgba(255, 217, 102, 0.08), transparent 55%),
-                  radial-gradient(ellipse at 75% 60%, rgba(0, 229, 255, 0.06), transparent 55%);
-      z-index: 0;
-    }
-
-    .particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
       pointer-events: none;
     }
-    .part {
+    .orb {
       position: absolute;
-      background: radial-gradient(circle, #FFD966, transparent);
       border-radius: 50%;
-      opacity: 0;
-      animation: floatPart 14s infinite;
+      filter: blur(100px);
+      opacity: 0.25;
+      animation: orbDrift 25s infinite alternate;
     }
-    @keyframes floatPart {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      15% { opacity: 0.5; }
-      85% { opacity: 0.2; }
-      100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+    .orb-1 { width: 500px; height: 500px; background: #ffd700; top: -200px; right: -100px; animation-duration: 20s; }
+    .orb-2 { width: 400px; height: 400px; background: #0ff; bottom: -150px; left: -100px; animation-duration: 25s; }
+    .orb-3 { width: 350px; height: 350px; background: #c0f; top: 40%; left: 30%; animation-duration: 18s; }
+    @keyframes orbDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(80px, 80px) scale(1.3); }
     }
 
-    .app-container {
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .container {
       position: relative;
       z-index: 10;
-      max-width: 1500px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 22px;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      padding: 25px;
     }
 
-    /* HEADER */
-    .elite-header {
-      background: rgba(5, 5, 12, 0.65);
-      backdrop-filter: blur(24px);
-      border-radius: 32px;
-      padding: 16px 28px;
-      margin-bottom: 22px;
-      border: 1px solid rgba(255, 217, 102, 0.25);
+    /* ========== HYPERLUXE HEADER ========== */
+    .hyper-header {
+      background: rgba(10, 10, 25, 0.5);
+      backdrop-filter: blur(25px);
+      border-radius: 45px;
+      padding: 25px 35px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 25px;
     }
-    .logo-area h1 {
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand h1 {
       font-family: 'Orbitron', monospace;
-      font-size: 1.7rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFD966, #00E5FF, #B000FF);
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #0ff, #c0f);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      letter-spacing: -1px;
     }
-    .logo-area p {
-      font-size: 0.55rem;
+    .brand p {
+      font-size: 0.65rem;
       letter-spacing: 0.25em;
-      color: var(--gray);
+      color: var(--text-dim);
     }
-    .trust-badges {
+
+    .trust-grid {
       display: flex;
       gap: 12px;
+      flex-wrap: wrap;
     }
-    .trust-badge {
+    .trust-chip {
       background: rgba(0, 0, 0, 0.5);
-      padding: 5px 15px;
-      border-radius: 30px;
+      padding: 6px 16px;
+      border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 600;
-      border: 1px solid rgba(0, 255, 136, 0.35);
-      color: #00FF88;
-    }
-    .live-counter {
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      color: #0f6;
       display: flex;
       align-items: center;
-      gap: 14px;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 6px 22px;
-      border-radius: 50px;
-      border: 1px solid rgba(0, 255, 136, 0.4);
+      gap: 6px;
     }
-    .live-pulse {
-      width: 10px;
-      height: 10px;
-      background: #00FF88;
+
+    .live-status {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 25px;
+      border-radius: 60px;
+      border: 1px solid rgba(0, 255, 136, 0.5);
+    }
+    .pulse-core {
+      width: 12px;
+      height: 12px;
+      background: #0f6;
       border-radius: 50%;
-      animation: pulseLive 1.2s infinite;
-      box-shadow: 0 0 10px #00FF88;
+      animation: pulseCore 1.2s infinite;
+      box-shadow: 0 0 15px #0f6;
     }
-    @keyframes pulseLive {
+    @keyframes pulseCore {
       0%,100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.3; transform: scale(0.7); }
     }
     .live-number {
       font-family: 'Orbitron', monospace;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: #00FF88;
+      color: #0f6;
     }
 
-    /* TABS */
-    .vip-tabs {
+    /* ========== 3D TABS ========== */
+    .tabs-3d {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 22px;
+      gap: 25px;
+      margin: 35px 0 30px;
     }
-    .vip-tab {
-      background: rgba(10, 10, 22, 0.7);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 60px;
-      padding: 10px 38px;
+    .tab-3d {
+      background: rgba(15, 15, 30, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 80px;
+      padding: 14px 42px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .vip-tab:hover {
-      border-color: var(--gold);
-      transform: translateY(-2px);
+    .tab-3d::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 255, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
     }
-    .vip-tab.active {
-      border-color: var(--gold);
-      background: rgba(255, 217, 102, 0.1);
-      box-shadow: 0 0 25px rgba(255, 217, 102, 0.2);
+    .tab-3d:hover::before { opacity: 1; }
+    .tab-3d:hover { transform: translateY(-5px); border-color: rgba(255, 215, 0, 0.4); }
+    .tab-3d.active {
+      border-color: #ffd700;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.3);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(0, 255, 255, 0.06));
     }
-    .vip-tab-icon { font-size: 1.3rem; margin-bottom: 3px; }
-    .vip-tab-title { font-weight: 700; font-size: 0.85rem; }
-    .vip-tab-sub { font-size: 0.55rem; color: var(--gray); }
+    .tab-icon-3d { font-size: 1.8rem; margin-bottom: 5px; }
+    .tab-title-3d { font-family: 'Orbitron', monospace; font-size: 0.95rem; font-weight: 700; }
+    .tab-sub-3d { font-size: 0.6rem; color: var(--text-dim); }
 
-    /* FILTER */
-    .filter-bar-premium {
-      background: rgba(6, 6, 16, 0.55);
-      backdrop-filter: blur(16px);
-      border-radius: 28px;
-      padding: 12px 22px;
-      margin-bottom: 22px;
+    /* ========== CONTROLS ========== */
+    .control-panel {
+      background: rgba(8, 8, 20, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 35px;
+      padding: 22px 30px;
+      margin-bottom: 35px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+    .ctrl-header {
+      text-align: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+    .btn-cluster {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      border: 1px solid rgba(255, 217, 102, 0.12);
+      gap: 14px;
+      margin-bottom: 20px;
     }
-    .filter-premium {
+    .glass-btn {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 22px;
-      border-radius: 40px;
-      font-size: 0.7rem;
+      color: var(--text-dim);
+      padding: 10px 28px;
+      border-radius: 50px;
       font-weight: 600;
+      font-size: 0.75rem;
       cursor: pointer;
-      transition: all 0.2s;
-      color: #aaa;
-    }
-    .filter-premium:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-    .filter-premium.active {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      border-color: transparent;
-      color: #05050A;
-      font-weight: 700;
-    }
-
-    /* SCROLLABLE CARDS AREA - YAHI SCROLL FEATURE HAI */
-    .scroll-cards {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 6px;
-      margin-bottom: 5px;
-    }
-    .scroll-cards::-webkit-scrollbar {
-      width: 5px;
-    }
-    .scroll-cards::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 10px;
-    }
-    .scroll-cards::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 10px;
-    }
-
-    .cards-grid-vip {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 24px;
-      padding-bottom: 10px;
-    }
-
-    /* VIP CARD */
-    .vip-card {
-      background: linear-gradient(145deg, #12122A, #0A0A18);
-      border-radius: 32px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 217, 102, 0.2);
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      cursor: pointer;
-    }
-    .vip-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--gold);
-      box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 217, 102, 0.15);
-    }
-    .card-glow-strip {
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--cyan), var(--purple));
-    }
-    .card-content-vip {
-      padding: 22px;
-    }
-    .card-row-vip {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .network-vip {
-      background: rgba(255, 217, 102, 0.12);
-      border: 1px solid rgba(255, 217, 102, 0.3);
-      padding: 5px 18px;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
-    .price-vip {
-      font-family: monospace;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--gold);
-    }
-    .card-number-vip {
-      font-family: monospace;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 12px;
-      border-radius: 20px;
-      text-align: center;
-      margin: 15px 0;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-    }
-    .card-details-vip {
-      display: flex;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    .detail-vip {
-      background: rgba(0, 0, 0, 0.35);
-      padding: 10px;
-      border-radius: 16px;
-      text-align: center;
-      flex: 1;
-    }
-    .detail-label-vip {
-      font-size: 0.5rem;
-      color: var(--gray);
+      transition: all 0.3s;
       text-transform: uppercase;
     }
-    .detail-value-vip {
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-top: 4px;
+    .glass-btn:hover {
+      border-color: #ffd700;
+      color: #ffd700;
+      transform: translateY(-2px);
     }
-    .purchase-vip {
-      background: rgba(255, 217, 102, 0.06);
-      border-top: 1px solid rgba(255, 217, 102, 0.2);
-      padding: 14px 22px;
+    .glass-btn.active {
+      background: linear-gradient(135deg, #ffd700, #ccaa33);
+      border-color: transparent;
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    /* ========== CARDS GRID ========== */
+    .cards-luxury {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    /* ========== 3D LUXURY CARD ========== */
+    .lux-card {
+      background: linear-gradient(145deg, rgba(18, 18, 35, 0.85), rgba(8, 8, 20, 0.95));
+      backdrop-filter: blur(20px);
+      border-radius: 42px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      cursor: pointer;
+      position: relative;
+    }
+    .lux-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 42px;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.08), transparent);
+      pointer-events: none;
+    }
+    .lux-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: #ffd700;
+      box-shadow: 0 35px 55px -20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.3);
+    }
+
+    .card-rainbow {
+      height: 4px;
+      background: linear-gradient(90deg, #ffd700, #0ff, #c0f, #ffd700);
+      background-size: 200%;
+      animation: rainbowMove 3s linear infinite;
+    }
+    @keyframes rainbowMove {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+
+    .card-padding {
+      padding: 26px;
+    }
+
+    .card-head-lux {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: 0.2s;
+      margin-bottom: 22px;
     }
-    .purchase-vip:hover {
-      background: rgba(255, 217, 102, 0.12);
-    }
-    .purchase-text-vip {
+    .network-lux {
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 6px 20px;
+      border-radius: 40px;
       font-weight: 800;
-      font-size: 0.85rem;
-      color: var(--gold);
+      font-size: 0.75rem;
+      color: #ffd700;
     }
-    .purchase-arrow-vip {
-      font-size: 1.2rem;
-      transition: transform 0.2s;
-    }
-    .vip-card:hover .purchase-arrow-vip {
-      transform: translateX(6px);
+    .price-lux {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
     }
 
-    /* MODAL */
-    .premium-modal {
+    .number-lux {
+      font-family: monospace;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 14px;
+      border-radius: 24px;
+      text-align: center;
+      margin: 18px 0;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      font-weight: 600;
+    }
+
+    .details-lux {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .detail-lux {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 18px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .detail-label-lux { font-size: 0.55rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+    .detail-value-lux { font-size: 0.85rem; font-weight: 700; margin-top: 6px; }
+
+    /* PURCHASE BAR */
+    .buy-bar {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(204, 170, 51, 0.04));
+      border-top: 1px solid rgba(255, 215, 0, 0.25);
+      padding: 16px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    .buy-bar:hover { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(204, 170, 51, 0.08)); }
+    .buy-text-lux { font-weight: 800; font-size: 0.9rem; letter-spacing: 0.05em; color: #ffd700; }
+    .buy-arrow-lux { font-size: 1.4rem; transition: transform 0.3s; }
+    .lux-card:hover .buy-arrow-lux { transform: translateX(10px); }
+
+    /* ========== MODAL - GLASS PREMIUM ========== */
+    .glass-modal {
       display: none;
       position: fixed;
       inset: 0;
+      z-index: 1000;
       background: rgba(0, 0, 0, 0.98);
       backdrop-filter: blur(50px);
       align-items: center;
       justify-content: center;
-      z-index: 1000;
+      padding: 20px;
     }
-    .premium-modal.open {
-      display: flex;
+    .glass-modal.open { display: flex; }
+    .glass-modal-content {
+      background: linear-gradient(145deg, #0e0e20, #060612);
+      border: 2px solid #ffd700;
+      border-radius: 55px;
+      max-width: 540px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 0 100px rgba(255, 215, 0, 0.4);
     }
-    .modal-premium-box {
-      background: #0E0E20;
-      border: 1px solid var(--gold);
-      border-radius: 42px;
-      max-width: 520px;
-      width: 90%;
-      box-shadow: 0 0 70px rgba(255, 217, 102, 0.3);
-    }
-    .modal-premium-header {
+    .glass-modal-header {
       display: flex;
       justify-content: space-between;
-      padding: 18px 24px;
-      border-bottom: 1px solid rgba(255, 217, 102, 0.25);
+      padding: 25px 30px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
     }
-    .modal-premium-header h3 {
-      color: var(--gold);
-      font-size: 1.1rem;
+    .glass-modal-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.3rem;
       font-weight: 800;
+      color: #ffd700;
     }
-    .modal-premium-close {
-      background: rgba(255, 217, 102, 0.1);
-      border: none;
-      width: 36px;
-      height: 36px;
+    .glass-modal-close {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid #ffd700;
+      width: 44px;
+      height: 44px;
       border-radius: 30px;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       cursor: pointer;
-      color: var(--gold);
+      color: #ffd700;
     }
-    .modal-premium-body {
-      padding: 24px;
-    }
-    .item-preview-premium {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 24px;
-      padding: 16px;
+    .glass-modal-body { padding: 30px; }
+
+    .qr-glass {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 35px;
+      padding: 20px;
+      margin: 20px 0;
       text-align: center;
-      margin-bottom: 18px;
     }
-    .qr-premium {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 24px;
-      padding: 16px;
-      text-align: center;
-      margin: 16px 0;
-    }
-    .qr-code-premium {
+    .qr-inner {
       background: white;
-      padding: 12px;
-      border-radius: 20px;
+      padding: 18px;
+      border-radius: 28px;
       display: inline-block;
     }
-    .apps-premium-row {
+
+    .apps-glass {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 25px 0;
+    }
+    .app-glass {
+      background: #0c0c1e;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 26px;
+      padding: 16px;
       display: flex;
-      justify-content: center;
-      gap: 14px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    .app-premium-btn {
-      background: #0C0C1C;
-      border: 1px solid rgba(255, 217, 102, 0.25);
-      border-radius: 22px;
-      padding: 10px 16px;
-      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
       cursor: pointer;
-      transition: 0.2s;
-      min-width: 85px;
+      transition: all 0.3s;
     }
-    .app-premium-btn:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
+    .app-glass:hover {
+      border-color: #ffd700;
+      transform: translateY(-4px);
       background: #141430;
     }
-    .app-icon-premium {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+    .app-icon-glass {
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 6px;
-      font-size: 1rem;
+      font-size: 1.4rem;
       font-weight: 800;
-    }
-    .app-name-premium {
-      font-size: 0.6rem;
-      color: #aaa;
-    }
-    .input-premium-field {
-      width: 100%;
-      background: #0A0A16;
-      border: 1px solid rgba(255, 217, 102, 0.35);
-      border-radius: 50px;
-      padding: 12px 20px;
-      color: white;
-      margin: 10px 0;
-    }
-    .input-premium-field:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-    .confirm-premium-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      border: none;
-      border-radius: 50px;
-      padding: 14px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      color: #05050A;
-      cursor: pointer;
-      margin-top: 18px;
-    }
-    .warning-premium-text {
-      font-size: 0.6rem;
-      color: #FF8888;
-      text-align: center;
-      margin-top: 14px;
-      padding: 10px;
-      background: rgba(255, 68, 68, 0.1);
-      border-radius: 18px;
     }
 
-    /* VERIFICATION */
-    .verify-premium-popup {
+    .input-glass {
+      width: 100%;
+      background: #0a0a18;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 50px;
+      padding: 15px 22px;
+      color: white;
+      margin: 12px 0;
+    }
+    .input-glass:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-confirm {
+      width: 100%;
+      background: linear-gradient(135deg, #ffd700, #ccaa33);
+      border: none;
+      border-radius: 60px;
+      padding: 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #0a0a0a;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    /* VERIFICATION - BIG PREMIUM */
+    .verify-premium {
       display: none;
       position: fixed;
       inset: 0;
+      z-index: 2000;
       background: rgba(0, 0, 0, 0.99);
-      backdrop-filter: blur(55px);
+      backdrop-filter: blur(60px);
       align-items: center;
       justify-content: center;
-      z-index: 2000;
     }
-    .verify-premium-popup.active {
-      display: flex;
-    }
+    .verify-premium.active { display: flex; }
     .verify-premium-card {
-      background: #0E0E20;
-      border: 1px solid var(--gold);
-      border-radius: 48px;
-      padding: 40px 35px;
+      background: linear-gradient(145deg, #0e0e20, #060612);
+      border: 2px solid #ffd700;
+      border-radius: 65px;
+      padding: 50px 45px;
       text-align: center;
-      max-width: 480px;
+      max-width: 560px;
       width: 90%;
+      box-shadow: 0 0 120px rgba(255, 215, 0, 0.4);
     }
-    .spinner-premium {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(255, 217, 102, 0.2);
-      border-top: 3px solid var(--gold);
+    .premium-spinner {
+      width: 75px;
+      height: 75px;
+      border: 4px solid rgba(255, 215, 0, 0.2);
+      border-top: 4px solid #ffd700;
       border-radius: 50%;
       animation: spinPremium 1s linear infinite;
-      margin: 0 auto 20px;
+      margin: 0 auto 25px;
     }
-    @keyframes spinPremium {
-      to { transform: rotate(360deg); }
-    }
-    .footer-premium {
+    @keyframes spinPremium { to { transform: rotate(360deg); } }
+
+    .footer-lux {
       text-align: center;
-      padding: 12px;
-      font-size: 0.55rem;
-      color: #666;
-      letter-spacing: 0.1em;
+      margin-top: 55px;
+      padding: 20px;
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
     }
     .hidden { display: none; }
-    .error-premium-text { color: #FF4444; font-size: 0.6rem; margin-top: 5px; display: none; }
-    .error-premium-text.show { display: block; }
+    .error-lux { color: #ff4444; font-size: 0.65rem; margin-top: -5px; margin-bottom: 8px; display: none; background: rgba(255,68,68,0.1); padding: 6px 12px; border-radius: 40px; }
+    .error-lux.show { display: block; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<div class="premium-bg"></div>
-<div class="particles" id="particlesContainer"></div>
+<div class="cinematic-bg"></div>
+<div class="orb-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="noise"></div>
 
-<div class="app-container">
-  <!-- HEADER -->
-  <div class="elite-header">
-    <div class="logo-area"><h1>✦ VELORA PRIME ✦</h1><p>ELITE DARK MARKET • MEMBERS ONLY</p></div>
-    <div class="trust-badges"><div class="trust-badge">🔒 QUANTUM SECURE</div><div class="trust-badge">✅ VERIFIED ELITE</div><div class="trust-badge">⭐ 5.0 PLATINUM</div></div>
-    <div class="live-counter"><div class="live-pulse"></div><span class="live-number" id="liveUserCount">247</span><span style="font-size:0.7rem;">ELITE ONLINE</span></div>
+<div class="container">
+  <div class="hyper-header">
+    <div class="brand"><h1>✦ AETHER BAZAAR ✦</h1><p>ELITE DIGITAL BAZAAR • HYPER SECURE</p></div>
+    <div class="trust-grid"><div class="trust-chip">🔒 512-BIT QUANTUM</div><div class="trust-chip">✅ INSTANT ESCROW</div><div class="trust-chip">⭐ 5.0/5 RATING</div><div class="trust-chip">🛡️ ELITE INSURED</div></div>
+    <div class="live-status"><div class="pulse-core"></div><span class="live-number" id="liveCountLux">293</span><span>LIVE VIP</span></div>
   </div>
 
-  <!-- TABS -->
-  <div class="vip-tabs"><div class="vip-tab active" id="vipTabCards"><div class="vip-tab-icon">💎</div><div class="vip-tab-title">PREMIUM CARDS</div><div class="vip-tab-sub">Bank • Credit • Debit</div></div><div class="vip-tab" id="vipTabPlay"><div class="vip-tab-icon">🎮</div><div class="vip-tab-title">PLAY STORE</div><div class="vip-tab-sub">Gift Codes • Redeem</div></div></div>
+  <div class="tabs-3d"><div class="tab-3d active" id="tabCardsLux"><div class="tab-icon-3d">💳</div><div class="tab-title-3d">PREMIUM CARDS</div><div class="tab-sub-3d">WORLDWIDE BANK</div></div><div class="tab-3d" id="tabPlayLux"><div class="tab-icon-3d">🎮</div><div class="tab-title-3d">PLAY CODES</div><div class="tab-sub-3d">GIFT & REDEEM</div></div></div>
 
-  <!-- FILTERS -->
-  <div id="vipCardsFilter"><div class="filter-bar-premium"><div class="filter-premium active" id="vipSortLow">📉 LOW PRICE</div><div class="filter-premium" id="vipSortHigh">📈 HIGH PRICE</div><div class="filter-premium" id="vipSortBalance">💰 HIGH BALANCE</div><div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px;"></div><div class="filter-premium active" data-filter="all">🌐 ALL</div><div class="filter-premium" data-filter="visa">💎 VISA</div><div class="filter-premium" data-filter="mastercard">🔴 MASTERCARD</div><div class="filter-premium" data-filter="amex">🔵 AMEX</div><div class="filter-premium" data-filter="rupay">🟣 RUPAY</div></div></div>
-  <div id="vipPlayFilter" class="hidden"><div class="filter-bar-premium"><div class="filter-premium active" id="vipPlaySortLow">📉 LOW PRICE</div><div class="filter-premium" id="vipPlaySortHigh">📈 HIGH PRICE</div><div class="filter-premium" id="vipPlaySortValue">💰 HIGH VALUE</div></div></div>
+  <div id="cardsCtrlLux"><div class="control-panel"><div class="ctrl-header">⚡ SORT MASTER</div><div class="btn-cluster"><button class="glass-btn active" id="sortLowLux">📉 PRICE LOW</button><button class="glass-btn" id="sortHighLux">📈 PRICE HIGH</button><button class="glass-btn" id="sortBalanceLux">💰 HIGH BALANCE</button></div><div class="ctrl-header">🔮 NETWORK FILTER</div><div class="btn-cluster"><button class="glass-btn active" data-filter="all">🌐 ALL</button><button class="glass-btn" data-filter="visa">💎 VISA</button><button class="glass-btn" data-filter="mastercard">🔴 MASTERCARD</button><button class="glass-btn" data-filter="amex">🔵 AMEX</button><button class="glass-btn" data-filter="rupay">🟣 RUPAY</button></div></div></div>
+  <div id="playCtrlLux" class="hidden"><div class="control-panel"><div class="ctrl-header">⚡ SORT REDEEM CODES</div><div class="btn-cluster"><button class="glass-btn active" id="playSortLowLux">📉 PRICE LOW</button><button class="glass-btn" id="playSortHighLux">📈 PRICE HIGH</button><button class="glass-btn" id="playSortValueLux">💰 HIGH VALUE</button></div></div></div>
 
-  <!-- SCROLLABLE CARDS - SCROLL FEATURE ACTIVE -->
-  <div class="scroll-cards"><div class="cards-grid-vip" id="vipCardsGrid"></div></div>
-  <div class="footer-premium">✦ 256-BIT QUANTUM ENCRYPTION • INSTANT DELIVERY • 24/7 VIP SUPPORT ✦</div>
+  <div class="cards-luxury" id="cardsGridLux"></div>
+  <div class="footer-lux">✦ QUANTUM VAULT • INSTANT DISPATCH • 24/7 VIP CONCIERGE ✦</div>
 </div>
 
 <!-- MODAL -->
-<div class="premium-modal" id="vipModal"><div class="modal-premium-box"><div class="modal-premium-header"><h3 id="vipModalTitle">PURCHASE</h3><button class="modal-premium-close" id="vipCloseModal">✕</button></div><div class="modal-premium-body"><div id="vipModalInfo"></div><div class="qr-premium"><div class="qr-code-premium" id="vipQRCode"></div><div style="font-size:0.65rem; margin-top:8px; color:var(--gold);">UPI: kartikrawat6266@okhdfcbank</div></div><div class="apps-premium-row"><div class="app-premium-btn" id="vipPhonepe"><div class="app-icon-premium" style="background:#5C2D91;">₹</div><span class="app-name-premium">PhonePe</span></div><div class="app-premium-btn" id="vipGpay"><div class="app-icon-premium" style="background:white; color:#1A73E8;">G</div><span class="app-name-premium">Google Pay</span></div><div class="app-premium-btn" id="vipPaytm"><div class="app-icon-premium" style="background:#00BAF2;">P</div><span class="app-name-premium">Paytm</span></div><div class="app-premium-btn" id="vipFampay"><div class="app-icon-premium" style="background:#FF6B35;">F</div><span class="app-name-premium">FamPay</span></div></div><input class="input-premium-field" id="vipEmail" placeholder="📧 Enter your email address"><div class="error-premium-text" id="vipEmailError">❌ Please enter a valid email address</div><input class="input-premium-field" id="vipUtr" placeholder="🔢 UTR / Transaction ID (12 digits)" maxlength="12"><div class="error-premium-text" id="vipUtrError">❌ Transaction ID must be exactly 12 digits</div><button class="confirm-premium-btn" id="vipConfirmBtn">✦ CONFIRM & PURCHASE ✦</button><div class="warning-premium-text">⚠️ REAL PAYMENT REQUIRED • FAKE UTR = NO DELIVERY • YOUR IP IS LOGGED</div></div></div></div>
+<div class="glass-modal" id="paymentModalLux"><div class="glass-modal-content"><div class="glass-modal-header"><span class="glass-modal-title" id="modalTitleLux">✦ SECURE CHECKOUT ✦</span><button class="glass-modal-close" id="closeModalLux">✕</button></div><div class="glass-modal-body"><div id="itemInfoLux"></div><div class="qr-glass"><div class="qr-inner" id="qrContainerLux"></div><div style="margin-top: 12px; font-family: monospace; color: #ffd700;">UPI: aether@elitebank</div><div style="font-size: 0.7rem; color:#aaa;">Scan & Pay exact amount</div></div><div class="apps-glass"><div class="app-glass" id="payPhonepeLux"><div class="app-icon-glass" style="background:#5c2d91;">₹</div><span>PhonePe</span></div><div class="app-glass" id="payGpayLux"><div class="app-icon-glass" style="background:white; color:#1a73e8;">G</div><span>Google Pay</span></div><div class="app-glass" id="payPaytmLux"><div class="app-icon-glass" style="background:#00baf2;">P</div><span>Paytm</span></div><div class="app-glass" id="payFampayLux"><div class="app-icon-glass" style="background:#ff6b35;">F</div><span>FamPay</span></div></div><input class="input-glass" id="emailInputLux" placeholder="📧 ENTER YOUR EMAIL (FOR DELIVERY)"><div class="error-lux" id="emailErrorLux">⚠️ PLEASE ENTER A VALID EMAIL ADDRESS TO RECEIVE YOUR PRODUCT</div><input class="input-glass" id="utrInputLux" placeholder="🔢 ENTER 12-DIGIT UTR / TRANSACTION ID"><div class="error-lux" id="utrErrorLux">⚠️ PLEASE ENTER A VALID 12-DIGIT UTR FROM YOUR PAYMENT APP</div><button class="btn-confirm" id="confirmBtnLux">✦ VERIFY & COMPLETE PURCHASE ✦</button><div class="error-lux" style="color:#ff8888; background:rgba(255,68,68,0.15); padding:12px; border-radius:20px; margin-top:15px; text-align:center; display:block;">⚠️ REAL TRANSACTION REQUIRED • FAKE UTR WILL BE REJECTED • IP & DEVICE LOGGED ⚠️</div></div></div></div>
 
-<!-- VERIFICATION -->
-<div class="verify-premium-popup" id="vipVerifyPopup"><div class="verify-premium-card"><div id="vipVerifyLoader"><div class="spinner-premium"></div><div style="font-weight:800; font-size:1.1rem;">AUTHENTICATING TRANSACTION</div><div style="font-size:0.7rem; margin-top:6px;">Verifying on secure quantum ledger...</div></div><div id="vipVerifyResult" style="display:none;"></div></div></div>
+<!-- VERIFICATION ELITE -->
+<div class="verify-premium" id="verifyPopupLux"><div class="verify-premium-card"><div id="verifyLoadLux"><div class="premium-spinner"></div><div style="font-size:1.3rem; font-weight:800;">🔍 AUTHENTICATING TRANSACTION</div><div style="margin-top:12px; color:#aaa;">Quantum ledger verification in progress...</div></div><div id="verifyResultLux" style="display:none;"></div></div></div>
 
 <script>
 (function(){
-  const UPI_ID = "kartikrawat6266@okhdfcbank";
-  const networks = { visa:'VISA', mastercard:'MASTERCARD', amex:'AMERICAN EXPRESS', rupay:'RUPAY' };
-  const cardTypes = ['visa','mastercard','amex','rupay'];
-  function random(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+  const UPI_DISPLAY = "aether@elitebank";
+  const networks = { visa:'💎 VISA', mastercard:'🔴 MASTERCARD', amex:'🔵 AMERICAN EXPRESS', rupay:'🟣 RUPAY' };
+  const types = ['visa','mastercard','amex','rupay'];
+  function rand(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
   
-  // PARTICLES
-  for(let i=0;i<100;i++){ let p=document.createElement('div'); p.className='part'; p.style.left=Math.random()*100+'%'; p.style.width=p.style.height=(Math.random()*4+1)+'px'; p.style.animationDelay=Math.random()*12+'s'; p.style.animationDuration=(Math.random()*12+6)+'s'; document.getElementById('particlesContainer').appendChild(p); }
-  
-  // REAL-TIME LIVE USER COUNT
-  let currentLiveUsers = random(185, 425);
-  document.getElementById('liveUserCount').innerText = currentLiveUsers;
-  setInterval(() => {
-    let change = random(-8, 12);
-    currentLiveUsers = Math.max(80, Math.min(650, currentLiveUsers + change));
-    document.getElementById('liveUserCount').innerText = currentLiveUsers;
-  }, 7000);
-  
-  // 100 CARDS (₹100 - ₹1000)
-  const cardsCollection = [];
-  for(let i=1;i<=100;i++){
-    let type = cardTypes[random(0,3)];
-    let number = '';
-    if(type==='visa') number = '4' + random(100000000000000,999999999999999);
-    else if(type==='mastercard') number = '5' + random(10000000000000,99999999999999);
-    else if(type==='amex') number = '34' + random(1000000000000,9999999999999);
-    else number = '60' + random(10000000000000,99999999999999);
-    let price = random(100,1000);
-    cardsCollection.push({
-      id:i, type:type,
-      displayNumber: number.toString().slice(0,4)+' **** **** '+number.toString().slice(-4),
-      expiry: `${random(1,12)}/${random(26,30)}`,
-      cvv: random(100,999),
-      price: price,
-      balance: price * 10
-    });
+  // Generate realistic card numbers (random 16 digits with spacing)
+  function generateCardNumber(type){
+    let prefix = type==='visa'?'4':type==='mastercard'?'5':type==='amex'?'34':'60';
+    let num = prefix + Array(15).fill().map(()=>rand(0,9)).join('');
+    num = num.slice(0,16);
+    let spaced = num.match(/.{1,4}/g).join(' ');
+    return spaced;
   }
   
-  // 60 PLAY CODES - RANDOM LIKE ATFAMGSHSJDHDKAJD
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
-  function generateRandomCode(){
+  // Generate redeem codes like AXETHAJGSGSHAJAJJSJ (18-22 chars)
+  function generateRedeemCode(){
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+    let len = rand(18,22);
     let code = '';
-    for(let i=0;i<16;i++){ code += chars[random(0,chars.length-1)]; }
+    for(let i=0;i<len;i++) code += chars[rand(0,chars.length-1)];
     return code;
   }
-  const playCodesCollection = [];
-  for(let i=1;i<=60;i++){
-    let code = generateRandomCode();
-    let price = random(100,1000);
-    playCodesCollection.push({
-      id:500+i, 
-      code: code,
-      displayCode: code.slice(0,8)+'•••••••',
-      value: price * 10,
-      price: price,
-      type: 'play'
-    });
+  
+  // CREATE 130 PREMIUM CARDS (realistic)
+  const cards = [];
+  for(let i=1;i<=130;i++){
+    let t = types[rand(0,3)];
+    let cardNumberRaw = generateCardNumber(t);
+    let price = rand(120, 1250);
+    let balance = price * rand(8,15);
+    let cvv = rand(100,999);
+    let expiry = `${rand(1,12)}/${rand(25,30)}`;
+    cards.push({ id:i, type:t, displayNumber: cardNumberRaw, expiry, cvv, price, balance });
   }
   
-  let selectedItem = null;
+  // CREATE 90 EXCLUSIVE PLAY CODES with RANDOM CODES
+  const plays = [];
+  for(let i=1;i<=90;i++){
+    let redeemRaw = generateRedeemCode();
+    let price = rand(99, 1100);
+    let value = price * rand(8,14);
+    plays.push({ id:500+i, codeRaw: redeemRaw, displayCode: redeemRaw.slice(0,5)+'••••'+redeemRaw.slice(-4), value, price, type:'play' });
+  }
+  
+  // LIVE COUNTER
+  setInterval(()=>{ let c=rand(185,415); document.getElementById('liveCountLux').innerText=c; },4800);
+  
+  let currentItem = null;
   let activeTab = 'cards';
-  let activeFilter = 'all';
-  let activeSort = 'price-low';
-  let playSortMode = 'price-low';
+  let currentFilter = 'all';
+  let currentSort = 'price-low';
+  let playSort = 'price-low';
+  let currentQR = null;
   
-  function maskCVV(cvv){ return cvv.toString()[0] + '**'; }
-  
-  function getFilteredData(){
-    if(activeTab === 'cards'){
-      let filtered = activeFilter === 'all' ? [...cardsCollection] : cardsCollection.filter(c => c.type === activeFilter);
-      if(activeSort === 'price-low') filtered.sort((a,b)=>a.price-b.price);
-      else if(activeSort === 'price-high') filtered.sort((a,b)=>b.price-a.price);
-      else filtered.sort((a,b)=>b.balance-a.balance);
-      return filtered;
+  function getData(){
+    if(activeTab==='cards'){
+      let f = currentFilter==='all'?[...cards]:cards.filter(c=>c.type===currentFilter);
+      if(currentSort==='price-low') f.sort((a,b)=>a.price-b.price);
+      else if(currentSort==='price-high') f.sort((a,b)=>b.price-a.price);
+      else f.sort((a,b)=>b.balance-a.balance);
+      return f;
     } else {
-      let filtered = [...playCodesCollection];
-      if(playSortMode === 'price-low') filtered.sort((a,b)=>a.price-b.price);
-      else if(playSortMode === 'price-high') filtered.sort((a,b)=>b.price-a.price);
-      else filtered.sort((a,b)=>b.value-a.value);
-      return filtered;
+      let f = [...plays];
+      if(playSort==='price-low') f.sort((a,b)=>a.price-b.price);
+      else if(playSort==='price-high') f.sort((a,b)=>b.price-a.price);
+      else f.sort((a,b)=>b.value-a.value);
+      return f;
     }
   }
   
-  function renderCards(){
-    const data = getFilteredData();
-    const grid = document.getElementById('vipCardsGrid');
+  function maskCvv(c){ return c.toString()[0]+'••'; }
+  
+  function render(){
+    let data = getData();
+    let grid = document.getElementById('cardsGridLux');
     grid.innerHTML = data.map(item => {
       if(item.type !== 'play'){
-        return `<div class="vip-card"><div class="card-glow-strip"></div><div class="card-content-vip"><div class="card-row-vip"><span class="network-vip">${networks[item.type]}</span><span class="price-vip">₹${item.price}</span></div><div class="card-number-vip">${item.displayNumber}</div><div class="card-details-vip"><div class="detail-vip"><div class="detail-label-vip">EXPIRY</div><div class="detail-value-vip">${item.expiry}</div></div><div class="detail-vip"><div class="detail-label-vip">CVV</div><div class="detail-value-vip">${maskCVV(item.cvv)}</div></div><div class="detail-vip"><div class="detail-label-vip">BALANCE</div><div class="detail-value-vip" style="color:#FFD966;">₹${item.balance}</div></div></div></div><div class="purchase-vip" data-id="${item.id}"><span class="purchase-text-vip">💎 PURCHASE CARD</span><span class="purchase-arrow-vip">→</span></div></div>`;
+        return `<div class="lux-card" data-id="${item.id}"><div class="card-rainbow"></div><div class="card-padding"><div class="card-head-lux"><span class="network-lux">${networks[item.type]}</span><span class="price-lux">₹${item.price}</span></div><div class="number-lux" style="font-family: monospace; letter-spacing: 1px;">${item.displayNumber}</div><div class="details-lux"><div class="detail-lux"><div class="detail-label-lux">EXPIRY</div><div class="detail-value-lux">${item.expiry}</div></div><div class="detail-lux"><div class="detail-label-lux">CVV</div><div class="detail-value-lux">${maskCvv(item.cvv)}</div></div><div class="detail-lux"><div class="detail-label-lux">BALANCE</div><div class="detail-value-lux" style="color:#ffd700;">₹${item.balance}</div></div></div></div><div class="buy-bar"><span class="buy-text-lux">💳 PURCHASE PREMIUM CARD</span><span class="buy-arrow-lux">→</span></div></div>`;
       } else {
-        return `<div class="vip-card"><div class="card-glow-strip" style="background:linear-gradient(90deg,#00E5FF,#B000FF);"></div><div class="card-content-vip"><div class="card-row-vip"><span class="network-vip" style="background:rgba(0,229,255,0.12); border-color:#00E5FF; color:#00E5FF;">🎮 PLAY STORE</span><span class="price-vip">₹${item.price}</span></div><div class="card-number-vip" style="font-size:0.8rem;">${item.displayCode}</div><div class="card-details-vip"><div class="detail-vip"><div class="detail-label-vip">VALUE</div><div class="detail-value-vip">₹${item.value}</div></div><div class="detail-vip"><div class="detail-label-vip">TYPE</div><div class="detail-value-vip">GIFT CODE</div></div><div class="detail-vip"><div class="detail-label-vip">REDEEM</div><div class="detail-value-vip">GOOGLE PLAY</div></div></div></div><div class="purchase-vip" data-id="${item.id}"><span class="purchase-text-vip">🎮 REDEEM CODE</span><span class="purchase-arrow-vip">→</span></div></div>`;
+        return `<div class="lux-card" data-id="${item.id}"><div class="card-rainbow"></div><div class="card-padding"><div class="card-head-lux"><span class="network-lux" style="background:rgba(0,255,255,0.15); border-color:#0ff; color:#0ff;">🎮 REDEEM CODE</span><span class="price-lux">₹${item.price}</span></div><div class="number-lux" style="font-size:0.85rem; font-family: monospace; letter-spacing: 1px;">${item.displayCode}</div><div class="details-lux"><div class="detail-lux"><div class="detail-label-lux">VALUE</div><div class="detail-value-lux">₹${item.value}</div></div><div class="detail-lux"><div class="detail-label-lux">REGION</div><div class="detail-value-lux">GLOBAL</div></div><div class="detail-lux"><div class="detail-label-lux">REDEEM</div><div class="detail-value-lux">PLAY STORE</div></div></div></div><div class="buy-bar"><span class="buy-text-lux">🎮 REDEEM GIFT CODE</span><span class="buy-arrow-lux">→</span></div></div>`;
       }
     }).join('');
     
-    document.querySelectorAll('.purchase-vip').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        let id = parseInt(btn.dataset.id);
-        let allItems = activeTab === 'cards' ? cardsCollection : playCodesCollection;
-        selectedItem = allItems.find(i => i.id === id);
-        openPaymentModal();
-      });
+    document.querySelectorAll('.lux-card .buy-bar').forEach(bar => {
+      let cardDiv = bar.closest('.lux-card');
+      let idAttr = cardDiv.dataset.id;
+      if(idAttr){
+        bar.addEventListener('click', (e) => {
+          e.stopPropagation();
+          let id = parseInt(idAttr);
+          let all = activeTab==='cards' ? cards : plays;
+          currentItem = all.find(i=>i.id===id);
+          openModal();
+        });
+      }
     });
   }
   
-  function openPaymentModal(){
-    document.getElementById('vipModalTitle').innerText = selectedItem.type === 'play' ? '🎮 PLAY STORE GIFT CODE' : '💎 PREMIUM CARD';
-    const previewDiv = document.getElementById('vipModalInfo');
-    if(selectedItem.type === 'play'){
-      previewDiv.innerHTML = `<div class="item-preview-premium"><div style="font-weight:700;">PLAY STORE GIFT CARD</div><div style="font-family:monospace; background:#000; padding:10px; border-radius:14px; margin:10px;">${selectedItem.displayCode}</div><div style="font-size:1.5rem; font-weight:800; color:#FFD966;">₹${selectedItem.price}</div></div>`;
+  function openModal(){
+    document.getElementById('modalTitleLux').innerText = currentItem.type==='play' ? '🎮 REDEEM CODE PURCHASE' : '💳 PREMIUM CARD PURCHASE';
+    let info = document.getElementById('itemInfoLux');
+    if(currentItem.type==='play'){
+      info.innerHTML = `<div style="background:#0c0c1e; border-radius:28px; padding:20px; text-align:center;"><div style="font-weight:700;">PLAY STORE GIFT CODE</div><div style="font-family:monospace; background:#000; padding:12px; border-radius:18px; margin:12px; font-size:0.9rem;">${currentItem.displayCode}</div><div style="font-size:1.8rem; font-weight:800; color:#ffd700;">₹${currentItem.price}</div><div style="font-size:0.7rem; color:#aaa;">Full code delivered after verification</div></div>`;
     } else {
-      previewDiv.innerHTML = `<div class="item-preview-premium"><div><strong>${networks[selectedItem.type]}</strong></div><div style="font-family:monospace; margin:8px;">${selectedItem.displayNumber}</div><div>CVV: ${maskCVV(selectedItem.cvv)} | EXP: ${selectedItem.expiry}</div><div style="font-size:1.5rem; font-weight:800; color:#FFD966; margin-top:8px;">₹${selectedItem.price}</div></div>`;
+      info.innerHTML = `<div style="background:#0c0c1e; border-radius:28px; padding:20px; text-align:center;"><div><strong>${networks[currentItem.type]}</strong></div><div style="font-family:monospace; margin:10px; font-size:1.1rem;">${currentItem.displayNumber}</div><div>CVV: ${maskCvv(currentItem.cvv)}  |  EXP: ${currentItem.expiry}</div><div style="font-size:1.8rem; font-weight:800; color:#ffd700; margin-top:10px;">₹${currentItem.price}</div></div>`;
     }
-    document.getElementById('vipQRCode').innerHTML = '';
-    let upiLink = `upi://pay?pa=${UPI_ID}&pn=VELORA&am=${selectedItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'PLAY'}_${selectedItem.id}`;
-    new QRCode(document.getElementById('vipQRCode'), { text: upiLink, width: 140, height: 140 });
-    document.getElementById('vipEmail').value = '';
-    document.getElementById('vipUtr').value = '';
-    document.getElementById('vipModal').classList.add('open');
+    
+    let qrContainer = document.getElementById('qrContainerLux');
+    qrContainer.innerHTML = '';
+    let upiStr = `upi://pay?pa=aether@elitebank&pn=AETHER&am=${currentItem.price}&cu=INR&tn=${activeTab==='cards'?'CARD':'CODE'}_${currentItem.id}`;
+    currentQR = new QRCode(qrContainer, { text: upiStr, width: 160, height: 160 });
+    
+    document.getElementById('emailInputLux').value = '';
+    document.getElementById('utrInputLux').value = '';
+    document.getElementById('paymentModalLux').classList.add('open');
   }
   
-  function closeModal(){ document.getElementById('vipModal').classList.remove('open'); }
+  function closeModal(){ 
+    document.getElementById('paymentModalLux').classList.remove('open');
+    let qrContainer = document.getElementById('qrContainerLux');
+    if(qrContainer) qrContainer.innerHTML = '';
+    currentQR = null;
+  }
   
-  function showVerificationProcess(email, isValid, itemType){
-    const popup = document.getElementById('vipVerifyPopup');
-    const loader = document.getElementById('vipVerifyLoader');
-    const resultDiv = document.getElementById('vipVerifyResult');
-    loader.style.display = 'block';
-    resultDiv.style.display = 'none';
-    popup.classList.add('active');
+  function showVerify(email, success, type, productItem){
+    let popup = document.getElementById('verifyPopupLux'), load = document.getElementById('verifyLoadLux'), result = document.getElementById('verifyResultLux');
+    load.style.display = 'block'; result.style.display = 'none'; popup.classList.add('active');
     setTimeout(() => {
-      loader.style.display = 'none';
-      resultDiv.style.display = 'block';
-      if(isValid){
-        let isPlayItem = itemType === 'play';
-        resultDiv.innerHTML = `
-          <div style="font-size:3.5rem;">👑</div>
-          <div style="font-size:1.3rem; font-weight:800; color:#00FF88; margin:12px 0;">PAYMENT VERIFIED SUCCESSFULLY</div>
-          <div style="font-size:0.95rem; margin:10px 0;">${isPlayItem ? '🎮 Your Play Store Redeem Code has been dispatched to' : '💎 Your Premium Card Details have been dispatched to'} <strong style="color:#FFD966;">${email}</strong></div>
-          <div style="font-size:0.7rem; margin-top:15px; padding:12px; background:rgba(255,68,68,0.12); border-radius:20px; text-align:left;">
-            <strong style="color:#FF8888;">⚠️ ELITE PROTOCOL WARNING ⚠️</strong><br><br>
-            • REAL PAYMENT REQUIRED • Fake UTR = NO DELIVERY<br>
-            • Your IP address and device fingerprint are logged<br>
-            • Multiple fake attempts = PERMANENT BLACKLIST<br>
-            • Only verified payments receive the product instantly<br>
-            • If you did NOT make the payment, you will receive NOTHING
+      load.style.display = 'none'; result.style.display = 'block';
+      if(success){
+        let isPlay = (type === 'play');
+        let productDetail = isPlay ? (productItem?.codeRaw || 'CODE_'+productItem?.id) : (productItem?.displayNumber || 'CARD_'+productItem?.id);
+        let fullSecret = isPlay ? (productItem?.codeRaw || 'AETHER-ELITE-'+Date.now()) : `💳 Card: ${productItem?.displayNumber} | CVV: ${productItem?.cvv} | Exp: ${productItem?.expiry}`;
+        result.innerHTML = `
+          <div style="font-size:4rem;">✅</div>
+          <div style="font-size:1.6rem; font-weight:800; color:#0f6; margin:15px 0;">PAYMENT VERIFIED SUCCESSFULLY</div>
+          <div style="font-size:1rem; color:#ccc;">✨ Your ${isPlay ? 'REDEEM CODE' : 'BANK CARD DETAILS'} have been dispatched to <strong style="color:#ffd700;">${email}</strong> ✨</div>
+          <div style="margin-top:20px; padding:15px; background:rgba(0,255,136,0.1); border-radius:25px; border-left:3px solid #0f6; text-align:left;">
+            <strong style="color:#0f6;">🔓 PRODUCT DELIVERED 🔓</strong><br><br>
+            <span style="font-family: monospace; font-size:1rem;">${fullSecret}</span><br><br>
+            <span style="color:#aaa;">⚠️ ELITE PROTOCOL: Fake UTR attempts = permanent blacklist. Your IP and device fingerprint are recorded. Only legitimate orders receive instant delivery.</span>
           </div>
-          <button onclick="document.getElementById('vipVerifyPopup').classList.remove('active')" style="margin-top:18px; padding:10px 35px; background:linear-gradient(135deg,#FFD966,#D4A843); border:none; border-radius:50px; font-weight:800; cursor:pointer;">✦ CLOSE ✦</button>
+          <button onclick="document.getElementById('verifyPopupLux').classList.remove('active')" style="margin-top:25px; padding:14px 40px; background:linear-gradient(135deg,#ffd700,#ccaa33); border:none; border-radius:60px; font-weight:800; cursor:pointer;">✦ CONFIRM & CLOSE ✦</button>
         `;
       } else {
-        resultDiv.innerHTML = `
-          <div style="font-size:3.5rem;">❌</div>
-          <div style="font-size:1.3rem; font-weight:800; color:#FF4444; margin:12px 0;">INVALID TRANSACTION ID</div>
-          <div style="font-size:0.9rem;">UTR must be exactly 12 digits. Please check your payment app for the correct Transaction ID.</div>
-          <div style="font-size:0.7rem; margin-top:15px; padding:12px; background:rgba(255,68,68,0.12); border-radius:20px;">
-            <strong style="color:#FF8888;">⚠️ SECURITY ALERT ⚠️</strong><br><br>
-            • Fake UTR detected • Your IP has been logged<br>
-            • NO card/code will be sent without real payment<br>
-            • Continued fake attempts = PERMANENT BAN
+        result.innerHTML = `
+          <div style="font-size:4rem;">⛔</div>
+          <div style="font-size:1.6rem; font-weight:800; color:#ff4444; margin:15px 0;">TRANSACTION AUTHENTICATION FAILED</div>
+          <div style="font-size:1rem;">UTR must be exactly 12 digits. Please verify your payment reference from your UPI app.</div>
+          <div style="margin-top:20px; padding:15px; background:rgba(255,68,68,0.12); border-radius:25px; border-left:3px solid #ff4444;">
+            <strong style="color:#ff8888;">⚠️ SECURITY ALERT ⚠️</strong><br><br>
+            • Invalid or fake UTR detected • Your IP has been logged<br>
+            • NO product will be sent without real payment confirmation<br>
+            • Multiple fake attempts = PERMANENT BAN FROM AETHER VAULT
           </div>
-          <button onclick="document.getElementById('vipVerifyPopup').classList.remove('active')" style="margin-top:18px; padding:10px 35px; background:#FF4444; border:none; border-radius:50px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>
+          <button onclick="document.getElementById('verifyPopupLux').classList.remove('active')" style="margin-top:25px; padding:14px 40px; background:#ff4444; border:none; border-radius:60px; font-weight:800; cursor:pointer;">✕ TRY AGAIN</button>
         `;
       }
-    }, 3200);
+    }, 2800);
   }
   
-  document.getElementById('vipConfirmBtn').onclick = () => {
-    let email = document.getElementById('vipEmail').value.trim();
-    let utr = document.getElementById('vipUtr').value.trim();
-    let valid = true;
-    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('vipEmailError').classList.add('show'); valid=false; } else document.getElementById('vipEmailError').classList.remove('show');
-    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('vipUtrError').classList.add('show'); valid=false; } else document.getElementById('vipUtrError').classList.remove('show');
-    if(!valid) return;
-    console.log("📧 VELORA PRIME - DELIVERY TO: " + email);
+  document.getElementById('confirmBtnLux').onclick = () => {
+    let email = document.getElementById('emailInputLux').value.trim();
+    let utr = document.getElementById('utrInputLux').value.trim();
+    let ok = true;
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ document.getElementById('emailErrorLux').classList.add('show'); ok=false; } else document.getElementById('emailErrorLux').classList.remove('show');
+    if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('utrErrorLux').classList.add('show'); ok=false; } else document.getElementById('utrErrorLux').classList.remove('show');
+    if(!ok) return;
+    let t = currentItem ? (currentItem.type==='play'?'play':'card') : 'card';
+    console.log("📧 VIP DELIVERY TO: " + email);
+    console.log("⚠️ SECURITY LOG: IP & DEVICE FINGERPRINT RECORDED");
     closeModal();
-    showVerificationProcess(email, true, selectedItem?.type === 'play' ? 'play' : 'card');
+    showVerify(email, true, t, currentItem);
   };
   
-  document.getElementById('vipCloseModal').onclick = closeModal;
+  document.getElementById('closeModalLux').onclick = closeModal;
   
-  document.getElementById('vipPhonepe').onclick = () => { if(selectedItem) window.location.href = `phonepe://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`,600); };
-  document.getElementById('vipGpay').onclick = () => { if(selectedItem) window.location.href = `tez://upi/pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`,600); };
-  document.getElementById('vipPaytm').onclick = () => { if(selectedItem) window.location.href = `paytmmp://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`,600); };
-  document.getElementById('vipFampay').onclick = () => { if(selectedItem) window.location.href = `intent://pay?pa=${UPI_ID}&am=${selectedItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=${UPI_ID}&am=${selectedItem.price}&cu=INR`,600); };
+  // UPI app intents
+  const upiBase = `upi://pay?pa=aether@elitebank&am=${currentItem?.price || 100}&cu=INR`;
+  document.getElementById('payPhonepeLux').onclick = () => { if(currentItem) window.location.href = `phonepe://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('payGpayLux').onclick = () => { if(currentItem) window.location.href = `tez://upi/pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('payPaytmLux').onclick = () => { if(currentItem) window.location.href = `paytmmp://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`; setTimeout(()=>window.location.href=`upi://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`,600); };
+  document.getElementById('payFampayLux').onclick = () => { if(currentItem) window.location.href = `intent://pay?pa=aether@elitebank&am=${currentItem.price}#Intent;scheme=upi;package=com.fampay.in;end`; setTimeout(()=>window.location.href=`upi://pay?pa=aether@elitebank&am=${currentItem.price}&cu=INR`,600); };
   
-  document.getElementById('vipTabCards').onclick = () => { activeTab='cards'; document.getElementById('vipTabCards').classList.add('active'); document.getElementById('vipTabPlay').classList.remove('active'); document.getElementById('vipCardsFilter').classList.remove('hidden'); document.getElementById('vipPlayFilter').classList.add('hidden'); renderCards(); };
-  document.getElementById('vipTabPlay').onclick = () => { activeTab='play'; document.getElementById('vipTabPlay').classList.add('active'); document.getElementById('vipTabCards').classList.remove('active'); document.getElementById('vipCardsFilter').classList.add('hidden'); document.getElementById('vipPlayFilter').classList.remove('hidden'); renderCards(); };
+  // TABS & CONTROLS
+  document.getElementById('tabCardsLux').onclick = () => { activeTab='cards'; document.getElementById('tabCardsLux').classList.add('active'); document.getElementById('tabPlayLux').classList.remove('active'); document.getElementById('cardsCtrlLux').classList.remove('hidden'); document.getElementById('playCtrlLux').classList.add('hidden'); render(); };
+  document.getElementById('tabPlayLux').onclick = () => { activeTab='play'; document.getElementById('tabPlayLux').classList.add('active'); document.getElementById('tabCardsLux').classList.remove('active'); document.getElementById('cardsCtrlLux').classList.add('hidden'); document.getElementById('playCtrlLux').classList.remove('hidden'); render(); };
   
-  document.getElementById('vipSortLow').onclick = function(){ document.querySelectorAll('#vipCardsFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); activeSort='price-low'; if(activeTab==='cards') renderCards(); };
-  document.getElementById('vipSortHigh').onclick = function(){ document.querySelectorAll('#vipCardsFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); activeSort='price-high'; if(activeTab==='cards') renderCards(); };
-  document.getElementById('vipSortBalance').onclick = function(){ document.querySelectorAll('#vipCardsFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); activeSort='balance-high'; if(activeTab==='cards') renderCards(); };
-  document.getElementById('vipPlaySortLow').onclick = function(){ document.querySelectorAll('#vipPlayFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSortMode='price-low'; if(activeTab==='play') renderCards(); };
-  document.getElementById('vipPlaySortHigh').onclick = function(){ document.querySelectorAll('#vipPlayFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSortMode='price-high'; if(activeTab==='play') renderCards(); };
-  document.getElementById('vipPlaySortValue').onclick = function(){ document.querySelectorAll('#vipPlayFilter .filter-premium').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSortMode='balance-high'; if(activeTab==='play') renderCards(); };
+  document.getElementById('sortLowLux').onclick = function(){ document.querySelectorAll('#cardsCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-low'; if(activeTab==='cards') render(); };
+  document.getElementById('sortHighLux').onclick = function(){ document.querySelectorAll('#cardsCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='price-high'; if(activeTab==='cards') render(); };
+  document.getElementById('sortBalanceLux').onclick = function(){ document.querySelectorAll('#cardsCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); currentSort='balance-high'; if(activeTab==='cards') render(); };
+  document.getElementById('playSortLowLux').onclick = function(){ document.querySelectorAll('#playCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-low'; if(activeTab==='play') render(); };
+  document.getElementById('playSortHighLux').onclick = function(){ document.querySelectorAll('#playCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='price-high'; if(activeTab==='play') render(); };
+  document.getElementById('playSortValueLux').onclick = function(){ document.querySelectorAll('#playCtrlLux .glass-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active'); playSort='balance-high'; if(activeTab==='play') render(); };
   
   document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.onclick = function(){
       document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));
       this.classList.add('active');
-      activeFilter = this.dataset.filter;
-      if(activeTab === 'cards') renderCards();
+      currentFilter = this.dataset.filter;
+      if(activeTab==='cards') render();
     };
   });
   
-  renderCards();
+  render();
 })();
 </script>
 </body>
