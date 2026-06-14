@@ -20,7 +20,6 @@
       --gold-dark: #D4A843;
       --cyan: #00E5FF;
       --purple: #B000FF;
-      --pink: #FF2D75;
       --green: #00FF88;
       --red: #FF4444;
       --white: #FFFFFF;
@@ -35,18 +34,14 @@
       overflow: hidden;
     }
 
-    /* Premium Dynamic Background */
     .premium-bg {
       position: fixed;
       inset: 0;
-      background: 
-        radial-gradient(ellipse at 25% 20%, rgba(255, 217, 102, 0.08), transparent 55%),
-        radial-gradient(ellipse at 75% 60%, rgba(0, 229, 255, 0.06), transparent 55%),
-        radial-gradient(ellipse at 50% 80%, rgba(176, 0, 255, 0.04), transparent 60%);
+      background: radial-gradient(ellipse at 25% 20%, rgba(255, 217, 102, 0.08), transparent 55%),
+                  radial-gradient(ellipse at 75% 60%, rgba(0, 229, 255, 0.06), transparent 55%);
       z-index: 0;
     }
 
-    /* Animated Particles */
     .particles {
       position: fixed;
       inset: 0;
@@ -79,7 +74,7 @@
       overflow: hidden;
     }
 
-    /* ========== ELITE HEADER ========== */
+    /* HEADER */
     .elite-header {
       background: rgba(5, 5, 12, 0.65);
       backdrop-filter: blur(24px);
@@ -148,7 +143,7 @@
       color: #00FF88;
     }
 
-    /* ========== PREMIUM TABS ========== */
+    /* TABS */
     .vip-tabs {
       display: flex;
       justify-content: center;
@@ -178,7 +173,7 @@
     .vip-tab-title { font-weight: 700; font-size: 0.85rem; }
     .vip-tab-sub { font-size: 0.55rem; color: var(--gray); }
 
-    /* ========== FILTER SECTION ========== */
+    /* FILTER */
     .filter-bar-premium {
       background: rgba(6, 6, 16, 0.55);
       backdrop-filter: blur(16px);
@@ -213,7 +208,7 @@
       font-weight: 700;
     }
 
-    /* ========== SCROLLABLE CARDS AREA ========== */
+    /* SCROLLABLE CARDS AREA - YAHI SCROLL FEATURE HAI */
     .scroll-cards {
       flex: 1;
       overflow-y: auto;
@@ -239,7 +234,7 @@
       padding-bottom: 10px;
     }
 
-    /* ========== VIP CARD DESIGN ========== */
+    /* VIP CARD */
     .vip-card {
       background: linear-gradient(145deg, #12122A, #0A0A18);
       border-radius: 32px;
@@ -338,7 +333,7 @@
       transform: translateX(6px);
     }
 
-    /* ========== MODAL - COMPACT & PREMIUM ========== */
+    /* MODAL */
     .premium-modal {
       display: none;
       position: fixed;
@@ -476,7 +471,7 @@
       border-radius: 18px;
     }
 
-    /* ========== VERIFICATION POPUP ========== */
+    /* VERIFICATION */
     .verify-premium-popup {
       display: none;
       position: fixed;
@@ -529,7 +524,7 @@
 <div class="particles" id="particlesContainer"></div>
 
 <div class="app-container">
-  <!-- VIP HEADER -->
+  <!-- HEADER -->
   <div class="elite-header">
     <div class="logo-area"><h1>✦ VELORA PRIME ✦</h1><p>ELITE DARK MARKET • MEMBERS ONLY</p></div>
     <div class="trust-badges"><div class="trust-badge">🔒 QUANTUM SECURE</div><div class="trust-badge">✅ VERIFIED ELITE</div><div class="trust-badge">⭐ 5.0 PLATINUM</div></div>
@@ -543,7 +538,7 @@
   <div id="vipCardsFilter"><div class="filter-bar-premium"><div class="filter-premium active" id="vipSortLow">📉 LOW PRICE</div><div class="filter-premium" id="vipSortHigh">📈 HIGH PRICE</div><div class="filter-premium" id="vipSortBalance">💰 HIGH BALANCE</div><div style="width:1px; background:rgba(255,255,255,0.1); margin:0 5px;"></div><div class="filter-premium active" data-filter="all">🌐 ALL</div><div class="filter-premium" data-filter="visa">💎 VISA</div><div class="filter-premium" data-filter="mastercard">🔴 MASTERCARD</div><div class="filter-premium" data-filter="amex">🔵 AMEX</div><div class="filter-premium" data-filter="rupay">🟣 RUPAY</div></div></div>
   <div id="vipPlayFilter" class="hidden"><div class="filter-bar-premium"><div class="filter-premium active" id="vipPlaySortLow">📉 LOW PRICE</div><div class="filter-premium" id="vipPlaySortHigh">📈 HIGH PRICE</div><div class="filter-premium" id="vipPlaySortValue">💰 HIGH VALUE</div></div></div>
 
-  <!-- SCROLLABLE CARDS -->
+  <!-- SCROLLABLE CARDS - SCROLL FEATURE ACTIVE -->
   <div class="scroll-cards"><div class="cards-grid-vip" id="vipCardsGrid"></div></div>
   <div class="footer-premium">✦ 256-BIT QUANTUM ENCRYPTION • INSTANT DELIVERY • 24/7 VIP SUPPORT ✦</div>
 </div>
@@ -564,7 +559,7 @@
   // PARTICLES
   for(let i=0;i<100;i++){ let p=document.createElement('div'); p.className='part'; p.style.left=Math.random()*100+'%'; p.style.width=p.style.height=(Math.random()*4+1)+'px'; p.style.animationDelay=Math.random()*12+'s'; p.style.animationDuration=(Math.random()*12+6)+'s'; document.getElementById('particlesContainer').appendChild(p); }
   
-  // REAL-TIME LIVE USER COUNT (Dynamic but realistic)
+  // REAL-TIME LIVE USER COUNT
   let currentLiveUsers = random(185, 425);
   document.getElementById('liveUserCount').innerText = currentLiveUsers;
   setInterval(() => {
@@ -594,13 +589,13 @@
   }
   
   // 60 PLAY CODES - RANDOM LIKE ATFAMGSHSJDHDKAJD
-  const playCodesCollection = [];
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
   function generateRandomCode(){
     let code = '';
     for(let i=0;i<16;i++){ code += chars[random(0,chars.length-1)]; }
     return code;
   }
+  const playCodesCollection = [];
   for(let i=1;i<=60;i++){
     let code = generateRandomCode();
     let price = random(100,1000);
@@ -728,7 +723,6 @@
     if(!utr || !/^\d{12}$/.test(utr)){ document.getElementById('vipUtrError').classList.add('show'); valid=false; } else document.getElementById('vipUtrError').classList.remove('show');
     if(!valid) return;
     console.log("📧 VELORA PRIME - DELIVERY TO: " + email);
-    console.log("🎮 CODE / CARD DETAILS SENT VIA EMAIL");
     closeModal();
     showVerificationProcess(email, true, selectedItem?.type === 'play' ? 'play' : 'card');
   };
