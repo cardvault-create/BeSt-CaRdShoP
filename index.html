@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>✦ OMEGA VAULT | ELITE ACCESS ✦</title>
+  <title>✦ CARDING VAULT | ELITE ACCESS ✦</title>
   <style>
     * {
       margin: 0;
@@ -39,7 +39,6 @@
       align-items: center;
     }
 
-    /* animated mesh background */
     .mesh-bg {
       position: fixed;
       inset: 0;
@@ -548,18 +547,18 @@
   <!-- Header -->
   <div class="glass-header">
     <div class="brand">
-      <h1>OMEGA VAULT</h1>
-      <span>Elite Digital Access</span>
+      <h1>⚡ CARDING VAULT ⚡</h1>
+      <span>ELITE CARD AND PLAY STORE REDEEM CODE MARKET • LEVEL 3 ACCESS</span>
     </div>
     <div class="status-pills">
-      <div class="pill">🔒 256-BIT</div>
-      <div class="pill">✅ VERIFIED</div>
-      <div class="pill">⭐ 4.9</div>
+      <div class="pill">🔒 256-BIT SSL</div>
+      <div class="pill">✅ VERIFIED SELLER</div>
+      <div class="pill" id="ratingPill">⭐ <span id="ratingValue">4.7</span></div>
     </div>
     <div class="live-badge">
       <div class="pulse-dot"></div>
-      <span class="live-count" id="liveCount">212</span>
-      <span style="font-size:0.7rem;">ONLINE</span>
+      <span class="live-count" id="liveCount">1</span>
+      <span style="font-size:0.7rem;">LIVE</span>
     </div>
   </div>
 
@@ -681,7 +680,30 @@
     });
   }
 
-  setInterval(()=>{ document.getElementById('liveCount').innerText = rand(150,350); },4000);
+  // Live counter: increments by 1 every 2-5 seconds, from 1 to 300
+  let liveCount = 1;
+  const liveEl = document.getElementById('liveCount');
+  function updateLiveCounter() {
+    if (liveCount < 300) {
+      liveCount++;
+      liveEl.innerText = liveCount;
+    }
+    const nextDelay = rand(2000, 5000);
+    setTimeout(updateLiveCounter, nextDelay);
+  }
+  updateLiveCounter();
+
+  // Rating: fluctuates between 3.1 and 4.9 based on liveCount
+  function updateRating() {
+    const minRating = 3.1;
+    const maxRating = 4.9;
+    // Map liveCount (1-300) to rating range
+    const progress = Math.min(liveCount, 300) / 300;
+    const rating = (minRating + progress * (maxRating - minRating)).toFixed(1);
+    document.getElementById('ratingValue').innerText = rating;
+  }
+  setInterval(updateRating, 3000);
+  updateRating();
 
   let currentItem = null, activeTab = 'cards', currentFilter = 'all', currentSort = 'price-low', playSort = 'price-low', currentQR = null;
 
@@ -732,7 +754,7 @@
     }
     document.getElementById('qrContainer').innerHTML = '';
     currentQR = new QRCode(document.getElementById('qrContainer'), {
-      text: `upi://pay?pa=${UPI}&pn=OMEGA&am=${currentItem.price}&cu=INR&tn=ORDER_${currentItem.id}`,
+      text: `upi://pay?pa=${UPI}&pn=CARDING_VAULT&am=${currentItem.price}&cu=INR&tn=ORDER_${currentItem.id}`,
       width: 150, height: 150
     });
     document.getElementById('emailInput').value = '';
