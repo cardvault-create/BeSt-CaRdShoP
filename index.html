@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CARDVAULT • FAMPAY INTENT FIX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>CARDVAULT • LUXE EDITION</title>
   <style>
     * {
       margin: 0;
@@ -12,246 +12,397 @@
     }
 
     :root {
-      --bg: #000000;
-      --border: rgba(255, 30, 30, 0.4);
-      --text: #e8e8e8;
-      --muted: #8a8a8a;
-      --blood: #ff1a3c;
-      --toxic: #1eff3c;
-      --gold: #ffd966;
+      --bg-deep: #03050a;
+      --surface-glass: rgba(10, 15, 25, 0.75);
+      --gold-primary: #e5b663;
+      --gold-secondary: #c99a3c;
+      --platinum: #e0e7ff;
+      --accent-red: #c23a2e;
+      --text-primary: #f3f3f7;
+      --text-muted: #8e8ea0;
+      --border-glow: rgba(229, 182, 99, 0.4);
+      --card-shadow: 0 25px 40px -20px rgba(0,0,0,0.8);
     }
 
     body {
-      background: var(--bg);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: var(--text);
+      background: var(--bg-deep);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-primary);
       min-height: 100vh;
       padding: 20px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    #matrixCanvas {
+    /* Dynamic animated background */
+    .bg-animated {
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.1;
+      background: radial-gradient(ellipse at 30% 20%, rgba(229, 182, 99, 0.08) 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 70%, rgba(200, 120, 60, 0.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 10% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
       pointer-events: none;
     }
 
-    .particles {
+    .particles-layer {
       position: fixed;
       inset: 0;
-      z-index: 1;
+      z-index: 0;
       pointer-events: none;
     }
 
     .particle {
       position: absolute;
-      background: var(--toxic);
+      background: var(--gold-primary);
       border-radius: 50%;
-      animation: floatUp 4s infinite;
+      filter: blur(1px);
       opacity: 0;
+      animation: floatParticle 8s infinite ease-in;
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      20% { opacity: 0.6; }
-      100% { transform: translateY(-100px) scale(1); opacity: 0; }
+    @keyframes floatParticle {
+      0% { transform: translateY(105vh) scale(0); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.1; }
+      100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
     }
 
     .container {
       position: relative;
       z-index: 2;
-      max-width: 1400px;
+      max-width: 1450px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
 
+    /* Typography & Header */
     .header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .badge {
+    .luxe-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.25em;
+      gap: 0.7rem;
+      background: rgba(229, 182, 99, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 182, 99, 0.4);
+      padding: 0.5rem 2rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--toxic);
-      border: 2px solid var(--blood);
-      padding: 0.45rem 1.4rem;
-      border-radius: 99px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      color: var(--gold-primary);
+      margin-bottom: 1.8rem;
+      box-shadow: 0 0 30px rgba(229, 182, 99, 0.2);
     }
 
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--toxic);
-      box-shadow: 0 0 12px var(--toxic);
-      animation: blinkPulse 1.2s infinite;
-    }
-
-    @keyframes blinkPulse { 0%,100%{ opacity: 1; } 50%{ opacity: 0.2; } }
-
-    .glitch-title {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    .animated-text {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 700;
       line-height: 1;
-      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(180deg, #ffffff 20%, #c2a36b 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 25px rgba(229, 182, 99, 0.5));
+      animation: titleGlow 3s infinite alternate;
     }
 
-    .glitch-title span { color: var(--blood); text-shadow: 0 0 40px var(--blood); }
-    .glitch-title i { font-style: normal; color: var(--toxic); text-shadow: 0 0 30px var(--toxic); }
-    .sub { color: var(--muted); font-size: 0.85rem; }
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 15px rgba(229, 182, 99, 0.4)); }
+      100% { filter: drop-shadow(0 0 35px rgba(229, 182, 99, 0.8)); }
+    }
 
-    .live-counter {
-      background: rgba(255, 30, 30, 0.12);
-      border: 2px solid var(--blood);
-      border-radius: 99px;
-      padding: 0.5rem 1.3rem;
+    .subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .counter-live {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 40px;
+      padding: 0.4rem 1.8rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      font-family: monospace;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--toxic);
-      margin-bottom: 1.8rem;
+      gap: 0.7rem;
+      font-weight: 600;
+      color: #e5b663;
+      margin-top: 1.2rem;
     }
 
-    .sort-wrap, .filter-wrap {
+    .dot-live {
+      width: 10px;
+      height: 10px;
+      background: #2ecc71;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #2ecc71;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .sort-section, .filter-section {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 1.8rem;
+      gap: 0.8rem;
     }
 
-    .sort-btn, .filter-btn {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.45rem 1.2rem;
-      background: rgba(0, 0, 0, 0.7);
-      border: 1.5px solid var(--border);
-      color: var(--muted);
-      border-radius: 99px;
+    .btn-sort, .btn-filter {
+      background: rgba(20, 20, 30, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #c0c0d0;
+      padding: 0.65rem 1.6rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
     }
 
-    .sort-btn:hover, .filter-btn:hover {
-      border-color: var(--toxic);
-      color: var(--toxic);
-      box-shadow: 0 0 12px rgba(30, 255, 60, 0.3);
+    .btn-sort:hover, .btn-filter:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      background: rgba(229, 182, 99, 0.1);
     }
 
-    .sort-btn.active, .filter-btn.active {
-      background: rgba(30, 255, 60, 0.12);
-      border-color: var(--toxic);
-      color: var(--toxic);
+    .btn-sort.active, .btn-filter.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: #0a0a0f;
+      font-weight: 700;
+      box-shadow: 0 0 25px rgba(229, 182, 99, 0.5);
     }
 
+    /* Premium Card Grid */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
-    .card {
-      background: linear-gradient(145deg, rgba(12, 12, 18, 0.95), rgba(0, 0, 0, 0.98));
-      border: 1px solid var(--border);
-      border-radius: 20px;
+    .card-premium {
+      background: linear-gradient(145deg, rgba(20, 20, 30, 0.8) 0%, rgba(10, 10, 18, 0.9) 100%);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(229, 182, 99, 0.2);
+      border-radius: 36px;
       overflow: hidden;
-      transition: all 0.35s ease;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.7);
       cursor: pointer;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--toxic);
-      box-shadow: 0 20px 35px rgba(255, 26, 60, 0.3);
+    .card-premium:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: var(--gold-primary);
+      box-shadow: 0 35px 55px -10px rgba(229, 182, 99, 0.4);
     }
 
-    .card-accent { height: 3px; background: linear-gradient(90deg, var(--blood), var(--toxic), var(--blood)); }
-    .card-body { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
-    .card-header { display: flex; justify-content: space-between; align-items: center; }
-    .network { font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--toxic); }
-    .price-chip { font-family: monospace; font-weight: 800; background: rgba(255, 26, 60, 0.2); padding: 0.2rem 0.7rem; border-radius: 20px; color: #ff8095; font-size: 0.75rem; border: 1px solid var(--blood); }
-    .card-sim { display: flex; align-items: center; gap: 0.5rem; }
-    .chip-icon { width: 36px; height: 26px; background: linear-gradient(135deg, #e6b800, #b38000); border-radius: 6px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; }
-    .chip-line-small { width: 70%; height: 1.5px; background: rgba(0, 0, 0, 0.5); }
-    .card-number { font-family: monospace; font-size: 0.9rem; letter-spacing: 0.08em; background: rgba(0, 0, 0, 0.5); padding: 0.5rem; border-radius: 10px; text-align: center; border: 1px solid var(--border); }
-    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    .meta-item { background: rgba(0, 0, 0, 0.4); padding: 0.3rem; border-radius: 8px; text-align: center; }
-    .meta-label { font-size: 0.5rem; color: var(--muted); text-transform: uppercase; }
-    .meta-value { font-family: monospace; font-size: 0.7rem; font-weight: 700; }
-    .balance-highlight { color: var(--toxic); }
-    .holder-name { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
+    .card-top-glow {
+      height: 4px;
+      background: linear-gradient(90deg, #c99a3c, #f5e3b3, #c99a3c);
+    }
 
-    .buy-action {
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-type-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .network-badge {
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: #e5b663;
+      background: rgba(229, 182, 99, 0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+    }
+
+    .price-tag {
+      font-family: 'Inter', monospace;
+      font-weight: 700;
+      background: #1f1f2e;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      color: #f0c27b;
+      border: 1px solid #c99a3c;
+    }
+
+    .card-visual {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .chip-gold {
+      width: 42px;
+      height: 32px;
+      background: linear-gradient(135deg, #e5b663, #a67c2e);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      box-shadow: 0 5px 15px rgba(229, 182, 99, 0.6);
+    }
+
+    .chip-line {
+      width: 65%;
+      height: 2px;
+      background: #5e3e1a;
+    }
+
+    .card-number-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.6rem;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+
+    .detail-box {
+      background: rgba(0,0,0,0.35);
+      border-radius: 14px;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .detail-label {
+      font-size: 0.55rem;
+      color: #a0a0b0;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #f0e6d2;
+    }
+
+    .balance-gold {
+      color: #e5b663;
+      font-weight: 800;
+    }
+
+    .holder-name {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #b0a08a;
+    }
+
+    .buy-section {
+      background: rgba(229, 182, 99, 0.08);
+      border-top: 1px solid rgba(229, 182, 99, 0.4);
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(135deg, #1c0505, #080000);
-      border-top: 2px solid var(--blood);
-      padding: 0.9rem 1.2rem;
-      transition: all 0.25s;
+      transition: 0.3s;
     }
 
-    .buy-action:hover { background: #2a0808; border-top-color: var(--toxic); }
-    .buy-left { display: flex; align-items: center; gap: 0.8rem; }
-    .lock-icon { width: 38px; height: 38px; background: rgba(255, 26, 60, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; border: 1px solid var(--blood); }
-    .buy-label { font-weight: 800; font-size: 0.8rem; color: #ff7a8f; }
-    .buy-sub { font-size: 0.6rem; color: var(--muted); }
-    .arrow-right { font-size: 1.3rem; color: var(--blood); transition: transform 0.2s; }
-    .buy-action:hover .arrow-right { transform: translateX(5px); color: var(--toxic); }
+    .card-premium:hover .buy-section {
+      background: rgba(229, 182, 99, 0.18);
+    }
 
+    .buy-text {
+      font-weight: 700;
+      color: #e5b663;
+    }
+
+    .arrow-icon {
+      font-size: 1.5rem;
+      color: #c99a3c;
+      transition: 0.3s;
+    }
+
+    .card-premium:hover .arrow-icon {
+      transform: translateX(6px);
+      color: #f5e3b3;
+    }
+
+    /* Modal premium */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.96);
-      backdrop-filter: blur(20px);
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(25px);
       align-items: center;
       justify-content: center;
       padding: 1rem;
     }
 
-    .modal.open { display: flex; }
-    .modal-container {
-      background: #0c0c10;
-      border: 2px solid var(--blood);
-      border-radius: 32px;
-      width: 100%;
-      max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 0 70px rgba(255, 26, 60, 0.5);
-      animation: modalGlow 0.3s ease;
+    .modal.open {
+      display: flex;
     }
 
-    @keyframes modalGlow { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
-    .modal-header { display: flex; justify-content: space-between; padding: 1.2rem 1.3rem; border-bottom: 1px solid var(--border); }
-    .modal-title { font-weight: 800; color: var(--toxic); font-size: 1rem; }
-    .close-modal { width: 32px; height: 32px; background: rgba(255, 26, 60, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--blood); font-size: 1.2rem; }
-    .modal-body { padding: 1.5rem; }
-    .info-row { background: #00000055; padding: 0.8rem; border-radius: 18px; display: flex; justify-content: space-between; border: 1px solid var(--border); margin-bottom: 1rem; }
-    .price-card { background: linear-gradient(135deg, #1a0505, #000); border-radius: 22px; padding: 1rem; text-align: center; border: 1px solid var(--blood); margin-bottom: 1.2rem; }
-    .amount-large { font-size: 2.2rem; font-weight: 800; font-family: monospace; color: var(--blood); }
-    .qr-panel { background: #030303; border-radius: 24px; padding: 1rem; text-align: center; border: 1px solid var(--border); margin-bottom: 1rem; }
-    .qr-label-text { font-size: 0.7rem; color: var(--toxic); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
-    #dynamicQR { display: flex; justify-content: center; margin: 0.5rem auto; background: white; padding: 10px; border-radius: 20px; width: fit-content; }
-    .qr-amount-badge { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-top: 8px; }
-    .upi-id-small { font-size: 0.6rem; color: var(--muted); margin-top: 6px; }
+    .modal-dialog {
+      background: #0e0e1a;
+      border: 2px solid #c99a3c;
+      border-radius: 48px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 0 80px rgba(229, 182, 99, 0.5);
+    }
 
-    .apps-grid {
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem;
+      border-bottom: 1px solid #c99a3c;
+    }
+
+    .close-btn {
+      background: none;
+      border: 1px solid #c99a3c;
+      color: #c99a3c;
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .app-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
@@ -259,506 +410,237 @@
     }
 
     .app-btn {
+      background: #151525;
+      border: 1px solid rgba(229, 182, 99, 0.3);
+      border-radius: 24px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      background: #111116;
-      border: 1.5px solid var(--border);
-      border-radius: 24px;
-      padding: 16px 12px;
       cursor: pointer;
-      transition: all 0.25s ease;
-      text-align: center;
     }
 
-    .app-btn:hover {
-      transform: translateY(-3px);
-      border-color: var(--toxic);
-      background: #1a1a2a;
-      box-shadow: 0 8px 25px rgba(0, 255, 60, 0.2);
-    }
-
-    .app-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .app-name {
+    .btn-gold {
+      background: linear-gradient(135deg, #c99a3c, #e5b663);
+      color: black;
       font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.02em;
-      color: #fff;
+      border: none;
+      padding: 1rem;
+      border-radius: 40px;
+      width: 100%;
     }
 
-    .app-sub {
-      font-size: 0.6rem;
-      color: var(--muted);
-    }
-
-    .icon-phonepe { background: linear-gradient(135deg, #5c2d91, #3a1c5c); }
-    .icon-gpay { background: linear-gradient(135deg, #1a73e8, #0d47a1); }
-    .icon-paytm { background: linear-gradient(135deg, #00baf2, #0077b6); }
-    .icon-fampay { background: linear-gradient(135deg, #ff6b35, #d43f1a); }
-
-    .input-field { margin-bottom: 14px; }
-    .input-label { font-size: 0.6rem; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; letter-spacing: 0.05em; }
-    .input-custom { width: 100%; background: #0a0a0e; border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; color: white; font-family: monospace; font-size: 0.85rem; }
-    .btn-primary { width: 100%; padding: 14px; border-radius: 60px; font-weight: 800; border: none; cursor: pointer; margin-top: 12px; background: linear-gradient(135deg, #008800, #004400); color: white; font-size: 0.85rem; }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); width: 100%; padding: 12px; border-radius: 60px; font-weight: 600; cursor: pointer; }
-    .footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; font-size: 0.7rem; color: var(--muted); }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: linear-gradient(135deg, #1a1a2e, #0a0a0f);
-      border: 2px solid var(--toxic);
-      border-radius: 60px;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 2000;
-      transition: transform 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-    .toast-icon { font-size: 24px; }
-    .toast-text { font-weight: 600; font-size: 0.85rem; color: var(--toxic); }
-    .toast-sub { font-size: 0.7rem; color: var(--muted); }
-
-    /* FamPay note */
-    .fampay-note {
-      background: rgba(255, 107, 53, 0.15);
-      border: 1px solid #ff6b35;
-      border-radius: 12px;
-      padding: 8px 12px;
-      margin-top: 8px;
-      font-size: 0.65rem;
-      color: #ff6b35;
+    .footer-note {
       text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      .apps-grid { gap: 12px; }
-      .app-icon { width: 48px; height: 48px; font-size: 28px; }
-      .app-name { font-size: 0.75rem; }
+      color: #8e8ea0;
+      margin-top: 2rem;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-
-<canvas id="matrixCanvas"></canvas>
-<div class="particles" id="particlesContainer"></div>
+<div class="bg-animated"></div>
+<div class="particles-layer" id="particlesContainer"></div>
 
 <div class="container">
   <div class="header">
-    <div class="badge"><div class="pulse-dot"></div> SECURE VAULT</div>
-    <div class="glitch-title"><span>CARD</span> <i>VAULT</i></div>
-    <div class="sub">Premium Cards • Direct UPI App Open</div>
-    <div class="live-counter"><span>●</span> <span id="liveUsersCount">87</span> <span>ACTIVE</span></div>
+    <div class="luxe-badge"><span>◆</span> ELITE VAULT <span>◆</span></div>
+    <div class="animated-text">CARD<span style="color:#e5b663;">VAULT</span></div>
+    <div class="subtitle">Premium Digital Assets</div>
+    <div class="counter-live"><span class="dot-live"></span> <span id="liveUsersCount">124</span> COLLECTORS ONLINE</div>
   </div>
 
-  <div class="sort-wrap">
-    <button class="sort-btn active" id="sortPriceLow">LOW TO HIGH</button>
-    <button class="sort-btn" id="sortPriceHigh">HIGH TO LOW</button>
-    <button class="sort-btn" id="sortBalanceHigh">BALANCE</button>
+  <div class="sort-section">
+    <button class="btn-sort active" id="sortPriceLow">Price ↑</button>
+    <button class="btn-sort" id="sortPriceHigh">Price ↓</button>
+    <button class="btn-sort" id="sortBalanceHigh">Balance</button>
   </div>
 
-  <div class="filter-wrap" id="filterWrap">
-    <button class="filter-btn active" data-type="all">ALL</button>
-    <button class="filter-btn" data-type="visa">VISA</button>
-    <button class="filter-btn" data-type="mastercard">MASTERCARD</button>
-    <button class="filter-btn" data-type="amex">AMEX</button>
-    <button class="filter-btn" data-type="rupay">RUPAY</button>
-    <button class="filter-btn" data-type="discover">DISCOVER</button>
+  <div class="filter-section" id="filterWrap">
+    <button class="btn-filter active" data-type="all">All</button>
+    <button class="btn-filter" data-type="visa">Visa</button>
+    <button class="btn-filter" data-type="mastercard">Mastercard</button>
+    <button class="btn-filter" data-type="amex">Amex</button>
+    <button class="btn-filter" data-type="rupay">RuPay</button>
   </div>
 
   <div class="cards-grid" id="cardsGrid"></div>
+  <div class="footer-note">◆ SECURE TRANSACTIONS ◆</div>
 </div>
 
-<div class="toast" id="toast">
-  <div class="toast-icon" id="toastIcon">✓</div>
-  <div>
-    <div class="toast-text" id="toastText">Opening App...</div>
-    <div class="toast-sub" id="toastSub">Redirecting to payment</div>
-  </div>
-</div>
-
-<div class="modal" id="modal">
-  <div class="modal-container">
+<div class="modal" id="paymentModal">
+  <div class="modal-dialog">
     <div class="modal-header">
-      <div class="modal-title">◆ DIRECT UPI PAYMENT</div>
-      <div class="close-modal" id="mcloseBtn">✕</div>
+      <span style="color:#e5b663; font-weight: bold;">CARD DETAILS</span>
+      <button class="close-btn" id="closeModalBtn">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="info-row">
-        <span id="mNum" style="font-family: monospace;">XXXX XXXX</span>
-        <span id="mNet" style="color: var(--toxic); font-weight: bold;">—</span>
+    <div style="padding:1.5rem;">
+      <div id="modalCardInfo"></div>
+      <div class="app-grid">
+        <div class="app-btn" id="btnPhonePe"><span>📱</span> PhonePe</div>
+        <div class="app-btn" id="btnGPay"><span>G</span> Google Pay</div>
+        <div class="app-btn" id="btnPaytm"><span>P</span> Paytm</div>
+        <div class="app-btn" id="btnFamPay"><span>F</span> FamPay</div>
       </div>
-      <div class="price-card">
-        <div class="amount-large" id="mPrice">₹0</div>
-      </div>
-
-      <div class="qr-panel">
-        <div class="qr-label-text">SCAN QR OR TAP BELOW</div>
-        <div id="dynamicQR" style="display: flex; justify-content: center;"></div>
-        <div class="qr-amount-badge" id="qrAmountTag">₹0</div>
-        <div class="upi-id-small">UPI: kartikrawat6266@okhdfcbank</div>
-      </div>
-
-      <div class="apps-grid">
-        <div class="app-btn" id="btnPhonePe">
-          <div class="app-icon icon-phonepe">📱</div>
-          <div class="app-name">PhonePe</div>
-          <div class="app-sub">Open App</div>
-        </div>
-        <div class="app-btn" id="btnGPay">
-          <div class="app-icon icon-gpay">G</div>
-          <div class="app-name">Google Pay</div>
-          <div class="app-sub">Open App</div>
-        </div>
-        <div class="app-btn" id="btnPaytm">
-          <div class="app-icon icon-paytm">P</div>
-          <div class="app-name">Paytm</div>
-          <div class="app-sub">Open App</div>
-        </div>
-        <div class="app-btn" id="btnFamPay">
-          <div class="app-icon icon-fampay">F</div>
-          <div class="app-name">FamPay</div>
-          <div class="app-sub">Open App</div>
-        </div>
-      </div>
-      
-      <div class="fampay-note" id="fampayNote" style="display:none;">
-        ⚡ Choose "FamPay" from the list when prompted
-      </div>
-
-      <div class="input-field"><div class="input-label">WHATSAPP / MOBILE</div><input class="input-custom" id="phoneInput" placeholder="+91 9876543210"></div>
-      <div class="input-field"><div class="input-label">EMAIL ADDRESS</div><input class="input-custom" id="emailInput" placeholder="user@example.com"></div>
-      <div class="input-field"><div class="input-label">UTR / TRANSACTION ID</div><input class="input-custom" id="utrInput" placeholder="Enter UTR after payment"></div>
-      <button class="btn-primary" id="btnPaid">CONFIRM PAYMENT</button>
-      <div style="margin-top: 12px;"><button class="btn-outline" id="btnCloseModal">CANCEL</button></div>
+      <input class="input-custom" id="utrInput" placeholder="UTR / Transaction ID" style="width:100%; padding:14px; border-radius:30px; background:#1a1a2e; border:1px solid #c99a3c; color:white; margin:12px 0;">
+      <button class="btn-gold" id="confirmPaymentBtn">CONFIRM PAYMENT</button>
     </div>
   </div>
 </div>
-
-<div class="footer"><span>◆</span> CARDVAULT • DIRECT APP OPEN <span>◆</span></div>
 
 <script>
   (function() {
     const UPI_ID = "kartikrawat6266@okhdfcbank";
-    const MERCHANT_NAME = "CARDVAULT";
+    const MERCHANT = "CARDVAULT";
 
-    const toast = document.getElementById('toast');
-    let toastTimeout = null;
-    
-    function showToast(message, subMessage, isSuccess = true) {
-      const toastIcon = document.getElementById('toastIcon');
-      const toastText = document.getElementById('toastText');
-      const toastSub = document.getElementById('toastSub');
-      
-      toastIcon.innerHTML = isSuccess ? '✓' : '⚠️';
-      toastText.innerHTML = message;
-      toastSub.innerHTML = subMessage;
-      toast.style.borderColor = isSuccess ? 'var(--toxic)' : 'var(--blood)';
-      
-      toast.classList.add('show');
-      if(toastTimeout) clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-
-    // CARD GENERATOR
+    // Premium cards data
     const cardBrands = {
       visa: { prefix: ['4'], lengths: [16], display: 'VISA' },
       mastercard: { prefix: ['51','52','53','54','55'], lengths: [16], display: 'MASTERCARD' },
       amex: { prefix: ['34','37'], lengths: [15], display: 'AMEX' },
-      discover: { prefix: ['6011','65'], lengths: [16], display: 'DISCOVER' },
-      rupay: { prefix: ['60','65','81','82'], lengths: [16], display: 'RUPAY' }
+      rupay: { prefix: ['60','65','81','82'], lengths: [16], display: 'RUPAY' },
+      discover: { prefix: ['6011','65'], lengths: [16], display: 'DISCOVER' }
     };
     const brands = Object.keys(cardBrands);
     function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-    function genCardNumber(type) {
-      const info = cardBrands[type];
-      const prefix = info.prefix[Math.floor(Math.random() * info.prefix.length)];
-      const length = info.lengths[0];
-      let num = prefix;
-      while(num.length < length) num += Math.floor(Math.random() * 10);
-      return num;
-    }
-    function maskNumber(full) { return full.slice(0,12).replace(/(.{4})/g,'$1 ').trim() + ' XXXX'; }
-    function genExpiry() { return `${String(rand(1,12)).padStart(2,'0')}/${rand(25,30)}`; }
-    function genCVV(type) { return type === 'amex' ? String(rand(1000,9999)) : String(rand(100,999)); }
-    const holdersList = ['A. SHARMA', 'PRIYA K.', 'ROHAN D.', 'ANANYA V.', 'VIKRAM S.', 'NEHA G.', 'ARJUN M.', 'DIVYA R.'];
-
+    
     const cards = [];
     for (let i = 1; i <= 110; i++) {
       const type = brands[Math.floor(Math.random() * brands.length)];
-      const price = rand(100, 1000);
-      const fullNum = genCardNumber(type);
+      const fullNum = (cardBrands[type].prefix[0] + Array(cardBrands[type].lengths[0] - cardBrands[type].prefix[0].length).fill(0).map(()=>Math.floor(Math.random()*10)).join('')).slice(0, cardBrands[type].lengths[0]);
+      const price = rand(150, 950);
       cards.push({
-        id: i, type, fullNumber: fullNum, displayNumber: maskNumber(fullNum),
-        expiry: genExpiry(), cvv: genCVV(type), holder: holdersList[Math.floor(Math.random() * holdersList.length)],
+        id: i, type, fullNumber: fullNum,
+        displayNumber: fullNum.slice(0,12).replace(/(.{4})/g,'$1 ') + ' XXXX',
+        expiry: `${String(rand(1,12)).padStart(2,'0')}/${rand(26,30)}`,
+        cvv: type==='amex' ? String(rand(1000,9999)) : String(rand(100,999)),
+        holder: ['A. SHARMA','PRIYA K.','ROHAN D.','VIKRAM S.'][rand(0,3)],
         price: price, balance: price * 10
       });
     }
     cards.sort((a,b) => a.price - b.price);
 
-    // BACKGROUND
-    const canvas = document.getElementById('matrixCanvas'), ctx = canvas.getContext('2d');
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas();
-    const matrixChars = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&";
-    const fontSize = 13, columns = canvas.width / fontSize;
-    let drops = Array(Math.floor(columns)).fill(0).map(() => Math.random() * canvas.height / fontSize);
-    function drawMatrixBg() {
-      ctx.fillStyle = 'rgba(0,0,0,0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#1eff3c';
-      ctx.font = `${fontSize}px monospace`;
-      for(let i = 0; i < drops.length; i++) {
-        const ch = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-    setInterval(drawMatrixBg, 45);
-    window.addEventListener('resize', () => { resizeCanvas(); });
-
-    // Particles
-    const particleContainer = document.getElementById('particlesContainer');
-    for(let i = 0; i < 45; i++) {
+    // Background particles
+    const pContainer = document.getElementById('particlesContainer');
+    for (let i=0; i<50; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.width = p.style.height = Math.random() * 4 + 2 + 'px';
-      p.style.animationDuration = Math.random() * 4 + 2 + 's';
-      p.style.animationDelay = Math.random() * 5 + 's';
-      particleContainer.appendChild(p);
+      p.style.left = Math.random()*100+'%';
+      p.style.width = p.style.height = (Math.random()*5+2)+'px';
+      p.style.animationDelay = Math.random()*8+'s';
+      p.style.animationDuration = (Math.random()*7+5)+'s';
+      pContainer.appendChild(p);
     }
 
     // Live counter
-    const liveSpan = document.getElementById('liveUsersCount');
-    function updateLive() { liveSpan.textContent = Math.floor(Math.random() * 60) + 45; setTimeout(updateLive, 4200); }
-    updateLive();
+    const liveEl = document.getElementById('liveUsersCount');
+    setInterval(() => { liveEl.textContent = Math.floor(Math.random()*50)+90; }, 4000);
 
-    // STATE
     let currentCard = null;
     let currentFilter = 'all';
     let currentSort = 'price-low';
-    let qrObj = null;
-    let orders = JSON.parse(localStorage.getItem('cardvault_orders') || '[]');
-    function saveOrders() { localStorage.setItem('cardvault_orders', JSON.stringify(orders)); }
 
-    // DIRECT APP OPEN FUNCTIONS
-    function generateUPIString(amount, cardId) {
-      const note = `CARD_${cardId}`;
-      return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note)}`;
-    }
-
-    function openUPIApp(appType, amount, cardId) {
-      const upiString = generateUPIString(amount, cardId);
+    function renderCards() {
+      let filtered = currentFilter === 'all' ? [...cards] : cards.filter(c => c.type === currentFilter);
+      if (currentSort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+      else if (currentSort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+      else if (currentSort === 'balance-high') filtered.sort((a,b) => b.balance - a.balance);
       
-      switch(appType) {
-        case 'phonepe':
-          window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-          setTimeout(() => {
-            if (document.hidden === false) window.location.href = upiString;
-          }, 2000);
-          break;
-          
-        case 'gpay':
-          window.location.href = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-          setTimeout(() => {
-            if (document.hidden === false) window.location.href = upiString;
-          }, 2000);
-          break;
-          
-        case 'paytm':
-          window.location.href = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}`;
-          setTimeout(() => {
-            if (document.hidden === false) window.location.href = upiString;
-          }, 2000);
-          break;
-          
-        case 'fampay':
-          // FAMPAY SPECIAL HANDLING - Intent chooser ke liye
-          // Method 1: Try direct intent with package
-          const fampayIntent = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=CARD_${cardId}&mode=00#Intent;scheme=upi;package=com.fampay.in;S.browser_fallback_url=market://details?id=com.fampay.in;end`;
-          
-          // Method 2: Try market link (FamPay Play Store) - isse app open hogi
-          const fampayMarketLink = `market://launch?id=com.fampay.in&url=${encodeURIComponent(upiString)}`;
-          
-          // Try opening FamPay directly using package name
-          window.location.href = fampayIntent;
-          
-          // Show note to user
-          document.getElementById('fampayNote').style.display = 'block';
-          
-          // Fallback after delay
-          setTimeout(() => {
-            if (document.hidden === false) {
-              // Try market link
-              window.location.href = fampayMarketLink;
-            }
-          }, 1500);
-          
-          showToast('Opening FamPay...', 'Select FamPay from app list', true);
-          break;
-      }
-    }
-
-    function generateUPILink(amount, note = '') {
-      return `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount.toFixed(2)}&cu=INR&tn=${encodeURIComponent(note || `CARD_${Date.now()}`)}`;
-    }
-
-    function refreshDynamicQR(amount, cardId) {
-      const container = document.getElementById('dynamicQR');
-      if(!container) return;
-      container.innerHTML = '';
-      const upiString = generateUPILink(amount, `CARD_${cardId}`);
-      try {
-        qrObj = new QRCode(container, { text: upiString, width: 160, height: 160, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-      } catch(e) { container.innerHTML = '<div style="color:red;">QR ERROR</div>'; }
-      document.getElementById('qrAmountTag').innerText = `₹${amount}`;
-    }
-
-    function openModal(card) {
-      currentCard = card;
-      document.getElementById('mNum').innerText = card.displayNumber;
-      document.getElementById('mNet').innerHTML = cardBrands[card.type].display;
-      document.getElementById('mPrice').innerHTML = `₹${card.price}`;
-      document.getElementById('fampayNote').style.display = 'none';
-      refreshDynamicQR(card.price, card.id);
-      document.getElementById('phoneInput').value = '';
-      document.getElementById('emailInput').value = '';
-      document.getElementById('utrInput').value = '';
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-      document.body.style.overflow = '';
-      currentCard = null;
-    }
-
-    // BUTTON HANDLERS
-    document.getElementById('btnPhonePe').onclick = () => { 
-      if(currentCard) openUPIApp('phonepe', currentCard.price, currentCard.id);
-      else showToast('Select card first', 'Click on any card', false);
-    };
-    
-    document.getElementById('btnGPay').onclick = () => { 
-      if(currentCard) openUPIApp('gpay', currentCard.price, currentCard.id);
-      else showToast('Select card first', 'Click on any card', false);
-    };
-    
-    document.getElementById('btnPaytm').onclick = () => { 
-      if(currentCard) openUPIApp('paytm', currentCard.price, currentCard.id);
-      else showToast('Select card first', 'Click on any card', false);
-    };
-    
-    document.getElementById('btnFamPay').onclick = () => { 
-      if(currentCard) openUPIApp('fampay', currentCard.price, currentCard.id);
-      else showToast('Select card first', 'Click on any card', false);
-    };
-
-    document.getElementById('btnPaid').addEventListener('click', () => {
-      if(!currentCard) return showToast('Error', 'Select a card first', false);
-      const phone = document.getElementById('phoneInput').value.trim();
-      const email = document.getElementById('emailInput').value.trim();
-      const utr = document.getElementById('utrInput').value.trim();
-      if(!phone || !email || !utr) return showToast('Incomplete', 'Fill all fields', false);
-      
-      orders.unshift({
-        phone, email, utr, cardNet: cardBrands[currentCard.type].display,
-        cardNumber: currentCard.fullNumber, expiry: currentCard.expiry, cvv: currentCard.cvv,
-        price: currentCard.price, balance: currentCard.balance, time: Date.now()
-      });
-      saveOrders();
-      showToast('Payment Submitted', `Card: ${currentCard.fullNumber.slice(-4)}`, true);
-      closeModal();
-    });
-
-    // FILTER & SORT
-    function getFilteredSorted() {
-      let list = currentFilter === 'all' ? [...cards] : cards.filter(c => c.type === currentFilter);
-      if(currentSort === 'price-low') list.sort((a,b) => a.price - b.price);
-      else if(currentSort === 'price-high') list.sort((a,b) => b.price - a.price);
-      else if(currentSort === 'balance-high') list.sort((a,b) => b.balance - a.balance);
-      return list;
-    }
-
-    function renderGrid() {
-      const list = getFilteredSorted();
       const grid = document.getElementById('cardsGrid');
-      grid.innerHTML = list.map(c => `
-        <div class="card">
-          <div class="card-accent"></div>
-          <div class="card-body">
-            <div class="card-header">
-              <div class="network">${cardBrands[c.type].display}</div>
-              <div class="price-chip">₹${c.price}</div>
+      grid.innerHTML = filtered.map(c => `
+        <div class="card-premium">
+          <div class="card-top-glow"></div>
+          <div class="card-content">
+            <div class="card-type-row">
+              <span class="network-badge">${cardBrands[c.type].display}</span>
+              <span class="price-tag">₹${c.price}</span>
             </div>
-            <div class="card-sim">
-              <div class="chip-icon"><div class="chip-line-small"></div><div class="chip-line-small"></div></div>
+            <div class="card-visual">
+              <div class="chip-gold"><div class="chip-line"></div><div class="chip-line"></div></div>
             </div>
-            <div class="card-number">${c.displayNumber}</div>
-            <div class="meta-grid">
-              <div class="meta-item"><div class="meta-label">EXPIRES</div><div class="meta-value">${c.expiry}</div></div>
-              <div class="meta-item"><div class="meta-label">BALANCE</div><div class="meta-value"><span class="balance-highlight">₹${c.balance}</span></div></div>
+            <div class="card-number-display">${c.displayNumber}</div>
+            <div class="details-grid">
+              <div class="detail-box"><div class="detail-label">EXP</div><div class="detail-value">${c.expiry}</div></div>
+              <div class="detail-box"><div class="detail-label">CVV</div><div class="detail-value">${c.cvv}</div></div>
+              <div class="detail-box"><div class="detail-label">BAL</div><div class="detail-value balance-gold">₹${c.balance}</div></div>
             </div>
             <div class="holder-name">${c.holder}</div>
           </div>
-          <div class="buy-action" data-id="${c.id}">
-            <div class="buy-left"><div class="lock-icon">◆</div><div><div class="buy-label">UNLOCK CARD</div><div class="buy-sub">Pay ₹${c.price}</div></div></div>
-            <div class="arrow-right">→</div>
+          <div class="buy-section" data-id="${c.id}">
+            <span class="buy-text">UNLOCK CARD</span>
+            <span class="arrow-icon">→</span>
           </div>
         </div>
       `).join('');
       
-      document.querySelectorAll('.buy-action').forEach(btn => {
-        btn.addEventListener('click', () => {
+      document.querySelectorAll('.buy-section').forEach(btn => {
+        btn.addEventListener('click', (e) => {
           const id = parseInt(btn.dataset.id);
-          const card = cards.find(c => c.id === id);
-          if(card) openModal(card);
+          currentCard = cards.find(c => c.id === id);
+          openModal(currentCard);
         });
       });
     }
 
-    document.getElementById('sortPriceLow').onclick = () => { currentSort='price-low'; document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active')); document.getElementById('sortPriceLow').classList.add('active'); renderGrid(); };
-    document.getElementById('sortPriceHigh').onclick = () => { currentSort='price-high'; document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active')); document.getElementById('sortPriceHigh').classList.add('active'); renderGrid(); };
-    document.getElementById('sortBalanceHigh').onclick = () => { currentSort='balance-high'; document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active')); document.getElementById('sortBalanceHigh').classList.add('active'); renderGrid(); };
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentFilter = btn.dataset.type;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderGrid();
+    function openModal(card) {
+      document.getElementById('modalCardInfo').innerHTML = `
+        <div style="background:#1a1a2e; border-radius:24px; padding:1rem; margin-bottom:1rem;">
+          <p><strong>${cardBrands[card.type].display}</strong> • ${card.displayNumber}</p>
+          <p>CVV: ${card.cvv} | EXP: ${card.expiry}</p>
+          <p style="color:#e5b663; font-size:1.5rem; font-weight:bold;">₹${card.price}</p>
+        </div>
+      `;
+      document.getElementById('paymentModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('paymentModal').classList.remove('open');
+    }
+
+    function openUPIApp(app) {
+      if (!currentCard) return;
+      const amt = currentCard.price.toFixed(2);
+      const note = `CARD_${currentCard.id}`;
+      const upiStr = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      if (app === 'fampay') window.location.href = `intent://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}#Intent;scheme=upi;package=com.fampay.in;end`;
+      else if (app === 'phonepe') window.location.href = `phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      else if (app === 'gpay') window.location.href = `tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      else if (app === 'paytm') window.location.href = `paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT)}&am=${amt}&cu=INR&tn=${note}`;
+      setTimeout(() => { if (!document.hidden) window.location.href = upiStr; }, 1800);
+    }
+
+    document.getElementById('btnPhonePe').onclick = ()=> openUPIApp('phonepe');
+    document.getElementById('btnGPay').onclick = ()=> openUPIApp('gpay');
+    document.getElementById('btnPaytm').onclick = ()=> openUPIApp('paytm');
+    document.getElementById('btnFamPay').onclick = ()=> openUPIApp('fampay');
+    document.getElementById('confirmPaymentBtn').onclick = ()=>{
+      const utr = document.getElementById('utrInput').value.trim();
+      if(!utr) alert('Enter UTR');
+      else { alert('Payment confirmed'); closeModal(); }
+    };
+    document.getElementById('closeModalBtn').onclick = closeModal;
+
+    document.querySelectorAll('.btn-sort').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('.btn-sort').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        if(this.id === 'sortPriceLow') currentSort = 'price-low';
+        else if(this.id === 'sortPriceHigh') currentSort = 'price-high';
+        else currentSort = 'balance-high';
+        renderCards();
       });
     });
 
-    document.getElementById('mcloseBtn').addEventListener('click', closeModal);
-    document.getElementById('btnCloseModal').addEventListener('click', closeModal);
-    document.getElementById('modal').addEventListener('click', (e) => { if(e.target === document.getElementById('modal')) closeModal(); });
+    document.querySelectorAll('.btn-filter').forEach(b => {
+      b.addEventListener('click', function() {
+        document.querySelectorAll('.btn-filter').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.type;
+        renderCards();
+      });
+    });
 
-    renderGrid();
+    renderCards();
   })();
 </script>
 </body>
